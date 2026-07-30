@@ -83,6 +83,9 @@
     .winner-user { display:flex; align-items:center; gap:9px; min-width:0; }
     .winner-user .avatar { width:30px; height:30px; }
     .winner-gain { color:var(--good); font-weight:900; }
+    .winner-gain.zero { color:var(--muted); }
+    .winner-gain.negative { color:var(--bad); }
+    .archive-divider { grid-column:1/-1; padding:10px 14px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(255,255,255,.025); color:var(--muted); font-size:11px; font-weight:850; letter-spacing:.09em; text-transform:uppercase; }
     .toolbar { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
     .search { width:min(350px,100%); border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:var(--panel); color:var(--text); outline:none; }
     .search:focus { border-color:#69758a; }
@@ -100,7 +103,38 @@
     .up { color:var(--good); } .down { color:var(--bad); } .same { color:var(--muted); } .new { color:var(--warn); }
     .empty { display:none; padding:40px 20px; color:var(--muted); text-align:center; }
     .foot { margin-top:12px; color:var(--muted); font-size:12px; }
-    @media(max-width:820px){ header{flex-direction:column}.actions{justify-content:flex-start}.live-block{grid-template-columns:1fr 1fr}.live-main{grid-column:1/-1}.cards{grid-template-columns:repeat(2,1fr)}.daily-grid{grid-template-columns:1fr} }
+
+    .username,.person-name { border:0; padding:0; background:none; color:var(--text); cursor:pointer; font:inherit; text-align:left; }
+    .username:focus-visible,.person-name:focus-visible { outline:2px solid var(--accent2); outline-offset:3px; border-radius:3px; }
+    body.modal-open { overflow:hidden; }
+    .history-overlay { position:fixed; inset:0; z-index:1000; display:grid; place-items:start center; padding:max(24px,6vh) 16px 24px; background:rgba(2,4,8,.8); backdrop-filter:blur(7px); }
+    .history-overlay[hidden] { display:none; }
+    .history-modal { width:min(900px,100%); max-height:calc(100vh - max(48px,12vh)); overflow:hidden; border:1px solid #394354; border-radius:18px; background:#10141c; box-shadow:0 30px 90px rgba(0,0,0,.58); display:flex; flex-direction:column; }
+    .history-head { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; padding:20px 20px 16px; border-bottom:1px solid var(--line); }
+    .history-title-wrap { display:flex; align-items:center; gap:13px; min-width:0; }
+    .history-title-wrap .avatar { width:48px; height:48px; }
+    .history-title { margin:0; font-size:24px; letter-spacing:-.03em; overflow-wrap:anywhere; }
+    .history-subtitle { margin:4px 0 0; color:var(--muted); font-size:12px; }
+    .history-close { width:38px; height:38px; flex:0 0 auto; border:1px solid var(--line); border-radius:10px; background:var(--panel2); color:var(--text); cursor:pointer; font-size:22px; line-height:1; }
+    .history-close:hover { border-color:var(--accent2); color:var(--accent2); }
+    .history-summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:14px 20px; border-bottom:1px solid var(--line); }
+    .history-stat { padding:11px 12px; border:1px solid var(--line); border-radius:11px; background:rgba(255,255,255,.025); }
+    .history-stat-label { color:var(--muted); font-size:10px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    .history-stat-value { margin-top:3px; font-size:18px; font-weight:900; font-variant-numeric:tabular-nums; }
+    .history-table-wrap { overflow:auto; }
+    .history-table { min-width:670px; }
+    .history-table th { position:sticky; top:0; z-index:2; }
+    .history-date { font-weight:850; white-space:nowrap; }
+    .history-live { display:inline-flex; margin-left:6px; padding:2px 6px; border-radius:999px; background:rgba(239,77,77,.15); color:var(--accent2); font-size:9px; font-weight:900; letter-spacing:.06em; vertical-align:1px; }
+    .history-difference { color:var(--good); font-weight:900; }
+    .history-difference.zero { color:var(--muted); }
+    .history-difference.negative { color:var(--bad); }
+    .history-empty { padding:44px 20px; color:var(--muted); text-align:center; }
+    .history-footer { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:13px 20px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+    .history-profile { color:var(--accent2); font-weight:850; text-decoration:none; }
+    .history-profile[hidden] { display:none; }
+
+    @media(max-width:820px){ header{flex-direction:column}.actions{justify-content:flex-start}.live-block{grid-template-columns:1fr 1fr}.live-main{grid-column:1/-1}.cards{grid-template-columns:repeat(2,1fr)}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr} }
     @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.cards{grid-template-columns:1fr}.live-block{grid-template-columns:1fr}.live-main{grid-column:auto}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0} }
   </style>
 </head>
@@ -110,7 +144,7 @@
     <div>
       <div class="eyebrow">Public leaderboard tracker</div>
       <h1>POSTMAXXERS</h1>
-      <p class="subtitle">Top 30 posters, live post-count changes, and each New York day’s top postmaxxer.</p>
+      <p class="subtitle">Top 30 posters, live post-count changes, and a full New York-day posting leaderboard.</p>
     </div>
     <div class="actions">
       <button class="button primary" id="refresh">Refresh data</button>
@@ -147,13 +181,13 @@
 
   <section class="daily">
     <div class="section-head">
-      <div><h2>Today’s Top Postmaxxer</h2><p>Shows which tracked user gained the most posts during the current New York day.</p></div>
+      <div><h2>Top Postmaxxers of the Day</h2><p>Ranks only users who have gained at least one post during the current New York day.</p></div>
       <span class="badge" id="dateBadge">Not tracking yet</span>
     </div>
     <div class="daily-grid">
       <article class="leader" id="leader"></article>
       <section class="archive">
-        <div class="archive-title"><h3>Top Postmaxxers of the Day</h3><span id="winnerCount">0 shown</span></div>
+        <div class="archive-title"><h3>Today’s Daily Leaderboard</h3><span id="winnerCount">0 users today</span></div>
         <div class="winner-list" id="winnerList"></div>
       </section>
     </div>
@@ -174,6 +208,26 @@
   <p class="foot" id="sourceNote"></p>
 </main>
 
+
+<div class="history-overlay" id="historyOverlay" hidden>
+  <section class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
+    <header class="history-head">
+      <div class="history-title-wrap" id="historyIdentity"></div>
+      <button class="history-close" id="historyClose" type="button" aria-label="Close user history">×</button>
+    </header>
+    <div class="history-summary">
+      <div class="history-stat"><div class="history-stat-label">Recorded days</div><div class="history-stat-value" id="historyDays">0</div></div>
+      <div class="history-stat"><div class="history-stat-label">Posts recorded</div><div class="history-stat-value" id="historyTotalGain">0</div></div>
+      <div class="history-stat"><div class="history-stat-label">Best day</div><div class="history-stat-value" id="historyBestDay">—</div></div>
+    </div>
+    <div class="history-table-wrap">
+      <table class="history-table"><thead><tr><th>Date</th><th>Starting posts</th><th>Difference</th><th>Ending posts</th><th>Final rank</th></tr></thead><tbody id="historyBody"></tbody></table>
+      <div class="history-empty" id="historyEmpty">No daily history is available for this user yet.</div>
+    </div>
+    <footer class="history-footer"><span>Dates use U.S. format (MM/DD/YYYY) and reset at midnight in New York.</span><a class="history-profile" id="historyProfile" target="_blank" rel="noreferrer">Open forum profile ↗</a></footer>
+  </section>
+</div>
+
 <script>
 (() => {
   const GITHUB_API_VERSION = '2022-11-28';
@@ -189,11 +243,14 @@
     dataPath: params.get('data') || '',
   };
 
-  const state = { data:null, query:'', selectedSource:null, nextPollAt:Date.now() + POLL_MS, renderedNewYorkDate:null };
+  const state = { data:null, query:'', selectedSource:null, nextPollAt:Date.now() + POLL_MS, renderedNewYorkDate:null, activeHistoryUser:null };
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
 
   el.refresh.addEventListener('click', () => loadData(true));
   el.search.addEventListener('input', () => { state.query = el.search.value.trim().toLowerCase(); renderTable(); });
+  el.historyClose.addEventListener('click', closeUserHistory);
+  el.historyOverlay.addEventListener('click', event => { if (event.target === el.historyOverlay) closeUserHistory(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && !el.historyOverlay.hidden) closeUserHistory(); });
   setInterval(() => {
     renderClock();
     const today = newYorkDateKey(Date.now());
@@ -288,42 +345,58 @@
     renderDaily();
     renderTable();
     renderClock();
+    if (state.activeHistoryUser) renderUserHistoryModal(state.activeHistoryUser);
     el.sourceNote.textContent = state.selectedSource
       ? `Data source: ${config.owner}/${config.repo} · ${state.selectedSource.branch}/${state.selectedSource.dataPath}. “New posts today” is cumulative across scans and resets only at New York midnight. The page reads GitHub directly; no GitHub token is present in this website.`
       : `Repository detected: ${config.owner || 'unknown'}/${config.repo || 'unknown'}.`;
   }
 
-  function getDailyLeaders(tracking) {
+  function getDailyLeaderboard(tracking) {
     if (!tracking) return [];
-    const provided = Array.isArray(tracking.currentLeaders) && tracking.currentLeaders.length
-      ? tracking.currentLeaders
-      : (tracking.currentLeader ? [tracking.currentLeader] : []);
-    if (provided.length) return provided.filter(leader => Number(leader?.postsGained) > 0);
-
     const ranking = Array.isArray(state.data?.ranking) ? state.data.ranking.slice(0, RANKING_LIMIT) : [];
-    const candidates = ranking
-      .filter(user => Number(user?.postDelta) > 0)
-      .map(user => ({
-        dateKey: tracking.dateKey,
-        timeZone: DAILY_TIME_ZONE,
-        username: user.username,
-        userId: user.userId || '',
-        postsGained: Number(user.postDelta) || 0,
-        endPosts: Number(user.posts) || 0,
-        startPosts: (Number(user.posts) || 0) - (Number(user.postDelta) || 0),
-        finalRank: Number(user.rank) || 0,
-        profileUrl: user.profileUrl || '',
-        avatarUrl: user.avatarUrl || ''
-      }));
-    if (!candidates.length) return [];
-    const maxGain = Math.max(...candidates.map(candidate => candidate.postsGained));
-    return candidates.filter(candidate => candidate.postsGained === maxGain);
+    const users = ranking
+      .filter(user => user?.username)
+      .map(user => {
+        const gained = Number(user.postDelta);
+        const postsGained = Number.isFinite(gained) ? gained : 0;
+        return {
+          dateKey: tracking.dateKey,
+          timeZone: DAILY_TIME_ZONE,
+          username: user.username,
+          userId: user.userId || '',
+          postsGained,
+          endPosts: Number(user.posts) || 0,
+          startPosts: (Number(user.posts) || 0) - postsGained,
+          finalRank: Number(user.rank) || 0,
+          profileUrl: user.profileUrl || '',
+          avatarUrl: user.avatarUrl || ''
+        };
+      })
+      .filter(user => Number(user.postsGained) >= 1)
+      .sort((a,b) => Number(b.postsGained)-Number(a.postsGained) || Number(a.finalRank||Number.MAX_SAFE_INTEGER)-Number(b.finalRank||Number.MAX_SAFE_INTEGER));
+
+    let previousGain = null;
+    let previousPlace = 0;
+    return users.map((user,index) => {
+      const place = previousGain !== null && user.postsGained === previousGain ? previousPlace : index + 1;
+      previousGain = user.postsGained;
+      previousPlace = place;
+      return { ...user, dailyRank: place };
+    });
+  }
+
+  function getDailyLeaders(tracking) {
+    const leaderboard = getDailyLeaderboard(tracking);
+    if (!leaderboard.length || Number(leaderboard[0].postsGained) <= 0) return [];
+    const highestGain = Number(leaderboard[0].postsGained);
+    return leaderboard.filter(user => Number(user.postsGained) === highestGain);
   }
 
   function renderDaily() {
     const today = newYorkDateKey(Date.now());
     state.renderedNewYorkDate = today;
     const tracking = getCurrentNewYorkTracking();
+    const dailyLeaderboard = getDailyLeaderboard(tracking);
     const liveLeaders = getDailyLeaders(tracking);
     el.dateBadge.textContent = `New York · ${formatDateKey(today)}`;
     el.leader.replaceChildren();
@@ -338,9 +411,7 @@
         const entry = node('div','leader-entry');
         const person = node('div','person');
         person.append(makeAvatar(leader));
-        const link = node('a','person-name',leader.username || 'Unknown');
-        link.href = leader.profileUrl || '#'; link.target = '_blank'; link.rel = 'noreferrer';
-        person.append(link);
+        person.append(makeUsernameButton(leader,'person-name'));
         const gain = node('div','gain',`+${formatNumber(leader.postsGained)} posts`);
         entry.append(person,gain);
         list.append(entry);
@@ -349,7 +420,7 @@
       el.leader.append(kicker,list,caption);
     }
 
-    const liveRows = liveLeaders.map(leader => ({ ...leader, isLive:true }));
+    const liveRows = dailyLeaderboard.map(user => ({ ...user, isLive:true }));
     const winners = [...(Array.isArray(state.data?.dailyWinners) ? state.data.dailyWinners : [])]
       .filter(w=>w?.dateKey&&w?.username&&w.dateKey!==today)
       .sort((a,b)=>{
@@ -357,11 +428,15 @@
         if(byDate)return byDate;
         return Number(b.postsGained||0)-Number(a.postsGained||0);
       });
-    const displayed=[...liveRows,...winners];
-    el.winnerCount.textContent = `${displayed.length} shown`;
-    el.winnerList.replaceChildren(...(displayed.length
-      ? displayed.map(makeWinnerRow)
-      : [placeholder('No daily leader yet','Today’s live leader will appear here after a tracked user gains posts. Completed New York days are kept underneath automatically.')]))
+    const rows = liveRows.map(makeWinnerRow);
+    if (winners.length) {
+      rows.push(node('div','archive-divider','Previous daily winners'));
+      rows.push(...winners.map(makeWinnerRow));
+    }
+    el.winnerCount.textContent = tracking ? `${liveRows.length} active ${liveRows.length === 1 ? 'user' : 'users'} today` : 'Waiting for scan';
+    el.winnerList.replaceChildren(...(rows.length
+      ? rows
+      : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current New York day.' : 'Open the forum in the active tab to start today’s New York-day tracking.')]))
   }
 
   function getCurrentNewYorkTracking() {
@@ -382,20 +457,80 @@
     tr.append(cell('rank',`#${user.rank || '—'}`));
     const userCell = document.createElement('td');
     const wrap = node('div','user'); wrap.append(makeAvatar(user));
-    const link = node('a','username',user.username || 'Unknown'); link.href=user.profileUrl||'#'; link.target='_blank'; link.rel='noreferrer';
-    wrap.append(link); userCell.append(wrap);
+    wrap.append(makeUsernameButton(user,'username')); userCell.append(wrap);
     tr.append(userCell,cell('number',formatNumber(user.posts)),cell(`delta ${deltaClass(user.postDelta,user.isNew)}`,formatPostDelta(user)),cell(`delta ${deltaClass(user.rankDelta,user.isNew)}`,formatRankDelta(user)));
     return tr;
   }
 
   function makeWinnerRow(winner) {
     const row=node('div','winner-row');
-    row.append(node('div',`winner-date${winner.isLive?' live':''}`,winner.isLive?'Today · LIVE':formatDateKey(winner.dateKey)));
+    row.append(node('div',`winner-date${winner.isLive?' live':''}`,winner.isLive?`#${winner.dailyRank||'—'}`:formatDateKey(winner.dateKey)));
     const user=node('div','winner-user'); user.append(makeAvatar(winner));
-    const link=node('a','username',winner.username); link.href=winner.profileUrl||'#'; link.target='_blank'; link.rel='noreferrer'; user.append(link);
-    row.append(user,node('div','winner-gain',`+${formatNumber(winner.postsGained)}`));
+    user.append(makeUsernameButton(winner,'username'));
+    const gainValue=Number(winner.postsGained)||0;
+    const gain=node('div',`winner-gain${gainValue===0?' zero':gainValue<0?' negative':''}`,gainValue>0?`+${formatNumber(gainValue)}`:formatNumber(gainValue));
+    row.append(user,gain);
     return row;
   }
+
+
+  function makeUsernameButton(user,className='username') {
+    const button=node('button',className,user?.username||'Unknown');
+    button.type='button';
+    button.title=`View daily posting history for ${user?.username||'this user'}`;
+    button.addEventListener('click',()=>openUserHistory(user));
+    return button;
+  }
+
+  function openUserHistory(user) {
+    if(!user?.username)return;
+    state.activeHistoryUser={username:String(user.username),userId:String(user.userId||''),profileUrl:String(user.profileUrl||''),avatarUrl:String(user.avatarUrl||'')};
+    renderUserHistoryModal(state.activeHistoryUser);
+    el.historyOverlay.hidden=false;
+    document.body.classList.add('modal-open');
+    el.historyClose.focus();
+  }
+
+  function closeUserHistory(){ el.historyOverlay.hidden=true; document.body.classList.remove('modal-open'); state.activeHistoryUser=null; }
+
+  function renderUserHistoryModal(user) {
+    const records=getUserDailyHistory(user);
+    const identity=document.createDocumentFragment(); identity.append(makeAvatar(user));
+    const text=node('div');
+    const title=node('h2','history-title',user.username); title.id='historyTitle';
+    text.append(title,node('p','history-subtitle',records.length?`Daily post-count history · ${records[0].isLive?'current day is live':'completed days'}`:'Daily post-count history'));
+    identity.append(text); el.historyIdentity.replaceChildren(identity);
+    const total=records.reduce((sum,record)=>sum+Number(record.postsGained||0),0);
+    const best=records.reduce((current,record)=>!current||Number(record.postsGained)>Number(current.postsGained)?record:current,null);
+    el.historyDays.textContent=formatNumber(records.length);
+    el.historyTotalGain.textContent=total>0?`+${formatNumber(total)}`:formatNumber(total);
+    el.historyBestDay.textContent=best?`${best.postsGained>0?'+':''}${formatNumber(best.postsGained)} · ${formatUsDateKey(best.dateKey)}`:'—';
+    el.historyBody.replaceChildren(...records.map(makeHistoryRow));
+    el.historyEmpty.style.display=records.length?'none':'block';
+    const profile=user.profileUrl||records.find(record=>record.profileUrl)?.profileUrl||'';
+    el.historyProfile.hidden=!profile; if(profile)el.historyProfile.href=profile;
+  }
+
+  function getUserDailyHistory(user) {
+    const matches=candidate=>{ const wanted=String(user?.userId||'').trim(),found=String(candidate?.userId||'').trim(); if(wanted&&found)return wanted===found; return String(candidate?.username||'').trim().toLowerCase()===String(user?.username||'').trim().toLowerCase(); };
+    const byDate=new Map();
+    for(const day of Array.isArray(state.data?.dailyUserHistory)?state.data.dailyUserHistory:[]){ const record=(Array.isArray(day?.users)?day.users:[]).find(matches); if(!record||!day?.dateKey)continue; byDate.set(day.dateKey,{...record,dateKey:String(day.dateKey),isLive:!day.finalized&&day.dateKey===newYorkDateKey(Date.now()),lastUpdatedAt:Number(day.lastUpdatedAt)||null}); }
+    const today=newYorkDateKey(Date.now());
+    if(!byDate.has(today)&&state.data?.dailyTracking?.dateKey===today){ const current=(Array.isArray(state.data?.ranking)?state.data.ranking:[]).find(matches); if(current){ const gained=Number(current.postDelta)||0; byDate.set(today,{username:current.username,userId:current.userId||'',startPosts:(Number(current.posts)||0)-gained,postsGained:gained,endPosts:Number(current.posts)||0,finalRank:Number(current.rank)||0,profileUrl:current.profileUrl||'',avatarUrl:current.avatarUrl||'',dateKey:today,isLive:true,lastUpdatedAt:state.data.dailyTracking.lastUpdatedAt||state.data.updatedAtMs}); } }
+    for(const winner of Array.isArray(state.data?.dailyWinners)?state.data.dailyWinners:[]){ if(!winner?.dateKey||byDate.has(winner.dateKey)||!matches(winner))continue; byDate.set(winner.dateKey,{...winner,isLive:false}); }
+    return [...byDate.values()].sort((a,b)=>String(b.dateKey).localeCompare(String(a.dateKey)));
+  }
+
+  function makeHistoryRow(record) {
+    const tr=document.createElement('tr');
+    const date=cell('history-date',formatUsDateKey(record.dateKey));
+    if(record.isLive)date.append(node('span','history-live','LIVE'));
+    const difference=Number(record.postsGained)||0;
+    tr.append(date,cell('number',formatNumber(record.startPosts)),cell(`history-difference${difference===0?' zero':difference<0?' negative':''}`,difference>0?`+${formatNumber(difference)}`:formatNumber(difference)),cell('number',formatNumber(record.endPosts)),cell('number',record.finalRank?`#${record.finalRank}`:'—'));
+    return tr;
+  }
+
+  function formatUsDateKey(key){ const match=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); return match?`${match[2]}/${match[3]}/${match[1]}`:String(key||'—'); }
 
   function makeAvatar(user) {
     if (!user?.avatarUrl) return fallback(user?.username);
