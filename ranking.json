@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "project": "POSTMAXXERS",
+  "source": "https://incels.is/members/?key=most_posts",
+  "updatedAt": null,
+  "updatedAtMs": null,
+  "nextUpdateAt": null,
+  "nextUpdateAtMs": null,
+  "updateIntervalMinutes": 5,
+  "scanCondition": "The Chrome extension scans only while an incels.is tab is actively viewed.",
+  "sourcePages": null,
+  "stats": {
+    "users": 0,
+    "combinedPosts": 0
+  },
+  "dailyTracking": null,
+  "dailyWinners": [],
+  "ranking": []
+}
