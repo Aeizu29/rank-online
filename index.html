@@ -157,7 +157,7 @@
       <span class="dot" id="dot"></span>
       <div>
         <div class="live-title" id="liveTitle">Connecting to GitHub data…</div>
-        <div class="live-detail" id="liveDetail">Updates every five minutes while the tracker’s forum tab is active.</div>
+        <div class="live-detail" id="liveDetail">Updates every hour while the tracker’s forum tab is active.</div>
       </div>
     </div>
     <div class="time-meta">
@@ -231,7 +231,7 @@
 <script>
 (() => {
   const GITHUB_API_VERSION = '2022-11-28';
-  const POLL_MS = 5 * 60 * 1000;
+  const POLL_MS = 60 * 60 * 1000;
   const RANKING_LIMIT = 30;
   const DAILY_TIME_ZONE = 'America/New_York';
   const params = new URLSearchParams(location.search);
@@ -272,7 +272,7 @@
       state.data = result.data;
       state.nextPollAt = Date.now() + POLL_MS;
       renderAll();
-      setStatus('success', isStale(result.data) ? 'Data loaded, but the tracker has not uploaded recently.' : 'Live tracking active · updates every 5 minutes');
+      setStatus('success', isStale(result.data) ? 'Data loaded, but the tracker has not uploaded recently.' : 'Live tracking active · updates every hour');
     } catch (error) {
       setStatus('error', 'Public ranking data unavailable');
       showError(formatSetupError(error));
@@ -556,11 +556,11 @@
     el.liveTitle.textContent=title;
     el.liveDetail.textContent=type==='error'
       ? 'Check the repository settings in the Chrome extension.'
-      : 'Updates every five minutes while the tracker’s incels.is tab is active.';
+      : 'Updates every hour while the tracker’s incels.is tab is active.';
   }
   function showError(message){ el.error.textContent=message; el.error.classList.add('show'); }
   function hideError(){ el.error.classList.remove('show'); }
-  function isStale(data){ return !data?.updatedAtMs || Date.now()-Number(data.updatedAtMs)>15*60*1000; }
+  function isStale(data){ return !data?.updatedAtMs || Date.now()-Number(data.updatedAtMs)>90*60*1000; }
   function formatSetupError(error){
     return `${error.message || error}\n\nExpected repository: ${config.owner || '?'}/${config.repo || '?'}\nTried ranking.json and docs/ranking.json on main/master.\nOpen the extension’s GitHub publishing settings and make sure Owner, Repository, Branch, and JSON path match this GitHub Pages repository.`;
   }
