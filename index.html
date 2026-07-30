@@ -107,7 +107,7 @@
     <div>
       <div class="eyebrow">Public leaderboard tracker</div>
       <h1>POSTMAXXERS</h1>
-      <p class="subtitle">Top 30 posters, live post-count changes, and the top poster of each day.</p>
+      <p class="subtitle">Top 30 posters, live post-count changes, and each New York day’s top postmaxxer.</p>
     </div>
     <div class="actions">
       <button class="button primary" id="refresh">Refresh data</button>
@@ -139,18 +139,18 @@
     <article class="card"><div class="card-label">Users loaded</div><div class="card-value" id="userCount">—</div></article>
     <article class="card"><div class="card-label">Combined posts</div><div class="card-value" id="combinedPosts">—</div></article>
     <article class="card"><div class="card-label">Current #1</div><div class="card-value" id="numberOne">—</div></article>
-    <article class="card"><div class="card-label">Today’s leader</div><div class="card-value" id="todayLeaderCard">—</div></article>
+    <article class="card"><div class="card-label">Today’s top postmaxxer</div><div class="card-value" id="todayLeaderCard">—</div></article>
   </section>
 
   <section class="daily">
     <div class="section-head">
-      <div><h2>Top poster of the day</h2><p>Calculated from posts gained since the first successful scan of the day.</p></div>
+      <div><h2>Today’s Top Postmaxxer</h2><p>Shows which tracked user gained the most posts during the current New York day.</p></div>
       <span class="badge" id="dateBadge">Not tracking yet</span>
     </div>
     <div class="daily-grid">
       <article class="leader" id="leader"></article>
       <section class="archive">
-        <div class="archive-title"><h3>Daily winners</h3><span id="winnerCount">0 saved</span></div>
+        <div class="archive-title"><h3>Top Postmaxxers of the Day</h3><span id="winnerCount">0 saved</span></div>
         <div class="winner-list" id="winnerList"></div>
       </section>
     </div>
@@ -163,7 +163,7 @@
 
   <section class="table-wrap">
     <table>
-      <thead><tr><th>Rank</th><th>User</th><th style="text-align:right">Posts</th><th style="text-align:right">New posts</th><th style="text-align:right">Rank change</th></tr></thead>
+      <thead><tr><th>Rank</th><th>User</th><th style="text-align:right">Posts</th><th style="text-align:right">New posts today</th><th style="text-align:right">Rank change</th></tr></thead>
       <tbody id="rankingBody"></tbody>
     </table>
     <div class="empty" id="empty">No public ranking data is available yet.</div>
@@ -176,6 +176,7 @@
   const GITHUB_API_VERSION = '2022-11-28';
   const POLL_MS = 5 * 60 * 1000;
   const RANKING_LIMIT = 30;
+  const DAILY_TIME_ZONE = 'America/New_York';
   const params = new URLSearchParams(location.search);
   const inferred = inferRepository();
   const config = {
@@ -185,12 +186,16 @@
     dataPath: params.get('data') || '',
   };
 
-  const state = { data:null, query:'', selectedSource:null, nextPollAt:Date.now() + POLL_MS };
+  const state = { data:null, query:'', selectedSource:null, nextPollAt:Date.now() + POLL_MS, renderedNewYorkDate:null };
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
 
   el.refresh.addEventListener('click', () => loadData(true));
   el.search.addEventListener('input', () => { state.query = el.search.value.trim().toLowerCase(); renderTable(); });
-  setInterval(renderClock, 1000);
+  setInterval(() => {
+    renderClock();
+    const today = newYorkDateKey(Date.now());
+    if (today !== state.renderedNewYorkDate) renderDaily();
+  }, 1000);
   loadData(false);
 
   async function loadData(manual) {
@@ -271,24 +276,27 @@
     el.userCount.textContent = ranking.length ? formatNumber(ranking.length) : '—';
     el.combinedPosts.textContent = ranking.length ? formatNumber(ranking.reduce((sum,u)=>sum+(Number(u.posts)||0),0)) : '—';
     el.numberOne.textContent = ranking[0]?.username || '—';
-    el.todayLeaderCard.textContent = data?.dailyTracking?.currentLeader?.username || '—';
+    const currentTracking = getCurrentNewYorkTracking();
+    el.todayLeaderCard.textContent = currentTracking?.currentLeader?.username || '—';
     el.lastUpdated.textContent = data?.updatedAtMs ? formatDateTime(data.updatedAtMs) : '—';
     renderDaily();
     renderTable();
     renderClock();
     el.sourceNote.textContent = state.selectedSource
-      ? `Data source: ${config.owner}/${config.repo} · ${state.selectedSource.branch}/${state.selectedSource.dataPath}. The page reads GitHub directly; no GitHub token is present in this website.`
+      ? `Data source: ${config.owner}/${config.repo} · ${state.selectedSource.branch}/${state.selectedSource.dataPath}. “New posts today” is cumulative across scans and resets only at New York midnight. The page reads GitHub directly; no GitHub token is present in this website.`
       : `Repository detected: ${config.owner || 'unknown'}/${config.repo || 'unknown'}.`;
   }
 
   function renderDaily() {
-    const tracking = state.data?.dailyTracking;
-    el.dateBadge.textContent = tracking?.dateKey ? formatDateKey(tracking.dateKey) : 'Not tracking yet';
+    const today = newYorkDateKey(Date.now());
+    state.renderedNewYorkDate = today;
+    const tracking = getCurrentNewYorkTracking();
+    el.dateBadge.textContent = `New York · ${formatDateKey(today)}`;
     el.leader.replaceChildren();
     if (!tracking) {
-      el.leader.append(placeholder('Waiting for data','The daily leader appears after the extension uploads a successful scan.'));
+      el.leader.append(placeholder('Waiting for today’s New York scan','The page has reset for the new New York day. Open the forum in the active tab so the extension can upload the first scan.'));
     } else if (!tracking.currentLeader) {
-      el.leader.append(placeholder('No new posts detected yet',`Tracking started at ${formatTime(tracking.startedAt)}.`));
+      el.leader.append(placeholder('No new posts detected yet',`Tracking started at ${formatNewYorkTime(tracking.startedAt)} New York time.`));
     } else {
       const leader = tracking.currentLeader;
       const kicker = node('div','leader-kicker','Live leader');
@@ -298,16 +306,21 @@
       link.href = leader.profileUrl || '#'; link.target = '_blank'; link.rel = 'noreferrer';
       person.append(link);
       const gain = node('div','gain',`+${formatNumber(leader.postsGained)} posts`);
-      const caption = node('div','caption',`Current rank #${leader.finalRank || '—'} · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
+      const caption = node('div','caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Current rank #${leader.finalRank || '—'} · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
       el.leader.append(kicker,person,gain,caption);
     }
 
     const winners = [...(Array.isArray(state.data?.dailyWinners) ? state.data.dailyWinners : [])]
       .filter(w=>w?.dateKey&&w?.username).sort((a,b)=>String(b.dateKey).localeCompare(String(a.dateKey)));
     el.winnerCount.textContent = `${winners.length} saved`;
-    el.winnerList.replaceChildren(...(winners.length ? winners.map(makeWinnerRow) : [placeholder('No completed days yet','Yesterday’s winner is archived after the first successful scan of a new day.')]))
+    el.winnerList.replaceChildren(...(winners.length ? winners.map(makeWinnerRow) : [placeholder('No completed New York days yet','The previous day’s top postmaxxer is archived after the first successful scan of a new New York day.')]))
   }
 
+  function getCurrentNewYorkTracking() {
+    const tracking = state.data?.dailyTracking;
+    if (!tracking || tracking.timeZone !== DAILY_TIME_ZONE) return null;
+    return tracking.dateKey === newYorkDateKey(Date.now()) ? tracking : null;
+  }
   function renderTable() {
     const ranking = Array.isArray(state.data?.ranking) ? state.data.ranking.slice(0, RANKING_LIMIT) : [];
     const filtered = ranking.filter(user => !state.query || String(user.username||'').toLowerCase().includes(state.query));
@@ -382,9 +395,10 @@
   function formatRankDelta(user){ if(user.isNew||user.rankDelta===null||user.rankDelta===undefined)return'New'; if(user.rankDelta>0)return`▲ ${user.rankDelta}`; if(user.rankDelta<0)return`▼ ${Math.abs(user.rankDelta)}`; return'—'; }
   function formatNumber(value){ return new Intl.NumberFormat().format(Number(value)||0); }
   function formatDateTime(value){ return new Intl.DateTimeFormat([],{dateStyle:'medium',timeStyle:'short'}).format(Number(value)); }
-  function formatTime(value){ return value?new Intl.DateTimeFormat([],{hour:'2-digit',minute:'2-digit'}).format(Number(value)):'—'; }
+  function formatNewYorkTime(value){ return value?new Intl.DateTimeFormat([],{timeZone:DAILY_TIME_ZONE,hour:'2-digit',minute:'2-digit'}).format(Number(value)):'—'; }
   function formatRelative(value){ if(!value)return'—'; const sec=Math.max(0,Math.round((Date.now()-Number(value))/1000)); if(sec<60)return`${sec}s ago`; const min=Math.floor(sec/60); if(min<60)return`${min}m ago`; return`${Math.floor(min/60)}h ago`; }
-  function formatDateKey(key){ const m=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m)return String(key||''); return new Intl.DateTimeFormat([],{month:'short',day:'numeric',year:'numeric'}).format(new Date(+m[1],+m[2]-1,+m[3])); }
+  function formatDateKey(key){ const m=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m)return String(key||''); return new Intl.DateTimeFormat([],{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(+m[1],+m[2]-1,+m[3],12))); }
+  function newYorkDateKey(value){ const parts=new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(value)); const values=Object.fromEntries(parts.map(part=>[part.type,part.value])); return `${values.year}-${values.month}-${values.day}`; }
 })();
 </script>
 </body>
