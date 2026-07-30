@@ -55,17 +55,19 @@
     .section-head h2 { margin:0; font-size:21px; letter-spacing:-.025em; }
     .section-head p { margin:4px 0 0; color:var(--muted); }
     .badge { border:1px solid var(--line); border-radius:999px; padding:6px 10px; background:var(--panel); color:var(--muted); font-size:12px; font-weight:750; }
-    .daily-grid { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(340px,1.2fr); gap:14px; }
+    .daily-grid { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(340px,1.2fr); gap:14px; align-items:start; }
     .leader,.archive { border:1px solid var(--line); border-radius:14px; background:rgba(8,10,14,.58); }
-    .leader { min-height:175px; padding:18px; display:flex; flex-direction:column; justify-content:center; }
+    .leader { min-height:175px; padding:18px; display:flex; flex-direction:column; justify-content:center; height:auto; }
     .leader-kicker { color:var(--accent2); font-size:11px; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
-    .person { display:flex; align-items:center; gap:12px; margin-top:11px; }
+    .leader-list { display:grid; gap:12px; margin-top:11px; }
+    .leader-entry { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+    .person { display:flex; align-items:center; gap:12px; min-width:0; }
     .avatar { width:38px; height:38px; border-radius:50%; object-fit:cover; background:#252d3a; flex:0 0 auto; }
     .leader .avatar { width:52px; height:52px; }
     .fallback { display:grid; place-items:center; font-weight:900; }
     .person-name { font-size:21px; font-weight:900; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .person-name:hover,.username:hover { color:var(--accent2); }
-    .gain { margin-top:13px; color:var(--good); font-size:31px; font-weight:950; line-height:1; letter-spacing:-.045em; }
+    .gain { color:var(--good); font-size:24px; font-weight:950; line-height:1; letter-spacing:-.045em; white-space:nowrap; }
     .caption { margin-top:7px; color:var(--muted); font-size:12px; }
     .placeholder { color:var(--muted); text-align:center; }
     .placeholder strong { display:block; color:var(--text); font-size:16px; margin-bottom:5px; }
@@ -73,10 +75,11 @@
     .archive-title { display:flex; justify-content:space-between; gap:10px; padding:13px 15px; border-bottom:1px solid var(--line); }
     .archive-title h3 { margin:0; }
     .archive-title span { color:var(--muted); font-size:12px; }
-    .winner-list { max-height:320px; overflow:auto; }
+    .winner-list { height:auto; max-height:none; overflow:visible; }
     .winner-row { display:grid; grid-template-columns:108px minmax(130px,1fr) auto; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--line); }
     .winner-row:last-child { border-bottom:0; }
     .winner-date { color:var(--muted); font-size:12px; }
+    .winner-date.live { color:var(--accent2); font-weight:850; }
     .winner-user { display:flex; align-items:center; gap:9px; min-width:0; }
     .winner-user .avatar { width:30px; height:30px; }
     .winner-gain { color:var(--good); font-weight:900; }
@@ -150,7 +153,7 @@
     <div class="daily-grid">
       <article class="leader" id="leader"></article>
       <section class="archive">
-        <div class="archive-title"><h3>Top Postmaxxers of the Day</h3><span id="winnerCount">0 saved</span></div>
+        <div class="archive-title"><h3>Top Postmaxxers of the Day</h3><span id="winnerCount">0 shown</span></div>
         <div class="winner-list" id="winnerList"></div>
       </section>
     </div>
@@ -277,7 +280,10 @@
     el.combinedPosts.textContent = ranking.length ? formatNumber(ranking.reduce((sum,u)=>sum+(Number(u.posts)||0),0)) : '—';
     el.numberOne.textContent = ranking[0]?.username || '—';
     const currentTracking = getCurrentNewYorkTracking();
-    el.todayLeaderCard.textContent = currentTracking?.currentLeader?.username || '—';
+    const currentLeaders = getDailyLeaders(currentTracking);
+    el.todayLeaderCard.textContent = currentLeaders.length
+      ? (currentLeaders.length === 1 ? currentLeaders[0].username : `${currentLeaders.length} users tied`)
+      : '—';
     el.lastUpdated.textContent = data?.updatedAtMs ? formatDateTime(data.updatedAtMs) : '—';
     renderDaily();
     renderTable();
@@ -287,33 +293,75 @@
       : `Repository detected: ${config.owner || 'unknown'}/${config.repo || 'unknown'}.`;
   }
 
+  function getDailyLeaders(tracking) {
+    if (!tracking) return [];
+    const provided = Array.isArray(tracking.currentLeaders) && tracking.currentLeaders.length
+      ? tracking.currentLeaders
+      : (tracking.currentLeader ? [tracking.currentLeader] : []);
+    if (provided.length) return provided.filter(leader => Number(leader?.postsGained) > 0);
+
+    const ranking = Array.isArray(state.data?.ranking) ? state.data.ranking.slice(0, RANKING_LIMIT) : [];
+    const candidates = ranking
+      .filter(user => Number(user?.postDelta) > 0)
+      .map(user => ({
+        dateKey: tracking.dateKey,
+        timeZone: DAILY_TIME_ZONE,
+        username: user.username,
+        userId: user.userId || '',
+        postsGained: Number(user.postDelta) || 0,
+        endPosts: Number(user.posts) || 0,
+        startPosts: (Number(user.posts) || 0) - (Number(user.postDelta) || 0),
+        finalRank: Number(user.rank) || 0,
+        profileUrl: user.profileUrl || '',
+        avatarUrl: user.avatarUrl || ''
+      }));
+    if (!candidates.length) return [];
+    const maxGain = Math.max(...candidates.map(candidate => candidate.postsGained));
+    return candidates.filter(candidate => candidate.postsGained === maxGain);
+  }
+
   function renderDaily() {
     const today = newYorkDateKey(Date.now());
     state.renderedNewYorkDate = today;
     const tracking = getCurrentNewYorkTracking();
+    const liveLeaders = getDailyLeaders(tracking);
     el.dateBadge.textContent = `New York · ${formatDateKey(today)}`;
     el.leader.replaceChildren();
     if (!tracking) {
       el.leader.append(placeholder('Waiting for today’s New York scan','The page has reset for the new New York day. Open the forum in the active tab so the extension can upload the first scan.'));
-    } else if (!tracking.currentLeader) {
+    } else if (!liveLeaders.length) {
       el.leader.append(placeholder('No new posts detected yet',`Tracking started at ${formatNewYorkTime(tracking.startedAt)} New York time.`));
     } else {
-      const leader = tracking.currentLeader;
-      const kicker = node('div','leader-kicker','Live leader');
-      const person = node('div','person');
-      person.append(makeAvatar(leader));
-      const link = node('a','person-name',leader.username || 'Unknown');
-      link.href = leader.profileUrl || '#'; link.target = '_blank'; link.rel = 'noreferrer';
-      person.append(link);
-      const gain = node('div','gain',`+${formatNumber(leader.postsGained)} posts`);
-      const caption = node('div','caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Current rank #${leader.finalRank || '—'} · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
-      el.leader.append(kicker,person,gain,caption);
+      const kicker = node('div','leader-kicker',liveLeaders.length > 1 ? `${liveLeaders.length} tied live leaders` : 'Live leader');
+      const list = node('div','leader-list');
+      for (const leader of liveLeaders) {
+        const entry = node('div','leader-entry');
+        const person = node('div','person');
+        person.append(makeAvatar(leader));
+        const link = node('a','person-name',leader.username || 'Unknown');
+        link.href = leader.profileUrl || '#'; link.target = '_blank'; link.rel = 'noreferrer';
+        person.append(link);
+        const gain = node('div','gain',`+${formatNumber(leader.postsGained)} posts`);
+        entry.append(person,gain);
+        list.append(entry);
+      }
+      const caption = node('div','caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
+      el.leader.append(kicker,list,caption);
     }
 
+    const liveRows = liveLeaders.map(leader => ({ ...leader, isLive:true }));
     const winners = [...(Array.isArray(state.data?.dailyWinners) ? state.data.dailyWinners : [])]
-      .filter(w=>w?.dateKey&&w?.username).sort((a,b)=>String(b.dateKey).localeCompare(String(a.dateKey)));
-    el.winnerCount.textContent = `${winners.length} saved`;
-    el.winnerList.replaceChildren(...(winners.length ? winners.map(makeWinnerRow) : [placeholder('No completed New York days yet','The previous day’s top postmaxxer is archived after the first successful scan of a new New York day.')]))
+      .filter(w=>w?.dateKey&&w?.username&&w.dateKey!==today)
+      .sort((a,b)=>{
+        const byDate=String(b.dateKey).localeCompare(String(a.dateKey));
+        if(byDate)return byDate;
+        return Number(b.postsGained||0)-Number(a.postsGained||0);
+      });
+    const displayed=[...liveRows,...winners];
+    el.winnerCount.textContent = `${displayed.length} shown`;
+    el.winnerList.replaceChildren(...(displayed.length
+      ? displayed.map(makeWinnerRow)
+      : [placeholder('No daily leader yet','Today’s live leader will appear here after a tracked user gains posts. Completed New York days are kept underneath automatically.')]))
   }
 
   function getCurrentNewYorkTracking() {
@@ -342,7 +390,7 @@
 
   function makeWinnerRow(winner) {
     const row=node('div','winner-row');
-    row.append(node('div','winner-date',formatDateKey(winner.dateKey)));
+    row.append(node('div',`winner-date${winner.isLive?' live':''}`,winner.isLive?'Today · LIVE':formatDateKey(winner.dateKey)));
     const user=node('div','winner-user'); user.append(makeAvatar(winner));
     const link=node('a','username',winner.username); link.href=winner.profileUrl||'#'; link.target='_blank'; link.rel='noreferrer'; user.append(link);
     row.append(user,node('div','winner-gain',`+${formatNumber(winner.postsGained)}`));
