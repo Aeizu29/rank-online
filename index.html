@@ -107,7 +107,7 @@
     <div>
       <div class="eyebrow">Public leaderboard tracker</div>
       <h1>POSTMAXXERS</h1>
-      <p class="subtitle">Top 100 posters, live post-count changes, and the top poster of each day.</p>
+      <p class="subtitle">Top 30 posters, live post-count changes, and the top poster of each day.</p>
     </div>
     <div class="actions">
       <button class="button primary" id="refresh">Refresh data</button>
@@ -175,6 +175,7 @@
 (() => {
   const GITHUB_API_VERSION = '2022-11-28';
   const POLL_MS = 5 * 60 * 1000;
+  const RANKING_LIMIT = 30;
   const params = new URLSearchParams(location.search);
   const inferred = inferRepository();
   const config = {
@@ -266,9 +267,9 @@
 
   function renderAll() {
     const data = state.data;
-    const ranking = Array.isArray(data?.ranking) ? data.ranking : [];
+    const ranking = Array.isArray(data?.ranking) ? data.ranking.slice(0, RANKING_LIMIT) : [];
     el.userCount.textContent = ranking.length ? formatNumber(ranking.length) : '—';
-    el.combinedPosts.textContent = ranking.length ? formatNumber(data?.stats?.combinedPosts ?? ranking.reduce((sum,u)=>sum+(Number(u.posts)||0),0)) : '—';
+    el.combinedPosts.textContent = ranking.length ? formatNumber(ranking.reduce((sum,u)=>sum+(Number(u.posts)||0),0)) : '—';
     el.numberOne.textContent = ranking[0]?.username || '—';
     el.todayLeaderCard.textContent = data?.dailyTracking?.currentLeader?.username || '—';
     el.lastUpdated.textContent = data?.updatedAtMs ? formatDateTime(data.updatedAtMs) : '—';
@@ -308,7 +309,7 @@
   }
 
   function renderTable() {
-    const ranking = Array.isArray(state.data?.ranking) ? state.data.ranking : [];
+    const ranking = Array.isArray(state.data?.ranking) ? state.data.ranking.slice(0, RANKING_LIMIT) : [];
     const filtered = ranking.filter(user => !state.query || String(user.username||'').toLowerCase().includes(state.query));
     el.resultCount.textContent = ranking.length ? `${filtered.length} of ${ranking.length} users` : '';
     el.empty.style.display = filtered.length ? 'none' : 'block';
