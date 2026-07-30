@@ -4,22 +4,22 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 30,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-07-30T13:23:23.100Z",
-  "updatedAtMs": 1785417803100,
-  "nextUpdateAt": "2026-07-30T13:28:23.100Z",
-  "nextUpdateAtMs": 1785418103100,
+  "updatedAt": "2026-07-30T13:24:17.562Z",
+  "updatedAtMs": 1785417857562,
+  "nextUpdateAt": "2026-07-30T13:29:17.562Z",
+  "nextUpdateAtMs": 1785418157562,
   "updateIntervalMinutes": 5,
   "scanCondition": "The Chrome extension scans only while an incels.is tab is actively viewed.",
   "sourcePages": 1,
   "stats": {
     "users": 30,
-    "combinedPosts": 6665192
+    "combinedPosts": 6665203
   },
   "dailyTracking": {
     "dateKey": "2026-07-30",
     "timeZone": "America/New_York",
     "startedAt": 1785416922981,
-    "lastUpdatedAt": 1785417803100,
+    "lastUpdatedAt": 1785417857562,
     "currentLeader": {
       "dateKey": "2026-07-30",
       "timeZone": "America/New_York",
@@ -32,8 +32,8 @@
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1784159086",
       "trackingStartedAt": 1785416922981,
-      "trackingEndedAt": 1785417803100,
-      "finalizedAt": 1785417803103
+      "trackingEndedAt": 1785417857562,
+      "finalizedAt": 1785417857565
     }
   },
   "dailyWinners": [],
@@ -41,8 +41,8 @@
     {
       "rank": 1,
       "username": "Animecel2D",
-      "posts": 2266585,
-      "postDelta": 156,
+      "posts": 2266595,
+      "postDelta": 166,
       "rankDelta": 0,
       "isNew": false,
       "userId": "3107",
@@ -129,8 +129,8 @@
     {
       "rank": 9,
       "username": "Sloth",
-      "posts": 174351,
-      "postDelta": 0,
+      "posts": 174352,
+      "postDelta": 1,
       "rankDelta": 0,
       "isNew": false,
       "userId": "64961",
