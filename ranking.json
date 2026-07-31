@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 30,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-07-31T20:57:02.384Z",
-  "updatedAtMs": 1785531422384,
-  "nextUpdateAt": "2026-07-31T21:57:02.384Z",
-  "nextUpdateAtMs": 1785535022384,
+  "updatedAt": "2026-07-31T20:57:02.425Z",
+  "updatedAtMs": 1785531422425,
+  "nextUpdateAt": "2026-07-31T21:57:02.425Z",
+  "nextUpdateAtMs": 1785535022425,
   "updateIntervalMinutes": 60,
   "scanCondition": "The Chrome extension scans only while an incels.is tab is actively viewed.",
   "sourcePages": 1,
@@ -19,7 +19,7 @@
     "dateKey": "2026-07-31",
     "timeZone": "America/New_York",
     "startedAt": 1785490370973,
-    "lastUpdatedAt": 1785531422384,
+    "lastUpdatedAt": 1785531422425,
     "currentLeaders": [
       {
         "dateKey": "2026-07-31",
@@ -33,8 +33,8 @@
         "profileUrl": "https://incels.is/members/subhumanoldcel.99758/",
         "avatarUrl": "https://incels.is/data/avatars/s/99/99758.jpg?1785407172",
         "trackingStartedAt": 1785490370973,
-        "trackingEndedAt": 1785531422384,
-        "finalizedAt": 1785531422415
+        "trackingEndedAt": 1785531422425,
+        "finalizedAt": 1785531422449
       }
     ],
     "currentLeader": {
@@ -49,8 +49,8 @@
       "profileUrl": "https://incels.is/members/subhumanoldcel.99758/",
       "avatarUrl": "https://incels.is/data/avatars/s/99/99758.jpg?1785407172",
       "trackingStartedAt": 1785490370973,
-      "trackingEndedAt": 1785531422384,
-      "finalizedAt": 1785531422415
+      "trackingEndedAt": 1785531422425,
+      "finalizedAt": 1785531422449
     }
   },
   "dailyWinners": [
@@ -385,7 +385,7 @@
       "dateKey": "2026-07-31",
       "timeZone": "America/New_York",
       "startedAt": 1785490370973,
-      "lastUpdatedAt": 1785531422384,
+      "lastUpdatedAt": 1785531422425,
       "finalized": false,
       "finalizedAt": null,
       "users": [
