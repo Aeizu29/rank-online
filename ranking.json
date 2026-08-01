@@ -4,37 +4,37 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 30,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-08-01T13:56:13.380Z",
-  "updatedAtMs": 1785592573380,
-  "nextUpdateAt": "2026-08-01T14:56:13.380Z",
-  "nextUpdateAtMs": 1785596173380,
+  "updatedAt": "2026-08-01T14:58:03.200Z",
+  "updatedAtMs": 1785596283200,
+  "nextUpdateAt": "2026-08-01T15:58:03.200Z",
+  "nextUpdateAtMs": 1785599883200,
   "updateIntervalMinutes": 60,
   "scanCondition": "The Chrome extension scans only while an incels.is tab is actively viewed.",
   "sourcePages": 1,
   "stats": {
     "users": 30,
-    "combinedPosts": 6691753
+    "combinedPosts": 6692010
   },
   "dailyTracking": {
     "dateKey": "2026-08-01",
     "timeZone": "America/New_York",
     "startedAt": 1785566918756,
-    "lastUpdatedAt": 1785592573380,
+    "lastUpdatedAt": 1785596283200,
     "currentLeaders": [
       {
         "dateKey": "2026-08-01",
         "timeZone": "America/New_York",
         "username": "Animecel2D",
         "userId": "3107",
-        "postsGained": 2346,
+        "postsGained": 2596,
         "startPosts": 2274174,
-        "endPosts": 2276520,
+        "endPosts": 2276770,
         "finalRank": 1,
         "profileUrl": "https://incels.is/members/animecel2d.3107/",
         "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
         "trackingStartedAt": 1785566918756,
-        "trackingEndedAt": 1785592573380,
-        "finalizedAt": 1785592573407
+        "trackingEndedAt": 1785596283200,
+        "finalizedAt": 1785596283224
       }
     ],
     "currentLeader": {
@@ -42,15 +42,15 @@
       "timeZone": "America/New_York",
       "username": "Animecel2D",
       "userId": "3107",
-      "postsGained": 2346,
+      "postsGained": 2596,
       "startPosts": 2274174,
-      "endPosts": 2276520,
+      "endPosts": 2276770,
       "finalRank": 1,
       "profileUrl": "https://incels.is/members/animecel2d.3107/",
       "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
       "trackingStartedAt": 1785566918756,
-      "trackingEndedAt": 1785592573380,
-      "finalizedAt": 1785592573407
+      "trackingEndedAt": 1785596283200,
+      "finalizedAt": 1785596283224
     }
   },
   "dailyWinners": [
@@ -710,7 +710,7 @@
       "dateKey": "2026-08-01",
       "timeZone": "America/New_York",
       "startedAt": 1785566918756,
-      "lastUpdatedAt": 1785592573380,
+      "lastUpdatedAt": 1785596283200,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -718,8 +718,8 @@
           "username": "Animecel2D",
           "userId": "3107",
           "startPosts": 2274174,
-          "postsGained": 2346,
-          "endPosts": 2276520,
+          "postsGained": 2596,
+          "endPosts": 2276770,
           "finalRank": 1,
           "profileUrl": "https://incels.is/members/animecel2d.3107/",
           "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958"
@@ -728,8 +728,8 @@
           "username": "SubhumanOldcel",
           "userId": "99758",
           "startPosts": 59083,
-          "postsGained": 150,
-          "endPosts": 59233,
+          "postsGained": 154,
+          "endPosts": 59237,
           "finalRank": 19,
           "profileUrl": "https://incels.is/members/subhumanoldcel.99758/",
           "avatarUrl": "https://incels.is/data/avatars/s/99/99758.jpg?1785572331"
@@ -748,8 +748,8 @@
           "username": "Sloth",
           "userId": "64961",
           "startPosts": 174463,
-          "postsGained": 15,
-          "endPosts": 174478,
+          "postsGained": 18,
+          "endPosts": 174481,
           "finalRank": 9,
           "profileUrl": "https://incels.is/members/sloth.64961/",
           "avatarUrl": "https://incels.is/data/avatars/s/64/64961.jpg?1784838962"
@@ -1021,8 +1021,8 @@
     {
       "rank": 1,
       "username": "Animecel2D",
-      "posts": 2276520,
-      "postDelta": 2346,
+      "posts": 2276770,
+      "postDelta": 2596,
       "rankDelta": 0,
       "isNew": false,
       "userId": "3107",
@@ -1109,8 +1109,8 @@
     {
       "rank": 9,
       "username": "Sloth",
-      "posts": 174478,
-      "postDelta": 15,
+      "posts": 174481,
+      "postDelta": 18,
       "rankDelta": 0,
       "isNew": false,
       "userId": "64961",
@@ -1219,8 +1219,8 @@
     {
       "rank": 19,
       "username": "SubhumanOldcel",
-      "posts": 59233,
-      "postDelta": 150,
+      "posts": 59237,
+      "postDelta": 154,
       "rankDelta": 0,
       "isNew": false,
       "userId": "99758",
