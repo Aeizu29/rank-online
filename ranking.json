@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 30,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-08-01T14:58:03.200Z",
-  "updatedAtMs": 1785596283200,
-  "nextUpdateAt": "2026-08-01T15:58:03.200Z",
-  "nextUpdateAtMs": 1785599883200,
+  "updatedAt": "2026-08-01T14:58:03.235Z",
+  "updatedAtMs": 1785596283235,
+  "nextUpdateAt": "2026-08-01T15:58:03.235Z",
+  "nextUpdateAtMs": 1785599883235,
   "updateIntervalMinutes": 60,
   "scanCondition": "The Chrome extension scans only while an incels.is tab is actively viewed.",
   "sourcePages": 1,
@@ -19,7 +19,7 @@
     "dateKey": "2026-08-01",
     "timeZone": "America/New_York",
     "startedAt": 1785566918756,
-    "lastUpdatedAt": 1785596283200,
+    "lastUpdatedAt": 1785596283235,
     "currentLeaders": [
       {
         "dateKey": "2026-08-01",
@@ -33,8 +33,8 @@
         "profileUrl": "https://incels.is/members/animecel2d.3107/",
         "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
         "trackingStartedAt": 1785566918756,
-        "trackingEndedAt": 1785596283200,
-        "finalizedAt": 1785596283224
+        "trackingEndedAt": 1785596283235,
+        "finalizedAt": 1785596283252
       }
     ],
     "currentLeader": {
@@ -49,8 +49,8 @@
       "profileUrl": "https://incels.is/members/animecel2d.3107/",
       "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
       "trackingStartedAt": 1785566918756,
-      "trackingEndedAt": 1785596283200,
-      "finalizedAt": 1785596283224
+      "trackingEndedAt": 1785596283235,
+      "finalizedAt": 1785596283252
     }
   },
   "dailyWinners": [
@@ -710,7 +710,7 @@
       "dateKey": "2026-08-01",
       "timeZone": "America/New_York",
       "startedAt": 1785566918756,
-      "lastUpdatedAt": 1785596283200,
+      "lastUpdatedAt": 1785596283235,
       "finalized": false,
       "finalizedAt": null,
       "users": [
