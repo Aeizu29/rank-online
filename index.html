@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="en-US">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
   <title>POSTMAXXERS — Live Ranking</title>
@@ -26,7 +27,12 @@
     .eyebrow { color:var(--accent2); font-size:11px; font-weight:850; letter-spacing:.14em; text-transform:uppercase; }
     h1 { margin:4px 0 7px; font-size:clamp(32px,5vw,52px); line-height:1; letter-spacing:-.055em; }
     .subtitle { margin:0; color:var(--muted); max-width:650px; }
+    .header-tools { display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
     .actions { display:flex; gap:9px; flex-wrap:wrap; justify-content:flex-end; }
+    .new-york-clock { min-width:260px; padding:12px 14px; border:1px solid var(--line); border-radius:13px; background:rgba(17,21,29,.92); text-align:right; box-shadow:0 12px 35px rgba(0,0,0,.16); }
+    .new-york-clock-label { color:var(--accent2); font-size:10px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+    .new-york-clock-time { margin-top:3px; font-size:22px; line-height:1.1; font-weight:950; letter-spacing:-.035em; font-variant-numeric:tabular-nums; }
+    .new-york-clock-date { margin-top:4px; color:var(--muted); font-size:12px; }
     .button { border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:var(--panel2); color:var(--text); cursor:pointer; text-decoration:none; font-weight:750; }
     .button:hover { filter:brightness(1.1); }
     .button.primary { background:var(--accent); border-color:var(--accent); }
@@ -57,18 +63,50 @@
     .badge { border:1px solid var(--line); border-radius:999px; padding:6px 10px; background:var(--panel); color:var(--muted); font-size:12px; font-weight:750; }
     .daily-grid { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(340px,1.2fr); gap:14px; align-items:start; }
     .leader,.archive { border:1px solid var(--line); border-radius:14px; background:rgba(8,10,14,.58); }
-    .leader { min-height:175px; padding:18px; display:flex; flex-direction:column; justify-content:center; height:auto; }
-    .leader-kicker { color:var(--accent2); font-size:11px; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
-    .leader-list { display:grid; gap:12px; margin-top:11px; }
-    .leader-entry { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+    .leader {
+      position:relative; isolation:isolate; min-height:390px; padding:26px 22px 20px;
+      display:flex; flex-direction:column; justify-content:center; height:auto; overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 26%,rgba(255,211,74,.18),transparent 15rem),
+        linear-gradient(180deg,rgba(27,23,13,.78),rgba(8,10,14,.84) 62%);
+      box-shadow:inset 0 1px 0 rgba(255,230,139,.08);
+    }
+    .leader::before {
+      content:""; position:absolute; z-index:-1; inset:-35% 18% auto; height:260px;
+      background:radial-gradient(circle,rgba(255,198,50,.14),transparent 68%); filter:blur(14px); pointer-events:none;
+    }
+    .leader-kicker {
+      align-self:center; display:inline-flex; align-items:center; gap:7px; padding:7px 11px;
+      border:1px solid rgba(255,210,70,.24); border-radius:999px; color:#ffd95d;
+      background:rgba(255,202,43,.08); font-size:11px; font-weight:900; letter-spacing:.13em; text-transform:uppercase;
+    }
+    .leader-kicker::before { content:""; width:7px; height:7px; border-radius:50%; background:#ffd54a; box-shadow:0 0 0 4px rgba(255,213,74,.12),0 0 16px rgba(255,213,74,.65); }
+    .leader-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:24px; margin-top:23px; align-items:start; }
+    .leader-list.single { grid-template-columns:minmax(0,330px); justify-content:center; }
+    .leader-entry {
+      min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:0;
+      padding:6px 16px 18px; text-align:center;
+    }
+    .leader-crown { width:112px; height:70px; margin-bottom:-15px; z-index:2; filter:drop-shadow(0 8px 10px rgba(0,0,0,.35)); transform:rotate(-2deg); }
+    .leader-crown svg { width:100%; height:100%; display:block; overflow:visible; }
+    .leader-crown .crown-main { stroke:#ffe789; stroke-width:2; stroke-linejoin:round; }
+    .leader-crown .crown-gem { fill:#fff2a8; }
+    .leader-avatar-ring {
+      position:relative; display:grid; place-items:center; width:126px; height:126px; border-radius:50%;
+      padding:5px; background:linear-gradient(145deg,#fff1a2,#f6b913 47%,#7d5200); box-shadow:0 18px 45px rgba(0,0,0,.36),0 0 34px rgba(255,196,35,.18);
+    }
+    .leader-avatar-ring::after { content:""; position:absolute; inset:5px; border:1px solid rgba(255,255,255,.34); border-radius:inherit; pointer-events:none; }
     .person { display:flex; align-items:center; gap:12px; min-width:0; }
     .avatar { width:38px; height:38px; border-radius:50%; object-fit:cover; background:#252d3a; flex:0 0 auto; }
-    .leader .avatar { width:52px; height:52px; }
+    .leader .avatar { width:116px; height:116px; border:4px solid #11151d; }
     .fallback { display:grid; place-items:center; font-weight:900; }
-    .person-name { font-size:21px; font-weight:900; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .leader .fallback { font-size:38px; background:linear-gradient(145deg,#303949,#151a22); }
+    .person-name { margin-top:16px; max-width:100%; font-size:clamp(24px,3vw,32px); line-height:1.05; font-weight:950; letter-spacing:-.045em; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .person-name:hover,.username:hover { color:var(--accent2); }
+    .leader-gain-value { margin-top:18px; color:var(--good); font-size:clamp(38px,5vw,52px); font-weight:1000; line-height:.92; letter-spacing:-.065em; font-variant-numeric:tabular-nums; text-shadow:0 0 28px rgba(84,214,155,.12); }
+    .leader-gain-label { margin-top:8px; color:#c4cbd7; font-size:12px; font-weight:850; letter-spacing:.11em; text-transform:uppercase; }
     .gain { color:var(--good); font-size:24px; font-weight:950; line-height:1; letter-spacing:-.045em; white-space:nowrap; }
-    .caption { margin-top:7px; color:var(--muted); font-size:12px; }
+    .caption { margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:12px; text-align:center; }
     .placeholder { color:var(--muted); text-align:center; }
     .placeholder strong { display:block; color:var(--text); font-size:16px; margin-bottom:5px; }
     .archive { overflow:hidden; }
@@ -134,8 +172,8 @@
     .history-profile { color:var(--accent2); font-weight:850; text-decoration:none; }
     .history-profile[hidden] { display:none; }
 
-    @media(max-width:820px){ header{flex-direction:column}.actions{justify-content:flex-start}.live-block{grid-template-columns:1fr 1fr}.live-main{grid-column:1/-1}.cards{grid-template-columns:repeat(2,1fr)}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr} }
-    @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.cards{grid-template-columns:1fr}.live-block{grid-template-columns:1fr}.live-main{grid-column:auto}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0} }
+    @media(max-width:820px){ header{flex-direction:column}.header-tools{align-items:flex-start;width:100%}.new-york-clock{text-align:left;width:min(100%,360px)}.actions{justify-content:flex-start}.live-block{grid-template-columns:1fr 1fr}.live-main{grid-column:1/-1}.cards{grid-template-columns:repeat(2,1fr)}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.leader{min-height:360px} }
+    @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.cards{grid-template-columns:1fr}.live-block{grid-template-columns:1fr}.live-main{grid-column:auto}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0}.leader{padding:24px 12px 18px}.leader-crown{width:96px;height:60px}.leader-avatar-ring{width:112px;height:112px}.leader .avatar{width:102px;height:102px}.leader-list{grid-template-columns:1fr}.person-name{font-size:25px}.leader-gain-value{font-size:42px} }
   </style>
 </head>
 <body>
@@ -144,11 +182,18 @@
     <div>
       <div class="eyebrow">Public leaderboard tracker</div>
       <h1>POSTMAXXERS</h1>
-      <p class="subtitle">Top 30 posters, live post-count changes, and a full New York-day posting leaderboard.</p>
+      <p class="subtitle">Top 30 posters, live post-count changes, and a daily posting leaderboard.</p>
     </div>
-    <div class="actions">
-      <button class="button primary" id="refresh">Refresh data</button>
-      <a class="button" href="https://incels.is/members/?key=most_posts" target="_blank" rel="noreferrer">Forum ranking</a>
+    <div class="header-tools">
+      <div class="new-york-clock" aria-label="Current time in New York">
+        <div class="new-york-clock-label">Live New York time</div>
+        <div class="new-york-clock-time" id="newYorkClockTime">--:--:--</div>
+        <div class="new-york-clock-date" id="newYorkClockDate">Loading date…</div>
+      </div>
+      <div class="actions">
+        <button class="button primary" id="refresh">Refresh data</button>
+        <a class="button" href="https://incels.is/members/?key=most_posts" target="_blank" rel="noreferrer">Forum ranking</a>
+      </div>
     </div>
   </header>
 
@@ -181,7 +226,7 @@
 
   <section class="daily">
     <div class="section-head">
-      <div><h2>Top Postmaxxers of the Day</h2><p>Ranks only users who have gained at least one post during the current New York day.</p></div>
+      <div><h2>Top Postmaxxers of the Day</h2><p>Ranks only users who have gained at least one post during the current calendar day in New York.</p></div>
       <span class="badge" id="dateBadge">Not tracking yet</span>
     </div>
     <div class="daily-grid">
@@ -244,6 +289,7 @@
   };
 
   const state = { data:null, query:'', selectedSource:null, nextPollAt:Date.now() + POLL_MS, renderedNewYorkDate:null, activeHistoryUser:null };
+  let leaderCrownSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
 
   el.refresh.addEventListener('click', () => loadData(true));
@@ -253,9 +299,11 @@
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && !el.historyOverlay.hidden) closeUserHistory(); });
   setInterval(() => {
     renderClock();
+    renderNewYorkClock();
     const today = newYorkDateKey(Date.now());
     if (today !== state.renderedNewYorkDate) renderDaily();
   }, 1000);
+  renderNewYorkClock();
   loadData(false);
 
   async function loadData(manual) {
@@ -401,19 +449,21 @@
     el.dateBadge.textContent = `New York · ${formatDateKey(today)}`;
     el.leader.replaceChildren();
     if (!tracking) {
-      el.leader.append(placeholder('Waiting for today’s New York scan','The page has reset for the new New York day. Open the forum in the active tab so the extension can upload the first scan.'));
+      el.leader.append(placeholder('Waiting for today’s New York scan','The page has reset for the new calendar day in New York. Open the forum in the active tab so the extension can upload the first scan.'));
     } else if (!liveLeaders.length) {
       el.leader.append(placeholder('No new posts detected yet',`Tracking started at ${formatNewYorkTime(tracking.startedAt)} New York time.`));
     } else {
       const kicker = node('div','leader-kicker',liveLeaders.length > 1 ? `${liveLeaders.length} tied live leaders` : 'Live leader');
-      const list = node('div','leader-list');
+      const list = node('div',`leader-list${liveLeaders.length === 1 ? ' single' : ''}`);
       for (const leader of liveLeaders) {
         const entry = node('div','leader-entry');
-        const person = node('div','person');
-        person.append(makeAvatar(leader));
-        person.append(makeUsernameButton(leader,'person-name'));
-        const gain = node('div','gain',`+${formatNumber(leader.postsGained)} posts`);
-        entry.append(person,gain);
+        const crown = makeLeaderCrown();
+        const avatarRing = node('div','leader-avatar-ring');
+        avatarRing.append(makeAvatar(leader));
+        const name = makeUsernameButton(leader,'person-name');
+        const gain = node('div','leader-gain-value',`+${formatNumber(leader.postsGained)}`);
+        const gainLabel = node('div','leader-gain-label','posts today so far');
+        entry.append(crown,avatarRing,name,gain,gainLabel);
         list.append(entry);
       }
       const caption = node('div','caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
@@ -436,7 +486,7 @@
     el.winnerCount.textContent = tracking ? `${liveRows.length} active ${liveRows.length === 1 ? 'user' : 'users'} today` : 'Waiting for scan';
     el.winnerList.replaceChildren(...(rows.length
       ? rows
-      : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current New York day.' : 'Open the forum in the active tab to start today’s New York-day tracking.')]))
+      : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current calendar day in New York.' : 'Open the forum in the active tab to start today’s daily tracking in New York time.')]))
   }
 
   function getCurrentNewYorkTracking() {
@@ -518,7 +568,10 @@
     const today=newYorkDateKey(Date.now());
     if(!byDate.has(today)&&state.data?.dailyTracking?.dateKey===today){ const current=(Array.isArray(state.data?.ranking)?state.data.ranking:[]).find(matches); if(current){ const gained=Number(current.postDelta)||0; byDate.set(today,{username:current.username,userId:current.userId||'',startPosts:(Number(current.posts)||0)-gained,postsGained:gained,endPosts:Number(current.posts)||0,finalRank:Number(current.rank)||0,profileUrl:current.profileUrl||'',avatarUrl:current.avatarUrl||'',dateKey:today,isLive:true,lastUpdatedAt:state.data.dailyTracking.lastUpdatedAt||state.data.updatedAtMs}); } }
     for(const winner of Array.isArray(state.data?.dailyWinners)?state.data.dailyWinners:[]){ if(!winner?.dateKey||byDate.has(winner.dateKey)||!matches(winner))continue; byDate.set(winner.dateKey,{...winner,isLive:false}); }
-    return [...byDate.values()].sort((a,b)=>String(b.dateKey).localeCompare(String(a.dateKey)));
+    const records=[...byDate.values()].sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+    let previousEnd=null;
+    for(const record of records){ const endPosts=Number(record.endPosts)||0; if(previousEnd!==null){ record.startPosts=previousEnd; record.postsGained=endPosts-previousEnd; } else { const startPosts=Number(record.startPosts)||0; record.startPosts=startPosts; record.postsGained=endPosts-startPosts; } previousEnd=endPosts; }
+    return records.reverse();
   }
 
   function makeHistoryRow(record) {
@@ -532,6 +585,14 @@
 
   function formatUsDateKey(key){ const match=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); return match?`${match[2]}/${match[3]}/${match[1]}`:String(key||'—'); }
 
+  function makeLeaderCrown() {
+    const crown = node('div','leader-crown');
+    const gradientId = `leaderCrownGold${++leaderCrownSequence}`;
+    crown.setAttribute('aria-hidden','true');
+    crown.innerHTML = `<svg viewBox="0 0 140 86" role="img"><defs><linearGradient id="${gradientId}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3a2"/><stop offset=".34" stop-color="#ffd84d"/><stop offset=".72" stop-color="#f4ae09"/><stop offset="1" stop-color="#9b6200"/></linearGradient></defs><path class="crown-main" fill="url(#${gradientId})" d="M15 62 7 20l31 24L54 10l18 31 26-30 9 35 27-25-10 41Z"/><path class="crown-main" fill="url(#${gradientId})" d="M18 62h104l-5 17H23Z"/><circle class="crown-gem" cx="16" cy="19" r="5"/><circle class="crown-gem" cx="54" cy="9" r="5"/><circle class="crown-gem" cx="99" cy="10" r="5"/><circle class="crown-gem" cx="133" cy="20" r="5"/></svg>`;
+    return crown;
+  }
+
   function makeAvatar(user) {
     if (!user?.avatarUrl) return fallback(user?.username);
     const img=document.createElement('img'); img.className='avatar'; img.src=user.avatarUrl; img.alt=''; img.loading='lazy'; img.referrerPolicy='no-referrer';
@@ -541,6 +602,25 @@
   function placeholder(title,text){ const box=node('div','placeholder'); box.append(node('strong','',title),document.createTextNode(text)); return box; }
   function node(tag,className,text){ const n=document.createElement(tag); if(className)n.className=className; if(text!==undefined)n.textContent=text; return n; }
   function cell(className,text){ return node('td',className,text); }
+
+  function renderNewYorkClock() {
+    const now = new Date();
+    el.newYorkClockTime.textContent = new Intl.DateTimeFormat('en-US', {
+      timeZone: DAILY_TIME_ZONE,
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short'
+    }).format(now);
+    el.newYorkClockDate.textContent = new Intl.DateTimeFormat('en-US', {
+      timeZone: DAILY_TIME_ZONE,
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    }).format(now);
+  }
 
   function renderClock() {
     const data=state.data;
@@ -576,11 +656,11 @@
   function deltaClass(value,isNew){ if(isNew||value===null||value===undefined)return'new'; if(value>0)return'up'; if(value<0)return'down'; return'same'; }
   function formatPostDelta(user){ if(user.isNew||user.postDelta===null||user.postDelta===undefined)return'New'; return user.postDelta>0?`+${formatNumber(user.postDelta)}`:formatNumber(user.postDelta); }
   function formatRankDelta(user){ if(user.isNew||user.rankDelta===null||user.rankDelta===undefined)return'New'; if(user.rankDelta>0)return`▲ ${user.rankDelta}`; if(user.rankDelta<0)return`▼ ${Math.abs(user.rankDelta)}`; return'—'; }
-  function formatNumber(value){ return new Intl.NumberFormat().format(Number(value)||0); }
-  function formatDateTime(value){ return new Intl.DateTimeFormat([],{dateStyle:'medium',timeStyle:'short'}).format(Number(value)); }
-  function formatNewYorkTime(value){ return value?new Intl.DateTimeFormat([],{timeZone:DAILY_TIME_ZONE,hour:'2-digit',minute:'2-digit'}).format(Number(value)):'—'; }
+  function formatNumber(value){ return new Intl.NumberFormat('en-US').format(Number(value)||0); }
+  function formatDateTime(value){ return new Intl.DateTimeFormat('en-US',{dateStyle:'medium',timeStyle:'short'}).format(Number(value)); }
+  function formatNewYorkTime(value){ return value?new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,hour:'2-digit',minute:'2-digit'}).format(Number(value)):'—'; }
   function formatRelative(value){ if(!value)return'—'; const sec=Math.max(0,Math.round((Date.now()-Number(value))/1000)); if(sec<60)return`${sec}s ago`; const min=Math.floor(sec/60); if(min<60)return`${min}m ago`; return`${Math.floor(min/60)}h ago`; }
-  function formatDateKey(key){ const m=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m)return String(key||''); return new Intl.DateTimeFormat([],{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(+m[1],+m[2]-1,+m[3],12))); }
+  function formatDateKey(key){ const m=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m)return String(key||''); return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(+m[1],+m[2]-1,+m[3],12))); }
   function newYorkDateKey(value){ const parts=new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(value)); const values=Object.fromEntries(parts.map(part=>[part.type,part.value])); return `${values.year}-${values.month}-${values.day}`; }
 })();
 </script>
