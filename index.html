@@ -471,13 +471,7 @@
     }
 
     const liveRows = dailyLeaderboard.map(user => ({ ...user, isLive:true }));
-    const winners = [...(Array.isArray(state.data?.dailyWinners) ? state.data.dailyWinners : [])]
-      .filter(w=>w?.dateKey&&w?.username&&w.dateKey!==today)
-      .sort((a,b)=>{
-        const byDate=String(b.dateKey).localeCompare(String(a.dateKey));
-        if(byDate)return byDate;
-        return Number(b.postsGained||0)-Number(a.postsGained||0);
-      });
+    const winners = getVerifiedPreviousDailyWinners(today);
     const rows = liveRows.map(makeWinnerRow);
     if (winners.length) {
       rows.push(node('div','archive-divider','Previous daily winners'));
@@ -487,6 +481,50 @@
     el.winnerList.replaceChildren(...(rows.length
       ? rows
       : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current calendar day in New York.' : 'Open the forum in the active tab to start today’s daily tracking in New York time.')]))
+  }
+
+  function getVerifiedPreviousDailyWinners(todayKey) {
+    const days = (Array.isArray(state.data?.dailyUserHistory) ? state.data.dailyUserHistory : [])
+      .filter(day => day?.finalized && /^\d{4}-\d{2}-\d{2}$/.test(String(day.dateKey || '')) && String(day.dateKey) < todayKey)
+      .sort((a,b) => String(a.dateKey).localeCompare(String(b.dateKey)));
+
+    const previousEndByIdentity = new Map();
+    const winners = [];
+
+    for (const day of days) {
+      const repairedUsers = [];
+      for (const raw of Array.isArray(day.users) ? day.users : []) {
+        if (!raw?.username) continue;
+        const id = String(raw.userId || '').trim();
+        const name = String(raw.username || '').trim().toLowerCase();
+        const idKey = id ? `id:${id}` : '';
+        const nameKey = `name:${name}`;
+        const endPosts = Number(raw.endPosts) || 0;
+        const previousEnd = idKey && previousEndByIdentity.has(idKey)
+          ? previousEndByIdentity.get(idKey)
+          : previousEndByIdentity.get(nameKey);
+        const startPosts = Number.isFinite(previousEnd) ? Number(previousEnd) : (Number(raw.startPosts) || 0);
+        const postsGained = endPosts - startPosts;
+        const user = { ...raw, dateKey:String(day.dateKey), timeZone:day.timeZone || DAILY_TIME_ZONE, startPosts, endPosts, postsGained, verifiedFromDailyHistory:true };
+        repairedUsers.push(user);
+        if (idKey) previousEndByIdentity.set(idKey,endPosts);
+        previousEndByIdentity.set(nameKey,endPosts);
+      }
+
+      const positive = repairedUsers.filter(user => Number(user.postsGained) > 0);
+      if (!positive.length) continue;
+      const highest = Math.max(...positive.map(user => Number(user.postsGained) || 0));
+      winners.push(...positive
+        .filter(user => Number(user.postsGained) === highest)
+        .sort((a,b) => Number(a.finalRank || Number.MAX_SAFE_INTEGER) - Number(b.finalRank || Number.MAX_SAFE_INTEGER)));
+    }
+
+    return winners.sort((a,b) => {
+      const byDate = String(b.dateKey).localeCompare(String(a.dateKey));
+      if (byDate) return byDate;
+      if (Number(b.postsGained) !== Number(a.postsGained)) return Number(b.postsGained) - Number(a.postsGained);
+      return Number(a.finalRank || Number.MAX_SAFE_INTEGER) - Number(b.finalRank || Number.MAX_SAFE_INTEGER);
+    });
   }
 
   function getCurrentNewYorkTracking() {
