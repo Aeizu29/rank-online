@@ -61,7 +61,7 @@
     .section-head h2 { margin:0; font-size:21px; letter-spacing:-.025em; }
     .section-head p { margin:4px 0 0; color:var(--muted); }
     .badge { border:1px solid var(--line); border-radius:999px; padding:6px 10px; background:var(--panel); color:var(--muted); font-size:12px; font-weight:750; }
-    .daily-grid { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(340px,1.2fr); gap:14px; align-items:start; }
+    .daily-grid { display:grid; grid-template-columns:1fr; gap:14px; align-items:start; }
     .leader,.archive { border:1px solid var(--line); border-radius:14px; background:rgba(8,10,14,.58); }
     .leader {
       position:relative; isolation:isolate; min-height:390px; padding:26px 22px 20px;
@@ -159,6 +159,50 @@
     .history-stat { padding:11px 12px; border:1px solid var(--line); border-radius:11px; background:rgba(255,255,255,.025); }
     .history-stat-label { color:var(--muted); font-size:10px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
     .history-stat-value { margin-top:3px; font-size:18px; font-weight:900; font-variant-numeric:tabular-nums; }
+    .history-medals { padding:16px 20px 18px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,0)); }
+    .history-medals-head { display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:11px; }
+    .history-medals-title { margin:0; font-size:15px; font-weight:950; letter-spacing:-.015em; }
+    .history-medals-note { margin:0; color:var(--muted); font-size:10px; line-height:1.4; text-align:right; }
+    .history-medal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+    .history-medal-card { position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:52px minmax(0,1fr); align-items:center; gap:10px; min-height:78px; padding:11px 12px; border:1px solid var(--line); border-radius:13px; background:#141923; box-shadow:inset 0 1px 0 rgba(255,255,255,.045); }
+    .history-medal-card::before { content:""; position:absolute; z-index:-1; inset:auto -24px -34px auto; width:100px; height:100px; border-radius:50%; opacity:.18; filter:blur(3px); }
+    .history-medal-card.gold { border-color:rgba(255,211,64,.35); background:linear-gradient(145deg,rgba(255,208,50,.13),#141923 58%); }
+    .history-medal-card.silver { border-color:rgba(211,220,235,.28); background:linear-gradient(145deg,rgba(207,217,234,.105),#141923 58%); }
+    .history-medal-card.bronze { border-color:rgba(220,139,74,.31); background:linear-gradient(145deg,rgba(201,117,54,.12),#141923 58%); }
+    .history-medal-card.gold::before { background:#ffd43e; }
+    .history-medal-card.silver::before { background:#d6dfed; }
+    .history-medal-card.bronze::before { background:#d48445; }
+    .history-medal-icon { width:48px; height:48px; display:grid; place-items:center; border-radius:50%; font-size:27px; line-height:1; background:rgba(0,0,0,.22); box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 7px 18px rgba(0,0,0,.2); }
+    .history-medal-card.gold .history-medal-icon { background:linear-gradient(145deg,#fff0a0,#d69300); }
+    .history-medal-card.silver .history-medal-icon { background:linear-gradient(145deg,#f8fbff,#8792a3); }
+    .history-medal-card.bronze .history-medal-icon { background:linear-gradient(145deg,#ffd2a6,#9c4f1e); }
+    .history-medal-count { font-size:28px; line-height:1; font-weight:1000; letter-spacing:-.045em; font-variant-numeric:tabular-nums; }
+    .history-medal-card.gold .history-medal-count { color:#ffdc59; }
+    .history-medal-card.silver .history-medal-count { color:#e3e9f2; }
+    .history-medal-card.bronze .history-medal-count { color:#e7a26e; }
+    .history-medal-name { margin-top:4px; color:var(--muted); font-size:9px; font-weight:900; letter-spacing:.09em; line-height:1.25; text-transform:uppercase; }
+    .history-chart { padding:17px 20px 20px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,rgba(90,106,255,.045),rgba(255,255,255,0)); }
+    .history-chart-head { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:12px; }
+    .history-chart-title { margin:0; font-size:15px; font-weight:950; letter-spacing:-.015em; }
+    .history-chart-note { margin:3px 0 0; color:var(--muted); font-size:10px; line-height:1.45; }
+    .history-chart-summary { flex:0 0 auto; text-align:right; }
+    .history-chart-summary-value { color:var(--good); font-size:19px; font-weight:950; font-variant-numeric:tabular-nums; }
+    .history-chart-summary-label { margin-top:2px; color:var(--muted); font-size:9px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    .history-chart-frame { position:relative; overflow-x:auto; overflow-y:hidden; border:1px solid var(--line); border-radius:13px; background:linear-gradient(180deg,#111722,#0c1017); scrollbar-width:thin; }
+    .history-chart-frame svg { display:block; height:270px; max-width:none; }
+    .history-chart-grid { stroke:rgba(255,255,255,.085); stroke-width:1; vector-effect:non-scaling-stroke; }
+    .history-chart-axis { fill:#7f899b; font-size:10px; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-weight:700; }
+    .history-chart-x-label { fill:#8d97a8; font-size:9px; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-weight:750; }
+    .history-chart-area { opacity:.28; }
+    .history-chart-line { fill:none; stroke:#7b88ff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; filter:drop-shadow(0 4px 8px rgba(83,97,255,.32)); }
+    .history-chart-point { fill:#9aa5ff; stroke:#10141c; stroke-width:3; vector-effect:non-scaling-stroke; }
+    .history-chart-point.live { fill:#ff6262; }
+    .history-chart-hit { fill:transparent; cursor:crosshair; }
+    .history-chart-tooltip { position:absolute; z-index:4; min-width:132px; pointer-events:none; transform:translate(-50%,-112%); padding:8px 10px; border:1px solid #455066; border-radius:9px; background:rgba(9,12,18,.96); box-shadow:0 12px 30px rgba(0,0,0,.35); color:var(--text); opacity:0; transition:opacity .12s ease; }
+    .history-chart-tooltip.show { opacity:1; }
+    .history-chart-tooltip-date { color:var(--muted); font-size:9px; font-weight:850; letter-spacing:.06em; text-transform:uppercase; }
+    .history-chart-tooltip-value { margin-top:2px; color:var(--good); font-size:16px; font-weight:950; font-variant-numeric:tabular-nums; }
+    .history-chart-empty { display:grid; place-items:center; min-height:190px; padding:24px; color:var(--muted); text-align:center; }
     .history-table-wrap { overflow:auto; }
     .history-table { min-width:670px; }
     .history-table th { position:sticky; top:0; z-index:2; }
@@ -172,8 +216,77 @@
     .history-profile { color:var(--accent2); font-weight:850; text-decoration:none; }
     .history-profile[hidden] { display:none; }
 
-    @media(max-width:820px){ header{flex-direction:column}.header-tools{align-items:flex-start;width:100%}.new-york-clock{text-align:left;width:min(100%,360px)}.actions{justify-content:flex-start}.live-block{grid-template-columns:1fr 1fr}.live-main{grid-column:1/-1}.cards{grid-template-columns:repeat(2,1fr)}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.leader{min-height:360px} }
-    @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.cards{grid-template-columns:1fr}.live-block{grid-template-columns:1fr}.live-main{grid-column:auto}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0}.leader{padding:24px 12px 18px}.leader-crown{width:96px;height:60px}.leader-avatar-ring{width:112px;height:112px}.leader .avatar{width:102px;height:102px}.leader-list{grid-template-columns:1fr}.person-name{font-size:25px}.leader-gain-value{font-size:42px} }
+
+    /* Visual top-three podium */
+    .podium-kicker {
+      align-self:center; display:inline-flex; align-items:center; gap:8px; padding:7px 12px;
+      border:1px solid rgba(255,210,70,.25); border-radius:999px; color:#ffe071;
+      background:rgba(255,202,43,.08); font-size:11px; font-weight:900; letter-spacing:.13em; text-transform:uppercase;
+    }
+    .podium-kicker::before { content:""; width:7px; height:7px; border-radius:50%; background:#ffd54a; box-shadow:0 0 0 4px rgba(255,213,74,.12),0 0 16px rgba(255,213,74,.65); }
+    .podium-stage {
+      width:100%; max-width:860px; margin:25px auto 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px; align-items:end; justify-content:center;
+    }
+    .podium-stage.count-2 { max-width:520px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .podium-stage.count-1 { max-width:280px; grid-template-columns:minmax(0,1fr); }
+    .podium-entry { min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .podium-stage.count-3 .podium-position-1 { grid-column:2; grid-row:1; }
+    .podium-stage.count-3 .podium-position-2 { grid-column:1; grid-row:1; }
+    .podium-stage.count-3 .podium-position-3 { grid-column:3; grid-row:1; }
+    .podium-stage.count-2 .podium-position-1 { grid-column:2; grid-row:1; }
+    .podium-stage.count-2 .podium-position-2 { grid-column:1; grid-row:1; }
+    .podium-stage.count-1 .podium-position-1 { grid-column:1; grid-row:1; }
+    .podium-crown { width:100px; height:61px; margin-bottom:-13px; z-index:3; filter:drop-shadow(0 8px 11px rgba(0,0,0,.4)); transform:rotate(-2deg); }
+    .podium-crown svg { width:100%; height:100%; display:block; overflow:visible; }
+    .podium-crown .crown-main { stroke:#fff0a1; stroke-width:2; stroke-linejoin:round; }
+    .podium-crown .crown-gem { fill:#fff6c4; }
+    .podium-medal {
+      display:grid; place-items:center; width:34px; height:34px; margin-bottom:8px; border-radius:50%;
+      border:1px solid rgba(255,255,255,.15); background:#171c25; font-size:19px; box-shadow:0 8px 20px rgba(0,0,0,.25);
+    }
+    .podium-position-1 .podium-medal { display:none; }
+    .podium-avatar-ring {
+      position:relative; display:grid; place-items:center; width:102px; height:102px; padding:5px; border-radius:50%;
+      background:linear-gradient(145deg,#d9dde5,#8b95a6 48%,#3d4654); box-shadow:0 15px 35px rgba(0,0,0,.35);
+    }
+    .podium-position-1 .podium-avatar-ring {
+      width:130px; height:130px; background:linear-gradient(145deg,#fff5b2,#ffc92f 48%,#8d5900);
+      box-shadow:0 18px 46px rgba(0,0,0,.4),0 0 35px rgba(255,196,35,.2);
+    }
+    .podium-position-2 .podium-avatar-ring { background:linear-gradient(145deg,#f2f5fa,#aab2c0 48%,#555e6c); }
+    .podium-position-3 .podium-avatar-ring { background:linear-gradient(145deg,#ffd4ab,#c77c38 48%,#673613); }
+    .podium-avatar-ring::after { content:""; position:absolute; inset:5px; border:1px solid rgba(255,255,255,.34); border-radius:inherit; pointer-events:none; }
+    .podium-avatar-ring .avatar { width:92px; height:92px; border:4px solid #11151d; }
+    .podium-position-1 .podium-avatar-ring .avatar { width:120px; height:120px; }
+    .podium-avatar-ring .fallback { font-size:30px; background:linear-gradient(145deg,#303949,#151a22); }
+    .podium-position-1 .podium-avatar-ring .fallback { font-size:40px; }
+    .podium-name {
+      margin-top:13px; max-width:100%; color:var(--text); font-size:clamp(17px,2vw,22px); line-height:1.05;
+      font-weight:950; letter-spacing:-.035em; white-space:normal; overflow-wrap:anywhere; min-height:2.15em; display:flex; align-items:center; justify-content:center; text-align:center;
+    }
+    .podium-position-1 .podium-name { font-size:clamp(22px,2.7vw,30px); }
+    .podium-gain { margin-top:9px; color:var(--good); font-size:clamp(24px,3vw,34px); line-height:1; font-weight:1000; letter-spacing:-.055em; font-variant-numeric:tabular-nums; }
+    .podium-position-1 .podium-gain { font-size:clamp(34px,4.2vw,48px); }
+    .podium-gain-label { margin:5px 0 13px; color:#bec6d3; font-size:10px; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
+    .podium-step {
+      width:100%; min-height:72px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.1); border-radius:12px 12px 6px 6px; background:linear-gradient(180deg,#2a313d,#151a22);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 13px 28px rgba(0,0,0,.25);
+    }
+    .podium-position-1 .podium-step { min-height:116px; border-color:rgba(255,210,67,.28); background:linear-gradient(180deg,#665019,#2c250f); }
+    .podium-position-2 .podium-step { min-height:89px; background:linear-gradient(180deg,#414a58,#202630); }
+    .podium-position-3 .podium-step { min-height:72px; background:linear-gradient(180deg,#593a24,#291d15); }
+    .podium-place { font-size:30px; line-height:1; font-weight:1000; letter-spacing:-.05em; }
+    .podium-position-1 .podium-place { color:#ffdc59; font-size:40px; }
+    .podium-position-2 .podium-place { color:#dce2eb; }
+    .podium-position-3 .podium-place { color:#e1a06a; }
+    .podium-place-label { margin-top:5px; color:var(--muted); font-size:9px; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
+    .podium-caption { margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:12px; text-align:center; }
+
+    @media(max-width:820px){ header{flex-direction:column}.header-tools{align-items:flex-start;width:100%}.new-york-clock{text-align:left;width:min(100%,360px)}.actions{justify-content:flex-start}.live-block{grid-template-columns:1fr 1fr}.live-main{grid-column:1/-1}.cards{grid-template-columns:repeat(2,1fr)}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.leader{min-height:360px}.podium-stage{gap:8px}.podium-avatar-ring{width:88px;height:88px}.podium-avatar-ring .avatar{width:78px;height:78px}.podium-position-1 .podium-avatar-ring{width:112px;height:112px}.podium-position-1 .podium-avatar-ring .avatar{width:102px;height:102px} }
+    @media(max-width:620px){.history-medals-head{align-items:flex-start;flex-direction:column}.history-medals-note{text-align:left}.history-medal-grid{gap:7px}.history-medal-card{grid-template-columns:1fr;justify-items:center;text-align:center;padding:10px 6px}.history-medal-icon{width:43px;height:43px;font-size:24px}.history-medal-count{font-size:24px}.history-medal-name{font-size:8px}.history-chart-head{align-items:flex-start;flex-direction:column}.history-chart-summary{text-align:left}.history-chart{padding-inline:14px}}
+    @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.cards{grid-template-columns:1fr}.live-block{grid-template-columns:1fr}.live-main{grid-column:auto}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0}.leader{padding:24px 12px 18px}.leader-crown{width:96px;height:60px}.leader-avatar-ring{width:112px;height:112px}.leader .avatar{width:102px;height:102px}.leader-list{grid-template-columns:1fr}.person-name{font-size:25px}.leader-gain-value{font-size:42px}.podium-stage,.podium-stage.count-2,.podium-stage.count-1{grid-template-columns:1fr;max-width:340px;gap:16px;align-items:stretch}.podium-stage .podium-entry{grid-column:1!important;grid-row:auto!important}.podium-position-1{order:1}.podium-position-2{order:2}.podium-position-3{order:3}.podium-entry{padding:12px 12px 0;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(10,13,18,.55)}.podium-step,.podium-position-1 .podium-step,.podium-position-2 .podium-step,.podium-position-3 .podium-step{min-height:58px}.podium-crown{width:88px;height:55px} }
   </style>
 </head>
 <body>
@@ -226,7 +339,7 @@
 
   <section class="daily">
     <div class="section-head">
-      <div><h2>Top Postmaxxers of the Day</h2><p>Ranks only users who have gained at least one post during the current calendar day in New York.</p></div>
+      <div><h2>Top Postmaxxers of the Day</h2><p>Today’s top three appear on the podium, with the complete daily leaderboard below it.</p></div>
       <span class="badge" id="dateBadge">Not tracking yet</span>
     </div>
     <div class="daily-grid">
@@ -265,6 +378,41 @@
       <div class="history-stat"><div class="history-stat-label">Posts recorded</div><div class="history-stat-value" id="historyTotalGain">0</div></div>
       <div class="history-stat"><div class="history-stat-label">Best day</div><div class="history-stat-value" id="historyBestDay">—</div></div>
     </div>
+    <section class="history-medals" aria-labelledby="historyMedalsTitle">
+      <div class="history-medals-head">
+        <h3 class="history-medals-title" id="historyMedalsTitle">Daily podium badges</h3>
+        <p class="history-medals-note">Completed New York days only. Ties count for every tied user.</p>
+      </div>
+      <div class="history-medal-grid">
+        <div class="history-medal-card gold">
+          <div class="history-medal-icon" aria-hidden="true">🥇</div>
+          <div><div class="history-medal-count" id="historyGoldCount">0</div><div class="history-medal-name">1st-place finishes</div></div>
+        </div>
+        <div class="history-medal-card silver">
+          <div class="history-medal-icon" aria-hidden="true">🥈</div>
+          <div><div class="history-medal-count" id="historySilverCount">0</div><div class="history-medal-name">2nd-place finishes</div></div>
+        </div>
+        <div class="history-medal-card bronze">
+          <div class="history-medal-icon" aria-hidden="true">🥉</div>
+          <div><div class="history-medal-count" id="historyBronzeCount">0</div><div class="history-medal-name">3rd-place finishes</div></div>
+        </div>
+      </div>
+    </section>
+    <section class="history-chart" aria-labelledby="historyChartTitle">
+      <div class="history-chart-head">
+        <div>
+          <h3 class="history-chart-title" id="historyChartTitle">Daily posting progress</h3>
+          <p class="history-chart-note">Posts gained on each recorded New York day. Scroll horizontally to inspect longer histories.</p>
+        </div>
+        <div class="history-chart-summary">
+          <div class="history-chart-summary-value" id="historyChartLatest">—</div>
+          <div class="history-chart-summary-label">Latest day</div>
+        </div>
+      </div>
+      <div class="history-chart-frame" id="historyChartFrame">
+        <div class="history-chart-empty" id="historyChartEmpty">No daily posting data is available for this user yet.</div>
+      </div>
+    </section>
     <div class="history-table-wrap">
       <table class="history-table"><thead><tr><th>Date</th><th>Starting posts</th><th>Difference</th><th>Ending posts</th><th>Final rank</th></tr></thead><tbody id="historyBody"></tbody></table>
       <div class="history-empty" id="historyEmpty">No daily history is available for this user yet.</div>
@@ -290,6 +438,7 @@
 
   const state = { data:null, query:'', selectedSource:null, nextPollAt:Date.now() + POLL_MS, renderedNewYorkDate:null, activeHistoryUser:null };
   let leaderCrownSequence = 0;
+  let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
 
   el.refresh.addEventListener('click', () => loadData(true));
@@ -445,29 +594,37 @@
     state.renderedNewYorkDate = today;
     const tracking = getCurrentNewYorkTracking();
     const dailyLeaderboard = getDailyLeaderboard(tracking);
-    const liveLeaders = getDailyLeaders(tracking);
+    const podiumUsers = dailyLeaderboard.slice(0, 3);
     el.dateBadge.textContent = `New York · ${formatDateKey(today)}`;
     el.leader.replaceChildren();
+
     if (!tracking) {
       el.leader.append(placeholder('Waiting for today’s New York scan','The page has reset for the new calendar day in New York. Open the forum in the active tab so the extension can upload the first scan.'));
-    } else if (!liveLeaders.length) {
+    } else if (!podiumUsers.length) {
       el.leader.append(placeholder('No new posts detected yet',`Tracking started at ${formatNewYorkTime(tracking.startedAt)} New York time.`));
     } else {
-      const kicker = node('div','leader-kicker',liveLeaders.length > 1 ? `${liveLeaders.length} tied live leaders` : 'Live leader');
-      const list = node('div',`leader-list${liveLeaders.length === 1 ? ' single' : ''}`);
-      for (const leader of liveLeaders) {
-        const entry = node('div','leader-entry');
-        const crown = makeLeaderCrown();
-        const avatarRing = node('div','leader-avatar-ring');
-        avatarRing.append(makeAvatar(leader));
-        const name = makeUsernameButton(leader,'person-name');
-        const gain = node('div','leader-gain-value',`+${formatNumber(leader.postsGained)}`);
-        const gainLabel = node('div','leader-gain-label','posts today so far');
-        entry.append(crown,avatarRing,name,gain,gainLabel);
-        list.append(entry);
+      const kicker = node('div','podium-kicker',podiumUsers.length === 1 ? 'Today’s live leader' : 'Today’s live podium');
+      const stage = node('div',`podium-stage count-${podiumUsers.length}`);
+
+      for (const user of podiumUsers) {
+        const position = Math.min(3, Number(user.dailyRank) || (podiumUsers.indexOf(user) + 1));
+        const entry = node('div',`podium-entry podium-position-${position}`);
+        if (position === 1) entry.append(makePodiumCrown());
+        else entry.append(node('div','podium-medal',position === 2 ? '🥈' : '🥉'));
+
+        const avatarRing = node('div','podium-avatar-ring');
+        avatarRing.append(makeAvatar(user));
+        const name = makeUsernameButton(user,'podium-name');
+        const gain = node('div','podium-gain',`+${formatNumber(user.postsGained)}`);
+        const gainLabel = node('div','podium-gain-label','posts today so far');
+        const step = node('div','podium-step');
+        step.append(node('div','podium-place',`#${position}`),node('div','podium-place-label',position === 1 ? 'First place' : position === 2 ? 'Second place' : 'Third place'));
+        entry.append(avatarRing,name,gain,gainLabel,step);
+        stage.append(entry);
       }
-      const caption = node('div','caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
-      el.leader.append(kicker,list,caption);
+
+      const caption = node('div','podium-caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
+      el.leader.append(kicker,stage,caption);
     }
 
     const liveRows = dailyLeaderboard.map(user => ({ ...user, isLive:true }));
@@ -593,10 +750,202 @@
     el.historyDays.textContent=formatNumber(records.length);
     el.historyTotalGain.textContent=total>0?`+${formatNumber(total)}`:formatNumber(total);
     el.historyBestDay.textContent=best?`${best.postsGained>0?'+':''}${formatNumber(best.postsGained)} · ${formatUsDateKey(best.dateKey)}`:'—';
+    const podiumBadges=getUserDailyPodiumBadges(user);
+    el.historyGoldCount.textContent=formatNumber(podiumBadges.gold);
+    el.historySilverCount.textContent=formatNumber(podiumBadges.silver);
+    el.historyBronzeCount.textContent=formatNumber(podiumBadges.bronze);
+    renderUserDailyChart(records,user);
     el.historyBody.replaceChildren(...records.map(makeHistoryRow));
     el.historyEmpty.style.display=records.length?'none':'block';
     const profile=user.profileUrl||records.find(record=>record.profileUrl)?.profileUrl||'';
     el.historyProfile.hidden=!profile; if(profile)el.historyProfile.href=profile;
+  }
+
+  function renderUserDailyChart(records,user) {
+    const ordered=[...records].sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+    const latest=ordered.at(-1);
+    const latestGain=Number(latest?.postsGained)||0;
+    el.historyChartLatest.textContent=latest
+      ? `${latestGain>0?'+':''}${formatNumber(latestGain)}${latest.isLive?' LIVE':''}`
+      : '—';
+    el.historyChartFrame.replaceChildren();
+    if(!ordered.length){
+      const empty=node('div','history-chart-empty','No daily posting data is available for this user yet.');
+      el.historyChartFrame.append(empty);
+      return;
+    }
+
+    const values=ordered.map(record=>Math.max(0,Number(record.postsGained)||0));
+    const rawMax=Math.max(1,...values);
+    const magnitude=10**Math.floor(Math.log10(rawMax));
+    const normalized=rawMax/magnitude;
+    const niceFactor=normalized<=1?1:normalized<=2?2:normalized<=5?5:10;
+    const yMax=Math.max(1,niceFactor*magnitude);
+    const plotHeight=184;
+    const top=22;
+    const bottom=52;
+    const left=58;
+    const right=24;
+    const pointSpacing=ordered.length<=10?70:ordered.length<=30?54:44;
+    const width=Math.max(720,left+right+Math.max(1,ordered.length-1)*pointSpacing);
+    const height=top+plotHeight+bottom;
+    const xAt=index=>ordered.length===1?left+(width-left-right)/2:left+index*((width-left-right)/(ordered.length-1));
+    const yAt=value=>top+plotHeight-(Math.max(0,value)/yMax)*plotHeight;
+    const ns='http://www.w3.org/2000/svg';
+    const svg=document.createElementNS(ns,'svg');
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    svg.setAttribute('width',String(width));
+    svg.setAttribute('height',String(height));
+    svg.setAttribute('role','img');
+    svg.setAttribute('aria-label',`${user?.username||'User'} daily posts gained chart`);
+    const title=document.createElementNS(ns,'title');
+    title.textContent=`${user?.username||'User'} daily posting progress`;
+    svg.append(title);
+
+    const defs=document.createElementNS(ns,'defs');
+    const gradient=document.createElementNS(ns,'linearGradient');
+    const gradientId=`historyChartGradient${++historyChartSequence}`;
+    gradient.setAttribute('id',gradientId);
+    gradient.setAttribute('x1','0'); gradient.setAttribute('y1','0'); gradient.setAttribute('x2','0'); gradient.setAttribute('y2','1');
+    const stopTop=document.createElementNS(ns,'stop'); stopTop.setAttribute('offset','0'); stopTop.setAttribute('stop-color','#7b88ff'); stopTop.setAttribute('stop-opacity','.72');
+    const stopBottom=document.createElementNS(ns,'stop'); stopBottom.setAttribute('offset','1'); stopBottom.setAttribute('stop-color','#7b88ff'); stopBottom.setAttribute('stop-opacity','0');
+    gradient.append(stopTop,stopBottom); defs.append(gradient); svg.append(defs);
+
+    const tickCount=4;
+    for(let tick=0;tick<=tickCount;tick+=1){
+      const value=(yMax/tickCount)*tick;
+      const y=yAt(value);
+      const line=document.createElementNS(ns,'line');
+      line.setAttribute('x1',String(left)); line.setAttribute('x2',String(width-right)); line.setAttribute('y1',String(y)); line.setAttribute('y2',String(y)); line.setAttribute('class','history-chart-grid');
+      const label=document.createElementNS(ns,'text');
+      label.setAttribute('x',String(left-10)); label.setAttribute('y',String(y+3)); label.setAttribute('text-anchor','end'); label.setAttribute('class','history-chart-axis'); label.textContent=formatCompactChartNumber(value);
+      svg.append(line,label);
+    }
+
+    const points=ordered.map((record,index)=>({record,x:xAt(index),y:yAt(values[index]),value:values[index]}));
+    const linePath=points.map((point,index)=>`${index?'L':'M'} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`).join(' ');
+    const baseY=top+plotHeight;
+    const area=document.createElementNS(ns,'path');
+    const first=points[0],last=points.at(-1);
+    area.setAttribute('d',`${linePath} L ${last.x.toFixed(2)} ${baseY} L ${first.x.toFixed(2)} ${baseY} Z`);
+    area.setAttribute('fill',`url(#${gradientId})`); area.setAttribute('class','history-chart-area');
+    const line=document.createElementNS(ns,'path'); line.setAttribute('d',linePath); line.setAttribute('class','history-chart-line');
+    svg.append(area,line);
+
+    const tooltip=node('div','history-chart-tooltip');
+    tooltip.append(node('div','history-chart-tooltip-date'),node('div','history-chart-tooltip-value'));
+    const tooltipDate=tooltip.children[0],tooltipValue=tooltip.children[1];
+    const showTooltip=(event,point)=>{
+      tooltipDate.textContent=`${formatUsDateKey(point.record.dateKey)}${point.record.isLive?' · LIVE':''}`;
+      tooltipValue.textContent=`${point.value>0?'+':''}${formatNumber(point.value)} posts`;
+      const frameRect=el.historyChartFrame.getBoundingClientRect();
+      const targetRect=event.currentTarget.getBoundingClientRect();
+      tooltip.style.left=`${targetRect.left-frameRect.left+targetRect.width/2+el.historyChartFrame.scrollLeft}px`;
+      tooltip.style.top=`${targetRect.top-frameRect.top+el.historyChartFrame.scrollTop}px`;
+      tooltip.classList.add('show');
+    };
+    const hideTooltip=()=>tooltip.classList.remove('show');
+
+    const labelEvery=Math.max(1,Math.ceil(ordered.length/14));
+    points.forEach((point,index)=>{
+      if(index%labelEvery===0||index===points.length-1){
+        const xLabel=document.createElementNS(ns,'text');
+        xLabel.setAttribute('x',String(point.x)); xLabel.setAttribute('y',String(height-22)); xLabel.setAttribute('text-anchor','middle'); xLabel.setAttribute('class','history-chart-x-label');
+        xLabel.textContent=formatShortUsDateKey(point.record.dateKey);
+        svg.append(xLabel);
+      }
+      const circle=document.createElementNS(ns,'circle');
+      circle.setAttribute('cx',String(point.x)); circle.setAttribute('cy',String(point.y)); circle.setAttribute('r',point.record.isLive?'5.5':'4.5'); circle.setAttribute('class',`history-chart-point${point.record.isLive?' live':''}`);
+      const pointTitle=document.createElementNS(ns,'title'); pointTitle.textContent=`${formatUsDateKey(point.record.dateKey)}: ${point.value>0?'+':''}${formatNumber(point.value)} posts${point.record.isLive?' (live)':''}`; circle.append(pointTitle);
+      const hit=document.createElementNS(ns,'circle');
+      hit.setAttribute('cx',String(point.x)); hit.setAttribute('cy',String(point.y)); hit.setAttribute('r','15'); hit.setAttribute('class','history-chart-hit'); hit.setAttribute('tabindex','0');
+      hit.setAttribute('aria-label',pointTitle.textContent);
+      hit.addEventListener('mouseenter',event=>showTooltip(event,point)); hit.addEventListener('focus',event=>showTooltip(event,point));
+      hit.addEventListener('mouseleave',hideTooltip); hit.addEventListener('blur',hideTooltip);
+      svg.append(circle,hit);
+    });
+
+    el.historyChartFrame.append(svg,tooltip);
+    requestAnimationFrame(()=>{ el.historyChartFrame.scrollLeft=el.historyChartFrame.scrollWidth-el.historyChartFrame.clientWidth; });
+  }
+
+  function formatCompactChartNumber(value){
+    const number=Number(value)||0;
+    if(number>=1000000)return `${(number/1000000).toFixed(number>=10000000?0:1).replace(/\.0$/,'')}M`;
+    if(number>=1000)return `${(number/1000).toFixed(number>=10000?0:1).replace(/\.0$/,'')}K`;
+    return String(Math.round(number));
+  }
+
+  function formatShortUsDateKey(key){
+    const match=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return match?`${Number(match[2])}/${Number(match[3])}`:String(key||'—');
+  }
+
+  function getUserDailyPodiumBadges(user) {
+    const today=newYorkDateKey(Date.now());
+    const sourceDays=(Array.isArray(state.data?.dailyUserHistory)?state.data.dailyUserHistory:[])
+      .filter(day=>day?.dateKey&&String(day.dateKey)!==today&&day.finalized!==false&&Array.isArray(day.users))
+      .sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+    if(!sourceDays.length)return {gold:0,silver:0,bronze:0};
+
+    const normalizeName=value=>String(value||'').trim().toLowerCase();
+    const timelineByUser=new Map();
+    for(const day of sourceDays){
+      for(const record of day.users){
+        if(!record?.username)continue;
+        const key=normalizeName(record.username);
+        if(!key)continue;
+        if(!timelineByUser.has(key))timelineByUser.set(key,[]);
+        timelineByUser.get(key).push({...record,dateKey:String(day.dateKey)});
+      }
+    }
+
+    const placementsByDate=new Map();
+    for(const records of timelineByUser.values()){
+      records.sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+      let previousEnd=null;
+      for(const record of records){
+        const endPosts=Number(record.endPosts);
+        if(!Number.isFinite(endPosts))continue;
+        const rawStart=Number(record.startPosts);
+        const rawGain=Number(record.postsGained);
+        const startPosts=previousEnd!==null
+          ? previousEnd
+          : Number.isFinite(rawStart)
+            ? rawStart
+            : endPosts-(Number.isFinite(rawGain)?rawGain:0);
+        const postsGained=endPosts-startPosts;
+        previousEnd=endPosts;
+        if(postsGained<1)continue;
+        if(!placementsByDate.has(record.dateKey))placementsByDate.set(record.dateKey,[]);
+        placementsByDate.get(record.dateKey).push({...record,postsGained,endPosts,startPosts});
+      }
+    }
+
+    const matches=candidate=>{
+      const wantedId=String(user?.userId||'').trim();
+      const foundId=String(candidate?.userId||'').trim();
+      if(wantedId&&foundId)return wantedId===foundId;
+      return normalizeName(candidate?.username)===normalizeName(user?.username);
+    };
+    const totals={gold:0,silver:0,bronze:0};
+    for(const dayUsers of placementsByDate.values()){
+      dayUsers.sort((a,b)=>Number(b.postsGained)-Number(a.postsGained)||Number(a.finalRank||Number.MAX_SAFE_INTEGER)-Number(b.finalRank||Number.MAX_SAFE_INTEGER));
+      let previousGain=null;
+      let previousPlace=0;
+      for(let index=0;index<dayUsers.length;index+=1){
+        const candidate=dayUsers[index];
+        const place=previousGain!==null&&Number(candidate.postsGained)===previousGain?previousPlace:index+1;
+        previousGain=Number(candidate.postsGained);
+        previousPlace=place;
+        if(!matches(candidate))continue;
+        if(place===1)totals.gold+=1;
+        else if(place===2)totals.silver+=1;
+        else if(place===3)totals.bronze+=1;
+        break;
+      }
+    }
+    return totals;
   }
 
   function getUserDailyHistory(user) {
@@ -622,6 +971,14 @@
   }
 
   function formatUsDateKey(key){ const match=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); return match?`${match[2]}/${match[3]}/${match[1]}`:String(key||'—'); }
+
+  function makePodiumCrown() {
+    const crown = node('div','podium-crown');
+    const gradientId = `podiumCrownGold${++leaderCrownSequence}`;
+    crown.setAttribute('aria-hidden','true');
+    crown.innerHTML = `<svg viewBox="0 0 140 86" role="img"><defs><linearGradient id="${gradientId}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff6b7"/><stop offset=".34" stop-color="#ffd84d"/><stop offset=".72" stop-color="#f4ae09"/><stop offset="1" stop-color="#8d5700"/></linearGradient></defs><path class="crown-main" fill="url(#${gradientId})" d="M15 62 7 20l31 24L54 10l18 31 26-30 9 35 27-25-10 41Z"/><path class="crown-main" fill="url(#${gradientId})" d="M18 62h104l-5 17H23Z"/><circle class="crown-gem" cx="16" cy="19" r="5"/><circle class="crown-gem" cx="54" cy="9" r="5"/><circle class="crown-gem" cx="99" cy="10" r="5"/><circle class="crown-gem" cx="133" cy="20" r="5"/></svg>`;
+    return crown;
+  }
 
   function makeLeaderCrown() {
     const crown = node('div','leader-crown');
