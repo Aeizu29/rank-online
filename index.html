@@ -204,9 +204,15 @@
     .history-chart-tooltip-value { margin-top:2px; color:var(--good); font-size:16px; font-weight:950; font-variant-numeric:tabular-nums; }
     .history-chart-empty { display:grid; place-items:center; min-height:190px; padding:24px; color:var(--muted); text-align:center; }
     .history-table-wrap { overflow:auto; }
-    .history-table { min-width:670px; }
+    .history-table { min-width:790px; }
     .history-table th { position:sticky; top:0; z-index:2; }
     .history-date { font-weight:850; white-space:nowrap; }
+    .history-day-medal { display:inline-flex; align-items:center; justify-content:center; gap:5px; min-width:76px; padding:5px 9px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.025); color:var(--muted); font-size:10px; font-weight:950; letter-spacing:.025em; white-space:nowrap; box-shadow:inset 0 1px 0 rgba(255,255,255,.045); }
+    .history-day-medal.gold { border-color:rgba(255,211,64,.48); background:linear-gradient(135deg,rgba(255,216,77,.22),rgba(163,103,0,.12)); color:#ffe271; }
+    .history-day-medal.silver { border-color:rgba(213,222,237,.4); background:linear-gradient(135deg,rgba(225,232,244,.17),rgba(101,112,130,.12)); color:#edf2fa; }
+    .history-day-medal.bronze { border-color:rgba(222,143,81,.44); background:linear-gradient(135deg,rgba(218,133,69,.2),rgba(112,55,22,.12)); color:#efad7c; }
+    .history-day-medal.pending { border-style:dashed; color:#aeb7c7; }
+    .history-day-medal.none { min-width:34px; padding-inline:8px; opacity:.72; }
     .history-live { display:inline-flex; margin-left:6px; padding:2px 6px; border-radius:999px; background:rgba(239,77,77,.15); color:var(--accent2); font-size:9px; font-weight:900; letter-spacing:.06em; vertical-align:1px; }
     .history-difference { color:var(--good); font-weight:900; }
     .history-difference.zero { color:var(--muted); }
@@ -414,7 +420,7 @@
       </div>
     </section>
     <div class="history-table-wrap">
-      <table class="history-table"><thead><tr><th>Date</th><th>Starting posts</th><th>Difference</th><th>Ending posts</th><th>Final rank</th></tr></thead><tbody id="historyBody"></tbody></table>
+      <table class="history-table"><thead><tr><th>Date</th><th>Daily badge</th><th>Starting posts</th><th>Difference</th><th>Ending posts</th><th>Final rank</th></tr></thead><tbody id="historyBody"></tbody></table>
       <div class="history-empty" id="historyEmpty">No daily history is available for this user yet.</div>
     </div>
     <footer class="history-footer"><span>Dates use U.S. format (MM/DD/YYYY) and reset at midnight in New York.</span><a class="history-profile" id="historyProfile" target="_blank" rel="noreferrer">Open forum profile ↗</a></footer>
@@ -750,12 +756,13 @@
     el.historyDays.textContent=formatNumber(records.length);
     el.historyTotalGain.textContent=total>0?`+${formatNumber(total)}`:formatNumber(total);
     el.historyBestDay.textContent=best?`${best.postsGained>0?'+':''}${formatNumber(best.postsGained)} · ${formatUsDateKey(best.dateKey)}`:'—';
-    const podiumBadges=getUserDailyPodiumBadges(user);
+    const podiumPlacements=getUserDailyPodiumPlacements(user);
+    const podiumBadges=getUserDailyPodiumBadges(user,podiumPlacements);
     el.historyGoldCount.textContent=formatNumber(podiumBadges.gold);
     el.historySilverCount.textContent=formatNumber(podiumBadges.silver);
     el.historyBronzeCount.textContent=formatNumber(podiumBadges.bronze);
     renderUserDailyChart(records,user);
-    el.historyBody.replaceChildren(...records.map(makeHistoryRow));
+    el.historyBody.replaceChildren(...records.map(record=>makeHistoryRow(record,podiumPlacements.get(String(record.dateKey))||0)));
     el.historyEmpty.style.display=records.length?'none':'block';
     const profile=user.profileUrl||records.find(record=>record.profileUrl)?.profileUrl||'';
     el.historyProfile.hidden=!profile; if(profile)el.historyProfile.href=profile;
@@ -881,12 +888,13 @@
     return match?`${Number(match[2])}/${Number(match[3])}`:String(key||'—');
   }
 
-  function getUserDailyPodiumBadges(user) {
+  function getUserDailyPodiumPlacements(user) {
     const today=newYorkDateKey(Date.now());
     const sourceDays=(Array.isArray(state.data?.dailyUserHistory)?state.data.dailyUserHistory:[])
       .filter(day=>day?.dateKey&&String(day.dateKey)!==today&&day.finalized!==false&&Array.isArray(day.users))
       .sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
-    if(!sourceDays.length)return {gold:0,silver:0,bronze:0};
+    const userPlacements=new Map();
+    if(!sourceDays.length)return userPlacements;
 
     const normalizeName=value=>String(value||'').trim().toLowerCase();
     const timelineByUser=new Map();
@@ -928,8 +936,7 @@
       if(wantedId&&foundId)return wantedId===foundId;
       return normalizeName(candidate?.username)===normalizeName(user?.username);
     };
-    const totals={gold:0,silver:0,bronze:0};
-    for(const dayUsers of placementsByDate.values()){
+    for(const [dateKey,dayUsers] of placementsByDate.entries()){
       dayUsers.sort((a,b)=>Number(b.postsGained)-Number(a.postsGained)||Number(a.finalRank||Number.MAX_SAFE_INTEGER)-Number(b.finalRank||Number.MAX_SAFE_INTEGER));
       let previousGain=null;
       let previousPlace=0;
@@ -939,11 +946,19 @@
         previousGain=Number(candidate.postsGained);
         previousPlace=place;
         if(!matches(candidate))continue;
-        if(place===1)totals.gold+=1;
-        else if(place===2)totals.silver+=1;
-        else if(place===3)totals.bronze+=1;
+        if(place<=3)userPlacements.set(String(dateKey),place);
         break;
       }
+    }
+    return userPlacements;
+  }
+
+  function getUserDailyPodiumBadges(user,placements=getUserDailyPodiumPlacements(user)) {
+    const totals={gold:0,silver:0,bronze:0};
+    for(const place of placements.values()){
+      if(place===1)totals.gold+=1;
+      else if(place===2)totals.silver+=1;
+      else if(place===3)totals.bronze+=1;
     }
     return totals;
   }
@@ -961,12 +976,18 @@
     return records.reverse();
   }
 
-  function makeHistoryRow(record) {
+  function makeHistoryRow(record,dailyPlace=0) {
     const tr=document.createElement('tr');
     const date=cell('history-date',formatUsDateKey(record.dateKey));
     if(record.isLive)date.append(node('span','history-live','LIVE'));
+    const badgeCell=document.createElement('td');
+    if(dailyPlace===1)badgeCell.append(node('span','history-day-medal gold','🥇 1st place'));
+    else if(dailyPlace===2)badgeCell.append(node('span','history-day-medal silver','🥈 2nd place'));
+    else if(dailyPlace===3)badgeCell.append(node('span','history-day-medal bronze','🥉 3rd place'));
+    else if(record.isLive)badgeCell.append(node('span','history-day-medal pending','Live · pending'));
+    else badgeCell.append(node('span','history-day-medal none','—'));
     const difference=Number(record.postsGained)||0;
-    tr.append(date,cell('number',formatNumber(record.startPosts)),cell(`history-difference${difference===0?' zero':difference<0?' negative':''}`,difference>0?`+${formatNumber(difference)}`:formatNumber(difference)),cell('number',formatNumber(record.endPosts)),cell('number',record.finalRank?`#${record.finalRank}`:'—'));
+    tr.append(date,badgeCell,cell('number',formatNumber(record.startPosts)),cell(`history-difference${difference===0?' zero':difference<0?' negative':''}`,difference>0?`+${formatNumber(difference)}`:formatNumber(difference)),cell('number',formatNumber(record.endPosts)),cell('number',record.finalRank?`#${record.finalRank}`:'—'));
     return tr;
   }
 
