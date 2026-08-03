@@ -321,7 +321,7 @@
       <span class="dot" id="dot"></span>
       <div>
         <div class="live-title" id="liveTitle">Connecting to GitHub data…</div>
-        <div class="live-detail" id="liveDetail">Updates every hour while the tracker’s forum tab is active.</div>
+        <div class="live-detail" id="liveDetail">Automatic scans run at 1:00 AM and 11:00 PM New York time.</div>
       </div>
     </div>
     <div class="time-meta">
@@ -475,7 +475,7 @@
       state.data = result.data;
       state.nextPollAt = Date.now() + POLL_MS;
       renderAll();
-      setStatus('success', isStale(result.data) ? 'Data loaded, but the tracker has not uploaded recently.' : 'Live tracking active · updates every hour');
+      setStatus('success', isStale(result.data) ? 'Data loaded, but the tracker has not uploaded recently.' : 'Dashboard refreshes hourly · forced scans at 1:00 AM and 11:00 PM New York time');
     } catch (error) {
       setStatus('error', 'Public ranking data unavailable');
       showError(formatSetupError(error));
@@ -605,7 +605,7 @@
     el.leader.replaceChildren();
 
     if (!tracking) {
-      el.leader.append(placeholder('Waiting for today’s New York scan','The page has reset for the new calendar day in New York. Open the forum in the active tab so the extension can upload the first scan.'));
+      el.leader.append(placeholder('Waiting for today’s New York scan','The page has reset for the new calendar day in New York. The 1:00 AM scheduled scan will publish the first daily snapshot.'));
     } else if (!podiumUsers.length) {
       el.leader.append(placeholder('No new posts detected yet',`Tracking started at ${formatNewYorkTime(tracking.startedAt)} New York time.`));
     } else {
@@ -643,7 +643,7 @@
     el.winnerCount.textContent = tracking ? `${liveRows.length} active ${liveRows.length === 1 ? 'user' : 'users'} today` : 'Waiting for scan';
     el.winnerList.replaceChildren(...(rows.length
       ? rows
-      : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current calendar day in New York.' : 'Open the forum in the active tab to start today’s daily tracking in New York time.')]))
+      : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current calendar day in New York.' : 'Today’s tracking begins with the 1:00 AM scheduled New York scan.')]))
   }
 
   function getVerifiedPreviousDailyWinners(todayKey) {
@@ -1039,11 +1039,9 @@
   }
 
   function renderClock() {
-    const data=state.data;
-    if (!data?.updatedAtMs) { el.nextUpdate.textContent='—'; return; }
-    const target=Number(data.nextUpdateAtMs)||Number(data.updatedAtMs)+POLL_MS;
+    const target=Number(state.nextPollAt)||Date.now()+POLL_MS;
     const remaining=target-Date.now();
-    if (remaining<=0) el.nextUpdate.textContent='Due when forum is active';
+    if (remaining<=0) el.nextUpdate.textContent='Refreshing…';
     else { const m=Math.floor(remaining/60000),s=Math.floor((remaining%60000)/1000); el.nextUpdate.textContent=`${m}:${String(s).padStart(2,'0')}`; }
   }
 
@@ -1052,11 +1050,11 @@
     el.liveTitle.textContent=title;
     el.liveDetail.textContent=type==='error'
       ? 'Check the repository settings in the Chrome extension.'
-      : 'Updates every hour while the tracker’s incels.is tab is active.';
+      : 'The public dashboard checks GitHub every hour. The extension also forces scans at 1:00 AM and 11:00 PM New York time.';
   }
   function showError(message){ el.error.textContent=message; el.error.classList.add('show'); }
   function hideError(){ el.error.classList.remove('show'); }
-  function isStale(data){ return !data?.updatedAtMs || Date.now()-Number(data.updatedAtMs)>90*60*1000; }
+  function isStale(data){ return !data?.updatedAtMs || Date.now()-Number(data.updatedAtMs)>26*60*60*1000; }
   function formatSetupError(error){
     return `${error.message || error}\n\nExpected repository: ${config.owner || '?'}/${config.repo || '?'}\nTried ranking.json and docs/ranking.json on main/master.\nOpen the extension’s GitHub publishing settings and make sure Owner, Repository, Branch, and JSON path match this GitHub Pages repository.`;
   }
