@@ -442,7 +442,7 @@
     dataPath: params.get('data') || '',
   };
 
-  const state = { data:null, query:'', selectedSource:null, nextPollAt:Date.now() + POLL_MS, renderedNewYorkDate:null, activeHistoryUser:null };
+  const state = { data:null, query:'', selectedSource:null, renderedNewYorkDate:null, activeHistoryUser:null };
   let leaderCrownSequence = 0;
   let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
@@ -473,7 +473,6 @@
         : await findDataFile();
       state.selectedSource = result.source;
       state.data = result.data;
-      state.nextPollAt = Date.now() + POLL_MS;
       renderAll();
       setStatus('success', isStale(result.data) ? 'Data loaded, but the tracker has not uploaded recently.' : 'Dashboard refreshes hourly · forced scans at 1:00 AM and 11:00 PM New York time');
     } catch (error) {
@@ -1039,10 +1038,22 @@
   }
 
   function renderClock() {
-    const target=Number(state.nextPollAt)||Date.now()+POLL_MS;
+    const updatedAtMs=Number(state.data?.updatedAtMs);
+    if (!Number.isFinite(updatedAtMs) || updatedAtMs <= 0) {
+      el.nextUpdate.textContent='—';
+      return;
+    }
+    // Base the countdown on the last tracker upload, not on when this page was opened
+    // or manually refreshed. This keeps the timer stable across page reloads.
+    const target=updatedAtMs+POLL_MS;
     const remaining=target-Date.now();
-    if (remaining<=0) el.nextUpdate.textContent='Refreshing…';
-    else { const m=Math.floor(remaining/60000),s=Math.floor((remaining%60000)/1000); el.nextUpdate.textContent=`${m}:${String(s).padStart(2,'0')}`; }
+    if (remaining<=0) {
+      el.nextUpdate.textContent='Due when forum is active';
+      return;
+    }
+    const m=Math.floor(remaining/60000);
+    const s=Math.floor((remaining%60000)/1000);
+    el.nextUpdate.textContent=`${m}:${String(s).padStart(2,'0')}`;
   }
 
   function setStatus(type,title) {
