@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 30,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-08-04T22:48:46.752Z",
-  "updatedAtMs": 1785883726752,
+  "updatedAt": "2026-08-04T23:50:48.872Z",
+  "updatedAtMs": 1785887448872,
   "nextUpdateAt": "2026-08-05T03:00:00.000Z",
   "nextUpdateAtMs": 1785898800000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 30,
-    "combinedPosts": 6896511
+    "combinedPosts": 6897756
   },
   "dailyTracking": {
     "dateKey": "2026-08-04",
     "timeZone": "America/New_York",
     "startedAt": 1785818053625,
-    "lastUpdatedAt": 1785883726752,
+    "lastUpdatedAt": 1785887448872,
     "currentLeaders": [
       {
         "dateKey": "2026-08-04",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/animecel2d.3107/",
         "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
         "trackingStartedAt": 1785818053625,
-        "trackingEndedAt": 1785883726752,
-        "finalizedAt": 1785883726773
+        "trackingEndedAt": 1785887448872,
+        "finalizedAt": 1785887448895
       }
     ],
     "currentLeader": {
@@ -53,8 +53,8 @@
       "profileUrl": "https://incels.is/members/animecel2d.3107/",
       "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
       "trackingStartedAt": 1785818053625,
-      "trackingEndedAt": 1785883726752,
-      "finalizedAt": 1785883726773
+      "trackingEndedAt": 1785887448872,
+      "finalizedAt": 1785887448895
     }
   },
   "dailyWinners": [
@@ -1699,7 +1699,7 @@
       "dateKey": "2026-08-04",
       "timeZone": "America/New_York",
       "startedAt": 1785818053625,
-      "lastUpdatedAt": 1785883726752,
+      "lastUpdatedAt": 1785887448872,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -1717,8 +1717,8 @@
           "username": "SubhumanOldcel",
           "userId": "99758",
           "startPosts": 61509,
-          "postsGained": 2308,
-          "endPosts": 63817,
+          "postsGained": 2332,
+          "endPosts": 63841,
           "finalRank": 19,
           "profileUrl": "https://incels.is/members/subhumanoldcel.99758/",
           "avatarUrl": "https://incels.is/data/avatars/s/99/99758.jpg?1785572331"
@@ -1727,8 +1727,8 @@
           "username": "Trout",
           "userId": "77936",
           "startPosts": 215123,
-          "postsGained": 1040,
-          "endPosts": 216163,
+          "postsGained": 1097,
+          "endPosts": 216220,
           "finalRank": 7,
           "profileUrl": "https://incels.is/members/trout.77936/",
           "avatarUrl": "https://incels.is/data/avatars/s/77/77936.jpg?1784821335"
@@ -1747,18 +1747,28 @@
           "username": "AtrociousCitizen",
           "userId": "68713",
           "startPosts": 722628,
-          "postsGained": 416,
-          "endPosts": 723044,
+          "postsGained": 866,
+          "endPosts": 723494,
           "finalRank": 2,
           "profileUrl": "https://incels.is/members/atrociouscitizen.68713/",
           "avatarUrl": "https://incels.is/data/avatars/s/68/68713.jpg?1741965391"
         },
         {
+          "username": "Rezecel",
+          "userId": "59719",
+          "startPosts": 383954,
+          "postsGained": 643,
+          "endPosts": 384597,
+          "finalRank": 4,
+          "profileUrl": "https://incels.is/members/rezecel.59719/",
+          "avatarUrl": "https://incels.is/data/avatars/s/59/59719.jpg?1785883565"
+        },
+        {
           "username": "Sloth",
           "userId": "64961",
           "startPosts": 174858,
-          "postsGained": 114,
-          "endPosts": 174972,
+          "postsGained": 125,
+          "endPosts": 174983,
           "finalRank": 11,
           "profileUrl": "https://incels.is/members/sloth.64961/",
           "avatarUrl": "https://incels.is/data/avatars/s/64/64961.jpg?1784838962"
@@ -1767,9 +1777,9 @@
           "username": "Sewer Crab",
           "userId": "60990",
           "startPosts": 48676,
-          "postsGained": 71,
-          "endPosts": 48747,
-          "finalRank": 29,
+          "postsGained": 104,
+          "endPosts": 48780,
+          "finalRank": 28,
           "profileUrl": "https://incels.is/members/sewer-crab.60990/",
           "avatarUrl": "https://incels.is/data/avatars/s/60/60990.jpg?1771199776"
         },
@@ -1777,8 +1787,8 @@
           "username": "proudweeb",
           "userId": "33070",
           "startPosts": 55811,
-          "postsGained": 69,
-          "endPosts": 55880,
+          "postsGained": 86,
+          "endPosts": 55897,
           "finalRank": 21,
           "profileUrl": "https://incels.is/members/proudweeb.33070/",
           "avatarUrl": "https://incels.is/data/avatars/s/33/33070.jpg?1785348546"
@@ -1787,8 +1797,8 @@
           "username": "Grimm",
           "userId": "72847",
           "startPosts": 52024,
-          "postsGained": 38,
-          "endPosts": 52062,
+          "postsGained": 45,
+          "endPosts": 52069,
           "finalRank": 24,
           "profileUrl": "https://incels.is/members/grimm.72847/",
           "avatarUrl": "https://incels.is/data/avatars/s/72/72847.jpg?1785769304"
@@ -1827,8 +1837,8 @@
           "username": "theanty",
           "userId": "53240",
           "startPosts": 60371,
-          "postsGained": 23,
-          "endPosts": 60394,
+          "postsGained": 24,
+          "endPosts": 60395,
           "finalRank": 20,
           "profileUrl": "https://incels.is/members/theanty.53240/",
           "avatarUrl": "https://incels.is/data/avatars/s/53/53240.jpg?1785337908"
@@ -1837,8 +1847,8 @@
           "username": "LeFrenchCel",
           "userId": "26008",
           "startPosts": 49714,
-          "postsGained": 20,
-          "endPosts": 49734,
+          "postsGained": 23,
+          "endPosts": 49737,
           "finalRank": 27,
           "profileUrl": "https://incels.is/members/lefrenchcel.26008/",
           "avatarUrl": "https://incels.is/data/avatars/s/26/26008.jpg?1779091003"
@@ -1847,8 +1857,8 @@
           "username": "wereq",
           "userId": "45911",
           "startPosts": 48508,
-          "postsGained": 15,
-          "endPosts": 48523,
+          "postsGained": 17,
+          "endPosts": 48525,
           "finalRank": 30,
           "profileUrl": "https://incels.is/members/wereq.45911/",
           "avatarUrl": "https://incels.is/data/avatars/s/45/45911.jpg?1784595193"
@@ -1862,16 +1872,6 @@
           "finalRank": 9,
           "profileUrl": "https://incels.is/members/paladin.64613/",
           "avatarUrl": "https://incels.is/data/avatars/s/64/64613.jpg?1785180994"
-        },
-        {
-          "username": "Rezecel",
-          "userId": "59719",
-          "startPosts": 383954,
-          "postsGained": 3,
-          "endPosts": 383957,
-          "finalRank": 4,
-          "profileUrl": "https://incels.is/members/rezecel.59719/",
-          "avatarUrl": "https://incels.is/data/avatars/s/59/59719.jpg?1785883565"
         },
         {
           "username": "Trident",
@@ -1999,7 +1999,7 @@
           "startPosts": 48736,
           "postsGained": 0,
           "endPosts": 48736,
-          "finalRank": 28,
+          "finalRank": 29,
           "profileUrl": "https://incels.is/members/transcended-trucel.17162/",
           "avatarUrl": "https://incels.is/data/avatars/s/17/17162.jpg?1689208270"
         }
@@ -2021,8 +2021,8 @@
     {
       "rank": 2,
       "username": "AtrociousCitizen",
-      "posts": 723044,
-      "postDelta": 416,
+      "posts": 723494,
+      "postDelta": 866,
       "rankDelta": 0,
       "isNew": false,
       "userId": "68713",
@@ -2043,8 +2043,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 383957,
-      "postDelta": 3,
+      "posts": 384597,
+      "postDelta": 643,
       "rankDelta": 0,
       "isNew": false,
       "userId": "59719",
@@ -2076,8 +2076,8 @@
     {
       "rank": 7,
       "username": "Trout",
-      "posts": 216163,
-      "postDelta": 1040,
+      "posts": 216220,
+      "postDelta": 1097,
       "rankDelta": 0,
       "isNew": false,
       "userId": "77936",
@@ -2120,8 +2120,8 @@
     {
       "rank": 11,
       "username": "Sloth",
-      "posts": 174972,
-      "postDelta": 114,
+      "posts": 174983,
+      "postDelta": 125,
       "rankDelta": 0,
       "isNew": false,
       "userId": "64961",
@@ -2208,8 +2208,8 @@
     {
       "rank": 19,
       "username": "SubhumanOldcel",
-      "posts": 63817,
-      "postDelta": 2308,
+      "posts": 63841,
+      "postDelta": 2332,
       "rankDelta": 0,
       "isNew": false,
       "userId": "99758",
@@ -2219,8 +2219,8 @@
     {
       "rank": 20,
       "username": "theanty",
-      "posts": 60394,
-      "postDelta": 23,
+      "posts": 60395,
+      "postDelta": 24,
       "rankDelta": 0,
       "isNew": false,
       "userId": "53240",
@@ -2230,8 +2230,8 @@
     {
       "rank": 21,
       "username": "proudweeb",
-      "posts": 55880,
-      "postDelta": 69,
+      "posts": 55897,
+      "postDelta": 86,
       "rankDelta": 0,
       "isNew": false,
       "userId": "33070",
@@ -2263,8 +2263,8 @@
     {
       "rank": 24,
       "username": "Grimm",
-      "posts": 52062,
-      "postDelta": 38,
+      "posts": 52069,
+      "postDelta": 45,
       "rankDelta": 0,
       "isNew": false,
       "userId": "72847",
@@ -2296,8 +2296,8 @@
     {
       "rank": 27,
       "username": "LeFrenchCel",
-      "posts": 49734,
-      "postDelta": 20,
+      "posts": 49737,
+      "postDelta": 23,
       "rankDelta": 0,
       "isNew": false,
       "userId": "26008",
@@ -2306,31 +2306,31 @@
     },
     {
       "rank": 28,
-      "username": "Transcended Trucel",
-      "posts": 48736,
-      "postDelta": 0,
-      "rankDelta": 0,
-      "isNew": false,
-      "userId": "17162",
-      "profileUrl": "https://incels.is/members/transcended-trucel.17162/",
-      "avatarUrl": "https://incels.is/data/avatars/s/17/17162.jpg?1689208270"
-    },
-    {
-      "rank": 29,
       "username": "Sewer Crab",
-      "posts": 48747,
-      "postDelta": 71,
-      "rankDelta": 0,
+      "posts": 48780,
+      "postDelta": 104,
+      "rankDelta": 1,
       "isNew": false,
       "userId": "60990",
       "profileUrl": "https://incels.is/members/sewer-crab.60990/",
       "avatarUrl": "https://incels.is/data/avatars/s/60/60990.jpg?1771199776"
     },
     {
+      "rank": 29,
+      "username": "Transcended Trucel",
+      "posts": 48736,
+      "postDelta": 0,
+      "rankDelta": -1,
+      "isNew": false,
+      "userId": "17162",
+      "profileUrl": "https://incels.is/members/transcended-trucel.17162/",
+      "avatarUrl": "https://incels.is/data/avatars/s/17/17162.jpg?1689208270"
+    },
+    {
       "rank": 30,
       "username": "wereq",
-      "posts": 48523,
-      "postDelta": 15,
+      "posts": 48525,
+      "postDelta": 17,
       "rankDelta": 0,
       "isNew": false,
       "userId": "45911",
