@@ -1572,10 +1572,23 @@
   }
 
   function makeWinnerRow(winner) {
+    // Historical daily rows store the avatar that existed when the day was
+    // archived. Prefer the user's latest public ranking presentation so old
+    // winners automatically receive their newest avatar and current alias.
+    const latestUser = resolveRankingUser(winner);
+    const displayUser = {
+      ...winner,
+      username: latestUser?.username || winner.username,
+      userId: latestUser?.userId || winner.userId,
+      profileUrl: latestUser?.profileUrl || winner.profileUrl,
+      avatarUrl: latestUser?.avatarUrl || winner.avatarUrl,
+      isAliased: latestUser?.isAliased ?? winner.isAliased
+    };
+
     const row=node('div','winner-row');
     row.append(node('div',`winner-date${winner.isLive?' live':''}`,winner.isLive?`#${winner.dailyRank||'—'}`:formatDateKey(winner.dateKey)));
-    const user=node('div','winner-user'); user.append(makeAvatar(winner));
-    user.append(makeUsernameButton(winner,'username'));
+    const user=node('div','winner-user'); user.append(makeAvatar(displayUser));
+    user.append(makeUsernameButton(displayUser,'username'));
     const gainValue=Number(winner.postsGained)||0;
     const gain=node('div',`winner-gain${gainValue===0?' zero':gainValue<0?' negative':''}`,gainValue>0?`+${formatNumber(gainValue)}`:formatNumber(gainValue));
     row.append(user,gain);
