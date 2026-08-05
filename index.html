@@ -943,7 +943,7 @@
     <div>
       <div class="eyebrow">Public leaderboard tracker</div>
       <h1>POSTMAXXERS</h1>
-      <p class="subtitle">Top 30 posters, live post-count changes, and a daily posting leaderboard.</p>
+      <p class="subtitle">Top 100 posters, live post-count changes, and a daily posting leaderboard.</p>
     </div>
     <div class="header-tools">
       <div class="new-york-clock" aria-label="Current time in New York">
@@ -986,7 +986,7 @@
     <div class="section-head">
       <div>
         <h2 id="milestonesTitle">Milestones &amp; Achievements</h2>
-        <p>Recent records, streaks, rank breakthroughs, total-post milestones, and podium achievements from the tracked top 30.</p>
+        <p>Recent records, streaks, rank breakthroughs, total-post milestones, and podium achievements from the tracked top 100.</p>
       </div>
       <span class="badge" id="milestoneCount">0 achievements</span>
     </div>
@@ -1081,7 +1081,7 @@
 (() => {
   const GITHUB_API_VERSION = '2022-11-28';
   const POLL_MS = 60 * 60 * 1000;
-  const RANKING_LIMIT = 30;
+  const RANKING_LIMIT = 100;
   const DAILY_TIME_ZONE = 'America/New_York';
   const params = new URLSearchParams(location.search);
   const inferred = inferRepository();
