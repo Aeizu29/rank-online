@@ -985,14 +985,25 @@
       }
     }
 
-    .remote-scan-block { margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 16px; border:1px solid var(--line); border-radius:14px; background:var(--panel); }
-    .remote-scan-copy { min-width:0; }
-    .remote-scan-title { font-weight:800; }
-    .remote-scan-status { margin-top:3px; color:var(--muted); font-size:12px; }
-    .remote-scan-button { flex:0 0 auto; border:0; border-radius:10px; padding:10px 14px; background:#d94747; color:white; font-weight:800; cursor:pointer; }
+    .live-block {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:12px 16px;
+    }
+    .live-scan-actions { display:flex; flex-direction:column; align-items:flex-end; justify-content:center; gap:5px; min-width:150px; }
+    .remote-scan-status { color:var(--muted); font-size:11px; line-height:1.25; text-align:right; }
+    .remote-scan-feedback { display:none; grid-column:1 / -1; margin-top:0; padding:9px 11px; border-radius:7px; background:rgba(217,71,71,.12); border:1px solid rgba(217,71,71,.28); color:#f0c7c7; font-size:12px; line-height:1.45; }
+    .remote-scan-feedback.show { display:block; }
+    .remote-scan-button { flex:0 0 auto; border:0; border-radius:8px; padding:10px 16px; background:#d94747; color:white; font-weight:800; cursor:pointer; white-space:nowrap; }
     .remote-scan-button:hover:not(:disabled) { filter:brightness(1.08); }
     .remote-scan-button:disabled { opacity:.55; cursor:not-allowed; }
-    @media(max-width:600px) { .remote-scan-block { align-items:stretch; flex-direction:column; } .remote-scan-button { width:100%; } }
+    @media(max-width:600px) {
+      .live-block { grid-template-columns:minmax(0,1fr) auto; gap:10px; padding:13px 12px; }
+      .live-scan-actions { min-width:118px; }
+      .remote-scan-button { padding:9px 11px; font-size:12px; }
+      .remote-scan-status { max-width:130px; font-size:10px; }
+      .live-detail { white-space:normal; line-height:1.25; }
+    }
 
 </style>
 </head>
@@ -1013,7 +1024,7 @@
     </div>
   </header>
 
-  <section class="live-block">
+  <section class="live-block" aria-label="Latest update and scan controls">
     <div class="live-main">
       <span class="dot" id="dot"></span>
       <div>
@@ -1021,18 +1032,14 @@
         <div class="live-detail" id="liveDetail">Loading latest tracker update…</div>
       </div>
     </div>
+    <div class="live-scan-actions">
+      <button class="remote-scan-button" id="remoteScanButton" type="button">Force scan</button>
+      <div class="remote-scan-status" id="remoteScanStatus">Checking availability…</div>
+    </div>
+    <div class="remote-scan-feedback" id="remoteScanFeedback" role="status" aria-live="polite"></div>
   </section>
 
   <div class="error-box" id="error"></div>
-
-  <section class="remote-scan-block" aria-label="Request a leaderboard refresh">
-    <div class="remote-scan-copy">
-      <div class="remote-scan-title">Request a fresh scan</div>
-      <div class="remote-scan-status" id="remoteScanStatus">Checking availability…</div>
-    </div>
-    <button class="remote-scan-button" id="remoteScanButton" type="button">Force scan</button>
-  </section>
-
 
 
   <section class="daily">
@@ -1201,11 +1208,14 @@
       if (!response.ok || !payload.ok) throw new Error(payload.error || `Request failed with HTTP ${response.status}`);
       const nextAllowedAt = Number(payload.nextAllowedAt || Date.now() + 3600000);
       localStorage.setItem('postmaxxersRemoteScanNextAllowedAt', String(nextAllowedAt));
-      el.remoteScanStatus.textContent = 'Scan requested. Your extension should process it within about one minute.';
+      el.remoteScanStatus.textContent = 'Scan request sent successfully.';
+      el.remoteScanFeedback.textContent = 'Please wait about 10–60 seconds for the extension to scan the forum and upload the updated ranking. The website may take a little longer to show the new data.';
+      el.remoteScanFeedback.classList.add('show');
       startRemoteCooldown(nextAllowedAt);
     } catch (error) {
       el.remoteScanButton.disabled = false;
       el.remoteScanButton.textContent = 'Force scan';
+      el.remoteScanFeedback.classList.remove('show');
       el.remoteScanStatus.textContent = `Could not request a scan: ${error.message || error}`;
     }
   }
@@ -1217,6 +1227,7 @@
   function updateRemoteScanAvailability() {
     if (!isRemoteScanConfigured()) {
       el.remoteScanButton.disabled = true;
+      el.remoteScanFeedback.classList.remove('show');
       el.remoteScanStatus.textContent = 'Remote scan relay is not configured.';
       return;
     }
@@ -1225,6 +1236,7 @@
     else {
       el.remoteScanButton.disabled = false;
       el.remoteScanButton.textContent = 'Force scan';
+      el.remoteScanFeedback.classList.remove('show');
       el.remoteScanStatus.textContent = 'Available once per hour.';
     }
   }
