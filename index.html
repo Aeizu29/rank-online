@@ -5,6 +5,7 @@
   <meta http-equiv="Content-Language" content="en-US">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#202b49">
   <title>POSTMAXXERS — Live Ranking</title>
   <style>
     :root {
@@ -169,6 +170,122 @@
     .history-medal-card.silver .history-medal-count { color:#e3e9f2; }
     .history-medal-card.bronze .history-medal-count { color:#e7a26e; }
     .history-medal-name { margin-top:4px; color:var(--muted); font-size:9px; font-weight:900; letter-spacing:.09em; line-height:1.25; text-transform:uppercase; }
+
+    .history-achievements {
+      padding:16px 20px 18px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,139,40,.045),rgba(255,255,255,0));
+    }
+    .history-achievements-head {
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:11px;
+    }
+    .history-achievements-title { margin:0; font-size:15px; font-weight:950; letter-spacing:-.015em; }
+    .history-achievements-note { margin:3px 0 0; color:var(--muted); font-size:10px; line-height:1.45; }
+    .history-achievement-count {
+      flex:0 0 auto;
+      padding:5px 9px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.025);
+      color:var(--muted);
+      font-size:10px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .history-achievement-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .history-achievement-card {
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:44px minmax(0,1fr);
+      gap:11px;
+      align-items:center;
+      min-height:84px;
+      padding:12px 13px;
+      border:1px solid var(--line);
+      border-left:4px solid #65c7ee;
+      border-radius:13px;
+      background:#24304d;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.045);
+    }
+    .history-achievement-card::after {
+      content:"";
+      position:absolute;
+      z-index:-1;
+      inset:auto -28px -42px auto;
+      width:96px;
+      height:96px;
+      border-radius:50%;
+      background:rgba(101,199,238,.08);
+    }
+    .history-achievement-card.record { border-left-color:#ffd34f; }
+    .history-achievement-card.record::after,.history-achievement-card.medal::after { background:rgba(255,211,79,.1); }
+    .history-achievement-card.personal { border-left-color:#ff8b28; }
+    .history-achievement-card.personal::after { background:rgba(255,139,40,.09); }
+    .history-achievement-card.streak { border-left-color:#42e4c0; }
+    .history-achievement-card.streak::after { background:rgba(66,228,192,.09); }
+    .history-achievement-card.rank { border-left-color:#9d8cff; }
+    .history-achievement-card.rank::after { background:rgba(157,140,255,.09); }
+    .history-achievement-card.medal { border-left-color:#f4c84c; }
+    .history-achievement-card.threshold { border-left-color:#65c7ee; }
+    .history-achievement-icon {
+      display:grid;
+      place-items:center;
+      width:42px;
+      height:42px;
+      border:1px solid #526080;
+      border-radius:12px;
+      background:#263451;
+      font-size:22px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .history-achievement-copy { min-width:0; }
+    .history-achievement-label {
+      color:#94a3bd;
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .history-achievement-title { margin-top:2px; color:#f4f7ff; font-size:13px; font-weight:950; line-height:1.3; }
+    .history-achievement-detail { margin-top:3px; color:#aab6cc; font-size:10px; line-height:1.4; }
+    .history-achievement-date { margin-top:5px; color:#ffad58; font-size:9px; font-weight:850; }
+    .history-achievement-empty {
+      display:none;
+      padding:22px 16px;
+      border:1px dashed var(--line);
+      border-radius:12px;
+      color:var(--muted);
+      text-align:center;
+    }
+    .history-achievement-actions { display:flex; justify-content:center; margin-top:12px; }
+    .history-achievement-toggle {
+      min-width:132px;
+      padding:9px 16px;
+      border:1px solid #526080;
+      border-radius:999px;
+      background:#263451;
+      color:#f4f7ff;
+      font:inherit;
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.025em;
+      cursor:pointer;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 20px rgba(0,0,0,.16);
+    }
+    .history-achievement-toggle:hover { border-color:#65c7ee; color:#8edfff; transform:translateY(-1px); }
+    .history-achievement-toggle:focus-visible { outline:2px solid #65c7ee; outline-offset:3px; }
+    .history-achievement-toggle[hidden] { display:none; }
+    @media(max-width:650px) {
+      .history-achievements-head { align-items:flex-start; flex-direction:column; }
+      .history-achievement-grid { grid-template-columns:1fr; }
+    }
+
     .history-chart { padding:17px 20px 20px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,rgba(90,106,255,.045),rgba(255,255,255,0)); }
     .history-chart-head { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:12px; }
     .history-chart-title { margin:0; font-size:15px; font-weight:950; letter-spacing:-.015em; }
@@ -285,7 +402,540 @@
     @media(max-width:820px){ header{flex-direction:column}.header-tools{align-items:flex-start;width:100%}.new-york-clock{text-align:left;width:min(100%,360px)}.live-block{display:flex}.live-main{width:100%}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.leader{min-height:360px}.podium-stage{gap:8px}.podium-avatar-ring{width:88px;height:88px}.podium-avatar-ring .avatar{width:78px;height:78px}.podium-position-1 .podium-avatar-ring{width:112px;height:112px}.podium-position-1 .podium-avatar-ring .avatar{width:102px;height:102px} }
     @media(max-width:620px){.history-medals-head{align-items:flex-start;flex-direction:column}.history-medals-note{text-align:left}.history-medal-grid{gap:7px}.history-medal-card{grid-template-columns:1fr;justify-items:center;text-align:center;padding:10px 6px}.history-medal-icon{width:43px;height:43px;font-size:24px}.history-medal-count{font-size:24px}.history-medal-name{font-size:8px}.history-chart-head{align-items:flex-start;flex-direction:column}.history-chart-summary{text-align:left}.history-chart{padding-inline:14px}}
     @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.live-block{display:flex}.live-main{width:100%}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0}.leader{padding:24px 12px 18px}.leader-crown{width:96px;height:60px}.leader-avatar-ring{width:112px;height:112px}.leader .avatar{width:102px;height:102px}.leader-list{grid-template-columns:1fr}.person-name{font-size:25px}.leader-gain-value{font-size:42px}.podium-stage,.podium-stage.count-2,.podium-stage.count-1{grid-template-columns:1fr;max-width:340px;gap:16px;align-items:stretch}.podium-stage .podium-entry{grid-column:1!important;grid-row:auto!important}.podium-position-1{order:1}.podium-position-2{order:2}.podium-position-3{order:3}.podium-entry{padding:12px 12px 0;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(10,13,18,.55)}.podium-step,.podium-position-1 .podium-step,.podium-position-2 .podium-step,.podium-position-3 .podium-step{min-height:58px}.podium-crown{width:104px;height:68px;margin-bottom:3px} }
-  </style>
+  
+
+    /* Navy forum-inspired theme */
+    :root {
+      --bg:#131c32;
+      --panel:#202b49;
+      --panel2:#293553;
+      --line:#3a4768;
+      --text:#e8edf8;
+      --muted:#98a4bd;
+      --accent:#ef6b00;
+      --accent2:#ff8b28;
+      --good:#42d7c8;
+      --bad:#ff5d70;
+      --warn:#f2ca4b;
+    }
+    body {
+      background:
+        radial-gradient(circle at 2% 8%,rgba(239,107,0,.12),transparent 30rem),
+        radial-gradient(circle at 96% 20%,rgba(68,210,204,.08),transparent 34rem),
+        linear-gradient(180deg,#18233d 0,#131c32 240px,#111a2e 100%);
+    }
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        linear-gradient(135deg,transparent 0 12%,rgba(89,105,150,.055) 12% 13%,transparent 13% 100%),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 44px);
+    }
+    ::selection { background:rgba(239,107,0,.34); color:#fff; }
+    .eyebrow,.new-york-clock-label { color:var(--accent2); }
+    h1 { text-shadow:0 2px 0 rgba(0,0,0,.18); }
+    .new-york-clock,
+    .live-block {
+      border-color:#3d496b;
+      background:linear-gradient(180deg,rgba(39,51,83,.97),rgba(31,42,70,.97));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 14px 34px rgba(5,10,24,.22);
+    }
+    .daily {
+      border-color:#3b486a;
+      background:
+        linear-gradient(145deg,rgba(239,107,0,.13),rgba(35,47,78,.98) 35%,rgba(31,42,70,.98) 100%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 18px 45px rgba(5,10,24,.16);
+    }
+    .section-head h2,.archive-title h3 { color:#f1f4fb; }
+    .badge {
+      border-color:#4a587b;
+      background:#273351;
+      color:#b5c0d5;
+    }
+    .leader,.archive {
+      border-color:#3b486a;
+      background:rgba(27,38,64,.86);
+    }
+    .leader {
+      background:
+        radial-gradient(circle at 50% 23%,rgba(255,204,54,.19),transparent 15rem),
+        radial-gradient(circle at 12% 84%,rgba(239,107,0,.10),transparent 22rem),
+        linear-gradient(180deg,#27324f 0,#1b263f 64%,#172137 100%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 18px 38px rgba(5,10,24,.18);
+    }
+    .leader-kicker,.podium-kicker {
+      border-color:rgba(255,150,43,.32);
+      background:rgba(239,107,0,.105);
+      color:#ffb05f;
+    }
+    .leader-kicker::before,.podium-kicker::before {
+      background:#ff8a21;
+      box-shadow:0 0 0 4px rgba(255,138,33,.13),0 0 17px rgba(255,138,33,.58);
+    }
+    .leader .avatar,.podium-avatar-ring .avatar { border-color:#202b49; }
+    .person-name:hover,.username:hover,.history-profile { color:#c4ebff; }
+    .leader-gain-value,.gain,.winner-gain,.podium-gain,.history-difference,.history-chart-summary-value,.history-chart-tooltip-value {
+      color:#52ddce;
+    }
+    .archive-title,.winner-row,.archive-divider { border-color:#3a4768; }
+    .archive-divider { background:rgba(94,111,158,.08); }
+    .winner-row:hover { background:rgba(90,183,226,.055); }
+    .search,.table-wrap {
+      border-color:#3a4768;
+      background:#202b49;
+    }
+    .search::placeholder { color:#8390aa; }
+    .search:focus {
+      border-color:#68b9e8;
+      box-shadow:0 0 0 3px rgba(74,174,226,.10);
+    }
+    th {
+      background:#293553;
+      color:#aeb9cf;
+      box-shadow:inset 0 -1px 0 #3c496c;
+    }
+    th,td { border-color:#394668; }
+    tbody tr:hover { background:rgba(99,180,226,.065); }
+    .rank { color:#91a0ba; }
+    .username { color:#cbeeff; }
+    .history-overlay { background:rgba(7,12,28,.84); }
+    .history-modal {
+      border-color:#465475;
+      background:#1b263f;
+      box-shadow:0 32px 100px rgba(3,8,22,.66);
+    }
+    .history-head {
+      background:linear-gradient(180deg,#293553,#232f4d);
+    }
+    .history-close {
+      border-color:#4a5879;
+      background:#303c5b;
+    }
+    .history-close:hover { border-color:var(--accent2); background:#3a4562; }
+    .history-stat {
+      border-color:#3e4b6d;
+      background:#24304d;
+    }
+    .history-medals {
+      background:linear-gradient(180deg,rgba(94,111,158,.08),rgba(31,42,70,0));
+    }
+    .history-medal-card { background:#24304d; }
+    .history-medal-card.gold { background:linear-gradient(145deg,rgba(255,208,50,.14),#24304d 62%); }
+    .history-medal-card.silver { background:linear-gradient(145deg,rgba(207,217,234,.12),#24304d 62%); }
+    .history-medal-card.bronze { background:linear-gradient(145deg,rgba(201,117,54,.14),#24304d 62%); }
+    .history-chart {
+      background:linear-gradient(180deg,rgba(68,190,230,.09),rgba(31,42,70,0));
+    }
+    .history-chart-frame {
+      border-color:#3d4a6c;
+      background:linear-gradient(180deg,#202d4b,#18223a);
+    }
+    .history-chart-line {
+      stroke:#65c7ee;
+      filter:drop-shadow(0 4px 8px rgba(61,173,222,.34));
+    }
+    .history-chart-point { fill:#91dcfa; stroke:#1b263f; }
+    .history-chart-point.live { fill:#ff8b28; }
+    .history-chart-axis,.history-chart-x-label { fill:#9ba8c0; }
+    .history-chart-tooltip {
+      border-color:#536080;
+      background:rgba(27,38,63,.97);
+    }
+    .history-day-medal.pending { color:#b7c2d7; }
+    .history-live { background:rgba(239,107,0,.16); color:#ffac5a; }
+    .podium-entry {
+      filter:drop-shadow(0 12px 19px rgba(5,10,24,.12));
+    }
+    .podium-medal { background:#2b3755; border-color:#4a5777; }
+    .podium-avatar-ring .fallback { background:linear-gradient(145deg,#405071,#202b49); }
+    .podium-step {
+      border-color:#465375;
+      background:linear-gradient(180deg,#34405d,#222d49);
+    }
+    .podium-position-1 .podium-step {
+      border-color:rgba(255,195,50,.38);
+      background:linear-gradient(180deg,#72551c,#3c321b);
+    }
+    .podium-position-2 .podium-step { background:linear-gradient(180deg,#58647a,#303b57); }
+    .podium-position-3 .podium-step { background:linear-gradient(180deg,#704a31,#3c2c25); }
+    .podium-gain-label,.leader-gain-label { color:#bec8da; }
+    .foot { color:#8f9cb6; }
+    @media(max-width:480px) {
+      .podium-entry { background:rgba(32,43,73,.82); border-color:#3b4869; }
+    }
+
+
+    /* Milestones & achievements */
+    .milestones-section {
+      margin-top:22px;
+      border:1px solid #354361;
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(43,55,85,.96),rgba(29,40,67,.98));
+      box-shadow:0 18px 42px rgba(5,10,24,.2);
+      overflow:hidden;
+    }
+    .milestones-section .section-head {
+      padding:20px 22px;
+      border-bottom:1px solid #3b4869;
+      background:rgba(52,64,93,.72);
+    }
+    .milestone-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      padding:16px;
+    }
+    .milestone-card {
+      position:relative;
+      display:grid;
+      grid-template-columns:52px minmax(0,1fr) auto;
+      align-items:center;
+      gap:13px;
+      min-height:96px;
+      padding:15px 16px;
+      border:1px solid #435171;
+      border-left:4px solid #65c7ee;
+      border-radius:14px;
+      background:linear-gradient(135deg,rgba(47,61,95,.98),rgba(31,42,70,.98));
+      box-shadow:0 10px 26px rgba(5,10,24,.16);
+      overflow:hidden;
+    }
+    .milestone-card::after {
+      content:"";
+      position:absolute;
+      inset:auto -30px -46px auto;
+      width:110px;
+      height:110px;
+      border-radius:50%;
+      background:rgba(101,199,238,.07);
+      pointer-events:none;
+    }
+    .milestone-card.record { border-left-color:#ffd34f; }
+    .milestone-card.record::after,.milestone-card.medal::after { background:rgba(255,211,79,.09); }
+    .milestone-card.personal { border-left-color:#ff8b28; }
+    .milestone-card.personal::after { background:rgba(255,139,40,.08); }
+    .milestone-card.streak { border-left-color:#42e4c0; }
+    .milestone-card.streak::after { background:rgba(66,228,192,.08); }
+    .milestone-card.rank { border-left-color:#9d8cff; }
+    .milestone-card.rank::after { background:rgba(157,140,255,.08); }
+    .milestone-card.medal { border-left-color:#f4c84c; }
+    .milestone-card.threshold { border-left-color:#65c7ee; }
+    .milestone-icon {
+      position:relative;
+      z-index:1;
+      display:grid;
+      place-items:center;
+      width:50px;
+      height:50px;
+      border:1px solid #526080;
+      border-radius:14px;
+      background:#263451;
+      font-size:25px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .milestone-copy { position:relative; z-index:1; min-width:0; }
+    .milestone-label {
+      margin-bottom:4px;
+      color:#94a3bd;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .milestone-title {
+      color:#f4f7ff;
+      font-size:15px;
+      font-weight:900;
+      line-height:1.3;
+    }
+    .milestone-user {
+      display:inline;
+      padding:0;
+      border:0;
+      background:none;
+      color:#9ee4ff;
+      font:inherit;
+      font-weight:950;
+      cursor:pointer;
+      text-align:left;
+    }
+    .milestone-user:hover { color:#ffad58; text-decoration:underline; }
+    .milestone-detail {
+      margin-top:4px;
+      color:#aab6cc;
+      font-size:12px;
+      line-height:1.45;
+    }
+    .milestone-date {
+      position:relative;
+      z-index:1;
+      align-self:start;
+      padding:5px 8px;
+      border:1px solid #4a5878;
+      border-radius:999px;
+      background:rgba(26,36,61,.82);
+      color:#bdc8db;
+      font-size:10px;
+      font-weight:850;
+      white-space:nowrap;
+    }
+    .milestone-empty {
+      display:none;
+      margin:16px;
+      padding:26px 18px;
+      border:1px dashed #4c5978;
+      border-radius:14px;
+      color:#9ba8c0;
+      text-align:center;
+    }
+    @media(max-width:780px) {
+      .milestone-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:480px) {
+      .milestone-card { grid-template-columns:44px minmax(0,1fr); }
+      .milestone-icon { width:42px; height:42px; font-size:21px; }
+      .milestone-date { grid-column:2; justify-self:start; margin-top:-3px; }
+    }
+
+  
+
+    /* User profile modal scrolling fix */
+    .history-overlay {
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      -webkit-overflow-scrolling:touch;
+    }
+    .history-modal {
+      max-height:min(92vh, calc(100dvh - 24px));
+      overflow-x:hidden;
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      scrollbar-gutter:stable;
+      -webkit-overflow-scrolling:touch;
+    }
+    .history-head {
+      position:sticky;
+      top:0;
+      z-index:20;
+      flex:0 0 auto;
+    }
+    .history-summary,
+    .history-medals,
+    .history-achievements,
+    .history-chart,
+    .history-table-wrap,
+    .history-footer {
+      flex:0 0 auto;
+    }
+    .history-table-wrap {
+      overflow-x:auto;
+      overflow-y:visible;
+    }
+    .history-modal::-webkit-scrollbar,
+    .history-overlay::-webkit-scrollbar {
+      width:10px;
+    }
+    .history-modal::-webkit-scrollbar-thumb,
+    .history-overlay::-webkit-scrollbar-thumb {
+      background:#52607f;
+      border:2px solid transparent;
+      border-radius:999px;
+      background-clip:padding-box;
+    }
+    @media (max-width:640px) {
+      .history-overlay {
+        padding:8px;
+        align-items:start;
+      }
+      .history-modal {
+        max-height:calc(100dvh - 16px);
+        border-radius:14px;
+      }
+      .history-head {
+        padding:15px 14px 13px;
+      }
+    }
+
+
+    /* Flat navy theme */
+    body {
+      background:#131c32;
+    }
+    body::before { display:none; }
+    h1 { text-shadow:none; }
+
+    .new-york-clock,
+    .live-block,
+    .daily,
+    .leader,
+    .archive,
+    .search,
+    .table-wrap,
+    .history-modal,
+    .history-head,
+    .history-stat,
+    .history-medal-card,
+    .history-chart,
+    .history-chart-frame,
+    .history-chart-tooltip,
+    .podium-step,
+    .milestones-section,
+    .milestone-card,
+    .milestone-icon,
+    .milestone-date,
+    .history-achievement-card,
+    .history-achievements-toggle {
+      box-shadow:none !important;
+      filter:none !important;
+    }
+
+    .new-york-clock,
+    .live-block {
+      background:#202b49;
+      border-radius:8px;
+    }
+    .daily {
+      background:#202b49;
+      border-radius:10px;
+    }
+    .leader,
+    .archive {
+      background:#1a2540;
+      border-radius:8px;
+    }
+    .leader {
+      background:#1a2540;
+    }
+    .leader::before { display:none; }
+    .leader-crown,
+    .podium-crown { filter:none !important; transform:none; }
+    .leader-avatar-ring,
+    .podium-avatar-ring {
+      box-shadow:none !important;
+      background:#f0c94a !important;
+    }
+    .podium-position-2 .podium-avatar-ring { background:#aeb7c8 !important; }
+    .podium-position-3 .podium-avatar-ring { background:#b97544 !important; }
+
+    .badge,
+    .leader-kicker,
+    .podium-kicker,
+    .podium-medal,
+    .history-live,
+    .history-day-medal,
+    .milestone-date {
+      border-radius:5px;
+    }
+    .leader-kicker::before,
+    .podium-kicker::before,
+    .dot,
+    .dot.success,
+    .dot.error {
+      box-shadow:none;
+    }
+
+    .podium-entry { filter:none; }
+    .podium-step {
+      background:#2b3858;
+      border-radius:6px 6px 2px 2px;
+    }
+    .podium-position-1 .podium-step {
+      background:#665020;
+    }
+    .podium-position-2 .podium-step {
+      background:#4d586e;
+    }
+    .podium-position-3 .podium-step {
+      background:#593b2b;
+    }
+
+    .search,
+    .table-wrap {
+      background:#1b2744;
+      border-radius:7px;
+    }
+    .search:focus { box-shadow:none; }
+    th { background:#273452; box-shadow:none; }
+    tbody tr:hover { background:#253250; }
+
+    .history-overlay { background:rgba(7,12,28,.88); }
+    .history-modal {
+      background:#1a2540;
+      border-radius:10px;
+    }
+    .history-head {
+      background:#243150;
+    }
+    .history-close {
+      background:#2d3958;
+      border-radius:6px;
+    }
+    .history-close:hover { background:#364462; }
+    .history-stat,
+    .history-medal-card {
+      background:#243150 !important;
+      border-radius:7px;
+    }
+    .history-medals,
+    .history-chart {
+      background:transparent;
+    }
+    .history-chart-frame {
+      background:#18233d;
+      border-radius:7px;
+    }
+    .history-chart-line { filter:none; }
+
+    .milestones-section {
+      background:#1d2945;
+      border-radius:10px;
+    }
+    .milestones-section .section-head {
+      background:#263351;
+    }
+    .milestone-card {
+      background:#243150;
+      border-radius:7px;
+    }
+    .milestone-card::after { display:none; }
+    .milestone-icon {
+      background:#2b3858;
+      border-radius:6px;
+    }
+    .milestone-empty { border-radius:7px; }
+
+    .history-achievements {
+      background:transparent !important;
+    }
+    .history-achievement-card {
+      background:#243150 !important;
+      border-radius:7px !important;
+    }
+    .history-achievement-card::after { display:none !important; }
+    .history-achievements-toggle {
+      background:#2a3756 !important;
+      border-radius:6px !important;
+    }
+
+    .winner-row,
+    .archive-divider,
+    .history-table-wrap,
+    .history-footer {
+      background:transparent;
+    }
+
+    @media(max-width:480px) {
+      .podium-entry {
+        background:#1d2945;
+        border-radius:8px;
+      }
+      .history-modal { border-radius:8px; }
+    }
+
+</style>
 </head>
 <body>
 <main class="shell">
@@ -329,6 +979,19 @@
         <div class="winner-list" id="winnerList"></div>
       </section>
     </div>
+  </section>
+
+
+  <section class="milestones-section" aria-labelledby="milestonesTitle">
+    <div class="section-head">
+      <div>
+        <h2 id="milestonesTitle">Milestones &amp; Achievements</h2>
+        <p>Recent records, streaks, rank breakthroughs, total-post milestones, and podium achievements from the tracked top 30.</p>
+      </div>
+      <span class="badge" id="milestoneCount">0 achievements</span>
+    </div>
+    <div class="milestone-grid" id="milestoneList"></div>
+    <div class="milestone-empty" id="milestoneEmpty">Milestones will appear as tracked users break records, reach total-post milestones, earn medals, improve their rank, or build streaks.</div>
   </section>
 
   <section class="toolbar">
@@ -378,6 +1041,19 @@
         </div>
       </div>
     </section>
+
+    <section class="history-achievements" aria-labelledby="historyAchievementsTitle">
+      <div class="history-achievements-head">
+        <div>
+          <h3 class="history-achievements-title" id="historyAchievementsTitle">Achievements &amp; milestones</h3>
+          <p class="history-achievements-note">All unlocked achievements are retained. The six most recently acquired are shown first.</p>
+        </div>
+        <span class="history-achievement-count" id="historyAchievementCount">0 unlocked</span>
+      </div>
+      <div class="history-achievement-grid" id="historyAchievementList"></div>
+      <div class="history-achievement-empty" id="historyAchievementEmpty">No achievements have been unlocked for this user yet.</div>
+      <div class="history-achievement-actions"><button class="history-achievement-toggle" id="historyAchievementToggle" type="button" aria-expanded="false" hidden>Show more</button></div>
+    </section>
     <section class="history-chart" aria-labelledby="historyChartTitle">
       <div class="history-chart-head">
         <div>
@@ -416,19 +1092,20 @@
     dataPath: params.get('data') || '',
   };
 
-  const state = { data:null, query:'', selectedSource:null, renderedNewYorkDate:null, activeHistoryUser:null };
+  const state = { data:null, query:'', selectedSource:null, renderedNewYorkDate:null, activeHistoryUser:null, activeProfileAchievements:[], profileAchievementsExpanded:false };
   let leaderCrownSequence = 0;
   let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
 
   el.search.addEventListener('input', () => { state.query = el.search.value.trim().toLowerCase(); renderTable(); });
   el.historyClose.addEventListener('click', closeUserHistory);
+  el.historyAchievementToggle.addEventListener('click',()=>{ state.profileAchievementsExpanded=!state.profileAchievementsExpanded; renderProfileAchievementCards(); });
   el.historyOverlay.addEventListener('click', event => { if (event.target === el.historyOverlay) closeUserHistory(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && !el.historyOverlay.hidden) closeUserHistory(); });
   setInterval(() => {
     renderNewYorkClock();
     const today = newYorkDateKey(Date.now());
-    if (today !== state.renderedNewYorkDate) renderDaily();
+    if (today !== state.renderedNewYorkDate) { renderDaily(); renderMilestones(); }
   }, 1000);
   renderNewYorkClock();
   loadData(false);
@@ -503,6 +1180,7 @@
   function renderAll() {
     const data = state.data;
     renderDaily();
+    renderMilestones();
     renderTable();
     if (state.activeHistoryUser) renderUserHistoryModal(state.activeHistoryUser);
     el.sourceNote.textContent = state.selectedSource
@@ -602,6 +1280,230 @@
       : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current calendar day in New York.' : 'Today’s tracking begins with the 1:00 AM scheduled New York scan.')]))
   }
 
+
+  function renderMilestones() {
+    const milestones = selectMilestones(buildMilestones(), 10);
+    el.milestoneCount.textContent = `${milestones.length} ${milestones.length === 1 ? 'achievement' : 'achievements'}`;
+    el.milestoneList.replaceChildren(...milestones.map(makeMilestoneCard));
+    el.milestoneEmpty.style.display = milestones.length ? 'none' : 'block';
+  }
+
+
+  function selectMilestones(items,limit) {
+    const caps={record:2,personal:2,rank:2,threshold:2,streak:2,medal:2};
+    const counts={};
+    const selected=[];
+    for(const item of items){
+      const type=item.type||'other';
+      const cap=caps[type]??2;
+      if((counts[type]||0)>=cap)continue;
+      selected.push(item);
+      counts[type]=(counts[type]||0)+1;
+      if(selected.length>=limit)break;
+    }
+    return selected;
+  }
+
+  function buildMilestones() {
+    const ranking = Array.isArray(state.data?.ranking) ? state.data.ranking.slice(0, RANKING_LIMIT) : [];
+    if (!ranking.length) return [];
+    const today = newYorkDateKey(Date.now());
+    const tracking = getCurrentNewYorkTracking();
+    const liveBoard = getDailyLeaderboard(tracking);
+    const milestones = [];
+    const dedupe = new Set();
+    const add = item => {
+      if (!item?.title || dedupe.has(item.key)) return;
+      dedupe.add(item.key);
+      milestones.push(item);
+    };
+
+    const histories = ranking.map(user => {
+      const records = getUserDailyHistory(user).slice().sort((a,b) => String(a.dateKey).localeCompare(String(b.dateKey)));
+      return { user, records };
+    });
+
+    const completedRecords = histories.flatMap(({user,records}) => records
+      .filter(record => !record.isLive && String(record.dateKey) < today)
+      .map(record => ({...record,user})));
+    const historicalDailyRecord = completedRecords.reduce((best,record) => Number(record.postsGained) > Number(best?.postsGained || 0) ? record : best, null);
+    const liveLeader = liveBoard[0];
+
+    if (liveLeader && Number(liveLeader.postsGained) > Number(historicalDailyRecord?.postsGained || 0)) {
+      add({
+        key:`daily-record:${today}:${userIdentity(liveLeader)}`,
+        type:'record', icon:'🏆', label:'New tracked record', user:liveLeader,
+        title:'set a new single-day record',
+        detail:`${formatSignedPosts(liveLeader.postsGained)} today, above the previous record of ${formatSignedPosts(historicalDailyRecord?.postsGained || 0)}.`,
+        dateKey:today, priority:120, value:Number(liveLeader.postsGained)||0
+      });
+    }
+
+    for (const {user,records} of histories) {
+      const live = records.find(record => record.isLive && String(record.dateKey) === today);
+      const completed = records.filter(record => !record.isLive && String(record.dateKey) < today);
+      const previousBest = completed.reduce((best,record) => Math.max(best,Number(record.postsGained)||0),0);
+      const liveGain = Number(live?.postsGained) || 0;
+
+      if (live && liveGain > previousBest && previousBest > 0) {
+        add({
+          key:`personal-best:${today}:${userIdentity(user)}`,
+          type:'personal', icon:'🚀', label:'Personal best', user,
+          title:'reached a new personal daily best',
+          detail:`${formatSignedPosts(liveGain)} today, beating their former best of ${formatSignedPosts(previousBest)}.`,
+          dateKey:today, priority:105, value:liveGain
+        });
+      }
+
+      if (live) {
+        const crossedTotal = highestCrossedTotalMilestone(Number(live.startPosts)||0,Number(live.endPosts)||0);
+        if (crossedTotal) {
+          add({
+            key:`total-threshold:${today}:${userIdentity(user)}:${crossedTotal}`,
+            type:'threshold', icon:'🎯', label:'Total post milestone', user,
+            title:`crossed ${formatNumber(crossedTotal)} total posts`,
+            detail:`Their tracked total now stands at ${formatNumber(live.endPosts)} posts.`,
+            dateKey:today, priority:92, value:crossedTotal
+          });
+        }
+      }
+
+      const currentRank = Number(user.rank)||0;
+      const rankGain = Number(user.rankDelta)||0;
+      const previousRank = currentRank && rankGain > 0 ? currentRank + rankGain : currentRank;
+      const tier = [1,3,5,10].find(limit => currentRank > 0 && currentRank <= limit && previousRank > limit);
+      if (tier) {
+        const tierText = tier === 1 ? '#1 overall' : `the overall top ${tier}`;
+        add({
+          key:`rank-tier:${today}:${userIdentity(user)}:${tier}`,
+          type:'rank', icon:tier === 1 ? '👑' : '📈', label:'Rank breakthrough', user,
+          title:`entered ${tierText}`,
+          detail:`Moved from #${previousRank} to #${currentRank} in the all-time leaderboard.`,
+          dateKey:today, priority:98 - tier, value:rankGain
+        });
+      }
+
+      const placements = getUserDailyPodiumPlacements(user);
+      const medals = getUserDailyPodiumBadges(user,placements);
+      for (const [kind,count,icon,name] of [
+        ['gold',medals.gold,'🥇','gold medals'],
+        ['silver',medals.silver,'🥈','silver medals'],
+        ['bronze',medals.bronze,'🥉','bronze medals']
+      ]) {
+        if (!isAchievementCount(count)) continue;
+        add({
+          key:`medal:${userIdentity(user)}:${kind}:${count}`,
+          type:'medal', icon, label:'Podium collection', user,
+          title:`earned ${formatNumber(count)} ${name}`,
+          detail:`Based on completed New York daily leaderboards.`,
+          dateKey:latestPlacementDate(placements,kind), priority:62 + Math.min(15,count), value:count
+        });
+      }
+
+      const goldStreak = calculatePlacementStreak(records,placements,1);
+      if (goldStreak >= 2) {
+        add({
+          key:`gold-streak:${userIdentity(user)}:${goldStreak}`,
+          type:'record', icon:'👑', label:'Winning streak', user,
+          title:`won ${formatNumber(goldStreak)} daily leaderboards in a row`,
+          detail:'Consecutive completed New York days in first place.',
+          dateKey:latestCompletedDate(records), priority:88 + Math.min(12,goldStreak), value:goldStreak
+        });
+      }
+    }
+
+    return milestones.sort((a,b) =>
+      Number(b.priority||0)-Number(a.priority||0) ||
+      Number(b.value||0)-Number(a.value||0) ||
+      String(b.dateKey||'').localeCompare(String(a.dateKey||''))
+    );
+  }
+
+  function makeMilestoneCard(item) {
+    const card = node('article',`milestone-card ${item.type||''}`);
+    card.append(node('div','milestone-icon',item.icon||'★'));
+    const copy = node('div','milestone-copy');
+    copy.append(node('div','milestone-label',item.label||'Achievement'));
+    const title = node('div','milestone-title');
+    if (item.user?.username) {
+      title.append(makeUsernameButton(item.user,'milestone-user'),document.createTextNode(` ${item.title}`));
+    } else title.textContent = item.title;
+    copy.append(title,node('div','milestone-detail',item.detail||''));
+    card.append(copy,node('div','milestone-date',item.dateKey === newYorkDateKey(Date.now()) ? 'Today' : formatDateKey(item.dateKey)));
+    return card;
+  }
+
+  function highestReachedThreshold(value,thresholds) {
+    return thresholds.filter(threshold => Number(value) >= threshold).at(-1) || 0;
+  }
+
+  function highestCrossedTotalMilestone(start,end) {
+    if (!(end > start)) return 0;
+    const thresholds = [];
+    const max = Math.max(end,1000000);
+    for (let value=10000; value<=max; ) {
+      thresholds.push(value);
+      value += value < 100000 ? 10000 : value < 500000 ? 25000 : value < 1000000 ? 100000 : 250000;
+    }
+    return thresholds.filter(value => start < value && end >= value).at(-1) || 0;
+  }
+
+  function isAchievementCount(count) {
+    return [1,3,5,10,25,50,100,250].includes(Number(count));
+  }
+
+  function userIdentity(user) {
+    return String(user?.userId || user?.username || '').trim().toLowerCase();
+  }
+
+  function formatSignedPosts(value) {
+    const number = Number(value)||0;
+    return `${number > 0 ? '+' : ''}${formatNumber(number)} posts`;
+  }
+
+  function dateKeyDayNumber(key) {
+    const match=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return match ? Math.floor(Date.UTC(+match[1],+match[2]-1,+match[3])/86400000) : null;
+  }
+
+  function calculateActiveStreak(records,todayKey) {
+    const ordered=records.slice().sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+    let streak=0,previousDay=null,lastPositiveDay=null;
+    for (const record of ordered) {
+      const day=dateKeyDayNumber(record.dateKey);
+      if (day===null) continue;
+      if (Number(record.postsGained)>0) {
+        streak=previousDay!==null&&day===previousDay+1?streak+1:1;
+        lastPositiveDay=day;
+      } else streak=0;
+      previousDay=day;
+    }
+    const todayDay=dateKeyDayNumber(todayKey);
+    return lastPositiveDay!==null&&todayDay!==null&&lastPositiveDay>=todayDay-1?streak:0;
+  }
+
+  function calculatePlacementStreak(records,placements,wantedPlace) {
+    const completed=records.filter(record=>!record.isLive).sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+    let streak=0,previousDay=null;
+    for (const record of completed) {
+      const day=dateKeyDayNumber(record.dateKey);
+      const place=placements.get(String(record.dateKey))||0;
+      if (place===wantedPlace) streak=previousDay!==null&&day===previousDay+1?streak+1:1;
+      else streak=0;
+      previousDay=day;
+    }
+    return streak;
+  }
+
+  function latestPlacementDate(placements,kind) {
+    const wanted=kind==='gold'?1:kind==='silver'?2:3;
+    return [...placements.entries()].filter(([,place])=>place===wanted).map(([date])=>date).sort().at(-1)||newYorkDateKey(Date.now());
+  }
+
+  function latestCompletedDate(records) {
+    return records.filter(record=>!record.isLive).map(record=>String(record.dateKey)).sort().at(-1)||newYorkDateKey(Date.now());
+  }
+
   function getVerifiedPreviousDailyWinners(todayKey) {
     const days = (Array.isArray(state.data?.dailyUserHistory) ? state.data.dailyUserHistory : [])
       .filter(day => day?.finalized && /^\d{4}-\d{2}-\d{2}$/.test(String(day.dateKey || '')) && String(day.dateKey) < todayKey)
@@ -681,6 +1583,239 @@
   }
 
 
+
+  function resolveRankingUser(user) {
+    const ranking=Array.isArray(state.data?.ranking)?state.data.ranking.slice(0,RANKING_LIMIT):[];
+    const wantedId=userIdentity(user);
+    const wantedName=String(user?.username||'').trim().toLowerCase();
+    return ranking.find(candidate=>wantedId&&userIdentity(candidate)===wantedId)
+      || ranking.find(candidate=>String(candidate?.username||'').trim().toLowerCase()===wantedName)
+      || user;
+  }
+
+  function highestTotalMilestoneReached(total) {
+    const end=Math.max(0,Number(total)||0);
+    if(end<10000)return 0;
+    const thresholds=[];
+    for(let value=10000;value<=end;){
+      thresholds.push(value);
+      value+=value<100000?10000:value<500000?25000:value<1000000?100000:250000;
+    }
+    return thresholds.at(-1)||0;
+  }
+
+  function highestAchievementCountReached(count) {
+    return [1,3,5,10,25,50,100,250].filter(value=>Number(count)>=value).at(-1)||0;
+  }
+
+  function totalPostMilestoneThresholds(maxValue) {
+    const max=Math.max(0,Number(maxValue)||0);
+    const thresholds=[];
+    for(let value=10000;value<=max;){
+      thresholds.push(value);
+      value+=value<100000?10000:value<500000?25000:value<1000000?100000:250000;
+    }
+    return thresholds;
+  }
+
+  function achievementCountThresholds() {
+    return [1,3,5,10,25,50,100,250];
+  }
+
+  function buildProfileAchievements(inputUser,recordsInput,placementsInput,badgesInput) {
+    const user=resolveRankingUser(inputUser);
+    const identity=userIdentity(user);
+    const records=(recordsInput||getUserDailyHistory(user)).slice().sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+    const today=newYorkDateKey(Date.now());
+    const placements=placementsInput||getUserDailyPodiumPlacements(user);
+    const achievements=[];
+    const dedupe=new Set();
+    const add=item=>{
+      if(!item?.title||dedupe.has(item.key))return;
+      dedupe.add(item.key);
+      achievements.push(item);
+    };
+
+    // Every new personal best is retained, not only the current record.
+    let personalBest=0;
+    for(const record of records){
+      const gain=Number(record.postsGained)||0;
+      if(gain<=personalBest||gain<=0)continue;
+      const previousBest=personalBest;
+      personalBest=gain;
+      add({
+        key:`profile-personal:${identity}:${record.dateKey}:${gain}`,
+        type:'personal',icon:'🚀',label:'Personal best',
+        title:`${formatSignedPosts(gain)} in one day`,
+        detail:previousBest>0
+          ? `Beat the previous personal best of ${formatSignedPosts(previousBest)}.`
+          : 'First positive daily result recorded for this user.',
+        dateKey:String(record.dateKey),priority:105,value:gain,isLive:Boolean(record.isLive)
+      });
+    }
+
+    // Retain every moment this user established a new tracker-wide daily record.
+    const ranking=Array.isArray(state.data?.ranking)?state.data.ranking.slice(0,RANKING_LIMIT):[];
+    const recordsByDate=new Map();
+    for(const candidate of ranking){
+      for(const record of getUserDailyHistory(candidate)){
+        const gain=Number(record.postsGained)||0;
+        if(gain<=0)continue;
+        const dateKey=String(record.dateKey||'');
+        if(!dateKey)continue;
+        if(!recordsByDate.has(dateKey))recordsByDate.set(dateKey,[]);
+        recordsByDate.get(dateKey).push({candidate,record,gain});
+      }
+    }
+    let globalBest=0;
+    for(const dateKey of [...recordsByDate.keys()].sort()){
+      const dayEntries=recordsByDate.get(dateKey)||[];
+      const dayBest=Math.max(0,...dayEntries.map(entry=>entry.gain));
+      if(dayBest<=globalBest)continue;
+      for(const entry of dayEntries){
+        if(entry.gain!==dayBest||userIdentity(entry.candidate)!==identity)continue;
+        add({
+          key:`profile-record:${identity}:${dateKey}:${dayBest}`,
+          type:'record',icon:'🏆',label:'Tracked record',
+          title:`Set a new tracked single-day record with ${formatSignedPosts(dayBest)}`,
+          detail:globalBest>0
+            ? `Surpassed the previous tracker record of ${formatSignedPosts(globalBest)}.`
+            : 'Established the first positive single-day record in the available history.',
+          dateKey,priority:120,value:dayBest,isLive:Boolean(entry.record.isLive)
+        });
+      }
+      globalBest=dayBest;
+    }
+
+    // Keep every total-post threshold crossed by the recorded daily totals.
+    const maxTotal=Math.max(Number(user?.posts)||0,...records.map(record=>Number(record.endPosts)||0));
+    const totalThresholds=totalPostMilestoneThresholds(maxTotal);
+    for(const record of records){
+      const start=Number(record.startPosts)||0;
+      const end=Number(record.endPosts)||0;
+      if(end<=start)continue;
+      for(const threshold of totalThresholds){
+        if(!(start<threshold&&end>=threshold))continue;
+        add({
+          key:`profile-total:${identity}:${threshold}`,
+          type:'threshold',icon:'🎯',label:'Total post milestone',
+          title:`Reached ${formatNumber(threshold)} total posts`,
+          detail:`The recorded total ended that day at ${formatNumber(end)} posts.`,
+          dateKey:String(record.dateKey),priority:92,value:threshold,isLive:Boolean(record.isLive)
+        });
+      }
+    }
+
+    // Keep every first entry into the top 10, top 5, top 3, and #1.
+    let previousRank=null;
+    for(const record of records){
+      const rank=Number(record.finalRank)||0;
+      if(rank<=0)continue;
+      for(const tier of [10,5,3,1]){
+        if(rank>tier||!(previousRank===null||previousRank>tier))continue;
+        add({
+          key:`profile-rank:${identity}:${record.dateKey}:${tier}`,
+          type:'rank',icon:tier===1?'👑':'📈',label:'Overall rank',
+          title:tier===1?'Reached #1 overall':`Entered the overall top ${tier}`,
+          detail:previousRank===null
+            ? `First recorded at #${rank} in the tracked all-time leaderboard.`
+            : `Moved from #${previousRank} to #${rank}.`,
+          dateKey:String(record.dateKey),priority:98-tier,value:Math.max(1,11-rank),isLive:Boolean(record.isLive)
+        });
+      }
+      previousRank=rank;
+    }
+
+    // Keep every medal-collection milestone and its actual acquisition day.
+    const placementDates=[...placements.entries()].sort((a,b)=>String(a[0]).localeCompare(String(b[0])));
+    const medalCounts={gold:0,silver:0,bronze:0};
+    const medalMeta={
+      gold:{place:1,icon:'🥇',name:'gold medals'},
+      silver:{place:2,icon:'🥈',name:'silver medals'},
+      bronze:{place:3,icon:'🥉',name:'bronze medals'}
+    };
+    for(const [dateKey,place] of placementDates){
+      for(const [kind,meta] of Object.entries(medalMeta)){
+        if(Number(place)!==meta.place)continue;
+        medalCounts[kind]+=1;
+        if(!achievementCountThresholds().includes(medalCounts[kind]))continue;
+        add({
+          key:`profile-medal:${identity}:${kind}:${medalCounts[kind]}`,
+          type:'medal',icon:meta.icon,label:'Podium collection',
+          title:`Reached ${formatNumber(medalCounts[kind])} ${meta.name}`,
+          detail:'Based on completed New York daily leaderboards.',
+          dateKey:String(dateKey),priority:62+Math.min(15,medalCounts[kind]),value:medalCounts[kind]
+        });
+      }
+    }
+
+    // Retain each new length of a consecutive first-place streak.
+    const completed=records.filter(record=>!record.isLive).sort((a,b)=>String(a.dateKey).localeCompare(String(b.dateKey)));
+    let winningStreak=0;
+    let previousDay=null;
+    for(const record of completed){
+      const day=dateKeyDayNumber(record.dateKey);
+      const place=placements.get(String(record.dateKey))||0;
+      if(place===1){
+        winningStreak=previousDay!==null&&day===previousDay+1?winningStreak+1:1;
+        if(winningStreak>=2){
+          add({
+            key:`profile-winning:${identity}:${record.dateKey}:${winningStreak}`,
+            type:'record',icon:'👑',label:'Winning streak',
+            title:`Won ${formatNumber(winningStreak)} daily leaderboards in a row`,
+            detail:'Consecutive completed New York days in first place.',
+            dateKey:String(record.dateKey),priority:88+Math.min(12,winningStreak),value:winningStreak
+          });
+        }
+      }else{
+        winningStreak=0;
+      }
+      previousDay=day;
+    }
+
+    // Latest acquisitions always appear first. Nothing is discarded.
+    return achievements.sort((a,b)=>
+      String(b.dateKey||'').localeCompare(String(a.dateKey||'')) ||
+      Number(b.priority||0)-Number(a.priority||0) ||
+      Number(b.value||0)-Number(a.value||0) ||
+      String(a.title||'').localeCompare(String(b.title||''))
+    );
+  }
+
+  function makeProfileAchievementCard(item) {
+    const card=node('article',`history-achievement-card ${item.type||''}`);
+    card.append(node('div','history-achievement-icon',item.icon||'★'));
+    const copy=node('div','history-achievement-copy');
+    copy.append(node('div','history-achievement-label',item.label||'Achievement'));
+    copy.append(node('div','history-achievement-title',item.title||'Achievement unlocked'));
+    if(item.detail)copy.append(node('div','history-achievement-detail',item.detail));
+    if(item.dateKey)copy.append(node('div','history-achievement-date',item.dateKey===newYorkDateKey(Date.now())?'Today':formatUsDateKey(item.dateKey)));
+    card.append(copy);
+    return card;
+  }
+
+  function renderProfileAchievementCards() {
+    const achievements=Array.isArray(state.activeProfileAchievements)?state.activeProfileAchievements:[];
+    const visible=state.profileAchievementsExpanded?achievements:achievements.slice(0,6);
+    el.historyAchievementList.replaceChildren(...visible.map(makeProfileAchievementCard));
+    el.historyAchievementEmpty.style.display=achievements.length?'none':'block';
+    el.historyAchievementToggle.hidden=achievements.length<=6;
+    el.historyAchievementToggle.textContent=state.profileAchievementsExpanded?'Show less':'Show more';
+    el.historyAchievementToggle.setAttribute('aria-expanded',String(state.profileAchievementsExpanded));
+    el.historyAchievementToggle.setAttribute('aria-label',state.profileAchievementsExpanded
+      ? 'Show only the six latest achievements'
+      : `Show all ${achievements.length} achievements`);
+  }
+
+  function renderProfileAchievements(user,records,placements,badges) {
+    const achievements=buildProfileAchievements(user,records,placements,badges);
+    state.activeProfileAchievements=achievements;
+    el.historyAchievementCount.textContent=`${formatNumber(achievements.length)} unlocked`;
+    renderProfileAchievementCards();
+  }
+
+
+
   function makeUsernameButton(user,className='username') {
     const button=node('button',className,user?.username||'Unknown');
     button.type='button';
@@ -691,6 +1826,8 @@
 
   function openUserHistory(user) {
     if(!user?.username)return;
+    state.profileAchievementsExpanded=false;
+    state.activeProfileAchievements=[];
     state.activeHistoryUser={username:String(user.username),userId:String(user.userId||''),profileUrl:String(user.profileUrl||''),avatarUrl:String(user.avatarUrl||'')};
     renderUserHistoryModal(state.activeHistoryUser);
     el.historyOverlay.hidden=false;
@@ -698,7 +1835,7 @@
     el.historyClose.focus();
   }
 
-  function closeUserHistory(){ el.historyOverlay.hidden=true; document.body.classList.remove('modal-open'); state.activeHistoryUser=null; }
+  function closeUserHistory(){ el.historyOverlay.hidden=true; document.body.classList.remove('modal-open'); state.activeHistoryUser=null; state.activeProfileAchievements=[]; state.profileAchievementsExpanded=false; }
 
   function renderUserHistoryModal(user) {
     const records=getUserDailyHistory(user);
@@ -717,6 +1854,7 @@
     el.historyGoldCount.textContent=formatNumber(podiumBadges.gold);
     el.historySilverCount.textContent=formatNumber(podiumBadges.silver);
     el.historyBronzeCount.textContent=formatNumber(podiumBadges.bronze);
+    renderProfileAchievements(user,records,podiumPlacements,podiumBadges);
     renderUserDailyChart(records,user);
     el.historyBody.replaceChildren(...records.map(record=>makeHistoryRow(record,podiumPlacements.get(String(record.dateKey))||0)));
     el.historyEmpty.style.display=records.length?'none':'block';
