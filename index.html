@@ -28,34 +28,22 @@
     h1 { margin:4px 0 7px; font-size:clamp(32px,5vw,52px); line-height:1; letter-spacing:-.055em; }
     .subtitle { margin:0; color:var(--muted); max-width:650px; }
     .header-tools { display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
-    .actions { display:flex; gap:9px; flex-wrap:wrap; justify-content:flex-end; }
     .new-york-clock { min-width:260px; padding:12px 14px; border:1px solid var(--line); border-radius:13px; background:rgba(17,21,29,.92); text-align:right; box-shadow:0 12px 35px rgba(0,0,0,.16); }
     .new-york-clock-label { color:var(--accent2); font-size:10px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
     .new-york-clock-time { margin-top:3px; font-size:22px; line-height:1.1; font-weight:950; letter-spacing:-.035em; font-variant-numeric:tabular-nums; }
     .new-york-clock-date { margin-top:4px; color:var(--muted); font-size:12px; }
-    .button { border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:var(--panel2); color:var(--text); cursor:pointer; text-decoration:none; font-weight:750; }
-    .button:hover { filter:brightness(1.1); }
-    .button.primary { background:var(--accent); border-color:var(--accent); }
-    .button:disabled { opacity:.55; cursor:wait; }
     .live-block {
-      display:grid; grid-template-columns:minmax(240px,1fr) auto auto; align-items:center; gap:18px;
-      margin-bottom:16px; padding:14px 16px; border:1px solid var(--line); border-radius:13px; background:rgba(17,21,29,.88);
+      display:flex; align-items:center;
+      margin-bottom:18px; padding:14px 16px; border:1px solid var(--line); border-radius:13px; background:rgba(17,21,29,.88);
     }
     .live-main { display:flex; gap:10px; align-items:center; min-width:0; }
     .dot { width:9px; height:9px; flex:0 0 auto; border-radius:50%; background:var(--warn); box-shadow:0 0 0 4px rgba(244,201,107,.12); }
     .dot.success { background:var(--good); box-shadow:0 0 0 4px rgba(84,214,155,.12); }
     .dot.error { background:var(--bad); box-shadow:0 0 0 4px rgba(255,116,116,.12); }
-    .live-title { font-weight:800; }
-    .live-detail { color:var(--muted); font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .time-meta { min-width:125px; }
-    .time-label { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
-    .time-value { margin-top:2px; font-weight:800; font-variant-numeric:tabular-nums; }
+    .live-title { color:var(--muted); font-size:11px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    .live-detail { margin-top:2px; color:var(--text); font-size:15px; font-weight:850; font-variant-numeric:tabular-nums; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .error-box { display:none; margin-bottom:16px; padding:14px 16px; border:1px solid rgba(255,116,116,.35); border-radius:12px; background:rgba(255,116,116,.07); color:#ffc0c0; white-space:pre-wrap; }
     .error-box.show { display:block; }
-    .cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:18px; }
-    .card { padding:16px; border:1px solid var(--line); border-radius:14px; background:var(--panel); }
-    .card-label { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.09em; }
-    .card-value { margin-top:5px; font-size:24px; font-weight:900; letter-spacing:-.035em; }
     .daily { margin-bottom:20px; padding:18px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(145deg,rgba(239,77,77,.08),rgba(17,21,29,.97) 42%); }
     .section-head { display:flex; justify-content:space-between; align-items:flex-start; gap:15px; margin-bottom:14px; }
     .section-head h2 { margin:0; font-size:21px; letter-spacing:-.025em; }
@@ -243,10 +231,14 @@
     .podium-stage.count-2 .podium-position-1 { grid-column:2; grid-row:1; }
     .podium-stage.count-2 .podium-position-2 { grid-column:1; grid-row:1; }
     .podium-stage.count-1 .podium-position-1 { grid-column:1; grid-row:1; }
-    .podium-crown { width:100px; height:61px; margin-bottom:-13px; z-index:3; filter:drop-shadow(0 8px 11px rgba(0,0,0,.4)); transform:rotate(-2deg); }
+    .podium-crown {
+      position:relative; z-index:5; width:118px; height:76px; margin:0 0 4px;
+      filter:drop-shadow(0 10px 12px rgba(0,0,0,.42)) drop-shadow(0 0 16px rgba(255,205,45,.28));
+    }
     .podium-crown svg { width:100%; height:100%; display:block; overflow:visible; }
-    .podium-crown .crown-main { stroke:#fff0a1; stroke-width:2; stroke-linejoin:round; }
-    .podium-crown .crown-gem { fill:#fff6c4; }
+    .podium-crown .crown-main { stroke:#fff1a0; stroke-width:2.5; stroke-linejoin:round; }
+    .podium-crown .crown-gem { fill:#fff8cf; stroke:#c98b00; stroke-width:1.2; }
+    .podium-crown .crown-base-highlight { fill:rgba(255,255,255,.32); }
     .podium-medal {
       display:grid; place-items:center; width:34px; height:34px; margin-bottom:8px; border-radius:50%;
       border:1px solid rgba(255,255,255,.15); background:#171c25; font-size:19px; box-shadow:0 8px 20px rgba(0,0,0,.25);
@@ -290,9 +282,9 @@
     .podium-place-label { margin-top:5px; color:var(--muted); font-size:9px; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
     .podium-caption { margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:12px; text-align:center; }
 
-    @media(max-width:820px){ header{flex-direction:column}.header-tools{align-items:flex-start;width:100%}.new-york-clock{text-align:left;width:min(100%,360px)}.actions{justify-content:flex-start}.live-block{grid-template-columns:1fr 1fr}.live-main{grid-column:1/-1}.cards{grid-template-columns:repeat(2,1fr)}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.leader{min-height:360px}.podium-stage{gap:8px}.podium-avatar-ring{width:88px;height:88px}.podium-avatar-ring .avatar{width:78px;height:78px}.podium-position-1 .podium-avatar-ring{width:112px;height:112px}.podium-position-1 .podium-avatar-ring .avatar{width:102px;height:102px} }
+    @media(max-width:820px){ header{flex-direction:column}.header-tools{align-items:flex-start;width:100%}.new-york-clock{text-align:left;width:min(100%,360px)}.live-block{display:flex}.live-main{width:100%}.daily-grid{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.leader{min-height:360px}.podium-stage{gap:8px}.podium-avatar-ring{width:88px;height:88px}.podium-avatar-ring .avatar{width:78px;height:78px}.podium-position-1 .podium-avatar-ring{width:112px;height:112px}.podium-position-1 .podium-avatar-ring .avatar{width:102px;height:102px} }
     @media(max-width:620px){.history-medals-head{align-items:flex-start;flex-direction:column}.history-medals-note{text-align:left}.history-medal-grid{gap:7px}.history-medal-card{grid-template-columns:1fr;justify-items:center;text-align:center;padding:10px 6px}.history-medal-icon{width:43px;height:43px;font-size:24px}.history-medal-count{font-size:24px}.history-medal-name{font-size:8px}.history-chart-head{align-items:flex-start;flex-direction:column}.history-chart-summary{text-align:left}.history-chart{padding-inline:14px}}
-    @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.cards{grid-template-columns:1fr}.live-block{grid-template-columns:1fr}.live-main{grid-column:auto}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0}.leader{padding:24px 12px 18px}.leader-crown{width:96px;height:60px}.leader-avatar-ring{width:112px;height:112px}.leader .avatar{width:102px;height:102px}.leader-list{grid-template-columns:1fr}.person-name{font-size:25px}.leader-gain-value{font-size:42px}.podium-stage,.podium-stage.count-2,.podium-stage.count-1{grid-template-columns:1fr;max-width:340px;gap:16px;align-items:stretch}.podium-stage .podium-entry{grid-column:1!important;grid-row:auto!important}.podium-position-1{order:1}.podium-position-2{order:2}.podium-position-3{order:3}.podium-entry{padding:12px 12px 0;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(10,13,18,.55)}.podium-step,.podium-position-1 .podium-step,.podium-position-2 .podium-step,.podium-position-3 .podium-step{min-height:58px}.podium-crown{width:88px;height:55px} }
+    @media(max-width:480px){ .shell{width:calc(100% - 20px);padding-top:22px}.live-block{display:flex}.live-main{width:100%}.section-head{flex-direction:column}.winner-row{grid-template-columns:82px minmax(100px,1fr) auto;padding-inline:10px}.toolbar{flex-direction:column;align-items:stretch}.count{margin-left:0}.leader{padding:24px 12px 18px}.leader-crown{width:96px;height:60px}.leader-avatar-ring{width:112px;height:112px}.leader .avatar{width:102px;height:102px}.leader-list{grid-template-columns:1fr}.person-name{font-size:25px}.leader-gain-value{font-size:42px}.podium-stage,.podium-stage.count-2,.podium-stage.count-1{grid-template-columns:1fr;max-width:340px;gap:16px;align-items:stretch}.podium-stage .podium-entry{grid-column:1!important;grid-row:auto!important}.podium-position-1{order:1}.podium-position-2{order:2}.podium-position-3{order:3}.podium-entry{padding:12px 12px 0;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(10,13,18,.55)}.podium-step,.podium-position-1 .podium-step,.podium-position-2 .podium-step,.podium-position-3 .podium-step{min-height:58px}.podium-crown{width:104px;height:68px;margin-bottom:3px} }
   </style>
 </head>
 <body>
@@ -309,10 +301,6 @@
         <div class="new-york-clock-time" id="newYorkClockTime">--:--:--</div>
         <div class="new-york-clock-date" id="newYorkClockDate">Loading date…</div>
       </div>
-      <div class="actions">
-        <button class="button primary" id="refresh">Refresh data</button>
-        <a class="button" href="https://incels.is/members/?key=most_posts" target="_blank" rel="noreferrer">Forum ranking</a>
-      </div>
     </div>
   </header>
 
@@ -320,28 +308,14 @@
     <div class="live-main">
       <span class="dot" id="dot"></span>
       <div>
-        <div class="live-title" id="liveTitle">Connecting to GitHub data…</div>
-        <div class="live-detail" id="liveDetail">Automatic scans run at 1:00 AM and 11:00 PM New York time.</div>
+        <div class="live-title" id="liveTitle">Last updated</div>
+        <div class="live-detail" id="liveDetail">Loading latest tracker update…</div>
       </div>
-    </div>
-    <div class="time-meta">
-      <div class="time-label">Last updated</div>
-      <div class="time-value" id="lastUpdated">—</div>
-    </div>
-    <div class="time-meta">
-      <div class="time-label">Next update in</div>
-      <div class="time-value" id="nextUpdate">—</div>
     </div>
   </section>
 
   <div class="error-box" id="error"></div>
 
-  <section class="cards">
-    <article class="card"><div class="card-label">Users loaded</div><div class="card-value" id="userCount">—</div></article>
-    <article class="card"><div class="card-label">Combined posts</div><div class="card-value" id="combinedPosts">—</div></article>
-    <article class="card"><div class="card-label">Current #1</div><div class="card-value" id="numberOne">—</div></article>
-    <article class="card"><div class="card-label">Today’s top postmaxxer</div><div class="card-value" id="todayLeaderCard">—</div></article>
-  </section>
 
   <section class="daily">
     <div class="section-head">
@@ -447,13 +421,11 @@
   let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
 
-  el.refresh.addEventListener('click', () => loadData(true));
   el.search.addEventListener('input', () => { state.query = el.search.value.trim().toLowerCase(); renderTable(); });
   el.historyClose.addEventListener('click', closeUserHistory);
   el.historyOverlay.addEventListener('click', event => { if (event.target === el.historyOverlay) closeUserHistory(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && !el.historyOverlay.hidden) closeUserHistory(); });
   setInterval(() => {
-    renderClock();
     renderNewYorkClock();
     const today = newYorkDateKey(Date.now());
     if (today !== state.renderedNewYorkDate) renderDaily();
@@ -462,9 +434,7 @@
   loadData(false);
 
   async function loadData(manual) {
-    el.refresh.disabled = true;
-    el.refresh.textContent = 'Refreshing…';
-    setStatus('loading', 'Checking the latest GitHub data…');
+    setStatus('loading', 'Last updated', 'Checking the latest tracker data…');
     hideError();
     try {
       if (!config.owner || !config.repo) throw new Error('Could not detect the GitHub repository from this URL. Add ?owner=YOURNAME&repo=YOURREPO to the dashboard URL.');
@@ -474,14 +444,12 @@
       state.selectedSource = result.source;
       state.data = result.data;
       renderAll();
-      setStatus('success', isStale(result.data) ? 'Data loaded, but the tracker has not uploaded recently.' : 'Dashboard refreshes hourly · forced scans at 1:00 AM and 11:00 PM New York time');
+      setStatus('success', 'Last updated', result.data?.updatedAtMs ? formatDateTime(result.data.updatedAtMs) : 'Update time unavailable');
     } catch (error) {
-      setStatus('error', 'Public ranking data unavailable');
+      setStatus('error', 'Last updated', 'Public ranking data unavailable');
       showError(formatSetupError(error));
       if (!state.data) renderAll();
     } finally {
-      el.refresh.disabled = false;
-      el.refresh.textContent = 'Refresh data';
       if (!manual) scheduleNextPoll();
     }
   }
@@ -534,19 +502,8 @@
 
   function renderAll() {
     const data = state.data;
-    const ranking = Array.isArray(data?.ranking) ? data.ranking.slice(0, RANKING_LIMIT) : [];
-    el.userCount.textContent = ranking.length ? formatNumber(ranking.length) : '—';
-    el.combinedPosts.textContent = ranking.length ? formatNumber(ranking.reduce((sum,u)=>sum+(Number(u.posts)||0),0)) : '—';
-    el.numberOne.textContent = ranking[0]?.username || '—';
-    const currentTracking = getCurrentNewYorkTracking();
-    const currentLeaders = getDailyLeaders(currentTracking);
-    el.todayLeaderCard.textContent = currentLeaders.length
-      ? (currentLeaders.length === 1 ? currentLeaders[0].username : `${currentLeaders.length} users tied`)
-      : '—';
-    el.lastUpdated.textContent = data?.updatedAtMs ? formatDateTime(data.updatedAtMs) : '—';
     renderDaily();
     renderTable();
-    renderClock();
     if (state.activeHistoryUser) renderUserHistoryModal(state.activeHistoryUser);
     el.sourceNote.textContent = state.selectedSource
       ? `Data source: ${config.owner}/${config.repo} · ${state.selectedSource.branch}/${state.selectedSource.dataPath}. “New posts today” is cumulative across scans and resets only at New York midnight. The page reads GitHub directly; no GitHub token is present in this website.`
@@ -996,7 +953,7 @@
     const crown = node('div','podium-crown');
     const gradientId = `podiumCrownGold${++leaderCrownSequence}`;
     crown.setAttribute('aria-hidden','true');
-    crown.innerHTML = `<svg viewBox="0 0 140 86" role="img"><defs><linearGradient id="${gradientId}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff6b7"/><stop offset=".34" stop-color="#ffd84d"/><stop offset=".72" stop-color="#f4ae09"/><stop offset="1" stop-color="#8d5700"/></linearGradient></defs><path class="crown-main" fill="url(#${gradientId})" d="M15 62 7 20l31 24L54 10l18 31 26-30 9 35 27-25-10 41Z"/><path class="crown-main" fill="url(#${gradientId})" d="M18 62h104l-5 17H23Z"/><circle class="crown-gem" cx="16" cy="19" r="5"/><circle class="crown-gem" cx="54" cy="9" r="5"/><circle class="crown-gem" cx="99" cy="10" r="5"/><circle class="crown-gem" cx="133" cy="20" r="5"/></svg>`;
+    crown.innerHTML = `<svg viewBox="0 0 160 100" role="img" aria-label="First-place crown"><defs><linearGradient id="${gradientId}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff9c9"/><stop offset=".28" stop-color="#ffe46b"/><stop offset=".62" stop-color="#f8bd19"/><stop offset="1" stop-color="#a56300"/></linearGradient></defs><path class="crown-main" fill="url(#${gradientId})" d="M20 70 10 29 49 53 80 12 111 53 150 29 140 70Z"/><rect class="crown-main" fill="url(#${gradientId})" x="20" y="68" width="120" height="22" rx="7"/><rect class="crown-base-highlight" x="29" y="72" width="102" height="5" rx="2.5"/><circle class="crown-gem" cx="10" cy="28" r="6"/><circle class="crown-gem" cx="80" cy="11" r="6"/><circle class="crown-gem" cx="150" cy="28" r="6"/></svg>`;
     return crown;
   }
 
@@ -1037,31 +994,10 @@
     }).format(now);
   }
 
-  function renderClock() {
-    const updatedAtMs=Number(state.data?.updatedAtMs);
-    if (!Number.isFinite(updatedAtMs) || updatedAtMs <= 0) {
-      el.nextUpdate.textContent='—';
-      return;
-    }
-    // Base the countdown on the last tracker upload, not on when this page was opened
-    // or manually refreshed. This keeps the timer stable across page reloads.
-    const target=updatedAtMs+POLL_MS;
-    const remaining=target-Date.now();
-    if (remaining<=0) {
-      el.nextUpdate.textContent='Due when forum is active';
-      return;
-    }
-    const m=Math.floor(remaining/60000);
-    const s=Math.floor((remaining%60000)/1000);
-    el.nextUpdate.textContent=`${m}:${String(s).padStart(2,'0')}`;
-  }
-
-  function setStatus(type,title) {
+  function setStatus(type,title,detail='') {
     el.dot.className=`dot ${type==='loading'?'':type}`;
     el.liveTitle.textContent=title;
-    el.liveDetail.textContent=type==='error'
-      ? 'Check the repository settings in the Chrome extension.'
-      : 'The public dashboard checks GitHub every hour. The extension also forces scans at 1:00 AM and 11:00 PM New York time.';
+    el.liveDetail.textContent=detail || 'Update time unavailable';
   }
   function showError(message){ el.error.textContent=message; el.error.classList.add('show'); }
   function hideError(){ el.error.classList.remove('show'); }
