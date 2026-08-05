@@ -2156,7 +2156,7 @@
   function formatPostDelta(user){ if(user.isNew||user.postDelta===null||user.postDelta===undefined)return'New'; return user.postDelta>0?`+${formatNumber(user.postDelta)}`:formatNumber(user.postDelta); }
   function formatRankDelta(user){ if(user.isNew||user.rankDelta===null||user.rankDelta===undefined)return'New'; if(user.rankDelta>0)return`▲ ${user.rankDelta}`; if(user.rankDelta<0)return`▼ ${Math.abs(user.rankDelta)}`; return'—'; }
   function formatNumber(value){ return new Intl.NumberFormat('en-US').format(Number(value)||0); }
-  function formatDateTime(value){ return new Intl.DateTimeFormat('en-US',{dateStyle:'medium',timeStyle:'short'}).format(Number(value)); }
+  function formatDateTime(value){ const timestamp=Number(value); if(!Number.isFinite(timestamp)) return 'Update time unavailable'; return new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true,timeZoneName:'short'}).format(timestamp); }
   function formatNewYorkTime(value){ return value?new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,hour:'2-digit',minute:'2-digit'}).format(Number(value)):'—'; }
   function formatRelative(value){ if(!value)return'—'; const sec=Math.max(0,Math.round((Date.now()-Number(value))/1000)); if(sec<60)return`${sec}s ago`; const min=Math.floor(sec/60); if(min<60)return`${min}m ago`; return`${Math.floor(min/60)}h ago`; }
   function formatDateKey(key){ const m=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m)return String(key||''); return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(+m[1],+m[2]-1,+m[3],12))); }
