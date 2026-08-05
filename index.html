@@ -985,6 +985,15 @@
       }
     }
 
+    .remote-scan-block { margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 16px; border:1px solid var(--line); border-radius:14px; background:var(--panel); }
+    .remote-scan-copy { min-width:0; }
+    .remote-scan-title { font-weight:800; }
+    .remote-scan-status { margin-top:3px; color:var(--muted); font-size:12px; }
+    .remote-scan-button { flex:0 0 auto; border:0; border-radius:10px; padding:10px 14px; background:#d94747; color:white; font-weight:800; cursor:pointer; }
+    .remote-scan-button:hover:not(:disabled) { filter:brightness(1.08); }
+    .remote-scan-button:disabled { opacity:.55; cursor:not-allowed; }
+    @media(max-width:600px) { .remote-scan-block { align-items:stretch; flex-direction:column; } .remote-scan-button { width:100%; } }
+
 </style>
 </head>
 <body>
@@ -1015,6 +1024,15 @@
   </section>
 
   <div class="error-box" id="error"></div>
+
+  <section class="remote-scan-block" aria-label="Request a leaderboard refresh">
+    <div class="remote-scan-copy">
+      <div class="remote-scan-title">Request a fresh scan</div>
+      <div class="remote-scan-status" id="remoteScanStatus">Checking availability…</div>
+    </div>
+    <button class="remote-scan-button" id="remoteScanButton" type="button">Force scan</button>
+  </section>
+
 
 
   <section class="daily">
@@ -1133,6 +1151,8 @@
   const POLL_MS = 60 * 60 * 1000;
   const RANKING_LIMIT = 100;
   const DAILY_TIME_ZONE = 'America/New_York';
+  // Replace this with the URL shown after deploying scan-relay-worker.js.
+  const REMOTE_SCAN_ENDPOINT = 'https://postmaxxers-scan-relay.rpk1dhz65tnreg.workers.dev/';
   const params = new URLSearchParams(location.search);
   const inferred = inferRepository();
   const config = {
@@ -1147,6 +1167,8 @@
   let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
 
+  el.remoteScanButton.addEventListener('click', requestRemoteScan);
+  updateRemoteScanAvailability();
   el.search.addEventListener('input', () => { state.query = el.search.value.trim().toLowerCase(); renderTable(); });
   el.historyClose.addEventListener('click', closeUserHistory);
   el.historyAchievementToggle.addEventListener('click',()=>{ state.profileAchievementsExpanded=!state.profileAchievementsExpanded; renderProfileAchievementCards(); });
@@ -1159,6 +1181,67 @@
   }, 1000);
   renderNewYorkClock();
   loadData(false);
+
+
+  async function requestRemoteScan() {
+    if (!isRemoteScanConfigured()) {
+      el.remoteScanStatus.textContent = 'Remote scan relay is not configured yet.';
+      return;
+    }
+    el.remoteScanButton.disabled = true;
+    el.remoteScanButton.textContent = 'Requesting…';
+    try {
+      const response = await fetch(REMOTE_SCAN_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:'{}' });
+      const payload = await response.json().catch(()=>({}));
+      if (response.status === 429) {
+        const seconds = Math.max(1, Number(payload.retryAfterSeconds || 3600));
+        startRemoteCooldown(Date.now() + seconds * 1000);
+        return;
+      }
+      if (!response.ok || !payload.ok) throw new Error(payload.error || `Request failed with HTTP ${response.status}`);
+      const nextAllowedAt = Number(payload.nextAllowedAt || Date.now() + 3600000);
+      localStorage.setItem('postmaxxersRemoteScanNextAllowedAt', String(nextAllowedAt));
+      el.remoteScanStatus.textContent = 'Scan requested. Your extension should process it within about one minute.';
+      startRemoteCooldown(nextAllowedAt);
+    } catch (error) {
+      el.remoteScanButton.disabled = false;
+      el.remoteScanButton.textContent = 'Force scan';
+      el.remoteScanStatus.textContent = `Could not request a scan: ${error.message || error}`;
+    }
+  }
+
+  function isRemoteScanConfigured() {
+    return /^https:\/\/(?!REPLACE-ME)[^/]+\.workers\.dev/i.test(REMOTE_SCAN_ENDPOINT);
+  }
+
+  function updateRemoteScanAvailability() {
+    if (!isRemoteScanConfigured()) {
+      el.remoteScanButton.disabled = true;
+      el.remoteScanStatus.textContent = 'Remote scan relay is not configured.';
+      return;
+    }
+    const nextAllowedAt = Number(localStorage.getItem('postmaxxersRemoteScanNextAllowedAt') || 0);
+    if (nextAllowedAt > Date.now()) startRemoteCooldown(nextAllowedAt);
+    else {
+      el.remoteScanButton.disabled = false;
+      el.remoteScanButton.textContent = 'Force scan';
+      el.remoteScanStatus.textContent = 'Available once per hour.';
+    }
+  }
+
+  function startRemoteCooldown(nextAllowedAt) {
+    const render = () => {
+      const remaining = Math.max(0, nextAllowedAt - Date.now());
+      if (!remaining) { updateRemoteScanAvailability(); return; }
+      const minutes = Math.floor(remaining / 60000);
+      const seconds = Math.floor((remaining % 60000) / 1000);
+      el.remoteScanButton.disabled = true;
+      el.remoteScanButton.textContent = 'Cooldown';
+      el.remoteScanStatus.textContent = `Another request is available in ${minutes}:${String(seconds).padStart(2,'0')}.`;
+      setTimeout(render, 1000);
+    };
+    render();
+  }
 
   async function loadData(manual) {
     setStatus('loading', 'Last updated', 'Checking the latest tracker data…');
