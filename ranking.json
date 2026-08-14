@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-08-14T03:55:01.251Z",
-  "updatedAtMs": 1786679701251,
+  "updatedAt": "2026-08-14T03:55:10.247Z",
+  "updatedAtMs": 1786679710247,
   "nextUpdateAt": "2026-08-14T04:05:00.000Z",
   "nextUpdateAtMs": 1786680300000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9024893
+    "combinedPosts": 9024894
   },
   "dailyTracking": {
     "dateKey": "2026-08-13",
     "timeZone": "America/New_York",
     "startedAt": 1786593900989,
-    "lastUpdatedAt": 1786679701251,
+    "lastUpdatedAt": 1786679710247,
     "currentLeaders": [
       {
         "dateKey": "2026-08-13",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/superpsycho.72876/",
         "avatarUrl": "https://incels.is/data/avatars/s/72/72876.jpg?1786661431",
         "trackingStartedAt": 1786593900989,
-        "trackingEndedAt": 1786679701251,
-        "finalizedAt": 1786679701423,
+        "trackingEndedAt": 1786679710247,
+        "finalizedAt": 1786679710344,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/superpsycho.72876/",
       "avatarUrl": "https://incels.is/data/avatars/s/72/72876.jpg?1786661431",
       "trackingStartedAt": 1786593900989,
-      "trackingEndedAt": 1786679701251,
-      "finalizedAt": 1786679701423,
+      "trackingEndedAt": 1786679710247,
+      "finalizedAt": 1786679710344,
       "isAliased": false
     }
   },
@@ -11309,7 +11309,7 @@
       "dateKey": "2026-08-13",
       "timeZone": "America/New_York",
       "startedAt": 1786593900989,
-      "lastUpdatedAt": 1786679701251,
+      "lastUpdatedAt": 1786679710247,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -11340,8 +11340,8 @@
           "userId": "3107",
           "isAliased": false,
           "startPosts": 2326911,
-          "postsGained": 2465,
-          "endPosts": 2329376,
+          "postsGained": 2466,
+          "endPosts": 2329377,
           "finalRank": 1,
           "profileUrl": "https://incels.is/members/animecel2d.3107/",
           "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958"
@@ -12431,8 +12431,8 @@
     {
       "rank": 1,
       "username": "Animecel2D",
-      "posts": 2329376,
-      "postDelta": 2465,
+      "posts": 2329377,
+      "postDelta": 2466,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
