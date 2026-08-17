@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-08-17T07:37:45.431Z",
-  "updatedAtMs": 1786952265431,
+  "updatedAt": "2026-08-17T07:37:55.976Z",
+  "updatedAtMs": 1786952275976,
   "nextUpdateAt": "2026-08-18T03:55:00.000Z",
   "nextUpdateAtMs": 1787025300000,
   "updateIntervalMinutes": null,
@@ -23,7 +23,7 @@
     "dateKey": "2026-08-17",
     "timeZone": "America/New_York",
     "startedAt": 1786952265431,
-    "lastUpdatedAt": 1786952265431,
+    "lastUpdatedAt": 1786952275976,
     "currentLeaders": [
       {
         "dateKey": "2026-08-17",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/animecel2d.3107/",
         "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
         "trackingStartedAt": 1786952265431,
-        "trackingEndedAt": 1786952265431,
-        "finalizedAt": 1786952265609,
+        "trackingEndedAt": 1786952275976,
+        "finalizedAt": 1786952276103,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/animecel2d.3107/",
       "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
       "trackingStartedAt": 1786952265431,
-      "trackingEndedAt": 1786952265431,
-      "finalizedAt": 1786952265609,
+      "trackingEndedAt": 1786952275976,
+      "finalizedAt": 1786952276103,
       "isAliased": false
     }
   },
@@ -15868,7 +15868,7 @@
       "dateKey": "2026-08-17",
       "timeZone": "America/New_York",
       "startedAt": 1786952265431,
-      "lastUpdatedAt": 1786952265431,
+      "lastUpdatedAt": 1786952275976,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -17653,8 +17653,8 @@
       "username": "MonkeyInaT34",
       "posts": 30734,
       "postDelta": 598,
-      "rankDelta": null,
-      "isNew": true,
+      "rankDelta": 0,
+      "isNew": false,
       "isAliased": false,
       "userId": "68170",
       "profileUrl": "https://incels.is/members/monkeyinat34.68170/",
@@ -17665,7 +17665,7 @@
       "username": "AsiaCel",
       "posts": 30411,
       "postDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
       "userId": "1769",
