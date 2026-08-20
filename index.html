@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#202b49">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABmklEQVR42p1Ua0/CMBTtZ79oRB0MGPhKDCJswobEP2NieAzWTv//F09X1tU+toWmaZr19vTcc88dGSXMnEFMsQ6XWRCz/uLYed1eTzbefC+OxNSuECtQiUWBQpThRwf5TDOQ+mYvOpD/w38/WrGIKymxf1z/aEC3b7vx6hTQihE2SOTq5VsD6nNGTRrx4xKlO0+JMfxQaMTqNFKTMqW5ePqC8CVf1sxIFMub7TSgm+n2YZ0HhjR2RpgQ8m62N5PqTLY4KgtaC1QWgvZCizrw5P1HbnWQg1HC4GA70KodUEGKCkSzZAAS9nFhaYx4KEh1Q71q6DXJqE2L0KB4sx8ddQfxLqtc1gAkDQL7mjKhmjXZmb3G18GSPn/+mlYqHGBpNGuvFf6OEUotLeJoNCcjhA4WmSu7kdWQshDa9I124/+Q6U7xd/XbwkrUciJIzl5oAfJmqRqjdnvFCPl781TOS+NPVNhyg+xkDK5UjCRDctaorot2hZvPA0IRhRtOkEMpXkLHMRtzvXIUDonIpumGKf+e5AgIEil2JjZ/COJCnG1UiuIAAAAASUVORK5CYII=">
+  <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABmklEQVR42p1Ua0/CMBTtZ79oRB0MGPhKDCJswobEP2NieAzWTv//F09X1tU+toWmaZr19vTcc88dGSXMnEFMsQ6XWRCz/uLYed1eTzbefC+OxNSuECtQiUWBQpThRwf5TDOQ+mYvOpD/w38/WrGIKymxf1z/aEC3b7vx6hTQihE2SOTq5VsD6nNGTRrx4xKlO0+JMfxQaMTqNFKTMqW5ePqC8CVf1sxIFMub7TSgm+n2YZ0HhjR2RpgQ8m62N5PqTLY4KgtaC1QWgvZCizrw5P1HbnWQg1HC4GA70KodUEGKCkSzZAAS9nFhaYx4KEh1Q71q6DXJqE2L0KB4sx8ddQfxLqtc1gAkDQL7mjKhmjXZmb3G18GSPn/+mlYqHGBpNGuvFf6OEUotLeJoNCcjhA4WmSu7kdWQshDa9I124/+Q6U7xd/XbwkrUciJIzl5oAfJmqRqjdnvFCPl781TOS+NPVNhyg+xkDK5UjCRDctaorot2hZvPA0IRhRtOkEMpXkLHMRtzvXIUDonIpumGKf+e5AgIEil2JjZ/COJCnG1UiuIAAAAASUVORK5CYII=">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABmklEQVR42p1Ua0/CMBTtZ79oRB0MGPhKDCJswobEP2NieAzWTv//F09X1tU+toWmaZr19vTcc88dGSXMnEFMsQ6XWRCz/uLYed1eTzbefC+OxNSuECtQiUWBQpThRwf5TDOQ+mYvOpD/w38/WrGIKymxf1z/aEC3b7vx6hTQihE2SOTq5VsD6nNGTRrx4xKlO0+JMfxQaMTqNFKTMqW5ePqC8CVf1sxIFMub7TSgm+n2YZ0HhjR2RpgQ8m62N5PqTLY4KgtaC1QWgvZCizrw5P1HbnWQg1HC4GA70KodUEGKCkSzZAAS9nFhaYx4KEh1Q71q6DXJqE2L0KB4sx8ddQfxLqtc1gAkDQL7mjKhmjXZmb3G18GSPn/+mlYqHGBpNGuvFf6OEUotLeJoNCcjhA4WmSu7kdWQshDa9I124/+Q6U7xd/XbwkrUciJIzl5oAfJmqRqjdnvFCPl781TOS+NPVNhyg+xkDK5UjCRDctaorot2hZvPA0IRhRtOkEMpXkLHMRtzvXIUDonIpumGKf+e5AgIEil2JjZ/COJCnG1UiuIAAAAASUVORK5CYII=">
   <title>POSTMAXXERS — Live Ranking</title>
   <style>
     :root {
@@ -1005,6 +1008,127 @@
       .live-detail { white-space:normal; line-height:1.25; }
     }
 
+
+    /* NEWS FLASH — recent milestones ticker */
+    .news-flash {
+      display:flex;
+      align-items:stretch;
+      width:100%;
+      min-height:44px;
+      margin:0 0 10px;
+      overflow:hidden;
+      border:1px solid #3a4768;
+      border-radius:8px;
+      background:#18233d;
+    }
+    .news-flash-label {
+      position:relative;
+      z-index:2;
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:0 15px;
+      border-right:1px solid #4b5879;
+      background:#d94747;
+      color:#fff;
+      font-size:11px;
+      font-weight:1000;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .news-flash-label::before {
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#fff;
+      opacity:.95;
+      animation:newsFlashPulse 1.25s ease-in-out infinite;
+    }
+    .news-flash-window {
+      min-width:0;
+      flex:1 1 auto;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent);
+    }
+    .news-flash-track {
+      display:flex;
+      align-items:center;
+      width:max-content;
+      min-width:max-content;
+      will-change:transform;
+      animation:newsFlashTicker 42s linear infinite;
+    }
+    .news-flash:hover .news-flash-track { animation-play-state:paused; }
+    .news-flash-group {
+      display:flex;
+      align-items:center;
+      flex:0 0 auto;
+      min-width:max-content;
+      padding-left:28px;
+    }
+    .news-flash-item {
+      display:inline-flex;
+      align-items:center;
+      flex:0 0 auto;
+      color:#dfe6f4;
+      font-size:12px;
+      font-weight:750;
+      white-space:nowrap;
+    }
+    .news-flash-item strong { color:#fff; font-weight:950; margin-right:6px; }
+    .news-flash-separator {
+      flex:0 0 auto;
+      margin:0 18px;
+      color:#ff8b28;
+      font-size:11px;
+      font-weight:1000;
+    }
+    @keyframes newsFlashTicker {
+      from { transform:translateX(0); }
+      to { transform:translateX(-50%); }
+    }
+    @keyframes newsFlashPulse {
+      0%,100% { opacity:.45; transform:scale(.82); }
+      50% { opacity:1; transform:scale(1); }
+    }
+    @media(max-width:600px) {
+      .news-flash { min-height:40px; }
+      .news-flash-label { padding:0 10px; font-size:9px; letter-spacing:.08em; }
+      .news-flash-item { font-size:11px; }
+      .news-flash-group { padding-left:20px; }
+      .news-flash-separator { margin:0 13px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .news-flash-label::before { animation:none; }
+      .news-flash-track { width:100%; min-width:0; animation:none; transform:none; }
+      .news-flash-group { min-width:0; overflow:hidden; }
+      .news-flash-group + .news-flash-group { display:none; }
+      .news-flash-item { overflow:hidden; text-overflow:ellipsis; }
+    }
+
+
+    /* Count-up + pop — Today's live podium, once per page load */
+    .podium-gain.podium-gain-pop {
+      animation:podiumGainPop .62s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes podiumGainPop {
+      0%   { transform:scale(1); }
+      42%  { transform:scale(1.16); }
+      68%  { transform:scale(.96); }
+      100% { transform:scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .podium-gain.podium-gain-pop { animation:none; }
+    }
+
 </style>
 </head>
 <body>
@@ -1023,6 +1147,22 @@
       </div>
     </div>
   </header>
+
+  <section class="news-flash" aria-label="Latest milestones and achievements">
+    <div class="news-flash-label">News Flash</div>
+    <div class="news-flash-window">
+      <div class="news-flash-track" id="newsFlashTrack">
+        <div class="news-flash-group">
+          <span class="news-flash-item"><strong>Milestones &amp; Achievements</strong>&nbsp;— Recent records, streaks, rank breakthroughs, total-post milestones, and podium achievements from the tracked top 100.</span>
+          <span class="news-flash-separator" aria-hidden="true">◆</span>
+        </div>
+        <div class="news-flash-group" aria-hidden="true">
+          <span class="news-flash-item"><strong>Milestones &amp; Achievements</strong>&nbsp;— Recent records, streaks, rank breakthroughs, total-post milestones, and podium achievements from the tracked top 100.</span>
+          <span class="news-flash-separator" aria-hidden="true">◆</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="live-block" aria-label="Latest update and scan controls">
     <div class="live-main">
@@ -1170,6 +1310,7 @@
   };
 
   const state = { data:null, query:'', selectedSource:null, renderedNewYorkDate:null, activeHistoryUser:null, activeProfileAchievements:[], profileAchievementsExpanded:false };
+  let shouldAnimatePodiumOnLoad = true;
   let leaderCrownSequence = 0;
   let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
@@ -1374,6 +1515,43 @@
     return leaderboard.filter(user => Number(user.postsGained) === highestGain);
   }
 
+
+  function animatePodiumGain(element,target,delay=0) {
+    const value=Math.max(0,Number(target)||0);
+    const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if(reduceMotion){
+      element.textContent=`+${formatNumber(value)}`;
+      return;
+    }
+
+    element.textContent='+0';
+
+    setTimeout(()=>{
+      const duration=850;
+      const start=performance.now();
+
+      const frame=now=>{
+        const progress=Math.min(1,(now-start)/duration);
+        const eased=1-Math.pow(1-progress,4);
+        const currentValue=Math.min(value,Math.round(value*eased));
+        element.textContent=`+${formatNumber(currentValue)}`;
+
+        if(progress<1){
+          requestAnimationFrame(frame);
+          return;
+        }
+
+        element.textContent=`+${formatNumber(value)}`;
+        element.classList.remove('podium-gain-pop');
+        void element.offsetWidth;
+        element.classList.add('podium-gain-pop');
+      };
+
+      requestAnimationFrame(frame);
+    },delay);
+  }
+
   function renderDaily() {
     const today = newYorkDateKey(Date.now());
     state.renderedNewYorkDate = today;
@@ -1401,6 +1579,7 @@
         avatarRing.append(makeAvatar(user));
         const name = makeUsernameButton(user,'podium-name');
         const gain = node('div','podium-gain',`+${formatNumber(user.postsGained)}`);
+        gain.dataset.target=String(Math.max(0,Number(user.postsGained)||0));
         const gainLabel = node('div','podium-gain-label','posts today so far');
         const step = node('div','podium-step');
         step.append(node('div','podium-place',`#${position}`),node('div','podium-place-label',position === 1 ? 'First place' : position === 2 ? 'Second place' : 'Third place'));
@@ -1410,6 +1589,12 @@
 
       const caption = node('div','podium-caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
       el.leader.append(kicker,stage,caption);
+
+      if(shouldAnimatePodiumOnLoad){
+        const gains=[...stage.querySelectorAll('.podium-gain')];
+        gains.forEach((gain,index)=>animatePodiumGain(gain,gain.dataset.target,index*110));
+        shouldAnimatePodiumOnLoad=false;
+      }
     }
 
     const liveRows = dailyLeaderboard.map(user => ({ ...user, isLive:true }));
@@ -1431,6 +1616,57 @@
     el.milestoneCount.textContent = `${milestones.length} ${milestones.length === 1 ? 'achievement' : 'achievements'}`;
     el.milestoneList.replaceChildren(...milestones.map(makeMilestoneCard));
     el.milestoneEmpty.style.display = milestones.length ? 'none' : 'block';
+    renderNewsFlash(milestones);
+  }
+
+  function renderNewsFlash(milestones) {
+    if (!el.newsFlashTrack) return;
+
+    const items = Array.isArray(milestones) && milestones.length
+      ? milestones.slice(0, 8)
+      : [{
+          icon:'★',
+          label:'Milestones & Achievements',
+          title:'Recent records, streaks, rank breakthroughs, total-post milestones, and podium achievements from the tracked top 100.'
+        }];
+
+    const makeGroup = hidden => {
+      const group = node('div','news-flash-group');
+      if (hidden) group.setAttribute('aria-hidden','true');
+
+      items.forEach((item,index) => {
+        const tickerItem = node('span','news-flash-item');
+        const icon = String(item.icon || '★');
+        const label = String(item.label || 'Achievement');
+        const username = item.user?.username ? String(item.user.username) : '';
+        const title = String(item.title || 'Achievement unlocked');
+        const date = item.dateKey
+          ? (item.dateKey === newYorkDateKey(Date.now()) ? 'Today' : formatDateKey(item.dateKey))
+          : '';
+
+        tickerItem.append(
+          node('strong','',`${icon} ${label}`),
+          document.createTextNode(` ${username ? `${username} ` : ''}${title}${date ? ` · ${date}` : ''}`)
+        );
+        group.append(tickerItem);
+
+        if (index < items.length - 1) {
+          const separator = node('span','news-flash-separator','◆');
+          separator.setAttribute('aria-hidden','true');
+          group.append(separator);
+        }
+      });
+
+      const tail = node('span','news-flash-separator','◆');
+      tail.setAttribute('aria-hidden','true');
+      group.append(tail);
+      return group;
+    };
+
+    el.newsFlashTrack.replaceChildren(makeGroup(false), makeGroup(true));
+    el.newsFlashTrack.style.animation = 'none';
+    void el.newsFlashTrack.offsetWidth;
+    el.newsFlashTrack.style.animation = '';
   }
 
 
