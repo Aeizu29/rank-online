@@ -1451,8 +1451,7 @@
       for (const user of podiumUsers) {
         const position = Math.min(3, Number(user.dailyRank) || (podiumUsers.indexOf(user) + 1));
         const entry = node('div',`podium-entry podium-position-${position}`);
-        if (position === 1) entry.append(makePodiumCrown());
-        else entry.append(node('div','podium-medal',position === 2 ? '🥈' : '🥉'));
+        if (position !== 1) entry.append(node('div','podium-medal',position === 2 ? '🥈' : '🥉'));
 
         const avatarRing = node('div','podium-avatar-ring');
         avatarRing.append(makeAvatar(user));
@@ -1466,8 +1465,7 @@
         stage.append(entry);
       }
 
-      const caption = node('div','podium-caption',`Tracked since ${formatNewYorkTime(tracking.startedAt)} New York time · Updated ${formatRelative(tracking.lastUpdatedAt)}`);
-      el.leader.append(kicker,stage,caption);
+      el.leader.append(kicker,stage);
 
       if(animatePodiumOnceOnPageLoad){
         const gains=[...stage.querySelectorAll('.podium-gain')];
@@ -2015,7 +2013,7 @@
     card.append(copy);
     return card;
   }
- 
+
   function renderProfileAchievementCards() {
     const achievements=Array.isArray(state.activeProfileAchievements)?state.activeProfileAchievements:[];
     const visible=state.profileAchievementsExpanded?achievements:achievements.slice(0,6);
