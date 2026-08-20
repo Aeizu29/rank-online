@@ -1311,6 +1311,20 @@
 
   const state = { data:null, query:'', selectedSource:null, renderedNewYorkDate:null, activeHistoryUser:null, activeProfileAchievements:[], profileAchievementsExpanded:false };
   let shouldAnimatePodiumOnLoad = true;
+  let deferredRenderSequence = 0;
+
+  function runAfterFirstPaint(callback) {
+    requestAnimationFrame(() => setTimeout(callback, 0));
+  }
+
+  function runWhenIdle(callback) {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(callback, { timeout:350 });
+    } else {
+      setTimeout(callback, 0);
+    }
+  }
+
   let leaderCrownSequence = 0;
   let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
@@ -1445,8 +1459,37 @@
 
   async function fetchCandidate(source) {
     const path = source.dataPath.split('/').filter(Boolean).map(encodeURIComponent).join('/');
+    const cacheBust = `_=${Date.now()}`;
+    const validationError = 'The JSON file does not contain a ranking array.';
+
+    // Fastest path on GitHub Pages: read the public JSON beside the website.
+    if (/^https?:$/i.test(location.protocol)) {
+      try {
+        const directUrl = new URL(source.dataPath, location.href);
+        directUrl.searchParams.set('_', String(Date.now()));
+        const directResponse = await fetch(directUrl.href, { cache:'no-store' });
+        if (directResponse.ok) {
+          const data = await directResponse.json();
+          if (!Array.isArray(data.ranking)) throw new Error(validationError);
+          return { data, source };
+        }
+      } catch {}
+    }
+
+    // Second fast path: public raw GitHub file, avoiding API/base64 overhead.
+    try {
+      const rawUrl = `https://raw.githubusercontent.com/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/${encodeURIComponent(source.branch)}/${path}?${cacheBust}`;
+      const rawResponse = await fetch(rawUrl, { cache:'no-store' });
+      if (rawResponse.ok) {
+        const data = await rawResponse.json();
+        if (!Array.isArray(data.ranking)) throw new Error(validationError);
+        return { data, source };
+      }
+    } catch {}
+
+    // Compatibility fallback: GitHub Contents API.
     const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${path}?ref=${encodeURIComponent(source.branch)}`;
-    const response = await fetch(`${url}&_=${Date.now()}`, {
+    const response = await fetch(`${url}&${cacheBust}`, {
       cache:'no-store',
       headers:{ 'Accept':'application/vnd.github+json', 'X-GitHub-Api-Version':GITHUB_API_VERSION }
     });
@@ -1457,21 +1500,35 @@
     }
     const file = await response.json();
     if (!file.content) throw new Error('The GitHub file response did not contain JSON content.');
-    const text = decodeBase64Utf8(file.content.replace(/\s/g,''));
-    const data = JSON.parse(text);
-    if (!Array.isArray(data.ranking)) throw new Error('The JSON file does not contain a ranking array.');
+    const decoded = decodeBase64Utf8(file.content.replace(/\s/g,''));
+    const data = JSON.parse(decoded);
+    if (!Array.isArray(data.ranking)) throw new Error(validationError);
     return { data, source };
   }
 
   function renderAll() {
-    const data = state.data;
-    renderDaily();
-    renderMilestones();
-    renderTable();
-    if (state.activeHistoryUser) renderUserHistoryModal(state.activeHistoryUser);
+    const sequence = ++deferredRenderSequence;
+
+    // First paint: render only the live podium so it appears immediately.
+    renderDaily(true);
+
     el.sourceNote.textContent = state.selectedSource
       ? `Data source: ${config.owner}/${config.repo} · ${state.selectedSource.branch}/${state.selectedSource.dataPath}. “New posts today” is cumulative across scans and resets only at New York midnight. The page reads GitHub directly; no GitHub token is present in this website.`
       : `Repository detected: ${config.owner || 'unknown'}/${config.repo || 'unknown'}.`;
+
+    // Second phase: render the larger daily list and Top 100 after the podium has painted.
+    runAfterFirstPaint(() => {
+      if (sequence !== deferredRenderSequence) return;
+      renderDailyArchive();
+      renderTable();
+      if (state.activeHistoryUser) renderUserHistoryModal(state.activeHistoryUser);
+
+      // Milestone calculations are the heaviest part; leave them until the browser is idle.
+      runWhenIdle(() => {
+        if (sequence !== deferredRenderSequence) return;
+        renderMilestones();
+      });
+    });
   }
 
   function getDailyLeaderboard(tracking) {
@@ -1528,7 +1585,7 @@
     element.textContent='+0';
 
     setTimeout(()=>{
-      const duration=850;
+      const duration=620;
       const start=performance.now();
 
       const frame=now=>{
@@ -1552,7 +1609,7 @@
     },delay);
   }
 
-  function renderDaily() {
+  function renderDaily(deferArchive=false) {
     const today = newYorkDateKey(Date.now());
     state.renderedNewYorkDate = today;
     const tracking = getCurrentNewYorkTracking();
@@ -1592,22 +1649,36 @@
 
       if(shouldAnimatePodiumOnLoad){
         const gains=[...stage.querySelectorAll('.podium-gain')];
-        gains.forEach((gain,index)=>animatePodiumGain(gain,gain.dataset.target,index*110));
+        gains.forEach((gain,index)=>animatePodiumGain(gain,gain.dataset.target,index*60));
         shouldAnimatePodiumOnLoad=false;
       }
     }
 
+    if (!deferArchive) renderDailyArchive();
+  }
+
+  function renderDailyArchive() {
+    const today = newYorkDateKey(Date.now());
+    const tracking = getCurrentNewYorkTracking();
+    const dailyLeaderboard = getDailyLeaderboard(tracking);
     const liveRows = dailyLeaderboard.map(user => ({ ...user, isLive:true }));
     const winners = getVerifiedPreviousDailyWinners(today);
     const rows = liveRows.map(makeWinnerRow);
+
     if (winners.length) {
       rows.push(node('div','archive-divider','Previous daily winners'));
       rows.push(...winners.map(makeWinnerRow));
     }
+
     el.winnerCount.textContent = tracking ? `${liveRows.length} active ${liveRows.length === 1 ? 'user' : 'users'} today` : 'Waiting for scan';
     el.winnerList.replaceChildren(...(rows.length
       ? rows
-      : [placeholder(tracking ? 'No posts detected yet' : 'Waiting for today’s scan', tracking ? 'Users will appear after gaining at least one post during the current calendar day in New York.' : 'Today’s tracking begins with the 1:00 AM scheduled New York scan.')]))
+      : [placeholder(
+          tracking ? 'No posts detected yet' : 'Waiting for today’s scan',
+          tracking
+            ? 'Users will appear after gaining at least one post during the current calendar day in New York.'
+            : 'Today’s tracking begins with the 1:00 AM scheduled New York scan.'
+        )]));
   }
 
 
