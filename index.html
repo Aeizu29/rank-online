@@ -1023,9 +1023,636 @@
       .podium-gain.podium-count-pop { animation:none; }
     }
 
+/* =========================================================
+   DESIGN DEMO 04 — TERMINAL / CRT
+   ========================================================= */
+:root{
+  --bg:#020503;--panel:#050a06;--panel2:#071008;--line:#1e4922;
+  --text:#b8f5b0;--muted:#639268;--accent:#ff4b36;--accent2:#79ff45;
+  --good:#79ff45;--bad:#ff583f;--warn:#ddf04f;
+}
+html{background:#020503}
+body{font-family:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;background:#020503;color:#b8f5b0}
+body::before{display:block!important;content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 4px);opacity:.35}
+.shell{width:min(1240px,calc(100% - 28px));padding-top:20px}
+header{padding:14px 16px;border:1px solid #285c2c;border-radius:0;background:#030704;box-shadow:inset 0 0 30px rgba(51,255,69,.025)}
+.eyebrow{color:#79ff45;letter-spacing:.08em}.eyebrow::before{content:">_ ";color:#79ff45}h1{font-family:inherit;font-size:clamp(34px,5vw,54px);letter-spacing:-.06em;color:#7dff49;text-shadow:0 0 12px rgba(121,255,69,.18)}.subtitle{color:#78967b}
+.new-york-clock{border:1px solid #27572c;border-radius:0;background:#030804;box-shadow:inset 0 0 20px rgba(121,255,69,.025)}.new-york-clock-label{color:#59dff0}.new-york-clock-time{font-family:inherit;color:#58e7f1;text-shadow:0 0 10px rgba(88,231,241,.16)}.new-york-clock-date{color:#6f9a72}
+.live-block{border:1px solid #673021;border-radius:0;background:#0b0604}.live-title{color:#ff6e55}.live-detail{color:#ff8b75}.dot{border-radius:0;background:#ff4b36}.remote-scan-button{border:1px solid #cc4a36;border-radius:0;background:#2b0d08;color:#ff7c67;text-transform:uppercase;font-family:inherit}
+.daily,.milestones-section,.table-wrap{border:1px solid #285c2c;border-radius:0;background:#030704;box-shadow:none}.daily{padding:14px}.section-head{border-bottom:1px dashed #244b28;padding-bottom:10px}.section-head h2{font-family:inherit;color:#79ff45;text-transform:uppercase;font-size:19px}.section-head p{color:#628167}.badge{border:1px solid #2b5d2f;border-radius:0;background:#050b06;color:#79ff45;font-family:inherit}
+.daily-grid{grid-template-columns:1fr;gap:14px}.leader,.archive{border:1px solid #234e28;border-radius:0;background:#020503}.leader{min-height:410px;background:linear-gradient(180deg,rgba(25,81,28,.035),transparent 40%),#020503}.leader::before{display:none}
+.podium-kicker{border:1px solid #367b36;border-radius:0;background:#041006;color:#79ff45;font-family:inherit}.podium-kicker::before{border-radius:0;background:#79ff45;box-shadow:none}
+.podium-stage{background-image:linear-gradient(rgba(57,130,63,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(57,130,63,.08) 1px,transparent 1px);background-size:28px 28px;padding:14px 10px 0;border-bottom:1px solid #17391b}
+.podium-avatar-ring{border-radius:4px;box-shadow:none!important}.podium-avatar-ring .avatar{border-radius:2px}.podium-position-1 .podium-avatar-ring{background:#64dd38!important}.podium-position-2 .podium-avatar-ring{background:#4ac4d4!important}.podium-position-3 .podium-avatar-ring{background:#dd6d28!important}
+.podium-name{font-family:inherit;color:#b8f5b0}.podium-position-1 .podium-name{color:#79ff45}.podium-position-2 .podium-name{color:#58e7f1}.podium-position-3 .podium-name{color:#ff8737}.podium-gain{font-family:inherit;color:#79ff45;text-shadow:0 0 8px rgba(121,255,69,.18)}.podium-position-2 .podium-gain{color:#58e7f1}.podium-position-3 .podium-gain{color:#ff8737}
+.podium-step,.podium-position-1 .podium-step,.podium-position-2 .podium-step,.podium-position-3 .podium-step{border-radius:0;border:1px solid #285c2c;background:#041006}.podium-position-2 .podium-step{border-color:#26606b}.podium-position-3 .podium-step{border-color:#74391d}.podium-place{font-family:inherit}.podium-position-1 .podium-place{color:#79ff45}.podium-position-2 .podium-place{color:#58e7f1}.podium-position-3 .podium-place{color:#ff8737}
+.archive-title{background:#050b06;border-bottom:1px solid #244b28}.winner-row{border-color:#16361a}.winner-row:hover{background:#061008}
+.milestones-section .section-head{background:#050b06}.milestone-grid{gap:8px}.milestone-card{border-radius:0;background:#040905;border-color:#214b25;box-shadow:none}.milestone-card::after{display:none}.milestone-icon{border-radius:0;border-color:#2b6030;background:#071108;box-shadow:none}.milestone-user{color:#58e7f1}.milestone-title{color:#b8f5b0}.milestone-detail{color:#6e9272}.milestone-date{border-radius:0;background:#051006;border-color:#25542a;color:#79ff45}
+.toolbar{border:1px solid #285c2c;border-bottom:0;margin-bottom:0;padding:8px;background:#030704}.search{border-radius:0;border-color:#285c2c;background:#010302;color:#b8f5b0;font-family:inherit}.search:focus{border-color:#79ff45;box-shadow:none}.count{color:#6f9a72}
+.table-wrap{border-radius:0}table{font-family:inherit}th{background:#061008;color:#79ff45;border-color:#214b25;font-family:inherit}td{border-color:#123017}tbody tr:hover{background:#061008}.rank{color:#79ff45}.username{color:#58e7f1}.number{color:#a8dba9}.foot{color:#527257}
+.history-overlay{background:rgba(0,3,0,.9);backdrop-filter:none}.history-modal{border-radius:0;border:1px solid #2a632f;background:#020503;box-shadow:none}.history-head{background:#050b06;border-color:#234e28}.history-close{border-radius:0;background:#081009;border-color:#2b5d2f;color:#79ff45}
+@media(max-width:900px){.daily-grid{grid-template-columns:1fr}}
+
+
+/* Daily leaderboard stays directly below the live podium */
+.daily-grid > .archive {
+  width:100%;
+  margin-top:2px;
+}
+
+
+
+
+
+/* =========================================================
+   PROFILE MODAL FIX + PODIUM RANK COLORS
+   ========================================================= */
+
+/* Restore the original full-screen popup behavior.
+   The video background must never change the modal to position:relative. */
+.history-overlay{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:10000 !important;
+  display:grid;
+  place-items:start center;
+  overflow-y:auto;
+  padding:max(24px,6vh) 16px 24px;
+  background:rgba(0,4,1,.90) !important;
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+.history-overlay[hidden]{
+  display:none !important;
+}
+.history-modal{
+  position:relative;
+  z-index:10001;
+}
+
+/* The page stays above the video, but below the profile popup. */
+.shell{
+  position:relative;
+  z-index:2;
+}
+
+/* Podium usernames are real clickable profile buttons. */
+.podium-name{
+  border:0;
+  outline:0;
+  background:transparent;
+  padding:0;
+  font:inherit;
+  cursor:pointer;
+  text-decoration:none;
+}
+.podium-name:focus-visible{
+  outline:2px solid currentColor;
+  outline-offset:5px;
+}
+.podium-name:hover{
+  filter:brightness(1.16);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+/* Give each live podium position its medal color on both card border and username. */
+.podium-entry{
+  padding:15px 15px 0;
+  border:0;
+  background:transparent !important;
+}
+
+.podium-position-1{
+  border:0 !important;
+  box-shadow:none !important;
+}
+.podium-position-1 .podium-name{
+  color:#ffd54a !important;
+  text-shadow:0 0 10px rgba(255,213,74,.18);
+}
+
+.podium-position-2{
+  border:0 !important;
+  box-shadow:none !important;
+}
+.podium-position-2 .podium-name{
+  color:#dce4ed !important;
+  text-shadow:0 0 10px rgba(220,228,237,.12);
+}
+
+.podium-position-3{
+  border:0 !important;
+  box-shadow:none !important;
+}
+.podium-position-3 .podium-name{
+  color:#dc9452 !important;
+  text-shadow:0 0 10px rgba(220,148,82,.13);
+}
+
+/* Keep the Terminal CRT square-card language. */
+@media(max-width:480px){
+  .podium-entry{
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+  }
+}
+
+
+/* =========================================================
+   MATRIX DIGITAL RAIN BACKGROUND
+   ========================================================= */
+html{
+  background:#010302 !important;
+}
+body{
+  position:relative;
+  isolation:isolate;
+  background:transparent !important;
+}
+.matrix-background{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  display:block;
+  pointer-events:none;
+  background:#000;
+}
+.shell{
+  position:relative;
+  z-index:2;
+}
+
+/* Slightly translucent CRT panels so the rain is visible behind them. */
+header,
+.live-block,
+.daily,
+.leader,
+.archive,
+.milestones-section,
+.table-wrap{
+  background-color:rgba(2,7,3,.88) !important;
+}
+
+
+/* =========================================================
+   TERMINAL CRT — USER PROFILE WINDOW
+   ========================================================= */
+
+/* Main profile terminal window */
+.history-overlay{
+  background:rgba(0,3,0,.88) !important;
+  backdrop-filter:blur(5px) brightness(.65);
+  -webkit-backdrop-filter:blur(5px) brightness(.65);
+}
+.history-modal{
+  width:min(940px,100%);
+  border:1px solid #3a843f !important;
+  border-radius:0 !important;
+  background:rgba(1,6,2,.975) !important;
+  color:#b8f5b0;
+  box-shadow:0 0 0 1px rgba(121,255,69,.06),0 0 46px rgba(75,255,65,.11) !important;
+  font-family:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+
+/* Header */
+.history-head{
+  border-bottom:1px solid #285c2c !important;
+  background:linear-gradient(90deg,rgba(121,255,69,.075),transparent 48%),#040a05 !important;
+  padding:17px 18px 15px;
+}
+.history-title-wrap .avatar{
+  width:50px;height:50px;
+  border:1px solid #4ea952;
+  border-radius:2px;
+  background:#071108;
+}
+.history-title{
+  color:#79ff45;
+  font-family:inherit;
+  font-size:23px;
+  text-shadow:0 0 10px rgba(121,255,69,.16);
+}
+.history-title::before{content:"> ";color:#58e7f1;}
+.history-subtitle{color:#668c69;font-family:inherit;}
+.history-close{
+  width:36px;height:36px;
+  border:1px solid #38793d !important;
+  border-radius:0 !important;
+  background:#071108 !important;
+  color:#79ff45 !important;
+  font-family:inherit;
+}
+.history-close:hover{
+  border-color:#ff5c42 !important;
+  background:#1d0906 !important;
+  color:#ff785f !important;
+}
+
+/* Recorded days / Posts recorded / Best day */
+.history-summary{
+  gap:8px;
+  padding:13px 18px;
+  border-bottom:1px solid #214b25 !important;
+  background:#020603;
+}
+.history-stat{
+  position:relative;
+  overflow:hidden;
+  min-height:74px;
+  padding:12px 13px;
+  border:1px solid #285c2c !important;
+  border-radius:0 !important;
+  background:#050b06 !important;
+  box-shadow:none !important;
+}
+.history-stat::before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:3px;
+  background:#79ff45;
+  opacity:.72;
+}
+.history-stat-label{
+  color:#639268;
+  font-family:inherit;
+  font-size:9px;
+  letter-spacing:.11em;
+}
+.history-stat-value{
+  margin-top:6px;
+  color:#b8f5b0;
+  font-family:inherit;
+  font-size:20px;
+  text-shadow:0 0 8px rgba(121,255,69,.08);
+}
+.history-stat:nth-child(2) .history-stat-value{color:#79ff45;}
+.history-stat:nth-child(3) .history-stat-value{color:#58e7f1;}
+
+/* Section shells */
+.history-medals,
+.history-achievements,
+.history-chart{
+  border-bottom:1px solid #214b25 !important;
+  background:#020603 !important;
+  padding:17px 18px 19px;
+}
+.history-medals-head,
+.history-achievements-head,
+.history-chart-head{margin-bottom:13px;}
+.history-medals-title,
+.history-achievements-title,
+.history-chart-title{
+  color:#79ff45;
+  font-family:inherit;
+  font-size:14px;
+  letter-spacing:.025em;
+  text-transform:uppercase;
+}
+.history-medals-title::before,
+.history-achievements-title::before,
+.history-chart-title::before{
+  content:">_ ";
+  color:#58e7f1;
+}
+.history-medals-note,
+.history-achievements-note,
+.history-chart-note{
+  color:#618266;
+  font-family:inherit;
+  font-size:10px;
+}
+.history-achievement-count{
+  border:1px solid #2b6330;
+  border-radius:0;
+  background:#071108;
+  color:#79ff45;
+  font-family:inherit;
+}
+
+/* Daily podium badges */
+.history-medal-grid{gap:8px;}
+.history-medal-card{
+  min-height:80px;
+  border-radius:0 !important;
+  background:#050a06 !important;
+  box-shadow:none !important;
+}
+.history-medal-card::before{display:none !important;}
+.history-medal-card.gold{
+  border:1px solid #8c7426 !important;
+  border-left:3px solid #ffd54a !important;
+}
+.history-medal-card.silver{
+  border:1px solid #59636e !important;
+  border-left:3px solid #d6dee8 !important;
+}
+.history-medal-card.bronze{
+  border:1px solid #714523 !important;
+  border-left:3px solid #cd7f32 !important;
+}
+.history-medal-icon{
+  width:46px;height:46px;
+  border-radius:2px !important;
+  border:1px solid #2a5e2f !important;
+  background:#071108 !important;
+  box-shadow:none !important;
+  font-size:25px;
+}
+.history-medal-card.gold .history-medal-icon{
+  border-color:#8c7426 !important;
+  background:rgba(255,213,74,.055) !important;
+}
+.history-medal-card.silver .history-medal-icon{
+  border-color:#59636e !important;
+  background:rgba(214,222,232,.045) !important;
+}
+.history-medal-card.bronze .history-medal-icon{
+  border-color:#714523 !important;
+  background:rgba(205,127,50,.055) !important;
+}
+.history-medal-count{font-family:inherit;font-size:27px;}
+.history-medal-card.gold .history-medal-count{color:#ffd54a;}
+.history-medal-card.silver .history-medal-count{color:#dce4ed;}
+.history-medal-card.bronze .history-medal-count{color:#dc9452;}
+.history-medal-name{color:#6b8a6e;font-family:inherit;}
+
+/* Achievements & milestones */
+.history-achievement-grid{gap:8px;}
+.history-achievement-card{
+  min-height:88px;
+  border:1px solid #285c2c !important;
+  border-left:3px solid #79ff45 !important;
+  border-radius:0 !important;
+  background:#050a06 !important;
+  box-shadow:none !important;
+}
+.history-achievement-card::after{display:none !important;}
+.history-achievement-card.record,
+.history-achievement-card.medal{border-left-color:#ffd54a !important;}
+.history-achievement-card.personal{border-left-color:#58e7f1 !important;}
+.history-achievement-card.streak{border-left-color:#79ff45 !important;}
+.history-achievement-card.rank{border-left-color:#a890ff !important;}
+.history-achievement-card.threshold{border-left-color:#4fcde1 !important;}
+.history-achievement-icon{
+  width:42px;height:42px;
+  border:1px solid #306936 !important;
+  border-radius:2px !important;
+  background:#071108 !important;
+  box-shadow:none !important;
+}
+.history-achievement-label{color:#6b946e;font-family:inherit;}
+.history-achievement-title{color:#c8f9c2;font-family:inherit;font-size:13px;}
+.history-achievement-detail{color:#739077;font-family:inherit;}
+.history-achievement-date{color:#58e7f1;font-family:inherit;}
+.history-achievement-toggle{
+  border:1px solid #34763a !important;
+  border-radius:0 !important;
+  background:#071108 !important;
+  color:#79ff45 !important;
+  font-family:inherit;
+  box-shadow:none !important;
+}
+.history-achievement-toggle:hover{
+  border-color:#79ff45 !important;
+  color:#c5ffad !important;
+  background:#0a160b !important;
+}
+
+/* Daily posting progress */
+.history-chart-summary-value{
+  color:#79ff45 !important;
+  font-family:inherit;
+  text-shadow:0 0 9px rgba(121,255,69,.12);
+}
+.history-chart-summary-label{color:#618266;font-family:inherit;}
+.history-chart-frame{
+  border:1px solid #285c2c !important;
+  border-radius:0 !important;
+  background:
+    linear-gradient(rgba(72,145,78,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(72,145,78,.055) 1px,transparent 1px),
+    #020503 !important;
+  background-size:28px 28px !important;
+  box-shadow:inset 0 0 26px rgba(43,255,57,.025) !important;
+}
+.history-chart-grid{stroke:rgba(99,178,105,.16) !important;}
+.history-chart-axis,
+.history-chart-x-label{
+  fill:#668c69 !important;
+  font-family:"Cascadia Code","SFMono-Regular",Consolas,monospace !important;
+}
+.history-chart-area{opacity:.16 !important;}
+.history-chart-line{
+  stroke:#79ff45 !important;
+  stroke-width:2.5 !important;
+  filter:drop-shadow(0 0 5px rgba(121,255,69,.28)) !important;
+}
+.history-chart-point{
+  fill:#79ff45 !important;
+  stroke:#020503 !important;
+}
+.history-chart-point.live{fill:#ff744f !important;}
+.history-chart-tooltip{
+  border:1px solid #397d3e !important;
+  border-radius:0 !important;
+  background:rgba(2,7,3,.97) !important;
+  color:#b8f5b0 !important;
+  box-shadow:0 0 20px rgba(50,255,60,.08) !important;
+  font-family:inherit;
+}
+.history-chart-tooltip-date{color:#658b69;}
+.history-chart-tooltip-value{color:#79ff45 !important;}
+
+/* Daily history table */
+.history-table-wrap{
+  border-top:0;
+  background:#020503;
+}
+.history-table{
+  font-family:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+.history-table th{
+  background:#061008 !important;
+  color:#79ff45 !important;
+  border-color:#244f28 !important;
+  box-shadow:none !important;
+}
+.history-table td{
+  border-color:#17391b !important;
+  color:#98c99b;
+}
+.history-table tbody tr:nth-child(even){background:rgba(33,86,38,.055);}
+.history-table tbody tr:hover{background:rgba(121,255,69,.065) !important;}
+.history-date{color:#b8f5b0;}
+.history-live{
+  border:1px solid #8e3d29;
+  border-radius:0 !important;
+  background:#190906 !important;
+  color:#ff755c !important;
+}
+.history-difference{color:#79ff45 !important;}
+.history-difference.zero{color:#667d68 !important;}
+.history-difference.negative{color:#ff644e !important;}
+.history-day-medal{
+  border-radius:0 !important;
+  background:#050a06 !important;
+  box-shadow:none !important;
+}
+.history-day-medal.gold{
+  border-color:#8c7426 !important;
+  color:#ffd54a !important;
+  background:rgba(255,213,74,.045) !important;
+}
+.history-day-medal.silver{
+  border-color:#59636e !important;
+  color:#dce4ed !important;
+  background:rgba(214,222,232,.035) !important;
+}
+.history-day-medal.bronze{
+  border-color:#714523 !important;
+  color:#dc9452 !important;
+  background:rgba(205,127,50,.045) !important;
+}
+.history-day-medal.pending{
+  border-color:#346d39 !important;
+  color:#789b7b !important;
+}
+.history-day-medal.none{color:#547257 !important;}
+
+/* Footer */
+.history-footer{
+  border-top:1px solid #285c2c !important;
+  background:#040a05;
+  color:#608063;
+  font-family:inherit;
+}
+.history-profile{color:#58e7f1 !important;font-family:inherit;}
+.history-profile:hover{color:#8ff5ff !important;}
+
+/* CRT scrollbar */
+.history-modal,
+.history-overlay,
+.history-chart-frame,
+.history-table-wrap{scrollbar-color:#397d3e #020503;}
+.history-modal::-webkit-scrollbar-thumb,
+.history-overlay::-webkit-scrollbar-thumb,
+.history-chart-frame::-webkit-scrollbar-thumb,
+.history-table-wrap::-webkit-scrollbar-thumb{
+  background:#397d3e !important;
+  border:2px solid #020503 !important;
+  border-radius:0 !important;
+}
+.history-modal::-webkit-scrollbar-track,
+.history-overlay::-webkit-scrollbar-track,
+.history-chart-frame::-webkit-scrollbar-track,
+.history-table-wrap::-webkit-scrollbar-track{background:#020503;}
+
+@media(max-width:640px){
+  .history-summary{grid-template-columns:1fr;}
+  .history-stat{min-height:66px;}
+  .history-medal-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:460px){
+  .history-medal-grid{grid-template-columns:1fr;}
+  .history-medal-card{
+    grid-template-columns:50px minmax(0,1fr);
+    justify-items:stretch;
+    text-align:left;
+  }
+}
+
+
+
+
+/* =========================================================
+   MATRIX CRT CROWN — CLEAN VERSION
+   ========================================================= */
+.matrix-crown{
+  position:relative;
+  width:122px;
+  height:58px;
+  margin:0 0 7px;
+  color:#79ff45;
+  pointer-events:none;
+  user-select:none;
+  filter:
+    drop-shadow(0 0 2px rgba(121,255,69,.95))
+    drop-shadow(0 0 8px rgba(121,255,69,.42));
+  animation:matrixCrownPulse 2.8s ease-in-out infinite;
+}
+.matrix-crown svg{
+  width:100%;
+  height:100%;
+  display:block;
+  overflow:visible;
+}
+.matrix-crown-shell{
+  fill:rgba(3,13,4,.96);
+  stroke:#79ff45;
+  stroke-width:2.2;
+  stroke-linejoin:miter;
+  vector-effect:non-scaling-stroke;
+}
+.matrix-crown-inner{
+  fill:none;
+  stroke:#baff9f;
+  stroke-width:1;
+  opacity:.55;
+  vector-effect:non-scaling-stroke;
+}
+.matrix-crown-pixel{
+  fill:#79ff45;
+}
+.matrix-crown-code{
+  fill:#baff9f;
+  font:800 7px/1 "Cascadia Code","SFMono-Regular",Consolas,monospace;
+  text-anchor:middle;
+  letter-spacing:2px;
+}
+.matrix-crown-led{
+  fill:#efffea;
+  stroke:#79ff45;
+  stroke-width:.8;
+  filter:
+    drop-shadow(0 0 2px rgba(239,255,234,1))
+    drop-shadow(0 0 6px rgba(121,255,69,.95));
+}
+@keyframes matrixCrownPulse{
+  0%,100%{
+    opacity:.92;
+    filter:
+      drop-shadow(0 0 2px rgba(121,255,69,.85))
+      drop-shadow(0 0 7px rgba(121,255,69,.34));
+  }
+  50%{
+    opacity:1;
+    filter:
+      drop-shadow(0 0 3px rgba(121,255,69,1))
+      drop-shadow(0 0 12px rgba(121,255,69,.55));
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .matrix-crown{animation:none !important;}
+}
+@media(max-width:480px){
+  .matrix-crown{
+    width:108px;
+    height:52px;
+    margin-bottom:6px;
+  }
+}
+
 </style>
 </head>
 <body>
+<canvas id="matrixBackground" class="matrix-background" aria-hidden="true"></canvas>
+
+
 <main class="shell">
   <header>
     <div>
@@ -1451,6 +2078,26 @@
       for (const user of podiumUsers) {
         const position = Math.min(3, Number(user.dailyRank) || (podiumUsers.indexOf(user) + 1));
         const entry = node('div',`podium-entry podium-position-${position}`);
+        if (position === 1) {
+          const matrixCrown = node('div','matrix-crown');
+          matrixCrown.setAttribute('aria-hidden','true');
+          matrixCrown.innerHTML = `<svg viewBox="0 0 122 58" focusable="false" aria-hidden="true">
+            <path class="matrix-crown-shell" d="M14 19 L30 34 L45 11 L61 31 L77 11 L92 34 L108 19 L103 45 H19 Z"/>
+            <path class="matrix-crown-inner" d="M22 37 H100"/>
+            <path class="matrix-crown-inner" d="M25 31 L31 37 L45 18 L61 38 L77 18 L91 37 L98 31"/>
+            <rect class="matrix-crown-shell" x="19" y="45" width="84" height="9"/>
+            <rect class="matrix-crown-pixel" x="23" y="48" width="4" height="3"/>
+            <rect class="matrix-crown-pixel" x="31" y="48" width="4" height="3"/>
+            <rect class="matrix-crown-pixel" x="87" y="48" width="4" height="3"/>
+            <rect class="matrix-crown-pixel" x="95" y="48" width="4" height="3"/>
+            <circle class="matrix-crown-led" cx="14" cy="19" r="2.4"/>
+            <circle class="matrix-crown-led" cx="45" cy="11" r="2.4"/>
+            <circle class="matrix-crown-led" cx="77" cy="11" r="2.4"/>
+            <circle class="matrix-crown-led" cx="108" cy="19" r="2.4"/>
+            <text class="matrix-crown-code" x="61" y="51.5">0101</text>
+          </svg>`;
+          entry.append(matrixCrown);
+        }
         if (position !== 1) entry.append(node('div','podium-medal',position === 2 ? '🥈' : '🥉'));
 
         const avatarRing = node('div','podium-avatar-ring');
@@ -2382,6 +3029,92 @@
   function formatDateKey(key){ const m=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m)return String(key||''); return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(+m[1],+m[2]-1,+m[3],12))); }
   function newYorkDateKey(value){ const parts=new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(value)); const values=Object.fromEntries(parts.map(part=>[part.type,part.value])); return `${values.year}-${values.month}-${values.day}`; }
 })();
+
+  /* Matrix-style digital rain background */
+  (() => {
+    const canvas=document.getElementById('matrixBackground');
+    if(!canvas)return;
+
+    const ctx=canvas.getContext('2d',{alpha:false});
+    if(!ctx)return;
+
+    const glyphs='アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}+-=*#$%&';
+    const fontSize=18;
+    const targetFps=30;
+    const frameInterval=1000/targetFps;
+    let width=0;
+    let height=0;
+    let columns=0;
+    let drops=[];
+    let lastFrame=0;
+
+    function resetCanvas(){
+      const dpr=Math.min(window.devicePixelRatio||1,2);
+      width=window.innerWidth;
+      height=window.innerHeight;
+
+      canvas.width=Math.max(1,Math.floor(width*dpr));
+      canvas.height=Math.max(1,Math.floor(height*dpr));
+      canvas.style.width=`${width}px`;
+      canvas.style.height=`${height}px`;
+
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.fillStyle='#000';
+      ctx.fillRect(0,0,width,height);
+
+      columns=Math.ceil(width/fontSize);
+      drops=Array.from({length:columns},()=>Math.floor(Math.random()*(height/fontSize)));
+      ctx.font=`${fontSize}px "Cascadia Code",Consolas,monospace`;
+      ctx.textBaseline='top';
+    }
+
+    function draw(timestamp){
+      requestAnimationFrame(draw);
+      if(timestamp-lastFrame<frameInterval)return;
+      lastFrame=timestamp;
+
+      /* Transparent black creates the classic fading trails. */
+      ctx.fillStyle='rgba(0,0,0,.105)';
+      ctx.fillRect(0,0,width,height);
+
+      for(let i=0;i<columns;i++){
+        const char=glyphs[Math.floor(Math.random()*glyphs.length)];
+        const x=i*fontSize;
+        const y=drops[i]*fontSize;
+
+        /* Brighter head, softer characters in the trail. */
+        if(Math.random()>.89){
+          ctx.fillStyle='#d7ffd0';
+          ctx.shadowColor='#8dff66';
+          ctx.shadowBlur=9;
+        }else{
+          ctx.fillStyle=`rgba(92,255,70,${0.46+Math.random()*.36})`;
+          ctx.shadowColor='#5cff46';
+          ctx.shadowBlur=4;
+        }
+
+        ctx.fillText(char,x,y);
+        ctx.shadowBlur=0;
+
+        if(y>height && Math.random()>.975){
+          drops[i]=0;
+        }else{
+          drops[i]+=0.72+Math.random()*.38;
+        }
+      }
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize',()=>{
+      clearTimeout(resizeTimer);
+      resizeTimer=setTimeout(resetCanvas,120);
+    },{passive:true});
+
+    resetCanvas();
+    requestAnimationFrame(draw);
+  })();
+
+
 </script>
 </body>
 </html>
