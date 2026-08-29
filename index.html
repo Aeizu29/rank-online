@@ -15,12 +15,47 @@
   const response=await fetch(sourceUrl,{cache:'no-store'});
   if(!response.ok) throw new Error(`Could not load dashboard source (HTTP ${response.status}).`);
   let html=await response.text();
+
+  // Keep the GitHub loader on main only.
   html=html.replace("const branches = unique([config.branch, 'main', 'master']);","const branches = unique([config.branch, 'main']);");
+
   const fetchReplacement="  async function fetchCandidate(source) {\n    const path = source.dataPath.split('/').filter(Boolean).map(encodeURIComponent).join('/');\n    const url = `https://raw.githubusercontent.com/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/${encodeURIComponent(source.branch)}/${path}`;\n    const response = await fetch(`${url}?_=${Date.now()}`, { cache:'no-store' });\n    if (!response.ok) {\n      throw new Error(`GitHub returned ${response.status} for ${source.branch}/${source.dataPath}`);\n    }\n    const data = await response.json();\n    if (!Array.isArray(data.ranking)) throw new Error('The JSON file does not contain a ranking array.');\n    return { data, source };\n  }\n\n  function renderAll()";
   const fetchPattern=/  async function fetchCandidate\(source\) \{[\s\S]*?\n  \}\n\n  function renderAll\(\)/;
   if(!fetchPattern.test(html)) throw new Error('Could not locate the dashboard GitHub loader.');
   html=html.replace(fetchPattern,fetchReplacement);
   html=html.replace('Tried ranking.json and docs/ranking.json on main/master.','Tried ranking.json and docs/ranking.json on main.');
+
+  // New York clock fix: keep AM/PM + EDT/EST, but show midnight as 00:xx:xx AM.
+  const clockReplacement=`  function renderNewYorkClock() {
+    const now = new Date();
+    const timeFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: DAILY_TIME_ZONE,
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short'
+    });
+    const timeParts = timeFormatter.formatToParts(now);
+    const dayPeriod = timeParts.find(part => part.type === 'dayPeriod')?.value;
+    el.newYorkClockTime.textContent = timeParts.map(part => {
+      if (part.type === 'hour' && dayPeriod === 'AM' && part.value === '12') return '00';
+      return part.value;
+    }).join('');
+    el.newYorkClockDate.textContent = new Intl.DateTimeFormat('en-US', {
+      timeZone: DAILY_TIME_ZONE,
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    }).format(now);
+  }
+
+  function setStatus`;
+  const clockPattern=/  function renderNewYorkClock\(\) \{[\s\S]*?\n  \}\n\n  function setStatus/;
+  if(!clockPattern.test(html)) throw new Error('Could not locate the New York clock function.');
+  html=html.replace(clockPattern,clockReplacement);
+
   document.open();
   document.write(html);
   document.close();
