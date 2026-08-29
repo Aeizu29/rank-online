@@ -16,7 +16,7 @@
   if(!response.ok) throw new Error(`Could not load dashboard source (HTTP ${response.status}).`);
   let html=await response.text();
 
-  // Keep the GitHub loader on main only.
+  // Keep the GitHub data loader on main only.
   html=html.replace("const branches = unique([config.branch, 'main', 'master']);","const branches = unique([config.branch, 'main']);");
 
   const fetchReplacement="  async function fetchCandidate(source) {\n    const path = source.dataPath.split('/').filter(Boolean).map(encodeURIComponent).join('/');\n    const url = `https://raw.githubusercontent.com/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/${encodeURIComponent(source.branch)}/${path}`;\n    const response = await fetch(`${url}?_=${Date.now()}`, { cache:'no-store' });\n    if (!response.ok) {\n      throw new Error(`GitHub returned ${response.status} for ${source.branch}/${source.dataPath}`);\n    }\n    const data = await response.json();\n    if (!Array.isArray(data.ranking)) throw new Error('The JSON file does not contain a ranking array.');\n    return { data, source };\n  }\n\n  function renderAll()";
@@ -55,6 +55,60 @@
   const clockPattern=/  function renderNewYorkClock\(\) \{[\s\S]*?\n  \}\n\n  function setStatus/;
   if(!clockPattern.test(html)) throw new Error('Could not locate the New York clock function.');
   html=html.replace(clockPattern,clockReplacement);
+
+  // Shared-place podium fix.
+  // The leaderboard already gives equal post totals the same dailyRank.
+  // Include every user whose shared rank is #1, #2 or #3, including ties at the podium boundary.
+  const oldPodiumSelection="    const podiumUsers = dailyLeaderboard.slice(0, 3);";
+  const newPodiumSelection="    const podiumUsers = dailyLeaderboard.filter(user => { const place = Number(user.dailyRank) || 0; return place >= 1 && place <= 3; });";
+  if(!html.includes(oldPodiumSelection)) throw new Error('Could not locate the live podium selection.');
+  html=html.replace(oldPodiumSelection,newPodiumSelection);
+
+  // Mark tied podiums so duplicate places get separate visual slots instead of overlapping.
+  const oldPodiumStage="      const stage = node('div',`podium-stage count-${podiumUsers.length}`);";
+  const newPodiumStage="      const hasPodiumTie = podiumUsers.some((user,index) => index > 0 && Number(user.dailyRank) === Number(podiumUsers[index - 1].dailyRank));\n      const stage = node('div',`podium-stage count-${podiumUsers.length}${hasPodiumTie ? ' podium-has-tie' : ''}${podiumUsers.length > 3 ? ' podium-many' : ''}`);";
+  if(!html.includes(oldPodiumStage)) throw new Error('Could not locate the live podium stage.');
+  html=html.replace(oldPodiumStage,newPodiumStage);
+
+  // Keep the real shared rank on every card (#2/#2, #1/#1, #3/#3, etc.).
+  // The existing render code already uses user.dailyRank for the label and medal styling.
+  const tiePodiumStyle=`
+<style id="postmaxxers-shared-podium-fix">
+  /* Two tied podium users: give each one its own grid cell. */
+  .podium-stage.podium-has-tie.count-2 .podium-entry:nth-child(1){grid-column:2!important;grid-row:1!important}
+  .podium-stage.podium-has-tie.count-2 .podium-entry:nth-child(2){grid-column:1!important;grid-row:1!important}
+
+  /* Three podium users with any tie: preserve the classic 2 / 1 / 3 visual slots
+     while each card keeps its actual shared daily rank and matching styling. */
+  .podium-stage.podium-has-tie.count-3 .podium-entry:nth-child(1){grid-column:2!important;grid-row:1!important}
+  .podium-stage.podium-has-tie.count-3 .podium-entry:nth-child(2){grid-column:1!important;grid-row:1!important}
+  .podium-stage.podium-has-tie.count-3 .podium-entry:nth-child(3){grid-column:3!important;grid-row:1!important}
+
+  /* If a tie creates more than three podium users, show every tied user instead
+     of silently cutting somebody out of the podium. */
+  .podium-stage.podium-many{
+    width:100%!important;
+    max-width:1100px!important;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr))!important;
+    align-items:end!important;
+    justify-content:center!important;
+  }
+  .podium-stage.podium-many .podium-entry{
+    grid-column:auto!important;
+    grid-row:auto!important;
+  }
+
+  @media(max-width:480px){
+    .podium-stage.podium-has-tie.count-2 .podium-entry,
+    .podium-stage.podium-has-tie.count-3 .podium-entry,
+    .podium-stage.podium-many .podium-entry{
+      grid-column:1!important;
+      grid-row:auto!important;
+    }
+    .podium-stage.podium-many{grid-template-columns:1fr!important}
+  }
+</style>`;
+  html=html.replace('</head>',`${tiePodiumStyle}\n</head>`);
 
   document.open();
   document.write(html);
