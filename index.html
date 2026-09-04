@@ -5079,6 +5079,158 @@
       .history-chart-frame svg { min-height:212px !important; max-height:235px !important; }
     }
 
+  
+
+    /* V28: cleaner mobile profile top / iPhone safe-area fix */
+    @media (max-width:640px) {
+      .history-modal {
+        padding-top:0 !important;
+      }
+
+      .history-head {
+        position:relative !important;
+        top:auto !important;
+        z-index:10 !important;
+        display:flex !important;
+        flex-direction:row !important;
+        flex-wrap:nowrap !important;
+        align-items:center !important;
+        justify-content:flex-start !important;
+        width:100% !important;
+        height:auto !important;
+        min-height:74px !important;
+        max-height:none !important;
+        padding:
+          calc(env(safe-area-inset-top, 0px) + 12px)
+          66px
+          12px
+          14px !important;
+        overflow:visible !important;
+        border:0 !important;
+        border-bottom:1px solid rgba(255,255,255,.12) !important;
+        background:linear-gradient(180deg,rgba(14,18,31,.94),rgba(14,18,31,.78)) !important;
+        box-shadow:none !important;
+        backdrop-filter:blur(22px) saturate(155%) !important;
+        -webkit-backdrop-filter:blur(22px) saturate(155%) !important;
+      }
+
+      .history-title-wrap {
+        display:flex !important;
+        flex:1 1 auto !important;
+        flex-wrap:nowrap !important;
+        align-items:center !important;
+        gap:10px !important;
+        width:100% !important;
+        min-width:0 !important;
+        overflow:hidden !important;
+      }
+
+      .history-title-wrap .avatar {
+        width:44px !important;
+        height:44px !important;
+        min-width:44px !important;
+        flex:0 0 44px !important;
+        margin:0 !important;
+      }
+
+      .history-title-wrap > div:last-child {
+        min-width:0 !important;
+        overflow:hidden !important;
+      }
+
+      .history-title {
+        margin:0 !important;
+        max-width:100% !important;
+        font-size:19px !important;
+        line-height:1.05 !important;
+        white-space:nowrap !important;
+        overflow:hidden !important;
+        text-overflow:ellipsis !important;
+      }
+
+      .history-subtitle {
+        display:block !important;
+        margin:4px 0 0 !important;
+        max-width:100% !important;
+        font-size:10px !important;
+        line-height:1.2 !important;
+        white-space:nowrap !important;
+        overflow:hidden !important;
+        text-overflow:ellipsis !important;
+      }
+
+      .history-close {
+        position:absolute !important;
+        top:calc(env(safe-area-inset-top, 0px) + 12px) !important;
+        right:14px !important;
+        left:auto !important;
+        bottom:auto !important;
+        width:42px !important;
+        height:42px !important;
+        min-width:42px !important;
+        margin:0 !important;
+        padding:0 !important;
+        display:grid !important;
+        place-items:center !important;
+        border-radius:14px !important;
+        font-size:25px !important;
+        line-height:1 !important;
+      }
+
+      /* Clean, non-clipped stat grid below the identity bar. */
+      .history-summary {
+        display:grid !important;
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        grid-auto-flow:row !important;
+        grid-auto-columns:auto !important;
+        gap:8px !important;
+        padding:10px 12px 12px !important;
+        overflow:visible !important;
+        scroll-snap-type:none !important;
+      }
+
+      .history-stat {
+        min-width:0 !important;
+        min-height:72px !important;
+        scroll-snap-align:none !important;
+      }
+    }
+
+    @media (max-width:390px) {
+      .history-head {
+        min-height:68px !important;
+        padding:
+          calc(env(safe-area-inset-top, 0px) + 10px)
+          60px
+          10px
+          12px !important;
+      }
+      .history-title-wrap .avatar {
+        width:40px !important;
+        height:40px !important;
+        min-width:40px !important;
+        flex-basis:40px !important;
+      }
+      .history-title { font-size:17px !important; }
+      .history-subtitle {
+        display:block !important;
+        font-size:9px !important;
+      }
+      .history-close {
+        top:calc(env(safe-area-inset-top, 0px) + 10px) !important;
+        right:12px !important;
+        width:38px !important;
+        height:38px !important;
+        min-width:38px !important;
+        flex-basis:38px !important;
+        border-radius:12px !important;
+        font-size:23px !important;
+      }
+      .history-summary {
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+      }
+    }
+
   </style>
 </head>
 <!-- REBUILT NEWS-WIRE BANNER BUILD. GRAPHS V3 BUILD: 18 profile graph views + high-visibility ticker stats. MOUSE TOOLTIP BUILD: chart stat panels follow the pointer and flip only near chart edges. -->
