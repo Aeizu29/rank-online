@@ -4816,10 +4816,20 @@
     setStatus('loading', 'Last updated', 'Checking the latest tracker data…');
     hideError();
     try {
-      if (!config.owner || !config.repo) throw new Error('Could not detect the GitHub repository from this URL. Add ?owner=YOURNAME&repo=YOURREPO to the dashboard URL.');
-      const result = state.selectedSource
-        ? await fetchCandidate(state.selectedSource)
-        : await findDataFile();
+      let result = null;
+
+      // Reuse the last known-good source when possible, but never get stuck on it.
+      if (state.selectedSource) {
+        try {
+          result = await fetchCandidate(state.selectedSource);
+        } catch (error) {
+          console.warn('Previous ranking source failed; rediscovering.', error);
+          state.selectedSource = null;
+        }
+      }
+
+      if (!result) result = await findDataFile();
+
       state.selectedSource = result.source;
       state.data = result.data;
       renderAll();
@@ -4845,21 +4855,100 @@
       'ranking.json',
       'docs/ranking.json'
     ].filter(Boolean));
-    const branches = unique([config.branch, 'main', 'master']);
     const errors = [];
+
+    // Prefer the JSON exactly as GitHub Pages publishes it. This avoids a
+    // stale/invalid branch ref such as master when the repository uses main.
+    for (const source of publishedDataCandidates(paths)) {
+      try {
+        return await fetchCandidate(source);
+      } catch (error) {
+        errors.push(error.message || String(error));
+      }
+    }
+
+    if (!config.owner || !config.repo) {
+      throw new Error(errors.at(-1) || 'Could not detect the GitHub repository from this URL. Add ?owner=YOURNAME&repo=YOURREPO to the dashboard URL.');
+    }
+
+    // Ask GitHub for the repository's actual default branch before trying
+    // legacy fallbacks. This handles main/master changes automatically.
+    const defaultBranch = await detectDefaultBranch().catch(error => {
+      errors.push(error.message || String(error));
+      return '';
+    });
+    const branches = unique([defaultBranch, config.branch, 'main', 'master'].filter(Boolean));
+
     for (const branch of branches) {
       for (const dataPath of paths) {
         try {
-          return await fetchCandidate({ branch, dataPath });
+          return await fetchCandidate({ kind:'github', branch, dataPath });
         } catch (error) {
           errors.push(error.message || String(error));
         }
       }
     }
-    throw new Error(errors.at(-1) || 'ranking.json was not found.');
+
+    const usefulErrors = errors.filter(Boolean).slice(-6);
+    throw new Error(usefulErrors.length
+      ? `Could not find ranking.json. Recent attempts:
+${usefulErrors.join('\n')}`
+      : 'ranking.json was not found.');
+  }
+
+  function publishedDataCandidates(paths) {
+    if (!/^https?:$/.test(location.protocol)) return [];
+    const seen = new Set();
+    const sources = [];
+    const add = (url, dataPath) => {
+      const href = String(url);
+      if (seen.has(href)) return;
+      seen.add(href);
+      sources.push({ kind:'published', url:href, dataPath });
+    };
+
+    const currentDirectory = new URL('./', location.href);
+    for (const dataPath of paths) add(new URL(dataPath, currentDirectory), dataPath);
+
+    const host = location.hostname.toLowerCase();
+    if (host.endsWith('.github.io')) {
+      const firstPath = location.pathname.split('/').filter(Boolean)[0];
+      const projectRoot = firstPath ? `${location.origin}/${firstPath}/` : `${location.origin}/`;
+      for (const dataPath of paths) add(new URL(dataPath, projectRoot), dataPath);
+    } else {
+      for (const dataPath of paths) add(new URL(`/${dataPath.replace(/^\/+/, '')}`, location.origin), dataPath);
+    }
+
+    return sources;
+  }
+
+  async function detectDefaultBranch() {
+    if (!config.owner || !config.repo) return '';
+    const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}`;
+    const response = await fetch(`${url}?_=${Date.now()}`, {
+      cache:'no-store',
+      headers:{ 'Accept':'application/vnd.github+json', 'X-GitHub-Api-Version':GITHUB_API_VERSION }
+    });
+    if (!response.ok) {
+      let detail='';
+      try { detail=(await response.json()).message || ''; } catch {}
+      throw new Error(`GitHub repository lookup returned ${response.status}${detail ? `: ${detail}` : ''}`);
+    }
+    const repo = await response.json();
+    return String(repo.default_branch || '').trim();
   }
 
   async function fetchCandidate(source) {
+    if (source?.kind === 'published') {
+      const url = new URL(source.url);
+      url.searchParams.set('_', String(Date.now()));
+      const response = await fetch(url, { cache:'no-store' });
+      if (!response.ok) throw new Error(`Published site returned ${response.status} for ${source.dataPath}`);
+      const data = await response.json();
+      if (!Array.isArray(data?.ranking)) throw new Error(`Published ${source.dataPath} does not contain a ranking array.`);
+      return { data, source };
+    }
+
     const path = source.dataPath.split('/').filter(Boolean).map(encodeURIComponent).join('/');
     const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${path}?ref=${encodeURIComponent(source.branch)}`;
     const response = await fetch(`${url}&_=${Date.now()}`, {
@@ -4876,7 +4965,7 @@
     const text = decodeBase64Utf8(file.content.replace(/\s/g,''));
     const data = JSON.parse(text);
     if (!Array.isArray(data.ranking)) throw new Error('The JSON file does not contain a ranking array.');
-    return { data, source };
+    return { data, source:{ ...source, kind:'github' } };
   }
 
   function renderAll() {
@@ -4887,7 +4976,9 @@
     renderTable();
     if (state.activeHistoryUser) renderUserHistoryModal(state.activeHistoryUser);
     el.sourceNote.textContent = state.selectedSource
-      ? `Data source: ${config.owner}/${config.repo} · ${state.selectedSource.branch}/${state.selectedSource.dataPath}. “New posts today” is cumulative across scans and resets only at New York midnight. The page reads GitHub directly; no GitHub token is present in this website.`
+      ? `${state.selectedSource.kind === 'published'
+          ? `Data source: published ${state.selectedSource.dataPath}`
+          : `Data source: ${config.owner}/${config.repo} · ${state.selectedSource.branch}/${state.selectedSource.dataPath}`}. “New posts today” is cumulative across scans and resets only at New York midnight. No GitHub token is present in this website.`
       : `Repository detected: ${config.owner || 'unknown'}/${config.repo || 'unknown'}.`;
   }
 
@@ -7336,7 +7427,7 @@
   function hideError(){ el.error.classList.remove('show'); }
   function isStale(data){ return !data?.updatedAtMs || Date.now()-Number(data.updatedAtMs)>26*60*60*1000; }
   function formatSetupError(error){
-    return `${error.message || error}\n\nExpected repository: ${config.owner || '?'}/${config.repo || '?'}\nTried ranking.json and docs/ranking.json on main/master.\nOpen the extension’s GitHub publishing settings and make sure Owner, Repository, Branch, and JSON path match this GitHub Pages repository.`;
+    return `${error.message || error}\n\nExpected repository: ${config.owner || '?'}/${config.repo || '?'}\nThe dashboard tried the published ranking.json first, then the repository default branch, main, and master with ranking.json/docs/ranking.json.\nOpen the extension’s GitHub publishing settings and make sure Owner, Repository, Branch, and JSON path match this GitHub Pages repository.`;
   }
   function inferRepository(){
     const host=location.hostname.toLowerCase();
