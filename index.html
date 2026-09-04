@@ -4699,6 +4699,7 @@
     { min:5000,   key:'officer',   label:'Officer' },
     { min:0,      key:'recruit',   label:'Recruit' }
   ];
+  const DEMO_BUILD = false;
   // Replace this with the URL shown after deploying scan-relay-worker.js.
   const REMOTE_SCAN_ENDPOINT = 'https://postmaxxers-scan-relay.rpk1dhz65tnreg.workers.dev/';
   const params = new URLSearchParams(location.search);
@@ -7427,7 +7428,10 @@ ${usefulErrors.join('\n')}`
   function hideError(){ el.error.classList.remove('show'); }
   function isStale(data){ return !data?.updatedAtMs || Date.now()-Number(data.updatedAtMs)>26*60*60*1000; }
   function formatSetupError(error){
-    return `${error.message || error}\n\nExpected repository: ${config.owner || '?'}/${config.repo || '?'}\nThe dashboard tried the published ranking.json first, then the repository default branch, main, and master with ranking.json/docs/ranking.json.\nOpen the extension’s GitHub publishing settings and make sure Owner, Repository, Branch, and JSON path match this GitHub Pages repository.`;
+    const message=String(error?.message || error || 'Unknown error');
+    const isRepositoryError=/github|ranking\.json|docs\/ranking\.json|no commit found|repository|http\s*404|returned 404|ref\s+/i.test(message);
+    if(!isRepositoryError) return message;
+    return `${message}\n\nExpected repository: ${config.owner || '?'}/${config.repo || '?'}\nThe dashboard tried the published ranking.json first, then the repository default branch, main, and master with ranking.json/docs/ranking.json.\nOpen the extension’s GitHub publishing settings and make sure Owner, Repository, Branch, and JSON path match this GitHub Pages repository.`;
   }
   function inferRepository(){
     const host=location.hostname.toLowerCase();
