@@ -5231,6 +5231,18 @@
       }
     }
 
+  
+
+    /* V29 mobile graph finger scrubbing */
+    .history-chart-hit {
+      touch-action:pan-y !important;
+      cursor:crosshair;
+    }
+    @media (max-width:760px) {
+      .history-chart-frame { overscroll-behavior-x:contain; }
+      .history-chart-hit { touch-action:pan-y !important; }
+    }
+
   </style>
 </head>
 <!-- REBUILT NEWS-WIRE BANNER BUILD. GRAPHS V3 BUILD: 18 profile graph views + high-visibility ticker stats. MOUSE TOOLTIP BUILD: chart stat panels follow the pointer and flip only near chart edges. -->
@@ -7185,8 +7197,15 @@ ${usefulErrors.join('\n')}`
       }
     };
 
+    let touchScrubbing=false;
     surface.addEventListener('pointermove',event=>{
-      if(event.pointerType==='touch' || pinnedIndex>=0)return;
+      if(event.pointerType==='touch'){
+        if(!touchScrubbing)return;
+        pinnedIndex=nearestIndexForClientX(event.clientX);
+        showIndex(pinnedIndex,{clientX:event.clientX,clientY:event.clientY});
+        return;
+      }
+      if(pinnedIndex>=0)return;
       showIndex(nearestIndexForClientX(event.clientX),{clientX:event.clientX,clientY:event.clientY});
     });
     surface.addEventListener('pointerenter',event=>{
@@ -7208,11 +7227,19 @@ ${usefulErrors.join('\n')}`
 
     surface.addEventListener('pointerdown',event=>{
       if(event.pointerType!=='touch')return;
-      event.preventDefault();
+      touchScrubbing=true;
+      try{surface.setPointerCapture(event.pointerId);}catch{}
       const index=nearestIndexForClientX(event.clientX);
       pinnedIndex=index;
       showIndex(index,{clientX:event.clientX,clientY:event.clientY});
     });
+    const endTouchScrub=event=>{
+      if(event.pointerType!=='touch')return;
+      touchScrubbing=false;
+      try{if(surface.hasPointerCapture(event.pointerId))surface.releasePointerCapture(event.pointerId);}catch{}
+    };
+    surface.addEventListener('pointerup',endTouchScrub);
+    surface.addEventListener('pointercancel',endTouchScrub);
 
     surface.addEventListener('keydown',event=>{
       if(!points.length)return;
@@ -7763,11 +7790,33 @@ ${usefulErrors.join('\n')}`
       tooltip.classList.remove('show','pinned');
       active=-1;
     };
-    surface.addEventListener('pointermove',event=>{if(event.pointerType!=='touch'&&pinned<0)show(nearest(event.clientX),{clientX:event.clientX,clientY:event.clientY});});
+    let touchScrubbing=false;
+    surface.addEventListener('pointermove',event=>{
+      if(event.pointerType==='touch'){
+        if(!touchScrubbing)return;
+        pinned=nearest(event.clientX);
+        show(pinned,{clientX:event.clientX,clientY:event.clientY});
+        return;
+      }
+      if(pinned<0)show(nearest(event.clientX),{clientX:event.clientX,clientY:event.clientY});
+    });
     surface.addEventListener('pointerenter',event=>{if(pinned<0)show(nearest(event.clientX),{clientX:event.clientX,clientY:event.clientY});});
     surface.addEventListener('pointerleave',()=>{if(pinned<0)clear();});
     surface.addEventListener('click',event=>{event.stopPropagation();const index=nearest(event.clientX);pinned=pinned===index?-1:index;show(index,{clientX:event.clientX,clientY:event.clientY});});
-    surface.addEventListener('pointerdown',event=>{if(event.pointerType==='touch'){event.preventDefault();pinned=nearest(event.clientX);show(pinned,{clientX:event.clientX,clientY:event.clientY});}});
+    surface.addEventListener('pointerdown',event=>{
+      if(event.pointerType!=='touch')return;
+      touchScrubbing=true;
+      try{surface.setPointerCapture(event.pointerId);}catch{}
+      pinned=nearest(event.clientX);
+      show(pinned,{clientX:event.clientX,clientY:event.clientY});
+    });
+    const endTouchScrub=event=>{
+      if(event.pointerType!=='touch')return;
+      touchScrubbing=false;
+      try{if(surface.hasPointerCapture(event.pointerId))surface.releasePointerCapture(event.pointerId);}catch{}
+    };
+    surface.addEventListener('pointerup',endTouchScrub);
+    surface.addEventListener('pointercancel',endTouchScrub);
     surface.addEventListener('keydown',event=>{
       let index=active>=0?active:(pinned>=0?pinned:0);
       if(event.key==='ArrowLeft'){event.preventDefault();show(Math.max(0,index-1),{fromKeyboard:true});}
