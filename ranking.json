@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-09-07T19:28:02.334Z",
-  "updatedAtMs": 1788809282334,
+  "updatedAt": "2026-09-07T19:28:05.951Z",
+  "updatedAtMs": 1788809285951,
   "nextUpdateAt": "2026-09-08T03:55:00.000Z",
   "nextUpdateAtMs": 1788839700000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9394231
+    "combinedPosts": 9394232
   },
   "dailyTracking": {
     "dateKey": "2026-09-07",
     "timeZone": "America/New_York",
     "startedAt": 1788753901082,
-    "lastUpdatedAt": 1788809282334,
+    "lastUpdatedAt": 1788809285951,
     "currentLeaders": [
       {
         "dateKey": "2026-09-07",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/animecel2d.3107/",
         "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
         "trackingStartedAt": 1788753901082,
-        "trackingEndedAt": 1788809282334,
-        "finalizedAt": 1788809282560,
+        "trackingEndedAt": 1788809285951,
+        "finalizedAt": 1788809286153,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/animecel2d.3107/",
       "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
       "trackingStartedAt": 1788753901082,
-      "trackingEndedAt": 1788809282334,
-      "finalizedAt": 1788809282560,
+      "trackingEndedAt": 1788809285951,
+      "finalizedAt": 1788809286153,
       "isAliased": false
     }
   },
@@ -39624,7 +39624,7 @@
       "dateKey": "2026-09-07",
       "timeZone": "America/New_York",
       "startedAt": 1788753901082,
-      "lastUpdatedAt": 1788809282334,
+      "lastUpdatedAt": 1788809285951,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -39666,8 +39666,8 @@
           "userId": "14662",
           "isAliased": false,
           "startPosts": 240572,
-          "postsGained": 1571,
-          "endPosts": 242143,
+          "postsGained": 1572,
+          "endPosts": 242144,
           "finalRank": 8,
           "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
           "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1788565830"
@@ -40830,8 +40830,8 @@
     {
       "rank": 8,
       "username": "TheSecondComing",
-      "posts": 242143,
-      "postDelta": 1571,
+      "posts": 242144,
+      "postDelta": 1572,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
