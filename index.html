@@ -5048,7 +5048,6 @@
   }));
 
   el.remoteScanButton.addEventListener('click', requestRemoteScan);
-  updateRemoteScanAvailability();
   el.search.addEventListener('input', () => { state.query = el.search.value.trim().toLowerCase(); renderTable(); });
   el.historyClose.addEventListener('click', closeUserHistory);
   el.historyAchievementToggle.addEventListener('click',()=>{ state.profileAchievementsExpanded=!state.profileAchievementsExpanded; renderProfileAchievementCards(); });
@@ -5062,6 +5061,37 @@
   renderNewYorkClock();
   loadData(false);
 
+  // Remote-scan storage is optional. Never let a browser privacy/storage
+  // restriction prevent the clock or leaderboard from loading.
+  try {
+    updateRemoteScanAvailability();
+  } catch (error) {
+    console.warn('Remote scan availability check failed; continuing without stored cooldown.', error);
+    el.remoteScanButton.disabled = false;
+    el.remoteScanButton.textContent = 'Force scan';
+    el.remoteScanFeedback.classList.remove('show');
+    el.remoteScanStatus.textContent = 'Available once per hour.';
+  }
+
+
+  function safeStorageGet(key) {
+    try {
+      return window.localStorage?.getItem(key) ?? null;
+    } catch (error) {
+      console.warn('localStorage read blocked; continuing without saved remote-scan cooldown.', error);
+      return null;
+    }
+  }
+
+  function safeStorageSet(key, value) {
+    try {
+      window.localStorage?.setItem(key, value);
+      return true;
+    } catch (error) {
+      console.warn('localStorage write blocked; remote-scan cooldown will not persist after reload.', error);
+      return false;
+    }
+  }
 
   async function requestRemoteScan() {
     if (!isRemoteScanConfigured()) {
@@ -5080,7 +5110,7 @@
       }
       if (!response.ok || !payload.ok) throw new Error(payload.error || `Request failed with HTTP ${response.status}`);
       const nextAllowedAt = Number(payload.nextAllowedAt || Date.now() + 3600000);
-      localStorage.setItem('postmaxxersRemoteScanNextAllowedAt', String(nextAllowedAt));
+      safeStorageSet('postmaxxersRemoteScanNextAllowedAt', String(nextAllowedAt));
       el.remoteScanStatus.textContent = 'Scan request sent successfully.';
       el.remoteScanFeedback.textContent = 'Please wait about 10–60 seconds for the extension to scan the forum and upload the updated ranking. The website may take a little longer to show the new data.';
       el.remoteScanFeedback.classList.add('show');
@@ -5104,7 +5134,7 @@
       el.remoteScanStatus.textContent = 'Remote scan relay is not configured.';
       return;
     }
-    const nextAllowedAt = Number(localStorage.getItem('postmaxxersRemoteScanNextAllowedAt') || 0);
+    const nextAllowedAt = Number(safeStorageGet('postmaxxersRemoteScanNextAllowedAt') || 0);
     if (nextAllowedAt > Date.now()) startRemoteCooldown(nextAllowedAt);
     else {
       el.remoteScanButton.disabled = false;
