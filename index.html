@@ -5068,7 +5068,7 @@
 (() => {
   const GITHUB_API_VERSION = '2022-11-28';
   const POLL_MS = 60 * 60 * 1000;
-  const REMOTE_SCAN_COOLDOWN_MS = 5 * 60 * 1000;
+  const REMOTE_SCAN_COOLDOWN_MS = 5 * 60 * 1000; // Fixed 5-minute website cooldown
   const RANKING_LIMIT = 100;
   const DAILY_TIME_ZONE = 'America/New_York';
   const POST_RANKS = [
@@ -5180,8 +5180,8 @@
         return;
       }
       if (!response.ok || !payload.ok) throw new Error(payload.error || `Request failed with HTTP ${response.status}`);
-      const nextAllowedAt = Number(payload.nextAllowedAt || Date.now() + REMOTE_SCAN_COOLDOWN_MS);
-      safeStorageSet('postmaxxersRemoteScanNextAllowedAt5m', String(nextAllowedAt));
+      const nextAllowedAt = Date.now() + REMOTE_SCAN_COOLDOWN_MS;
+      safeStorageSet('postmaxxersRemoteScanNextAllowedAt5mV2', String(nextAllowedAt));
       el.remoteScanStatus.textContent = 'Scan request sent successfully.';
       el.remoteScanFeedback.textContent = 'Please wait about 10–60 seconds for the extension to scan the forum and upload the updated ranking. The website may take a little longer to show the new data.';
       el.remoteScanFeedback.classList.add('show');
@@ -5205,7 +5205,7 @@
       el.remoteScanStatus.textContent = 'Remote scan relay is not configured.';
       return;
     }
-    const nextAllowedAt = Number(safeStorageGet('postmaxxersRemoteScanNextAllowedAt5m') || 0);
+    const nextAllowedAt = Number(safeStorageGet('postmaxxersRemoteScanNextAllowedAt5mV2') || 0);
     if (nextAllowedAt > Date.now()) startRemoteCooldown(nextAllowedAt);
     else {
       el.remoteScanButton.disabled = false;
