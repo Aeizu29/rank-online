@@ -5767,28 +5767,56 @@ body.sidebar-collapsed .epal-nav a:focus-visible::after {
 }
 </style>
 
+
+<style id="remote-scan-stability-fix">
+/* Keep Force Scan feedback visually stable: no flash/repaint animation. */
+.remote-scan-feedback {
+  animation:none !important;
+  transition:none !important;
+  transform:none !important;
+  will-change:auto !important;
+}
+.remote-scan-feedback.show {
+  animation:none !important;
+  transition:none !important;
+}
+.remote-scan-status {
+  font-variant-numeric:tabular-nums;
+}
+.remote-scan-button:focus:not(:focus-visible) {
+  outline:none !important;
+  box-shadow:none !important;
+}
+</style>
+
+
+<style id="no-sidebar-layout">
+/* Sidebar removed: restore a centered full-width dashboard layout. */
+body,
+body.sidebar-collapsed,
+body:not(.sidebar-collapsed) {
+  padding-left:0 !important;
+}
+.epal-sidebar,
+.epal-sidebar-toggle {
+  display:none !important;
+}
+.shell {
+  width:min(1180px, calc(100% - 32px)) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+@media (max-width:980px) {
+  .shell { width:min(100% - 24px, 1100px) !important; }
+}
+@media (max-width:620px) {
+  .shell { width:calc(100% - 16px) !important; }
+}
+</style>
+
 </head>
 <!-- REBUILT NEWS-WIRE BANNER BUILD. GRAPHS V3 BUILD: 18 profile graph views + high-visibility ticker stats. MOUSE TOOLTIP BUILD: chart stat panels follow the pointer and flip only near chart edges. -->
 <body>
-<aside class="epal-sidebar" aria-label="Dashboard navigation">
-  <div class="epal-brand">
-    <div class="epal-brand-mark" aria-hidden="true">P</div>
-    <div class="epal-brand-copy"><div class="epal-brand-title">POSTMAXXERS</div><div class="epal-brand-sub">Live ranking hub</div></div>
-  <button class="epal-sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" aria-expanded="true" title="Collapse sidebar">
-    <span class="epal-sidebar-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.5 6.5 9 12l5.5 5.5"/></svg></span>
-  </button>
-  </div>
-  <nav class="epal-nav">
-    <div class="epal-nav-label">Dashboard</div>
-    <a href="#today"><span class="epal-nav-icon">✦</span><span>Today</span></a>
-    <a href="#medals"><span class="epal-nav-icon">◈</span><span>Medals</span></a>
-    <a href="#daily-history"><span class="epal-nav-icon">↺</span><span>Daily history</span></a>
-    <a href="#achievements"><span class="epal-nav-icon">★</span><span>Achievements</span></a>
-    <a href="#ranking"><span class="epal-nav-icon">≡</span><span>Top 100</span></a>
-  </nav>
-  <div class="epal-sidebar-foot"><strong>Public tracker</strong><span>Live ranking data, daily podiums, medals and profile history in one place.</span></div>
-</aside>
-
 <main class="shell">
   <header>
     <div>
@@ -6091,30 +6119,40 @@ body.sidebar-collapsed .epal-nav a:focus-visible::after {
   async function requestRemoteScan() {
     if (!isRemoteScanConfigured()) {
       el.remoteScanStatus.textContent = 'Remote scan relay is not configured yet.';
+      el.remoteScanFeedback.textContent = 'The remote scan relay is not configured yet.';
+      el.remoteScanFeedback.classList.add('show');
       return;
     }
+
+    // Show one stable feedback surface immediately and only update its text.
+    // Avoid hide/show cycles and transient status messages that can visually flash.
     el.remoteScanButton.disabled = true;
     el.remoteScanButton.textContent = 'Requesting…';
+    el.remoteScanStatus.textContent = 'Sending scan request…';
+    el.remoteScanFeedback.textContent = 'Sending the scan request…';
+    el.remoteScanFeedback.classList.add('show');
+
     try {
       const response = await fetch(REMOTE_SCAN_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:'{}' });
       const payload = await response.json().catch(()=>({}));
       if (response.status === 429) {
         const seconds = Math.max(1, Number(payload.retryAfterSeconds || 300));
+        el.remoteScanFeedback.textContent = 'A scan was requested recently. Please wait for the cooldown before requesting another one.';
         startRemoteCooldown(Date.now() + seconds * 1000);
         return;
       }
       if (!response.ok || !payload.ok) throw new Error(payload.error || `Request failed with HTTP ${response.status}`);
+
       const nextAllowedAt = Date.now() + REMOTE_SCAN_COOLDOWN_MS;
       safeStorageSet('postmaxxersRemoteScanNextAllowedAt5mV2', String(nextAllowedAt));
-      el.remoteScanStatus.textContent = 'Scan request sent successfully.';
       el.remoteScanFeedback.textContent = 'Please wait about 10–60 seconds for the extension to scan the forum and upload the updated ranking. The website may take a little longer to show the new data.';
-      el.remoteScanFeedback.classList.add('show');
       startRemoteCooldown(nextAllowedAt);
     } catch (error) {
       el.remoteScanButton.disabled = false;
       el.remoteScanButton.textContent = 'Force scan';
-      el.remoteScanFeedback.classList.remove('show');
-      el.remoteScanStatus.textContent = `Could not request a scan: ${error.message || error}`;
+      el.remoteScanStatus.textContent = 'Scan request failed.';
+      el.remoteScanFeedback.textContent = `Could not request a scan: ${error.message || error}`;
+      el.remoteScanFeedback.classList.add('show');
     }
   }
 
@@ -8915,105 +8953,6 @@ ${usefulErrors.join('\n')}`
   function formatRelative(value){ if(!value)return'—'; const sec=Math.max(0,Math.round((Date.now()-Number(value))/1000)); if(sec<60)return`${sec}s ago`; const min=Math.floor(sec/60); if(min<60)return`${min}m ago`; return`${Math.floor(min/60)}h ago`; }
   function formatDateKey(key){ const m=String(key||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m)return String(key||''); return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(+m[1],+m[2]-1,+m[3],12))); }
   function newYorkDateKey(value){ const parts=new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(value)); const values=Object.fromEntries(parts.map(part=>[part.type,part.value])); return `${values.year}-${values.month}-${values.day}`; }
-})();
-</script>
-
-<script id="collapsible-sidebar-script">
-(() => {
-  const STORAGE_KEY = 'postmaxxers-sidebar-collapsed';
-  const body = document.body;
-  const toggle = document.getElementById('sidebarToggle');
-  if (!body || !toggle) return;
-
-  const navLinks = [...document.querySelectorAll('.epal-nav a[href^="#"]')];
-  navLinks.forEach(link => {
-    const label = link.querySelector('span:last-child')?.textContent?.trim();
-    if (label) {
-      link.dataset.sidebarLabel = label;
-      link.setAttribute('aria-label', label);
-    }
-  });
-
-  let saved = null;
-  try { saved = localStorage.getItem(STORAGE_KEY); } catch (_) {}
-  if (saved === '1') body.classList.add('sidebar-collapsed');
-
-  const syncToggle = () => {
-    const collapsed = body.classList.contains('sidebar-collapsed');
-    toggle.setAttribute('aria-expanded', String(!collapsed));
-    toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
-    toggle.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
-  };
-
-  toggle.addEventListener('click', () => {
-    body.classList.toggle('sidebar-collapsed');
-    const collapsed = body.classList.contains('sidebar-collapsed');
-    try { localStorage.setItem(STORAGE_KEY, collapsed ? '1' : '0'); } catch (_) {}
-    syncToggle();
-  });
-
-  /* Follow the visible section, but keep the clicked destination highlighted
-     during smooth scrolling so intermediate items never flash active. */
-  const sectionPairs = navLinks
-    .map(link => [link, document.querySelector(link.getAttribute('href'))])
-    .filter(([, section]) => section);
-
-  const setActive = (activeLink) => {
-    navLinks.forEach(link => link.classList.toggle('sidebar-active', link === activeLink));
-  };
-  if (navLinks.length) setActive(navLinks[0]);
-
-  let navigationLock = null;
-  let scrollSettleTimer = 0;
-
-  const updateActiveFromScroll = () => {
-    /* While an anchor click is animating, the clicked item owns the active state. */
-    if (navigationLock) {
-      setActive(navigationLock);
-      return;
-    }
-
-    const probe = window.scrollY + Math.min(180, window.innerHeight * .28);
-    let current = sectionPairs[0]?.[0] || navLinks[0];
-    for (const [link, section] of sectionPairs) {
-      if (section.offsetTop <= probe) current = link;
-      else break;
-    }
-    if (current) setActive(current);
-  };
-
-  const releaseNavigationLock = () => {
-    navigationLock = null;
-    updateActiveFromScroll();
-  };
-
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    /* Every scroll event extends the lock until the smooth scroll has settled. */
-    if (navigationLock) {
-      clearTimeout(scrollSettleTimer);
-      scrollSettleTimer = setTimeout(releaseNavigationLock, 160);
-    }
-
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      updateActiveFromScroll();
-      ticking = false;
-    });
-  }, { passive:true });
-
-  navLinks.forEach(link => link.addEventListener('click', () => {
-    navigationLock = link;
-    clearTimeout(scrollSettleTimer);
-    setActive(link);
-
-    /* Fallback for browsers/pages where an anchor produces no scroll event. */
-    scrollSettleTimer = setTimeout(releaseNavigationLock, 900);
-  }));
-
-  updateActiveFromScroll();
-  syncToggle();
 })();
 </script>
 
