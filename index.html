@@ -5455,6 +5455,318 @@ header {
 }
 </style>
 
+
+<style id="collapsible-sidebar-style">
+/* Polished Twitch-like collapsible sidebar */
+:root {
+  --sidebar-expanded:232px;
+  --sidebar-collapsed:62px;
+  --sidebar-ease:cubic-bezier(.22,1,.36,1);
+}
+
+body {
+  transition:padding-left .28s var(--sidebar-ease) !important;
+}
+.epal-sidebar {
+  width:var(--sidebar-expanded) !important;
+  padding:14px 10px 14px !important;
+  overflow:visible !important;
+  background:rgba(13,13,19,.89) !important;
+  border-right:1px solid rgba(210,207,255,.10) !important;
+  box-shadow:10px 0 35px rgba(0,0,0,.15) !important;
+  backdrop-filter:blur(22px) saturate(115%) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(115%) !important;
+  transition:width .28s var(--sidebar-ease), padding .28s var(--sidebar-ease), background .2s ease !important;
+}
+
+/* Header / collapse control */
+.epal-brand {
+  position:relative;
+  min-height:51px;
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  padding:2px 42px 12px 4px !important;
+  margin-bottom:7px;
+  border-bottom:1px solid rgba(210,207,255,.07);
+  transition:padding .28s var(--sidebar-ease), min-height .28s var(--sidebar-ease), border-color .2s ease !important;
+}
+.epal-brand-mark {
+  width:36px !important;
+  height:36px !important;
+  flex:0 0 36px !important;
+  border-radius:11px !important;
+  font-size:18px !important;
+  transition:opacity .16s ease, transform .22s var(--sidebar-ease) !important;
+}
+.epal-brand-copy {
+  overflow:hidden;
+  white-space:nowrap;
+  opacity:1;
+  transform:translateX(0);
+  transition:opacity .14s ease, transform .22s var(--sidebar-ease), width .22s var(--sidebar-ease) !important;
+}
+
+.epal-sidebar-toggle {
+  position:absolute;
+  top:5px;
+  right:3px;
+  z-index:6;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:0;
+  border-radius:10px;
+  background:transparent;
+  color:#aaa8ba;
+  cursor:pointer;
+  box-shadow:none;
+  transition:background .14s ease,color .14s ease,transform .18s ease !important;
+}
+.epal-sidebar-toggle:hover {
+  color:#f5f3ff;
+  background:rgba(188,190,255,.10);
+}
+.epal-sidebar-toggle:active { transform:scale(.94); }
+.epal-sidebar-toggle:focus-visible {
+  outline:2px solid rgba(188,190,255,.72);
+  outline-offset:2px;
+}
+.epal-sidebar-toggle-icon {
+  width:18px;
+  height:18px;
+  display:block;
+  transition:transform .28s var(--sidebar-ease) !important;
+}
+.epal-sidebar-toggle-icon svg {
+  display:block;
+  width:100%;
+  height:100%;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* Navigation */
+.epal-nav {
+  display:grid !important;
+  gap:3px !important;
+}
+.epal-nav-label {
+  height:26px;
+  display:flex;
+  align-items:center;
+  padding:5px 10px 4px !important;
+  overflow:hidden;
+  white-space:nowrap;
+  transition:opacity .12s ease,height .22s var(--sidebar-ease),padding .22s var(--sidebar-ease) !important;
+}
+.epal-nav a,
+.epal-nav a:first-of-type {
+  position:relative;
+  min-height:43px !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  padding:7px 9px !important;
+  border:1px solid transparent !important;
+  border-radius:11px !important;
+  background:transparent !important;
+  color:#a5a2b2 !important;
+  transform:none !important;
+  transition:background .14s ease,color .14s ease,border-color .14s ease !important;
+}
+.epal-nav a:hover {
+  color:#f4f2fb !important;
+  background:rgba(255,255,255,.045) !important;
+  border-color:rgba(210,207,255,.055) !important;
+}
+.epal-nav a.sidebar-active {
+  color:#f6f4ff !important;
+  background:linear-gradient(90deg,rgba(130,112,230,.19),rgba(188,190,255,.055)) !important;
+  border-color:rgba(188,190,255,.11) !important;
+}
+.epal-nav a.sidebar-active::before {
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:10px;
+  bottom:10px;
+  width:3px;
+  border-radius:0 4px 4px 0;
+  background:#bcbcff;
+  box-shadow:0 0 12px rgba(188,190,255,.40);
+}
+.epal-nav-icon {
+  width:29px !important;
+  height:29px !important;
+  flex:0 0 29px !important;
+  display:grid !important;
+  place-items:center !important;
+  border-radius:9px !important;
+  background:rgba(255,255,255,.045) !important;
+  color:#b5b2c3;
+  font-size:13px !important;
+  transition:background .14s ease,color .14s ease,transform .16s ease !important;
+}
+.epal-nav a:hover .epal-nav-icon {
+  color:#f0eeff;
+  background:rgba(188,190,255,.09) !important;
+}
+.epal-nav a.sidebar-active .epal-nav-icon {
+  color:#ededff;
+  background:rgba(150,137,244,.18) !important;
+}
+.epal-nav a > span:last-child {
+  overflow:hidden;
+  white-space:nowrap;
+  opacity:1;
+  transform:translateX(0);
+  transition:opacity .12s ease, transform .2s var(--sidebar-ease) !important;
+}
+.epal-sidebar-foot {
+  transition:opacity .12s ease, transform .2s var(--sidebar-ease) !important;
+}
+
+/* Collapsed desktop rail */
+body.sidebar-collapsed {
+  padding-left:var(--sidebar-collapsed) !important;
+}
+body.sidebar-collapsed .epal-sidebar {
+  width:var(--sidebar-collapsed) !important;
+  padding:14px 8px !important;
+}
+body.sidebar-collapsed .epal-brand {
+  min-height:48px;
+  justify-content:center !important;
+  padding:2px 0 11px !important;
+  margin-bottom:8px;
+}
+body.sidebar-collapsed .epal-brand-mark,
+body.sidebar-collapsed .epal-brand-copy {
+  position:absolute;
+  opacity:0 !important;
+  pointer-events:none;
+  transform:scale(.82) translateX(-5px);
+}
+body.sidebar-collapsed .epal-sidebar-toggle {
+  position:relative;
+  top:auto;
+  right:auto;
+  margin:0 auto;
+  flex:0 0 auto;
+  background:rgba(255,255,255,.035);
+}
+body.sidebar-collapsed .epal-sidebar-toggle:hover {
+  background:rgba(188,190,255,.11);
+}
+body.sidebar-collapsed .epal-sidebar-toggle-icon {
+  transform:rotate(180deg);
+}
+body.sidebar-collapsed .epal-nav-label {
+  height:4px;
+  padding:0 !important;
+  opacity:0;
+  pointer-events:none;
+}
+body.sidebar-collapsed .epal-nav {
+  gap:5px !important;
+}
+body.sidebar-collapsed .epal-nav a,
+body.sidebar-collapsed .epal-nav a:first-of-type {
+  width:46px;
+  height:46px;
+  min-height:46px !important;
+  justify-content:center !important;
+  gap:0 !important;
+  margin:0 auto;
+  padding:0 !important;
+  border-radius:11px !important;
+}
+body.sidebar-collapsed .epal-nav a > span:last-child,
+body.sidebar-collapsed .epal-sidebar-foot {
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
+  clip:rect(0 0 0 0) !important;
+  clip-path:inset(50%) !important;
+  white-space:nowrap !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+body.sidebar-collapsed .epal-nav-icon {
+  width:34px !important;
+  height:34px !important;
+  flex-basis:34px !important;
+  border-radius:10px !important;
+}
+body.sidebar-collapsed .epal-nav a.sidebar-active {
+  background:rgba(150,137,244,.11) !important;
+  border-color:rgba(188,190,255,.09) !important;
+}
+body.sidebar-collapsed .epal-nav a.sidebar-active::before {
+  left:-9px;
+  top:11px;
+  bottom:11px;
+}
+body.sidebar-collapsed .epal-nav a.sidebar-active .epal-nav-icon {
+  background:rgba(150,137,244,.20) !important;
+}
+
+/* Refined icon-rail tooltips */
+body.sidebar-collapsed .epal-nav a::after {
+  content:attr(data-sidebar-label);
+  position:absolute;
+  left:calc(100% + 11px);
+  top:50%;
+  z-index:250;
+  transform:translate(4px,-50%) scale(.98);
+  padding:7px 10px;
+  border:1px solid rgba(210,207,255,.13);
+  border-radius:8px;
+  background:rgba(20,20,28,.98);
+  color:#f3f1fa;
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+  font-size:11px;
+  line-height:1.1;
+  font-weight:800;
+  letter-spacing:0;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .11s ease,transform .11s ease;
+}
+body.sidebar-collapsed .epal-nav a::before {
+  /* active indicator wins via the more specific rule below */
+}
+body.sidebar-collapsed .epal-nav a:hover::after,
+body.sidebar-collapsed .epal-nav a:focus-visible::after {
+  opacity:1;
+  transform:translate(0,-50%) scale(1);
+}
+
+/* Keep layout clean at intermediate widths */
+@media (max-width:1180px) and (min-width:981px) {
+  body:not(.sidebar-collapsed) { padding-left:206px !important; }
+  body:not(.sidebar-collapsed) .epal-sidebar { width:206px !important; }
+  body:not(.sidebar-collapsed) .epal-brand-title { font-size:13px; }
+}
+@media (max-width:980px) {
+  body,
+  body.sidebar-collapsed { padding-left:0 !important; }
+  .epal-sidebar,
+  body.sidebar-collapsed .epal-sidebar { display:none !important; }
+}
+@media (prefers-reduced-motion:reduce) {
+  body,.epal-sidebar,.epal-brand,.epal-brand-copy,.epal-brand-mark,.epal-sidebar-toggle,.epal-sidebar-toggle-icon,.epal-nav-label,.epal-nav a,.epal-nav a > span:last-child { transition:none !important; }
+}
+</style>
+
 </head>
 <!-- REBUILT NEWS-WIRE BANNER BUILD. GRAPHS V3 BUILD: 18 profile graph views + high-visibility ticker stats. MOUSE TOOLTIP BUILD: chart stat panels follow the pointer and flip only near chart edges. -->
 <body>
@@ -5462,6 +5774,9 @@ header {
   <div class="epal-brand">
     <div class="epal-brand-mark" aria-hidden="true">P</div>
     <div class="epal-brand-copy"><div class="epal-brand-title">POSTMAXXERS</div><div class="epal-brand-sub">Live ranking hub</div></div>
+  <button class="epal-sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" aria-expanded="true" title="Collapse sidebar">
+    <span class="epal-sidebar-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.5 6.5 9 12l5.5 5.5"/></svg></span>
+  </button>
   </div>
   <nav class="epal-nav">
     <div class="epal-nav-label">Dashboard</div>
@@ -8602,5 +8917,105 @@ ${usefulErrors.join('\n')}`
   function newYorkDateKey(value){ const parts=new Intl.DateTimeFormat('en-US',{timeZone:DAILY_TIME_ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(value)); const values=Object.fromEntries(parts.map(part=>[part.type,part.value])); return `${values.year}-${values.month}-${values.day}`; }
 })();
 </script>
+
+<script id="collapsible-sidebar-script">
+(() => {
+  const STORAGE_KEY = 'postmaxxers-sidebar-collapsed';
+  const body = document.body;
+  const toggle = document.getElementById('sidebarToggle');
+  if (!body || !toggle) return;
+
+  const navLinks = [...document.querySelectorAll('.epal-nav a[href^="#"]')];
+  navLinks.forEach(link => {
+    const label = link.querySelector('span:last-child')?.textContent?.trim();
+    if (label) {
+      link.dataset.sidebarLabel = label;
+      link.setAttribute('aria-label', label);
+    }
+  });
+
+  let saved = null;
+  try { saved = localStorage.getItem(STORAGE_KEY); } catch (_) {}
+  if (saved === '1') body.classList.add('sidebar-collapsed');
+
+  const syncToggle = () => {
+    const collapsed = body.classList.contains('sidebar-collapsed');
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+    toggle.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
+  };
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('sidebar-collapsed');
+    const collapsed = body.classList.contains('sidebar-collapsed');
+    try { localStorage.setItem(STORAGE_KEY, collapsed ? '1' : '0'); } catch (_) {}
+    syncToggle();
+  });
+
+  /* Follow the visible section, but keep the clicked destination highlighted
+     during smooth scrolling so intermediate items never flash active. */
+  const sectionPairs = navLinks
+    .map(link => [link, document.querySelector(link.getAttribute('href'))])
+    .filter(([, section]) => section);
+
+  const setActive = (activeLink) => {
+    navLinks.forEach(link => link.classList.toggle('sidebar-active', link === activeLink));
+  };
+  if (navLinks.length) setActive(navLinks[0]);
+
+  let navigationLock = null;
+  let scrollSettleTimer = 0;
+
+  const updateActiveFromScroll = () => {
+    /* While an anchor click is animating, the clicked item owns the active state. */
+    if (navigationLock) {
+      setActive(navigationLock);
+      return;
+    }
+
+    const probe = window.scrollY + Math.min(180, window.innerHeight * .28);
+    let current = sectionPairs[0]?.[0] || navLinks[0];
+    for (const [link, section] of sectionPairs) {
+      if (section.offsetTop <= probe) current = link;
+      else break;
+    }
+    if (current) setActive(current);
+  };
+
+  const releaseNavigationLock = () => {
+    navigationLock = null;
+    updateActiveFromScroll();
+  };
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    /* Every scroll event extends the lock until the smooth scroll has settled. */
+    if (navigationLock) {
+      clearTimeout(scrollSettleTimer);
+      scrollSettleTimer = setTimeout(releaseNavigationLock, 160);
+    }
+
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      updateActiveFromScroll();
+      ticking = false;
+    });
+  }, { passive:true });
+
+  navLinks.forEach(link => link.addEventListener('click', () => {
+    navigationLock = link;
+    clearTimeout(scrollSettleTimer);
+    setActive(link);
+
+    /* Fallback for browsers/pages where an anchor produces no scroll event. */
+    scrollSettleTimer = setTimeout(releaseNavigationLock, 900);
+  }));
+
+  updateActiveFromScroll();
+  syncToggle();
+})();
+</script>
+
 </body>
 </html>
