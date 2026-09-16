@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-09-16T04:02:31.097Z",
-  "updatedAtMs": 1789531351097,
-  "nextUpdateAt": "2026-09-16T04:05:00.000Z",
-  "nextUpdateAtMs": 1789531500000,
+  "updatedAt": "2026-09-16T04:05:01.242Z",
+  "updatedAtMs": 1789531501242,
+  "nextUpdateAt": "2026-09-17T03:55:00.000Z",
+  "nextUpdateAtMs": 1789617300000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -17,28 +17,28 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9369674
+    "combinedPosts": 9369687
   },
   "dailyTracking": {
     "dateKey": "2026-09-16",
     "timeZone": "America/New_York",
     "startedAt": 1789531351097,
-    "lastUpdatedAt": 1789531351097,
+    "lastUpdatedAt": 1789531501242,
     "currentLeaders": [
       {
         "dateKey": "2026-09-16",
         "timeZone": "America/New_York",
         "username": "Animecel2D",
         "userId": "3107",
-        "postsGained": 65,
+        "postsGained": 78,
         "startPosts": 2472413,
-        "endPosts": 2472478,
+        "endPosts": 2472491,
         "finalRank": 1,
         "profileUrl": "https://incels.is/members/animecel2d.3107/",
         "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
         "trackingStartedAt": 1789531351097,
-        "trackingEndedAt": 1789531351097,
-        "finalizedAt": 1789531351412,
+        "trackingEndedAt": 1789531501242,
+        "finalizedAt": 1789531501583,
         "isAliased": false
       }
     ],
@@ -47,15 +47,15 @@
       "timeZone": "America/New_York",
       "username": "Animecel2D",
       "userId": "3107",
-      "postsGained": 65,
+      "postsGained": 78,
       "startPosts": 2472413,
-      "endPosts": 2472478,
+      "endPosts": 2472491,
       "finalRank": 1,
       "profileUrl": "https://incels.is/members/animecel2d.3107/",
       "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
       "trackingStartedAt": 1789531351097,
-      "trackingEndedAt": 1789531351097,
-      "finalizedAt": 1789531351412,
+      "trackingEndedAt": 1789531501242,
+      "finalizedAt": 1789531501583,
       "isAliased": false
     }
   },
@@ -49802,7 +49802,7 @@
       "dateKey": "2026-09-16",
       "timeZone": "America/New_York",
       "startedAt": 1789531351097,
-      "lastUpdatedAt": 1789531351097,
+      "lastUpdatedAt": 1789531501242,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -49811,8 +49811,8 @@
           "userId": "3107",
           "isAliased": false,
           "startPosts": 2472413,
-          "postsGained": 65,
-          "endPosts": 2472478,
+          "postsGained": 78,
+          "endPosts": 2472491,
           "finalRank": 1,
           "profileUrl": "https://incels.is/members/animecel2d.3107/",
           "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958"
@@ -50913,8 +50913,8 @@
     {
       "rank": 1,
       "username": "Animecel2D",
-      "posts": 2472478,
-      "postDelta": 65,
+      "posts": 2472491,
+      "postDelta": 78,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
