@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-09-17T18:31:50.044Z",
-  "updatedAtMs": 1789669910044,
+  "updatedAt": "2026-09-17T21:03:24.218Z",
+  "updatedAtMs": 1789679004218,
   "nextUpdateAt": "2026-09-18T03:55:00.000Z",
   "nextUpdateAtMs": 1789703700000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9398579
+    "combinedPosts": 9401727
   },
   "dailyTracking": {
     "dateKey": "2026-09-17",
     "timeZone": "America/New_York",
     "startedAt": 1789617901288,
-    "lastUpdatedAt": 1789669910044,
+    "lastUpdatedAt": 1789679004218,
     "currentLeaders": [
       {
         "dateKey": "2026-09-17",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/animecel2d.3107/",
         "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
         "trackingStartedAt": 1789617901288,
-        "trackingEndedAt": 1789669910044,
-        "finalizedAt": 1789669910384,
+        "trackingEndedAt": 1789679004218,
+        "finalizedAt": 1789679004878,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/animecel2d.3107/",
       "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958",
       "trackingStartedAt": 1789617901288,
-      "trackingEndedAt": 1789669910044,
-      "finalizedAt": 1789669910384,
+      "trackingEndedAt": 1789679004218,
+      "finalizedAt": 1789679004878,
       "isAliased": false
     }
   },
@@ -50928,7 +50928,7 @@
       "dateKey": "2026-09-17",
       "timeZone": "America/New_York",
       "startedAt": 1789617901288,
-      "lastUpdatedAt": 1789669910044,
+      "lastUpdatedAt": 1789679004218,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -50944,12 +50944,23 @@
           "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958"
         },
         {
+          "username": "Hermit",
+          "userId": "72876",
+          "isAliased": false,
+          "startPosts": 536015,
+          "postsGained": 2352,
+          "endPosts": 538367,
+          "finalRank": 3,
+          "profileUrl": "https://incels.is/members/hermit.72876/",
+          "avatarUrl": "https://incels.is/data/avatars/s/72/72876.jpg?1789541574"
+        },
+        {
           "username": "Trout",
           "userId": "77936",
           "isAliased": false,
           "startPosts": 276034,
-          "postsGained": 1680,
-          "endPosts": 277714,
+          "postsGained": 1990,
+          "endPosts": 278024,
           "finalRank": 8,
           "profileUrl": "https://incels.is/members/trout.77936/",
           "avatarUrl": "https://incels.is/data/avatars/s/77/77936.jpg?1788277025"
@@ -50959,8 +50970,8 @@
           "userId": "14662",
           "isAliased": false,
           "startPosts": 277211,
-          "postsGained": 1354,
-          "endPosts": 278565,
+          "postsGained": 1589,
+          "endPosts": 278800,
           "finalRank": 7,
           "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
           "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1788565830"
@@ -50970,8 +50981,8 @@
           "userId": "99758",
           "isAliased": false,
           "startPosts": 83115,
-          "postsGained": 325,
-          "endPosts": 83440,
+          "postsGained": 439,
+          "endPosts": 83554,
           "finalRank": 19,
           "profileUrl": "https://incels.is/members/subhumanoldcel.99758/",
           "avatarUrl": "https://incels.is/data/avatars/s/99/99758.jpg?1788861455"
@@ -50992,11 +51003,22 @@
           "userId": "39315",
           "isAliased": false,
           "startPosts": 26036,
-          "postsGained": 60,
-          "endPosts": 26096,
+          "postsGained": 70,
+          "endPosts": 26106,
           "finalRank": 66,
           "profileUrl": "https://incels.is/members/ruudvannistelrooy.39315/",
           "avatarUrl": "https://incels.is/data/avatars/s/39/39315.jpg?1771430931"
+        },
+        {
+          "username": "Prophet",
+          "userId": "62916",
+          "isAliased": false,
+          "startPosts": 35032,
+          "postsGained": 63,
+          "endPosts": 35095,
+          "finalRank": 44,
+          "profileUrl": "https://incels.is/members/prophet.62916/",
+          "avatarUrl": "https://incels.is/data/avatars/s/62/62916.jpg?1789214076"
         },
         {
           "username": "Tšuudi",
@@ -51010,6 +51032,17 @@
           "avatarUrl": "https://incels.is/data/avatars/s/89/89056.jpg?1789386605"
         },
         {
+          "username": "maximoos",
+          "userId": "104722",
+          "isAliased": false,
+          "startPosts": 24890,
+          "postsGained": 41,
+          "endPosts": 24931,
+          "finalRank": 74,
+          "profileUrl": "https://incels.is/members/maximoos.104722/",
+          "avatarUrl": "https://incels.is/data/avatars/s/104/104722.jpg?1789394593"
+        },
+        {
           "username": "LeFrenchCel",
           "userId": "26008",
           "isAliased": false,
@@ -51019,6 +51052,28 @@
           "finalRank": 27,
           "profileUrl": "https://incels.is/members/lefrenchcel.26008/",
           "avatarUrl": "https://incels.is/data/avatars/s/26/26008.jpg?1779091003"
+        },
+        {
+          "username": "Grodd",
+          "userId": "59741",
+          "isAliased": false,
+          "startPosts": 125770,
+          "postsGained": 33,
+          "endPosts": 125803,
+          "finalRank": 11,
+          "profileUrl": "https://incels.is/members/grodd.59741/",
+          "avatarUrl": "https://incels.is/data/avatars/s/59/59741.jpg?1766797665"
+        },
+        {
+          "username": "Grimm",
+          "userId": "72847",
+          "isAliased": false,
+          "startPosts": 54562,
+          "postsGained": 32,
+          "endPosts": 54594,
+          "finalRank": 23,
+          "profileUrl": "https://incels.is/members/grimm.72847/",
+          "avatarUrl": "https://incels.is/data/avatars/s/72/72847.jpg?1789066886"
         },
         {
           "username": "cripplecel",
@@ -51032,39 +51087,6 @@
           "avatarUrl": "https://incels.is/data/avatars/s/43/43797.jpg?1771603875"
         },
         {
-          "username": "maximoos",
-          "userId": "104722",
-          "isAliased": false,
-          "startPosts": 24890,
-          "postsGained": 28,
-          "endPosts": 24918,
-          "finalRank": 74,
-          "profileUrl": "https://incels.is/members/maximoos.104722/",
-          "avatarUrl": "https://incels.is/data/avatars/s/104/104722.jpg?1789394593"
-        },
-        {
-          "username": "Hermit",
-          "userId": "72876",
-          "isAliased": false,
-          "startPosts": 536015,
-          "postsGained": 26,
-          "endPosts": 536041,
-          "finalRank": 3,
-          "profileUrl": "https://incels.is/members/hermit.72876/",
-          "avatarUrl": "https://incels.is/data/avatars/s/72/72876.jpg?1789541574"
-        },
-        {
-          "username": "Prophet",
-          "userId": "62916",
-          "isAliased": false,
-          "startPosts": 35032,
-          "postsGained": 24,
-          "endPosts": 35056,
-          "finalRank": 44,
-          "profileUrl": "https://incels.is/members/prophet.62916/",
-          "avatarUrl": "https://incels.is/data/avatars/s/62/62916.jpg?1789214076"
-        },
-        {
           "username": "Problematicusername2",
           "userId": "64201",
           "isAliased": true,
@@ -51076,23 +51098,12 @@
           "avatarUrl": "https://incels.is/data/avatars/s/64/64201.jpg?1779891982"
         },
         {
-          "username": "Grimm",
-          "userId": "72847",
-          "isAliased": false,
-          "startPosts": 54562,
-          "postsGained": 20,
-          "endPosts": 54582,
-          "finalRank": 23,
-          "profileUrl": "https://incels.is/members/grimm.72847/",
-          "avatarUrl": "https://incels.is/data/avatars/s/72/72847.jpg?1789066886"
-        },
-        {
           "username": "EXTREME DUCK",
           "userId": "30090",
           "isAliased": false,
           "startPosts": 39608,
-          "postsGained": 16,
-          "endPosts": 39624,
+          "postsGained": 19,
+          "endPosts": 39627,
           "finalRank": 35,
           "profileUrl": "https://incels.is/members/extreme-duck.30090/",
           "avatarUrl": "https://incels.is/data/avatars/s/30/30090.jpg?1789404994"
@@ -51102,11 +51113,22 @@
           "userId": "71805",
           "isAliased": false,
           "startPosts": 26005,
-          "postsGained": 16,
-          "endPosts": 26021,
+          "postsGained": 18,
+          "endPosts": 26023,
           "finalRank": 67,
           "profileUrl": "https://incels.is/members/toosomething.71805/",
           "avatarUrl": "https://incels.is/data/avatars/s/71/71805.jpg?1767557703"
+        },
+        {
+          "username": "multi-nigger-boy",
+          "userId": "63892",
+          "isAliased": false,
+          "startPosts": 28866,
+          "postsGained": 17,
+          "endPosts": 28883,
+          "finalRank": 59,
+          "profileUrl": "https://incels.is/members/multi-nigger-boy.63892/",
+          "avatarUrl": "https://incels.is/data/avatars/s/63/63892.jpg?1789515529"
         },
         {
           "username": "Emba",
@@ -51120,15 +51142,15 @@
           "avatarUrl": "https://incels.is/data/avatars/s/18/18638.jpg?1683770519"
         },
         {
-          "username": "multi-nigger-boy",
-          "userId": "63892",
+          "username": "Hoodpreet",
+          "userId": "49986",
           "isAliased": false,
-          "startPosts": 28866,
+          "startPosts": 25394,
           "postsGained": 13,
-          "endPosts": 28879,
-          "finalRank": 59,
-          "profileUrl": "https://incels.is/members/multi-nigger-boy.63892/",
-          "avatarUrl": "https://incels.is/data/avatars/s/63/63892.jpg?1789515529"
+          "endPosts": 25407,
+          "finalRank": 70,
+          "profileUrl": "https://incels.is/members/hoodpreet.49986/",
+          "avatarUrl": "https://incels.is/data/avatars/s/49/49986.jpg?1789572366"
         },
         {
           "username": "turbocuckcel_7000",
@@ -51140,6 +51162,39 @@
           "finalRank": 37,
           "profileUrl": "https://incels.is/members/turbocuckcel_7000.6268/",
           "avatarUrl": "https://incels.is/data/avatars/s/6/6268.jpg?1787146369"
+        },
+        {
+          "username": "Pancakecel",
+          "userId": "32353",
+          "isAliased": false,
+          "startPosts": 31449,
+          "postsGained": 11,
+          "endPosts": 31460,
+          "finalRank": 52,
+          "profileUrl": "https://incels.is/members/pancakecel.32353/",
+          "avatarUrl": "https://incels.is/data/avatars/s/32/32353.jpg?1725498018"
+        },
+        {
+          "username": "The Notorious SLAV",
+          "userId": "46934",
+          "isAliased": false,
+          "startPosts": 22317,
+          "postsGained": 11,
+          "endPosts": 22328,
+          "finalRank": 85,
+          "profileUrl": "https://incels.is/members/the-notorious-slav.46934/",
+          "avatarUrl": "https://incels.is/data/avatars/s/46/46934.jpg?1782518630"
+        },
+        {
+          "username": "SCAT PACK",
+          "userId": "66267",
+          "isAliased": false,
+          "startPosts": 40359,
+          "postsGained": 10,
+          "endPosts": 40369,
+          "finalRank": 33,
+          "profileUrl": "https://incels.is/members/scat-pack.66267/",
+          "avatarUrl": "https://incels.is/data/avatars/s/66/66267.jpg?1789219361"
         },
         {
           "username": "proudweeb",
@@ -51164,15 +51219,15 @@
           "avatarUrl": "https://incels.is/data/avatars/s/56/56211.jpg?1788923304"
         },
         {
-          "username": "Hoodpreet",
-          "userId": "49986",
+          "username": "FuckYou",
+          "userId": "63622",
           "isAliased": false,
-          "startPosts": 25394,
+          "startPosts": 26923,
           "postsGained": 9,
-          "endPosts": 25403,
-          "finalRank": 70,
-          "profileUrl": "https://incels.is/members/hoodpreet.49986/",
-          "avatarUrl": "https://incels.is/data/avatars/s/49/49986.jpg?1789572366"
+          "endPosts": 26932,
+          "finalRank": 64,
+          "profileUrl": "https://incels.is/members/fuckyou.63622/",
+          "avatarUrl": "https://incels.is/data/avatars/s/63/63622.jpg?1783806542"
         },
         {
           "username": "Sloth",
@@ -51186,15 +51241,15 @@
           "avatarUrl": "https://incels.is/data/avatars/s/64/64961.jpg?1789412279"
         },
         {
-          "username": "SCAT PACK",
-          "userId": "66267",
+          "username": "Rezecel",
+          "userId": "59719",
           "isAliased": false,
-          "startPosts": 40359,
+          "startPosts": 477490,
           "postsGained": 7,
-          "endPosts": 40366,
-          "finalRank": 33,
-          "profileUrl": "https://incels.is/members/scat-pack.66267/",
-          "avatarUrl": "https://incels.is/data/avatars/s/66/66267.jpg?1789219361"
+          "endPosts": 477497,
+          "finalRank": 4,
+          "profileUrl": "https://incels.is/members/rezecel.59719/",
+          "avatarUrl": "https://incels.is/data/avatars/s/59/59719.jpg?1789487375"
         },
         {
           "username": "kay'",
@@ -51208,37 +51263,37 @@
           "avatarUrl": "https://incels.is/data/avatars/s/47/47736.jpg?1786912647"
         },
         {
-          "username": "Pancakecel",
-          "userId": "32353",
+          "username": "Onyx",
+          "userId": "93776",
           "isAliased": false,
-          "startPosts": 31449,
+          "startPosts": 33185,
           "postsGained": 7,
-          "endPosts": 31456,
-          "finalRank": 52,
-          "profileUrl": "https://incels.is/members/pancakecel.32353/",
-          "avatarUrl": "https://incels.is/data/avatars/s/32/32353.jpg?1725498018"
-        },
-        {
-          "username": "FuckYou",
-          "userId": "63622",
-          "isAliased": false,
-          "startPosts": 26923,
-          "postsGained": 7,
-          "endPosts": 26930,
-          "finalRank": 64,
-          "profileUrl": "https://incels.is/members/fuckyou.63622/",
-          "avatarUrl": "https://incels.is/data/avatars/s/63/63622.jpg?1783806542"
+          "endPosts": 33192,
+          "finalRank": 51,
+          "profileUrl": "https://incels.is/members/onyx.93776/",
+          "avatarUrl": "https://incels.is/data/avatars/s/93/93776.jpg?1788546424"
         },
         {
           "username": "AtrociousCitizen",
           "userId": "68713",
           "isAliased": false,
           "startPosts": 763134,
-          "postsGained": 5,
-          "endPosts": 763139,
+          "postsGained": 6,
+          "endPosts": 763140,
           "finalRank": 2,
           "profileUrl": "https://incels.is/members/atrociouscitizen.68713/",
           "avatarUrl": "https://incels.is/data/avatars/s/68/68713.jpg?1741965391"
+        },
+        {
+          "username": "FrothySolutions",
+          "userId": "6633",
+          "isAliased": false,
+          "startPosts": 21220,
+          "postsGained": 6,
+          "endPosts": 21226,
+          "finalRank": 86,
+          "profileUrl": "https://incels.is/members/frothysolutions.6633/",
+          "avatarUrl": "https://incels.is/data/avatars/s/6/6633.jpg?1765317335"
         },
         {
           "username": "SlayerSlayer",
@@ -51252,15 +51307,15 @@
           "avatarUrl": "https://incels.is/data/avatars/s/10/10247.jpg?1789582964"
         },
         {
-          "username": "FrothySolutions",
-          "userId": "6633",
+          "username": "Sewer Crab",
+          "userId": "60990",
           "isAliased": false,
-          "startPosts": 21220,
-          "postsGained": 5,
-          "endPosts": 21225,
-          "finalRank": 86,
-          "profileUrl": "https://incels.is/members/frothysolutions.6633/",
-          "avatarUrl": "https://incels.is/data/avatars/s/6/6633.jpg?1765317335"
+          "startPosts": 52321,
+          "postsGained": 4,
+          "endPosts": 52325,
+          "finalRank": 25,
+          "profileUrl": "https://incels.is/members/sewer-crab.60990/",
+          "avatarUrl": "https://incels.is/data/avatars/s/60/60990.jpg?1771199776"
         },
         {
           "username": "Indari",
@@ -51272,6 +51327,17 @@
           "finalRank": 36,
           "profileUrl": "https://incels.is/members/indari.34/",
           "avatarUrl": "https://incels.is/data/avatars/s/0/34.jpg?1759981934"
+        },
+        {
+          "username": "Sheogorath",
+          "userId": "7716",
+          "isAliased": false,
+          "startPosts": 21030,
+          "postsGained": 3,
+          "endPosts": 21033,
+          "finalRank": 87,
+          "profileUrl": "https://incels.is/members/sheogorath.7716/",
+          "avatarUrl": "https://incels.is/data/avatars/s/7/7716.jpg?1675813668"
         },
         {
           "username": "gluttony",
@@ -51307,15 +51373,15 @@
           "avatarUrl": "https://incels.is/data/avatars/s/48/48602.jpg?1694593163"
         },
         {
-          "username": "Onyx",
-          "userId": "93776",
+          "username": "Old Ironsides",
+          "userId": "47585",
           "isAliased": false,
-          "startPosts": 33185,
-          "postsGained": 1,
-          "endPosts": 33186,
-          "finalRank": 51,
-          "profileUrl": "https://incels.is/members/onyx.93776/",
-          "avatarUrl": "https://incels.is/data/avatars/s/93/93776.jpg?1788546424"
+          "startPosts": 19427,
+          "postsGained": 2,
+          "endPosts": 19429,
+          "finalRank": 94,
+          "profileUrl": "https://incels.is/members/old-ironsides.47585/",
+          "avatarUrl": "https://incels.is/data/avatars/s/47/47585.jpg?1789362978"
         },
         {
           "username": "Lv99_BixNood",
@@ -51327,28 +51393,6 @@
           "finalRank": 75,
           "profileUrl": "https://incels.is/members/lv99_bixnood.1672/",
           "avatarUrl": "https://incels.is/data/avatars/s/1/1672.jpg?1521990097"
-        },
-        {
-          "username": "The Notorious SLAV",
-          "userId": "46934",
-          "isAliased": false,
-          "startPosts": 22317,
-          "postsGained": 1,
-          "endPosts": 22318,
-          "finalRank": 85,
-          "profileUrl": "https://incels.is/members/the-notorious-slav.46934/",
-          "avatarUrl": "https://incels.is/data/avatars/s/46/46934.jpg?1782518630"
-        },
-        {
-          "username": "Rezecel",
-          "userId": "59719",
-          "isAliased": false,
-          "startPosts": 477490,
-          "postsGained": 0,
-          "endPosts": 477490,
-          "finalRank": 4,
-          "profileUrl": "https://incels.is/members/rezecel.59719/",
-          "avatarUrl": "https://incels.is/data/avatars/s/59/59719.jpg?1789487375"
         },
         {
           "username": "W",
@@ -51382,17 +51426,6 @@
           "finalRank": 9,
           "profileUrl": "https://incels.is/members/femcelhater.68728/",
           "avatarUrl": "https://incels.is/data/avatars/s/68/68728.jpg?1784646386"
-        },
-        {
-          "username": "Grodd",
-          "userId": "59741",
-          "isAliased": false,
-          "startPosts": 125770,
-          "postsGained": 0,
-          "endPosts": 125770,
-          "finalRank": 11,
-          "profileUrl": "https://incels.is/members/grodd.59741/",
-          "avatarUrl": "https://incels.is/data/avatars/s/59/59741.jpg?1766797665"
         },
         {
           "username": "Awake",
@@ -51481,17 +51514,6 @@
           "finalRank": 24,
           "profileUrl": "",
           "avatarUrl": "https://incels.is/data/avatars/s/63/63723.jpg?1739024267"
-        },
-        {
-          "username": "Sewer Crab",
-          "userId": "60990",
-          "isAliased": false,
-          "startPosts": 52321,
-          "postsGained": 0,
-          "endPosts": 52321,
-          "finalRank": 25,
-          "profileUrl": "https://incels.is/members/sewer-crab.60990/",
-          "avatarUrl": "https://incels.is/data/avatars/s/60/60990.jpg?1771199776"
         },
         {
           "username": "Copexodius Maximus",
@@ -51890,17 +51912,6 @@
           "avatarUrl": "https://incels.is/data/avatars/s/60/60100.jpg?1789289013"
         },
         {
-          "username": "Sheogorath",
-          "userId": "7716",
-          "isAliased": false,
-          "startPosts": 21030,
-          "postsGained": 0,
-          "endPosts": 21030,
-          "finalRank": 87,
-          "profileUrl": "https://incels.is/members/sheogorath.7716/",
-          "avatarUrl": "https://incels.is/data/avatars/s/7/7716.jpg?1675813668"
-        },
-        {
           "username": "pulp",
           "userId": "42425",
           "isAliased": false,
@@ -51954,17 +51965,6 @@
           "finalRank": 93,
           "profileUrl": "https://incels.is/members/words2_live_bye.15548/",
           "avatarUrl": "https://incels.is/data/avatars/s/15/15548.jpg?1556997777"
-        },
-        {
-          "username": "Old Ironsides",
-          "userId": "47585",
-          "isAliased": false,
-          "startPosts": 19427,
-          "postsGained": 0,
-          "endPosts": 19427,
-          "finalRank": 94,
-          "profileUrl": "https://incels.is/members/old-ironsides.47585/",
-          "avatarUrl": "https://incels.is/data/avatars/s/47/47585.jpg?1789362978"
         },
         {
           "username": "RandomGuy",
@@ -52051,8 +52051,8 @@
     {
       "rank": 2,
       "username": "AtrociousCitizen",
-      "posts": 763139,
-      "postDelta": 5,
+      "posts": 763140,
+      "postDelta": 6,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52063,8 +52063,8 @@
     {
       "rank": 3,
       "username": "Hermit",
-      "posts": 536041,
-      "postDelta": 26,
+      "posts": 538367,
+      "postDelta": 2352,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52075,8 +52075,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 477490,
-      "postDelta": 0,
+      "posts": 477497,
+      "postDelta": 7,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52111,8 +52111,8 @@
     {
       "rank": 7,
       "username": "TheSecondComing",
-      "posts": 278565,
-      "postDelta": 1354,
+      "posts": 278800,
+      "postDelta": 1589,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52123,8 +52123,8 @@
     {
       "rank": 8,
       "username": "Trout",
-      "posts": 277714,
-      "postDelta": 1680,
+      "posts": 278024,
+      "postDelta": 1990,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52159,8 +52159,8 @@
     {
       "rank": 11,
       "username": "Grodd",
-      "posts": 125770,
-      "postDelta": 0,
+      "posts": 125803,
+      "postDelta": 33,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52255,8 +52255,8 @@
     {
       "rank": 19,
       "username": "SubhumanOldcel",
-      "posts": 83440,
-      "postDelta": 325,
+      "posts": 83554,
+      "postDelta": 439,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52303,8 +52303,8 @@
     {
       "rank": 23,
       "username": "Grimm",
-      "posts": 54582,
-      "postDelta": 20,
+      "posts": 54594,
+      "postDelta": 32,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52327,8 +52327,8 @@
     {
       "rank": 25,
       "username": "Sewer Crab",
-      "posts": 52321,
-      "postDelta": 0,
+      "posts": 52325,
+      "postDelta": 4,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52423,8 +52423,8 @@
     {
       "rank": 33,
       "username": "SCAT PACK",
-      "posts": 40366,
-      "postDelta": 7,
+      "posts": 40369,
+      "postDelta": 10,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52447,8 +52447,8 @@
     {
       "rank": 35,
       "username": "EXTREME DUCK",
-      "posts": 39624,
-      "postDelta": 16,
+      "posts": 39627,
+      "postDelta": 19,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52555,8 +52555,8 @@
     {
       "rank": 44,
       "username": "Prophet",
-      "posts": 35056,
-      "postDelta": 24,
+      "posts": 35095,
+      "postDelta": 63,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52617,7 +52617,7 @@
       "username": "kay'",
       "posts": 33370,
       "postDelta": 7,
-      "rankDelta": 1,
+      "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
       "userId": "47736",
@@ -52629,7 +52629,7 @@
       "username": "ducster",
       "posts": 33369,
       "postDelta": 0,
-      "rankDelta": -1,
+      "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
       "userId": "74212",
@@ -52639,8 +52639,8 @@
     {
       "rank": 51,
       "username": "Onyx",
-      "posts": 33186,
-      "postDelta": 1,
+      "posts": 33192,
+      "postDelta": 7,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52651,8 +52651,8 @@
     {
       "rank": 52,
       "username": "Pancakecel",
-      "posts": 31456,
-      "postDelta": 7,
+      "posts": 31460,
+      "postDelta": 11,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52735,8 +52735,8 @@
     {
       "rank": 59,
       "username": "multi-nigger-boy",
-      "posts": 28879,
-      "postDelta": 13,
+      "posts": 28883,
+      "postDelta": 17,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52795,8 +52795,8 @@
     {
       "rank": 64,
       "username": "FuckYou",
-      "posts": 26930,
-      "postDelta": 7,
+      "posts": 26932,
+      "postDelta": 9,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52819,8 +52819,8 @@
     {
       "rank": 66,
       "username": "RuudVanNistelrooy",
-      "posts": 26096,
-      "postDelta": 60,
+      "posts": 26106,
+      "postDelta": 70,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52831,8 +52831,8 @@
     {
       "rank": 67,
       "username": "TooSomething",
-      "posts": 26021,
-      "postDelta": 16,
+      "posts": 26023,
+      "postDelta": 18,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52867,8 +52867,8 @@
     {
       "rank": 70,
       "username": "Hoodpreet",
-      "posts": 25403,
-      "postDelta": 9,
+      "posts": 25407,
+      "postDelta": 13,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -52915,8 +52915,8 @@
     {
       "rank": 74,
       "username": "maximoos",
-      "posts": 24918,
-      "postDelta": 28,
+      "posts": 24931,
+      "postDelta": 41,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -53047,8 +53047,8 @@
     {
       "rank": 85,
       "username": "The Notorious SLAV",
-      "posts": 22318,
-      "postDelta": 1,
+      "posts": 22328,
+      "postDelta": 11,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -53059,8 +53059,8 @@
     {
       "rank": 86,
       "username": "FrothySolutions",
-      "posts": 21225,
-      "postDelta": 5,
+      "posts": 21226,
+      "postDelta": 6,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -53071,8 +53071,8 @@
     {
       "rank": 87,
       "username": "Sheogorath",
-      "posts": 21030,
-      "postDelta": 0,
+      "posts": 21033,
+      "postDelta": 3,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -53155,8 +53155,8 @@
     {
       "rank": 94,
       "username": "Old Ironsides",
-      "posts": 19427,
-      "postDelta": 0,
+      "posts": 19429,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
