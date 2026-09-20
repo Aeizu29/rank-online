@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-09-20T03:41:04.214Z",
-  "updatedAtMs": 1789875664214,
+  "updatedAt": "2026-09-20T03:50:04.266Z",
+  "updatedAtMs": 1789876204266,
   "nextUpdateAt": "2026-09-20T03:55:00.000Z",
   "nextUpdateAtMs": 1789876500000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9412288
+    "combinedPosts": 9412553
   },
   "dailyTracking": {
     "dateKey": "2026-09-19",
     "timeZone": "America/New_York",
     "startedAt": 1789790701204,
-    "lastUpdatedAt": 1789875664214,
+    "lastUpdatedAt": 1789876204266,
     "currentLeaders": [
       {
         "dateKey": "2026-09-19",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/hermit.72876/",
         "avatarUrl": "",
         "trackingStartedAt": 1789790701204,
-        "trackingEndedAt": 1789875664214,
-        "finalizedAt": 1789875664475,
+        "trackingEndedAt": 1789876204266,
+        "finalizedAt": 1789876204513,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/hermit.72876/",
       "avatarUrl": "",
       "trackingStartedAt": 1789790701204,
-      "trackingEndedAt": 1789875664214,
-      "finalizedAt": 1789875664475,
+      "trackingEndedAt": 1789876204266,
+      "finalizedAt": 1789876204513,
       "isAliased": false
     }
   },
@@ -53180,7 +53180,7 @@
       "dateKey": "2026-09-19",
       "timeZone": "America/New_York",
       "startedAt": 1789790701204,
-      "lastUpdatedAt": 1789875664214,
+      "lastUpdatedAt": 1789876204266,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -53200,8 +53200,8 @@
           "userId": "3107",
           "isAliased": false,
           "startPosts": 2483179,
-          "postsGained": 2866,
-          "endPosts": 2486045,
+          "postsGained": 2920,
+          "endPosts": 2486099,
           "finalRank": 1,
           "profileUrl": "https://incels.is/members/animecel2d.3107/",
           "avatarUrl": "https://incels.is/data/avatars/s/3/3107.jpg?1761942958"
@@ -53211,8 +53211,8 @@
           "userId": "14662",
           "isAliased": false,
           "startPosts": 281465,
-          "postsGained": 2556,
-          "endPosts": 284021,
+          "postsGained": 2766,
+          "endPosts": 284231,
           "finalRank": 7,
           "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
           "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1788565830"
@@ -53449,6 +53449,17 @@
           "avatarUrl": "https://incels.is/data/avatars/s/47/47736.jpg?1786912647"
         },
         {
+          "username": "RandomGuy",
+          "userId": "3859",
+          "isAliased": false,
+          "startPosts": 19301,
+          "postsGained": 11,
+          "endPosts": 19312,
+          "finalRank": 94,
+          "profileUrl": "https://incels.is/members/randomguy.3859/",
+          "avatarUrl": "https://incels.is/data/avatars/s/3/3859.jpg?1773452605"
+        },
+        {
           "username": "LeFrenchCel",
           "userId": "26008",
           "isAliased": false,
@@ -53458,17 +53469,6 @@
           "finalRank": 26,
           "profileUrl": "https://incels.is/members/lefrenchcel.26008/",
           "avatarUrl": "https://incels.is/data/avatars/s/26/26008.jpg?1779091003"
-        },
-        {
-          "username": "RandomGuy",
-          "userId": "3859",
-          "isAliased": false,
-          "startPosts": 19301,
-          "postsGained": 10,
-          "endPosts": 19311,
-          "finalRank": 94,
-          "profileUrl": "https://incels.is/members/randomguy.3859/",
-          "avatarUrl": "https://incels.is/data/avatars/s/3/3859.jpg?1773452605"
         },
         {
           "username": "FrothySolutions",
@@ -54302,8 +54302,8 @@
     {
       "rank": 1,
       "username": "Animecel2D",
-      "posts": 2486045,
-      "postDelta": 2866,
+      "posts": 2486099,
+      "postDelta": 2920,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -54374,8 +54374,8 @@
     {
       "rank": 7,
       "username": "TheSecondComing",
-      "posts": 284021,
-      "postDelta": 2556,
+      "posts": 284231,
+      "postDelta": 2766,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -55418,8 +55418,8 @@
     {
       "rank": 94,
       "username": "RandomGuy",
-      "posts": 19311,
-      "postDelta": 10,
+      "posts": 19312,
+      "postDelta": 11,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
