@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-09-21T23:42:47.925Z",
-  "updatedAtMs": 1790034167925,
+  "updatedAt": "2026-09-21T23:43:04.454Z",
+  "updatedAtMs": 1790034184454,
   "nextUpdateAt": "2026-09-22T03:55:00.000Z",
   "nextUpdateAtMs": 1790049300000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9449626
+    "combinedPosts": 9449636
   },
   "dailyTracking": {
     "dateKey": "2026-09-21",
     "timeZone": "America/New_York",
     "startedAt": 1789963501319,
-    "lastUpdatedAt": 1790034167925,
+    "lastUpdatedAt": 1790034184454,
     "currentLeaders": [
       {
         "dateKey": "2026-09-21",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
         "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1788565830",
         "trackingStartedAt": 1789963501319,
-        "trackingEndedAt": 1790034167925,
-        "finalizedAt": 1790034168298,
+        "trackingEndedAt": 1790034184454,
+        "finalizedAt": 1790034184824,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1788565830",
       "trackingStartedAt": 1789963501319,
-      "trackingEndedAt": 1790034167925,
-      "finalizedAt": 1790034168298,
+      "trackingEndedAt": 1790034184454,
+      "finalizedAt": 1790034184824,
       "isAliased": false
     }
   },
@@ -55476,7 +55476,7 @@
       "dateKey": "2026-09-21",
       "timeZone": "America/New_York",
       "startedAt": 1789963501319,
-      "lastUpdatedAt": 1790034167925,
+      "lastUpdatedAt": 1790034184454,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -55518,8 +55518,8 @@
           "userId": "68713",
           "isAliased": false,
           "startPosts": 775085,
-          "postsGained": 2128,
-          "endPosts": 777213,
+          "postsGained": 2134,
+          "endPosts": 777219,
           "finalRank": 2,
           "profileUrl": "https://incels.is/members/atrociouscitizen.68713/",
           "avatarUrl": "https://incels.is/data/avatars/s/68/68713.jpg?1741965391"
@@ -55529,8 +55529,8 @@
           "userId": "59719",
           "isAliased": false,
           "startPosts": 486001,
-          "postsGained": 1485,
-          "endPosts": 487486,
+          "postsGained": 1489,
+          "endPosts": 487490,
           "finalRank": 4,
           "profileUrl": "https://incels.is/members/rezecel.59719/",
           "avatarUrl": "https://incels.is/data/avatars/s/59/59719.jpg?1790032170"
@@ -56610,8 +56610,8 @@
     {
       "rank": 2,
       "username": "AtrociousCitizen",
-      "posts": 777213,
-      "postDelta": 2128,
+      "posts": 777219,
+      "postDelta": 2134,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -56634,8 +56634,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 487486,
-      "postDelta": 1485,
+      "posts": 487490,
+      "postDelta": 1489,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
