@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-09-24T03:32:06.607Z",
-  "updatedAtMs": 1790220726607,
-  "nextUpdateAt": "2026-09-24T03:55:00.000Z",
-  "nextUpdateAtMs": 1790222100000,
+  "updatedAt": "2026-09-24T03:55:01.093Z",
+  "updatedAtMs": 1790222101093,
+  "nextUpdateAt": "2026-09-24T04:05:00.000Z",
+  "nextUpdateAtMs": 1790222700000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9531861
+    "combinedPosts": 9531863
   },
   "dailyTracking": {
     "dateKey": "2026-09-23",
     "timeZone": "America/New_York",
     "startedAt": 1790136301184,
-    "lastUpdatedAt": 1790220726607,
+    "lastUpdatedAt": 1790222101093,
     "currentLeaders": [
       {
         "dateKey": "2026-09-23",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
         "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1788565830",
         "trackingStartedAt": 1790136301184,
-        "trackingEndedAt": 1790220726607,
-        "finalizedAt": 1790220726973,
+        "trackingEndedAt": 1790222101093,
+        "finalizedAt": 1790222101350,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://incels.is/data/avatars/s/14/14662.jpg?1788565830",
       "trackingStartedAt": 1790136301184,
-      "trackingEndedAt": 1790220726607,
-      "finalizedAt": 1790220726973,
+      "trackingEndedAt": 1790222101093,
+      "finalizedAt": 1790222101350,
       "isAliased": false
     }
   },
@@ -57750,7 +57750,7 @@
       "dateKey": "2026-09-23",
       "timeZone": "America/New_York",
       "startedAt": 1790136301184,
-      "lastUpdatedAt": 1790220726607,
+      "lastUpdatedAt": 1790222101093,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -57957,8 +57957,8 @@
           "userId": "66267",
           "isAliased": false,
           "startPosts": 40493,
-          "postsGained": 29,
-          "endPosts": 40522,
+          "postsGained": 31,
+          "endPosts": 40524,
           "finalRank": 34,
           "profileUrl": "https://incels.is/members/scat-pack.66267/",
           "avatarUrl": "https://incels.is/data/avatars/s/66/66267.jpg?1790125546"
@@ -59268,8 +59268,8 @@
     {
       "rank": 34,
       "username": "SCAT PACK",
-      "posts": 40522,
-      "postDelta": 29,
+      "posts": 40524,
+      "postDelta": 31,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
