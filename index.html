@@ -9389,98 +9389,64 @@ ${usefulErrors.join('\n')}`
     return crown;
   }
 
-  function normalizeAvatarUrl(value, profileUrl='') {
-    let raw = String(value || '').trim();
+  function githubAvatarUrl(user) {
+    const raw = String(user?.avatarUrl || '').trim();
     if (!raw) return '';
-    if (/^(?:data:|blob:)/i.test(raw)) return raw;
-    if (raw.startsWith('//')) raw = `https:${raw}`;
-
-    let base = 'https://incels.is/';
-    try {
-      if (/^https?:\/\//i.test(String(profileUrl || ''))) {
-        base = new URL(profileUrl).origin + '/';
-      }
-    } catch {}
 
     try {
-      const url = new URL(raw, base);
-      if (url.protocol === 'http:') url.protocol = 'https:';
-      return url.href;
-    } catch { return raw; }
-  }
+      const url = new URL(raw, location.href);
 
-  function xenforoAvatarCandidates(user) {
-    const originals = [];
-    const addOriginal = value => {
-      value = String(value || '').trim();
-      if (!value) return;
-      if (/^\/\//.test(value)) value = `https:${value}`;
-      if (/^http:\/\//i.test(value)) value = value.replace(/^http:/i, 'https:');
-      try { value = new URL(value, 'https://incels.is/').href; } catch {}
-      if (!originals.includes(value)) originals.push(value);
-    };
+      // Never hotlink avatars from incels.is anymore. The Chrome extension
+      // replaces avatarUrl in ranking.json with the cached GitHub URL.
+      const host = url.hostname.toLowerCase();
+      if (host === 'incels.is' || host.endsWith('.incels.is')) return '';
 
-    // Use the exact URL supplied by ranking.json.
-    addOriginal(user?.avatarUrl);
+      // Also reject the old proxy fallbacks so the page makes no unnecessary
+      // avatar requests to third-party proxy services.
+      const blockedProxyHosts = new Set([
+        'wsrv.nl',
+        'images.weserv.nl',
+        'api.allorigins.win',
+        'corsproxy.io'
+      ]);
+      if (blockedProxyHosts.has(host)) return '';
 
-    // Rebuild XenForo avatar paths as fallbacks. Some scans can have an empty avatarUrl.
-    const id = Number.parseInt(String(user?.userId || '').match(/\d+/)?.[0] || '', 10);
-    if (Number.isFinite(id) && id > 0) {
-      const group = Math.floor(id / 1000);
-      for (const size of ['l','m','s','o']) {
-        for (const ext of ['jpg','png','webp']) {
-          addOriginal(`https://incels.is/data/avatars/${size}/${group}/${id}.${ext}`);
-        }
+      // Accept GitHub-hosted cached avatars and same-origin relative URLs.
+      if (
+        host === 'raw.githubusercontent.com' ||
+        host === 'github.com' ||
+        host.endsWith('.github.io') ||
+        url.origin === location.origin
+      ) {
+        return url.href;
       }
-    }
 
-    // incels.is may reject cross-site image hotlinking. Try server-side image/CORS
-    // proxies first, then fall back to the direct forum URL.
-    const candidates = [];
-    const addCandidate = value => {
-      if (value && !candidates.includes(value)) candidates.push(value);
-    };
-
-    for (const url of originals) {
-      const encoded = encodeURIComponent(url);
-      addCandidate(`https://wsrv.nl/?url=${encoded}&output=webp`);
-      addCandidate(`https://images.weserv.nl/?url=${encoded}&output=webp`);
-      addCandidate(`https://api.allorigins.win/raw?url=${encoded}`);
-      addCandidate(`https://corsproxy.io/?url=${encoded}`);
-      addCandidate(url);
+      return '';
+    } catch {
+      return '';
     }
-    return candidates;
   }
 
   function makeAvatar(user) {
-    const candidates = xenforoAvatarCandidates(user);
-    if (!candidates.length) return fallback(user?.username);
+    const src = githubAvatarUrl(user);
+    if (!src) return fallback(user?.username);
 
     const img = document.createElement('img');
     img.className = 'avatar';
     img.alt = '';
     img.decoding = 'async';
-    img.loading = 'eager';
+
+    // Lazy loading prevents avatars far below the fold from being requested
+    // until they are actually needed.
+    img.loading = 'lazy';
     img.referrerPolicy = 'no-referrer';
+    img.src = src;
 
-    let index = 0;
-    let finished = false;
-    const tryNext = () => {
-      if (finished) return;
-      if (index >= candidates.length) {
-        finished = true;
-        if (img.isConnected) img.replaceWith(fallback(user?.username));
-        return;
-      }
-      const next = candidates[index++];
-      img.removeAttribute('src');
-      // Give the browser a fresh request for every fallback candidate.
-      requestAnimationFrame(() => { img.src = next; });
-    };
+    // Do not retry incels.is or external proxy URLs on failure.
+    img.addEventListener('error', () => {
+      if (img.isConnected) img.replaceWith(fallback(user?.username));
+    }, { once:true });
 
-    img.addEventListener('load', () => { finished = true; }, { once:true });
-    img.addEventListener('error', tryNext);
-    tryNext();
     return img;
   }
   function fallback(username) {
