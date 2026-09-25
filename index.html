@@ -9404,51 +9404,72 @@ ${usefulErrors.join('\n')}`
 
     try {
       const url = new URL(raw, base);
-      /* Avoid mixed-content blocking when the dashboard is hosted over HTTPS. */
       if (url.protocol === 'http:') url.protocol = 'https:';
       return url.href;
     } catch { return raw; }
   }
 
-  function avatarProxyUrl(src) {
+  function xenforoAvatarCandidates(user) {
+    const candidates = [];
+    const add = value => {
+      value = String(value || '').trim();
+      if (value && !candidates.includes(value)) candidates.push(value);
+    };
+
+    const original = normalizeAvatarUrl(user?.avatarUrl, user?.profileUrl);
+    add(original);
+
+    /* If ranking.json stored an old/relative XenForo avatar URL, always retry it
+       against the forum's real origin. */
+    const forumVersion = normalizeAvatarUrl(user?.avatarUrl, 'https://incels.is/');
+    add(forumVersion);
+
     try {
-      const url = new URL(src);
-      if (!/^https?:$/.test(url.protocol)) return '';
-      return `https://images.weserv.nl/?url=${encodeURIComponent(url.href)}&fit=cover`;
-    } catch { return ''; }
+      if (original && /^https?:/i.test(original)) {
+        const u = new URL(original);
+        if (/\/data\/avatars\//i.test(u.pathname)) {
+          add(`https://incels.is${u.pathname}${u.search}`);
+          add(`https://incels.is${u.pathname}`);
+        }
+      }
+    } catch {}
+
+    /* XenForo 2 avatar files follow:
+       /data/avatars/{size}/{floor(userId/1000)}/{userId}.jpg
+       Rebuild those URLs when avatarUrl itself is stale or missing. */
+    const id = Number.parseInt(String(user?.userId || '').replace(/\D/g,''), 10);
+    if (Number.isFinite(id) && id > 0) {
+      const group = Math.floor(id / 1000);
+      for (const size of ['o','l','m','s']) {
+        add(`https://incels.is/data/avatars/${size}/${group}/${id}.jpg`);
+      }
+    }
+
+    return candidates;
   }
 
   function makeAvatar(user) {
-    const src = normalizeAvatarUrl(user?.avatarUrl, user?.profileUrl);
-    if (!src) return fallback(user?.username);
+    const candidates = xenforoAvatarCandidates(user);
+    if (!candidates.length) return fallback(user?.username);
 
     const img = document.createElement('img');
     img.className = 'avatar';
-    img.src = src;
     img.alt = '';
     img.loading = 'eager';
     img.decoding = 'async';
-    /* Some forums reject hotlinked images when a foreign Referer is sent. */
     img.referrerPolicy = 'no-referrer';
 
-    img.addEventListener('error', () => {
-      /* First retry the normalized forum URL, then use an image proxy as a last resort. */
-      const normalized = normalizeAvatarUrl(user?.avatarUrl, 'https://incels.is/');
-      if (normalized && normalized !== img.src && !img.dataset.avatarNormalizedRetried) {
-        img.dataset.avatarNormalizedRetried = '1';
-        img.src = normalized;
+    let index = 0;
+    const tryNext = () => {
+      if (index >= candidates.length) {
+        img.replaceWith(fallback(user?.username));
         return;
       }
+      img.src = candidates[index++];
+    };
 
-      const proxied = avatarProxyUrl(normalized || src);
-      if (proxied && !img.dataset.avatarProxyRetried) {
-        img.dataset.avatarProxyRetried = '1';
-        img.src = proxied;
-        return;
-      }
-
-      img.replaceWith(fallback(user?.username));
-    });
+    img.addEventListener('error', tryNext);
+    tryNext();
     return img;
   }
   function fallback(username) {
