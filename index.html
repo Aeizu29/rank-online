@@ -9410,44 +9410,45 @@ ${usefulErrors.join('\n')}`
   }
 
   function xenforoAvatarCandidates(user) {
-    const direct = [];
-    const add = value => {
+    const originals = [];
+    const addOriginal = value => {
       value = String(value || '').trim();
       if (!value) return;
       if (/^\/\//.test(value)) value = `https:${value}`;
-      if (/^http:\/\//i.test(value)) value = value.replace(/^http:/i,'https:');
-      if (!direct.includes(value)) direct.push(value);
+      if (/^http:\/\//i.test(value)) value = value.replace(/^http:/i, 'https:');
+      try { value = new URL(value, 'https://incels.is/').href; } catch {}
+      if (!originals.includes(value)) originals.push(value);
     };
 
-    // Always try exactly what ranking.json provides first.
-    add(user?.avatarUrl);
+    // Use the exact URL supplied by ranking.json.
+    addOriginal(user?.avatarUrl);
 
-    // Resolve relative avatar URLs against the forum origin and profile URL.
-    try { if (user?.avatarUrl) add(new URL(user.avatarUrl, 'https://incels.is/').href); } catch {}
-    try { if (user?.avatarUrl && user?.profileUrl) add(new URL(user.avatarUrl, user.profileUrl).href); } catch {}
-
-    // Rebuild common XenForo avatar paths from the numeric user id.
+    // Rebuild XenForo avatar paths as fallbacks. Some scans can have an empty avatarUrl.
     const id = Number.parseInt(String(user?.userId || '').match(/\d+/)?.[0] || '', 10);
     if (Number.isFinite(id) && id > 0) {
       const group = Math.floor(id / 1000);
-      for (const size of ['o','l','m','s']) {
-        for (const ext of ['jpg','webp','png']) {
-          add(`https://incels.is/data/avatars/${size}/${group}/${id}.${ext}`);
+      for (const size of ['l','m','s','o']) {
+        for (const ext of ['jpg','png','webp']) {
+          addOriginal(`https://incels.is/data/avatars/${size}/${group}/${id}.${ext}`);
         }
       }
     }
 
-    const candidates = [...direct];
-    const addProxy = url => {
-      if (!/^https?:\/\//i.test(url)) return;
-      const clean = url.replace(/^https?:\/\//i,'');
-      const proxied = [
-        `https://images.weserv.nl/?url=${encodeURIComponent(clean)}`,
-        `https://wsrv.nl/?url=${encodeURIComponent(clean)}`
-      ];
-      for (const value of proxied) if (!candidates.includes(value)) candidates.push(value);
+    // incels.is may reject cross-site image hotlinking. Try server-side image/CORS
+    // proxies first, then fall back to the direct forum URL.
+    const candidates = [];
+    const addCandidate = value => {
+      if (value && !candidates.includes(value)) candidates.push(value);
     };
-    direct.forEach(addProxy);
+
+    for (const url of originals) {
+      const encoded = encodeURIComponent(url);
+      addCandidate(`https://wsrv.nl/?url=${encoded}&output=webp`);
+      addCandidate(`https://images.weserv.nl/?url=${encoded}&output=webp`);
+      addCandidate(`https://api.allorigins.win/raw?url=${encoded}`);
+      addCandidate(`https://corsproxy.io/?url=${encoded}`);
+      addCandidate(url);
+    }
     return candidates;
   }
 
@@ -9458,18 +9459,26 @@ ${usefulErrors.join('\n')}`
     const img = document.createElement('img');
     img.className = 'avatar';
     img.alt = '';
-    img.loading = 'lazy';
     img.decoding = 'async';
+    img.loading = 'eager';
+    img.referrerPolicy = 'no-referrer';
 
     let index = 0;
+    let finished = false;
     const tryNext = () => {
+      if (finished) return;
       if (index >= candidates.length) {
-        img.replaceWith(fallback(user?.username));
+        finished = true;
+        if (img.isConnected) img.replaceWith(fallback(user?.username));
         return;
       }
-      img.src = candidates[index++];
+      const next = candidates[index++];
+      img.removeAttribute('src');
+      // Give the browser a fresh request for every fallback candidate.
+      requestAnimationFrame(() => { img.src = next; });
     };
 
+    img.addEventListener('load', () => { finished = true; }, { once:true });
     img.addEventListener('error', tryNext);
     tryNext();
     return img;
