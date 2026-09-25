@@ -9410,41 +9410,44 @@ ${usefulErrors.join('\n')}`
   }
 
   function xenforoAvatarCandidates(user) {
-    const candidates = [];
+    const direct = [];
     const add = value => {
       value = String(value || '').trim();
-      if (value && !candidates.includes(value)) candidates.push(value);
+      if (!value) return;
+      if (/^\/\//.test(value)) value = `https:${value}`;
+      if (/^http:\/\//i.test(value)) value = value.replace(/^http:/i,'https:');
+      if (!direct.includes(value)) direct.push(value);
     };
 
-    const original = normalizeAvatarUrl(user?.avatarUrl, user?.profileUrl);
-    add(original);
+    // Always try exactly what ranking.json provides first.
+    add(user?.avatarUrl);
 
-    /* If ranking.json stored an old/relative XenForo avatar URL, always retry it
-       against the forum's real origin. */
-    const forumVersion = normalizeAvatarUrl(user?.avatarUrl, 'https://incels.is/');
-    add(forumVersion);
+    // Resolve relative avatar URLs against the forum origin and profile URL.
+    try { if (user?.avatarUrl) add(new URL(user.avatarUrl, 'https://incels.is/').href); } catch {}
+    try { if (user?.avatarUrl && user?.profileUrl) add(new URL(user.avatarUrl, user.profileUrl).href); } catch {}
 
-    try {
-      if (original && /^https?:/i.test(original)) {
-        const u = new URL(original);
-        if (/\/data\/avatars\//i.test(u.pathname)) {
-          add(`https://incels.is${u.pathname}${u.search}`);
-          add(`https://incels.is${u.pathname}`);
-        }
-      }
-    } catch {}
-
-    /* XenForo 2 avatar files follow:
-       /data/avatars/{size}/{floor(userId/1000)}/{userId}.jpg
-       Rebuild those URLs when avatarUrl itself is stale or missing. */
-    const id = Number.parseInt(String(user?.userId || '').replace(/\D/g,''), 10);
+    // Rebuild common XenForo avatar paths from the numeric user id.
+    const id = Number.parseInt(String(user?.userId || '').match(/\d+/)?.[0] || '', 10);
     if (Number.isFinite(id) && id > 0) {
       const group = Math.floor(id / 1000);
       for (const size of ['o','l','m','s']) {
-        add(`https://incels.is/data/avatars/${size}/${group}/${id}.jpg`);
+        for (const ext of ['jpg','webp','png']) {
+          add(`https://incels.is/data/avatars/${size}/${group}/${id}.${ext}`);
+        }
       }
     }
 
+    const candidates = [...direct];
+    const addProxy = url => {
+      if (!/^https?:\/\//i.test(url)) return;
+      const clean = url.replace(/^https?:\/\//i,'');
+      const proxied = [
+        `https://images.weserv.nl/?url=${encodeURIComponent(clean)}`,
+        `https://wsrv.nl/?url=${encodeURIComponent(clean)}`
+      ];
+      for (const value of proxied) if (!candidates.includes(value)) candidates.push(value);
+    };
+    direct.forEach(addProxy);
     return candidates;
   }
 
@@ -9455,9 +9458,8 @@ ${usefulErrors.join('\n')}`
     const img = document.createElement('img');
     img.className = 'avatar';
     img.alt = '';
-    img.loading = 'eager';
+    img.loading = 'lazy';
     img.decoding = 'async';
-    img.referrerPolicy = 'no-referrer';
 
     let index = 0;
     const tryNext = () => {
