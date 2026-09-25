@@ -9389,10 +9389,48 @@ ${usefulErrors.join('\n')}`
     return crown;
   }
 
+  function normalizeAvatarUrl(value, profileUrl='') {
+    const raw = String(value || '').trim();
+    if (!raw) return '';
+    if (/^(?:data:|blob:|https?:\/\/)/i.test(raw)) return raw;
+    if (raw.startsWith('//')) return `https:${raw}`;
+
+    let base = 'https://incels.is/';
+    try {
+      if (/^https?:\/\//i.test(String(profileUrl || ''))) {
+        base = new URL(profileUrl).origin + '/';
+      }
+    } catch {}
+
+    try { return new URL(raw, base).href; }
+    catch { return raw; }
+  }
+
   function makeAvatar(user) {
-    if (!user?.avatarUrl) return fallback(user?.username);
-    const img=document.createElement('img'); img.className='avatar'; img.src=user.avatarUrl; img.alt=''; img.loading='lazy'; img.referrerPolicy='no-referrer';
-    img.addEventListener('error',()=>img.replaceWith(fallback(user?.username)),{once:true}); return img;
+    const src = normalizeAvatarUrl(user?.avatarUrl, user?.profileUrl);
+    if (!src) return fallback(user?.username);
+
+    const img = document.createElement('img');
+    img.className = 'avatar';
+    img.src = src;
+    img.alt = '';
+    img.loading = 'eager';
+    img.decoding = 'async';
+
+    img.addEventListener('error', () => {
+      /* Some XenForo avatar URLs are saved as relative paths. Retry against the forum origin. */
+      const raw = String(user?.avatarUrl || '').trim();
+      const retry = raw && !/^https?:\/\//i.test(raw)
+        ? normalizeAvatarUrl(raw, 'https://incels.is/')
+        : '';
+      if (retry && retry !== img.src && !img.dataset.avatarRetried) {
+        img.dataset.avatarRetried = '1';
+        img.src = retry;
+        return;
+      }
+      img.replaceWith(fallback(user?.username));
+    });
+    return img;
   }
   function fallback(username) {
     const label = avatarInitials(username);
