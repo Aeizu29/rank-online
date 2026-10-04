@@ -8,7 +8,7 @@
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#B6E1F9">
   <title>POSTMAXXERS — Live Ranking</title>
-  <style>	
+  <style>
     :root {
       color-scheme: dark;
       --bg:#080a0e; --panel:#11151d; --panel2:#171c26; --line:#28303d;
@@ -6422,6 +6422,71 @@ header,
       }
     }
 
+</style>
+
+
+<style id="remote-scan-long-message-render-fix">
+/* Fix Chromium text artifacts on the long Force Scan success message.
+   Keep the rest of the iOS/glass design untouched. */
+.remote-scan-feedback,
+.remote-scan-feedback.show {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+
+  display: none;
+  position: relative !important;
+  z-index: 2 !important;
+
+  contain: none !important;
+  isolation: isolate !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  rotate: none !important;
+  will-change: auto !important;
+
+  animation: none !important;
+  transition: none !important;
+
+  /* Do not blur/re-composite the video behind multi-line text. */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  /* A stable translucent surface instead of live glass blur. */
+  background: rgba(14, 22, 36, .94) !important;
+  border: 1px solid rgba(182, 225, 249, .24) !important;
+  box-shadow: none !important;
+
+  color: #f5fbff !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+
+  white-space: normal !important;
+  overflow: visible !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+
+  line-height: 1.45 !important;
+  letter-spacing: normal !important;
+}
+
+.remote-scan-feedback.show {
+  display: block !important;
+}
+
+@media (max-width:600px) {
+  .remote-scan-feedback,
+  .remote-scan-feedback.show {
+    font-size: 11px !important;
+    line-height: 1.42 !important;
+  }
+}
 </style>
 
 </head>
