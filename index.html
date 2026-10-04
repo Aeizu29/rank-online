@@ -6770,6 +6770,26 @@ header,
     applyLocalRemoteScanFallback();
   });
 
+  // Keep the Force Scan state synchronized across every open browser.
+  // This is a read-only status check and does NOT trigger a scan.
+  let remoteScanStatusPollInFlight = false;
+  setInterval(async () => {
+    if (remoteScanStatusPollInFlight) return;
+
+    // Do not interrupt the brief "Requesting…" UI while this browser
+    // is actively sending a real Force Scan POST.
+    if (el.remoteScanButton.textContent === 'Requesting…') return;
+
+    remoteScanStatusPollInFlight = true;
+    try {
+      await updateRemoteScanAvailability({ quiet: true });
+    } catch (error) {
+      console.warn('Background global cooldown sync failed.', error);
+    } finally {
+      remoteScanStatusPollInFlight = false;
+    }
+  }, 5000);
+
 
   function safeStorageGet(key) {
     try {
@@ -6855,7 +6875,7 @@ header,
     el.remoteScanStatus.textContent = 'Global cooldown status unavailable.';
   }
 
-  async function updateRemoteScanAvailability() {
+  async function updateRemoteScanAvailability({ quiet = false } = {}) {
     if (!isRemoteScanConfigured()) {
       el.remoteScanButton.disabled = true;
       el.remoteScanFeedback.classList.remove('show');
@@ -6863,9 +6883,11 @@ header,
       return;
     }
 
-    el.remoteScanButton.disabled = true;
-    el.remoteScanButton.textContent = 'Checking…';
-    el.remoteScanStatus.textContent = 'Checking global cooldown…';
+    if (!quiet) {
+      el.remoteScanButton.disabled = true;
+      el.remoteScanButton.textContent = 'Checking…';
+      el.remoteScanStatus.textContent = 'Checking global cooldown…';
+    }
 
     try {
       const statusUrl = new URL(REMOTE_SCAN_ENDPOINT);
