@@ -6763,15 +6763,12 @@ header,
 
   // Remote-scan storage is optional. Never let a browser privacy/storage
   // restriction prevent the clock or leaderboard from loading.
-  try {
-    updateRemoteScanAvailability();
-  } catch (error) {
-    console.warn('Remote scan availability check failed; continuing without stored cooldown.', error);
-    el.remoteScanButton.disabled = false;
-    el.remoteScanButton.textContent = 'Force scan';
-    el.remoteScanFeedback.classList.remove('show');
-    el.remoteScanStatus.textContent = 'Available every 5 minutes.';
-  }
+  // Ask the remote relay for the GLOBAL cooldown state.
+  // This works across normal/private browsers as long as the Worker exposes ?status=1.
+  updateRemoteScanAvailability().catch(error => {
+    console.warn('Global remote-scan availability check failed.', error);
+    applyLocalRemoteScanFallback();
+  });
 
 
   function safeStorageGet(key) {
@@ -6837,27 +6834,120 @@ header,
     return /^https:\/\/(?!REPLACE-ME)[^/]+\.workers\.dev/i.test(REMOTE_SCAN_ENDPOINT);
   }
 
-  function updateRemoteScanAvailability() {
+  function applyRemoteScanAvailable() {
+    el.remoteScanButton.disabled = false;
+    el.remoteScanButton.textContent = 'Force scan';
+    el.remoteScanFeedback.classList.remove('show');
+    el.remoteScanStatus.textContent = 'Available every 5 minutes.';
+  }
+
+  function applyLocalRemoteScanFallback() {
+    const nextAllowedAt = Number(safeStorageGet('postmaxxersRemoteScanNextAllowedAt5mV2') || 0);
+    if (nextAllowedAt > Date.now()) {
+      startRemoteCooldown(nextAllowedAt);
+      return;
+    }
+
+    // Do not claim the button is globally available if the relay could not be checked.
+    el.remoteScanButton.disabled = false;
+    el.remoteScanButton.textContent = 'Force scan';
+    el.remoteScanFeedback.classList.remove('show');
+    el.remoteScanStatus.textContent = 'Global cooldown status unavailable.';
+  }
+
+  async function updateRemoteScanAvailability() {
     if (!isRemoteScanConfigured()) {
       el.remoteScanButton.disabled = true;
       el.remoteScanFeedback.classList.remove('show');
       el.remoteScanStatus.textContent = 'Remote scan relay is not configured.';
       return;
     }
-    const nextAllowedAt = Number(safeStorageGet('postmaxxersRemoteScanNextAllowedAt5mV2') || 0);
-    if (nextAllowedAt > Date.now()) startRemoteCooldown(nextAllowedAt);
-    else {
-      el.remoteScanButton.disabled = false;
-      el.remoteScanButton.textContent = 'Force scan';
-      el.remoteScanFeedback.classList.remove('show');
-      el.remoteScanStatus.textContent = 'Available every 5 minutes.';
+
+    el.remoteScanButton.disabled = true;
+    el.remoteScanButton.textContent = 'Checking…';
+    el.remoteScanStatus.textContent = 'Checking global cooldown…';
+
+    try {
+      const statusUrl = new URL(REMOTE_SCAN_ENDPOINT);
+      statusUrl.searchParams.set('status', '1');
+      statusUrl.searchParams.set('_', String(Date.now()));
+
+      const response = await fetch(statusUrl.toString(), {
+        method: 'GET',
+        cache: 'no-store',
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Status request failed with HTTP ${response.status}`);
+      }
+
+      const payload = await response.json().catch(() => null);
+      if (!payload || typeof payload !== 'object') {
+        throw new Error('Status endpoint did not return JSON.');
+      }
+
+      // Accept several sensible field names so the page is tolerant of Worker versions.
+      const retryAfterSeconds = Math.max(
+        0,
+        Number(
+          payload.retryAfterSeconds ??
+          payload.cooldownSeconds ??
+          payload.remainingSeconds ??
+          0
+        ) || 0
+      );
+
+      let nextAllowedAt = Number(
+        payload.nextAllowedAt ??
+        payload.nextAllowedAtMs ??
+        payload.cooldownUntil ??
+        0
+      ) || 0;
+
+      // Also accept ISO timestamps if the Worker returns one.
+      if (!nextAllowedAt && payload.nextAllowedAtIso) {
+        const parsed = Date.parse(payload.nextAllowedAtIso);
+        if (Number.isFinite(parsed)) nextAllowedAt = parsed;
+      }
+
+      if (!nextAllowedAt && retryAfterSeconds > 0) {
+        nextAllowedAt = Date.now() + retryAfterSeconds * 1000;
+      }
+
+      const explicitlyUnavailable =
+        payload.available === false ||
+        payload.onCooldown === true ||
+        payload.cooldown === true;
+
+      if ((explicitlyUnavailable || retryAfterSeconds > 0 || nextAllowedAt > Date.now()) && nextAllowedAt > Date.now()) {
+        safeStorageSet('postmaxxersRemoteScanNextAllowedAt5mV2', String(nextAllowedAt));
+        startRemoteCooldown(nextAllowedAt);
+        return;
+      }
+
+      if (
+        payload.available === true ||
+        payload.onCooldown === false ||
+        payload.cooldown === false ||
+        (retryAfterSeconds <= 0 && nextAllowedAt <= Date.now())
+      ) {
+        safeStorageSet('postmaxxersRemoteScanNextAllowedAt5mV2', '0');
+        applyRemoteScanAvailable();
+        return;
+      }
+
+      throw new Error('Status response did not include a recognizable cooldown state.');
+    } catch (error) {
+      console.warn('Could not read global remote-scan cooldown; using local fallback.', error);
+      applyLocalRemoteScanFallback();
     }
   }
 
   function startRemoteCooldown(nextAllowedAt) {
     const render = () => {
       const remaining = Math.max(0, nextAllowedAt - Date.now());
-      if (!remaining) { updateRemoteScanAvailability(); return; }
+      if (!remaining) { updateRemoteScanAvailability().catch(()=>applyLocalRemoteScanFallback()); return; }
       const minutes = Math.floor(remaining / 60000);
       const seconds = Math.floor((remaining % 60000) / 1000);
       el.remoteScanButton.disabled = true;
