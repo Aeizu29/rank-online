@@ -2813,7 +2813,7 @@
       border-radius:11px;
       background:linear-gradient(135deg,rgba(196,138,203,.15),rgba(171,112,186,.08));
       box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
-      font-size:18px;
+      font-size:11px;
     }
     .news-wire-body {
       display:flex;
@@ -6489,6 +6489,39 @@ header,
 }
 </style>
 
+
+<style id="day-end-countdown-styles">
+.last-updated-final-scan {
+  margin-top:8px;
+  min-width:0;
+}
+.last-updated-final-scan-label {
+  color:var(--muted);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.last-updated-final-scan-time {
+  margin-top:2px;
+  color:#f5fbff;
+  font-size:11px;
+  line-height:1.05;
+  font-weight:1000;
+  letter-spacing:-.025em;
+  font-variant-numeric:tabular-nums;
+}
+.last-updated-final-scan-target {
+  margin-top:3px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:800;
+}
+@media(max-width:600px) {
+  .last-updated-final-scan-time { font-size:11px; }
+}
+</style>
+
 </head>
 <!-- REBUILT NEWS-WIRE BANNER BUILD. GRAPHS V3 BUILD: 18 profile graph views + high-visibility ticker stats. MOUSE TOOLTIP BUILD: chart stat panels follow the pointer and flip only near chart edges. -->
 <body>
@@ -6509,13 +6542,17 @@ header,
       </div>
     </div>
   </header>
-
-  <section class="live-block" aria-label="Latest update and scan controls">
+<section class="live-block" aria-label="Latest update and scan controls">
     <div class="live-main">
       <span class="dot" id="dot"></span>
       <div>
         <div class="live-title" id="liveTitle">Last updated</div>
         <div class="live-detail" id="liveDetail">Loading latest tracker update…</div>
+        <div class="last-updated-final-scan" aria-label="Time until final daily scan">
+          <div class="last-updated-final-scan-label">Final daily scan in</div>
+          <div class="last-updated-final-scan-time" id="dayEndCountdownTime">--:--:--</div>
+          <div id="dayEndCountdownZone" hidden>America/New_York</div>
+        </div>
       </div>
     </div>
     <div class="live-scan-actions">
@@ -9806,6 +9843,125 @@ ${usefulErrors.join('\n')}`
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',tryPlay,{once:true});
   else tryPlay();
 })();
+
+  // Live countdown to the next 05:55 AM in America/New_York.
+  // Uses timezone-aware Intl calculations, including EDT/EST transitions.
+  const DAY_END_SCAN_TZ = 'America/New_York';
+  const DAY_END_SCAN_HOUR = 17;
+  const DAY_END_SCAN_MINUTE = 55;
+
+  function getTimeZoneParts(date, timeZone) {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone,
+      year:'numeric',
+      month:'2-digit',
+      day:'2-digit',
+      hour:'2-digit',
+      minute:'2-digit',
+      second:'2-digit',
+      hourCycle:'h23'
+    }).formatToParts(date);
+
+    const out = {};
+    for (const part of parts) {
+      if (part.type !== 'literal') out[part.type] = part.value;
+    }
+    return {
+      year:Number(out.year),
+      month:Number(out.month),
+      day:Number(out.day),
+      hour:Number(out.hour),
+      minute:Number(out.minute),
+      second:Number(out.second)
+    };
+  }
+
+  function getTimeZoneOffsetMs(date, timeZone) {
+    const p = getTimeZoneParts(date, timeZone);
+    const asUTC = Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second);
+    return asUTC - Math.floor(date.getTime() / 1000) * 1000;
+  }
+
+  function zonedDateTimeToUtc(year, month, day, hour, minute, second, timeZone) {
+    // First guess treats the wall-clock values as UTC, then correct using zone offset.
+    let guess = Date.UTC(year, month - 1, day, hour, minute, second);
+    for (let i = 0; i < 3; i++) {
+      const offset = getTimeZoneOffsetMs(new Date(guess), timeZone);
+      const corrected = Date.UTC(year, month - 1, day, hour, minute, second) - offset;
+      if (Math.abs(corrected - guess) < 1) break;
+      guess = corrected;
+    }
+    return new Date(guess);
+  }
+
+  function addCalendarDay(year, month, day) {
+    const d = new Date(Date.UTC(year, month - 1, day) + 86400000);
+    return {
+      year:d.getUTCFullYear(),
+      month:d.getUTCMonth() + 1,
+      day:d.getUTCDate()
+    };
+  }
+
+  function getNextFinalScan(now = new Date()) {
+    const ny = getTimeZoneParts(now, DAY_END_SCAN_TZ);
+    let target = zonedDateTimeToUtc(
+      ny.year, ny.month, ny.day,
+      DAY_END_SCAN_HOUR, DAY_END_SCAN_MINUTE, 0,
+      DAY_END_SCAN_TZ
+    );
+
+    if (target.getTime() <= now.getTime()) {
+      const tomorrow = addCalendarDay(ny.year, ny.month, ny.day);
+      target = zonedDateTimeToUtc(
+        tomorrow.year, tomorrow.month, tomorrow.day,
+        DAY_END_SCAN_HOUR, DAY_END_SCAN_MINUTE, 0,
+        DAY_END_SCAN_TZ
+      );
+    }
+    return target;
+  }
+
+  function getNewYorkShortZone(date) {
+    try {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone:DAY_END_SCAN_TZ,
+        timeZoneName:'short'
+      }).formatToParts(date);
+      return parts.find(p => p.type === 'timeZoneName')?.value || 'ET';
+    } catch {
+      return 'ET';
+    }
+  }
+
+  function renderDayEndCountdown() {
+    const timeEl = document.getElementById('dayEndCountdownTime');
+    const targetEl = document.getElementById('dayEndCountdownTarget');
+    const zoneEl = document.getElementById('dayEndCountdownZone');
+    if (!timeEl || !zoneEl) return;
+
+    const now = new Date();
+    const target = getNextFinalScan(now);
+    const remaining = Math.max(0, target.getTime() - now.getTime());
+
+    const totalSeconds = Math.floor(remaining / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    timeEl.textContent =
+      `${String(hours).padStart(2,'0')}:` +
+      `${String(minutes).padStart(2,'0')}:` +
+      `${String(seconds).padStart(2,'0')}`;
+
+    const zone = getNewYorkShortZone(target);
+    if (targetEl) targetEl.textContent = `Next final scan: 05:55 PM ${zone}`;
+    zoneEl.textContent = 'New York daily cutoff';
+  }
+
+  renderDayEndCountdown();
+  setInterval(renderDayEndCountdown, 1000);
+
 </script>
 </body>
 </html>
