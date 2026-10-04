@@ -9847,7 +9847,7 @@ ${usefulErrors.join('\n')}`
   // Live countdown to the next 05:55 AM in America/New_York.
   // Uses timezone-aware Intl calculations, including EDT/EST transitions.
   const DAY_END_SCAN_TZ = 'America/New_York';
-  const DAY_END_SCAN_HOUR = 17;
+  const DAY_END_SCAN_HOUR = 23;
   const DAY_END_SCAN_MINUTE = 55;
 
   function getTimeZoneParts(date, timeZone) {
@@ -9955,7 +9955,7 @@ ${usefulErrors.join('\n')}`
       `${String(seconds).padStart(2,'0')}`;
 
     const zone = getNewYorkShortZone(target);
-    if (targetEl) targetEl.textContent = `Next final scan: 05:55 PM ${zone}`;
+    if (targetEl) targetEl.textContent = `Next final scan: 11:55 PM ${zone}`;
     zoneEl.textContent = 'New York daily cutoff';
   }
 
