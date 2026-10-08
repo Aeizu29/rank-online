@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-08T04:05:01.153Z",
-  "updatedAtMs": 1791432301153,
+  "updatedAt": "2026-10-08T05:31:22.273Z",
+  "updatedAtMs": 1791437482273,
   "nextUpdateAt": "2026-10-09T03:55:00.000Z",
   "nextUpdateAtMs": 1791518100000,
   "updateIntervalMinutes": null,
@@ -17,45 +17,45 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9828535
+    "combinedPosts": 9829995
   },
   "dailyTracking": {
     "dateKey": "2026-10-08",
     "timeZone": "America/New_York",
     "startedAt": 1791432301153,
-    "lastUpdatedAt": 1791432301153,
+    "lastUpdatedAt": 1791437482273,
     "currentLeaders": [
       {
         "dateKey": "2026-10-08",
         "timeZone": "America/New_York",
-        "username": "Animecel2D",
-        "userId": "3107",
-        "postsGained": 61,
-        "startPosts": 2554623,
-        "endPosts": 2554684,
-        "finalRank": 1,
-        "profileUrl": "https://incels.is/members/animecel2d.3107/",
-        "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/3107.jpg?v=1790898980",
+        "username": "Rezecel",
+        "userId": "59719",
+        "postsGained": 912,
+        "startPosts": 526393,
+        "endPosts": 527305,
+        "finalRank": 4,
+        "profileUrl": "https://incels.is/members/rezecel.59719/",
+        "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1791392767",
         "trackingStartedAt": 1791432301153,
-        "trackingEndedAt": 1791432301153,
-        "finalizedAt": 1791432301585,
+        "trackingEndedAt": 1791437482273,
+        "finalizedAt": 1791437482618,
         "isAliased": false
       }
     ],
     "currentLeader": {
       "dateKey": "2026-10-08",
       "timeZone": "America/New_York",
-      "username": "Animecel2D",
-      "userId": "3107",
-      "postsGained": 61,
-      "startPosts": 2554623,
-      "endPosts": 2554684,
-      "finalRank": 1,
-      "profileUrl": "https://incels.is/members/animecel2d.3107/",
-      "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/3107.jpg?v=1790898980",
+      "username": "Rezecel",
+      "userId": "59719",
+      "postsGained": 912,
+      "startPosts": 526393,
+      "endPosts": 527305,
+      "finalRank": 4,
+      "profileUrl": "https://incels.is/members/rezecel.59719/",
+      "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1791392767",
       "trackingStartedAt": 1791432301153,
-      "trackingEndedAt": 1791432301153,
-      "finalizedAt": 1791432301585,
+      "trackingEndedAt": 1791437482273,
+      "finalizedAt": 1791437482618,
       "isAliased": false
     }
   },
@@ -74739,28 +74739,50 @@
       "dateKey": "2026-10-08",
       "timeZone": "America/New_York",
       "startedAt": 1791432301153,
-      "lastUpdatedAt": 1791432301153,
+      "lastUpdatedAt": 1791437482273,
       "finalized": false,
       "finalizedAt": null,
       "users": [
+        {
+          "username": "Rezecel",
+          "userId": "59719",
+          "isAliased": false,
+          "startPosts": 526393,
+          "postsGained": 912,
+          "endPosts": 527305,
+          "finalRank": 4,
+          "profileUrl": "https://incels.is/members/rezecel.59719/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1791392767"
+        },
         {
           "username": "Animecel2D",
           "userId": "3107",
           "isAliased": false,
           "startPosts": 2554623,
-          "postsGained": 61,
-          "endPosts": 2554684,
+          "postsGained": 588,
+          "endPosts": 2555211,
           "finalRank": 1,
           "profileUrl": "https://incels.is/members/animecel2d.3107/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/3107.jpg?v=1790898980"
+        },
+        {
+          "username": "Lv99_BixNood",
+          "userId": "1672",
+          "isAliased": false,
+          "startPosts": 24857,
+          "postsGained": 9,
+          "endPosts": 24866,
+          "finalRank": 77,
+          "profileUrl": "https://incels.is/members/lv99_bixnood.1672/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/1672.jpg?v=1521990097"
         },
         {
           "username": "VλREN",
           "userId": "46587",
           "isAliased": false,
           "startPosts": 25338,
-          "postsGained": 2,
-          "endPosts": 25340,
+          "postsGained": 4,
+          "endPosts": 25342,
           "finalRank": 74,
           "profileUrl": "https://incels.is/members/vlren.46587/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
@@ -74770,11 +74792,55 @@
           "userId": "6633",
           "isAliased": false,
           "startPosts": 21283,
-          "postsGained": 1,
-          "endPosts": 21284,
+          "postsGained": 3,
+          "endPosts": 21286,
           "finalRank": 88,
           "profileUrl": "https://incels.is/members/frothysolutions.6633/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/6633.jpg?v=1765317335"
+        },
+        {
+          "username": "Tšuudi",
+          "userId": "89056",
+          "isAliased": false,
+          "startPosts": 42914,
+          "postsGained": 2,
+          "endPosts": 42916,
+          "finalRank": 32,
+          "profileUrl": "https://incels.is/members/tsuudi.89056/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/89056.jpg?v=1790976501"
+        },
+        {
+          "username": "Prophet",
+          "userId": "62916",
+          "isAliased": false,
+          "startPosts": 36851,
+          "postsGained": 2,
+          "endPosts": 36853,
+          "finalRank": 43,
+          "profileUrl": "https://incels.is/members/prophet.62916/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/62916.jpg?v=1790342540"
+        },
+        {
+          "username": "SlayerSlayer",
+          "userId": "10247",
+          "isAliased": false,
+          "startPosts": 25933,
+          "postsGained": 2,
+          "endPosts": 25935,
+          "finalRank": 70,
+          "profileUrl": "https://incels.is/members/slayerslayer.10247/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/10247.jpg?v=1791407812"
+        },
+        {
+          "username": "Hoodpreet",
+          "userId": "49986",
+          "isAliased": false,
+          "startPosts": 25500,
+          "postsGained": 2,
+          "endPosts": 25502,
+          "finalRank": 72,
+          "profileUrl": "https://incels.is/members/hoodpreet.49986/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/49986.jpg?v=1789572366"
         },
         {
           "username": "RandomGuy",
@@ -74808,17 +74874,6 @@
           "finalRank": 3,
           "profileUrl": "https://incels.is/members/hermit.72876/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/72876.jpg?v=1790986246"
-        },
-        {
-          "username": "Rezecel",
-          "userId": "59719",
-          "isAliased": false,
-          "startPosts": 526393,
-          "postsGained": 0,
-          "endPosts": 526393,
-          "finalRank": 4,
-          "profileUrl": "https://incels.is/members/rezecel.59719/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1791392767"
         },
         {
           "username": "W",
@@ -75118,17 +75173,6 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/56211.jpg?v=1791136131"
         },
         {
-          "username": "Tšuudi",
-          "userId": "89056",
-          "isAliased": false,
-          "startPosts": 42914,
-          "postsGained": 0,
-          "endPosts": 42914,
-          "finalRank": 32,
-          "profileUrl": "https://incels.is/members/tsuudi.89056/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/89056.jpg?v=1790976501"
-        },
-        {
           "username": "nihility",
           "userId": "20071",
           "isAliased": false,
@@ -75237,17 +75281,6 @@
           "finalRank": 42,
           "profileUrl": "https://incels.is/members/dregster.13198/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/13198.jpg?v=1672455742"
-        },
-        {
-          "username": "Prophet",
-          "userId": "62916",
-          "isAliased": false,
-          "startPosts": 36851,
-          "postsGained": 0,
-          "endPosts": 36851,
-          "finalRank": 43,
-          "profileUrl": "https://incels.is/members/prophet.62916/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/62916.jpg?v=1790342540"
         },
         {
           "username": "Problematicusername1",
@@ -75536,17 +75569,6 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/71805.jpg?v=1767557703"
         },
         {
-          "username": "SlayerSlayer",
-          "userId": "10247",
-          "isAliased": false,
-          "startPosts": 25933,
-          "postsGained": 0,
-          "endPosts": 25933,
-          "finalRank": 70,
-          "profileUrl": "https://incels.is/members/slayerslayer.10247/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/10247.jpg?v=1791407812"
-        },
-        {
           "username": "tehgymcel420",
           "userId": "1350",
           "isAliased": false,
@@ -75556,17 +75578,6 @@
           "finalRank": 71,
           "profileUrl": "https://incels.is/members/tehgymcel420.1350/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/1350.jpg?v=1577905129"
-        },
-        {
-          "username": "Hoodpreet",
-          "userId": "49986",
-          "isAliased": false,
-          "startPosts": 25500,
-          "postsGained": 0,
-          "endPosts": 25500,
-          "finalRank": 72,
-          "profileUrl": "https://incels.is/members/hoodpreet.49986/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/49986.jpg?v=1789572366"
         },
         {
           "username": "maximoos",
@@ -75600,17 +75611,6 @@
           "finalRank": 76,
           "profileUrl": "https://incels.is/members/caesercel.26980/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/26980.jpg?v=1736101053"
-        },
-        {
-          "username": "Lv99_BixNood",
-          "userId": "1672",
-          "isAliased": false,
-          "startPosts": 24857,
-          "postsGained": 0,
-          "endPosts": 24857,
-          "finalRank": 77,
-          "profileUrl": "https://incels.is/members/lv99_bixnood.1672/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/1672.jpg?v=1521990097"
         },
         {
           "username": "Subhuman Niceguy",
@@ -75850,8 +75850,8 @@
     {
       "rank": 1,
       "username": "Animecel2D",
-      "posts": 2554684,
-      "postDelta": 61,
+      "posts": 2555211,
+      "postDelta": 588,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -75886,8 +75886,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 526393,
-      "postDelta": 0,
+      "posts": 527305,
+      "postDelta": 912,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -76222,8 +76222,8 @@
     {
       "rank": 32,
       "username": "Tšuudi",
-      "posts": 42914,
-      "postDelta": 0,
+      "posts": 42916,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -76354,8 +76354,8 @@
     {
       "rank": 43,
       "username": "Prophet",
-      "posts": 36851,
-      "postDelta": 0,
+      "posts": 36853,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -76678,8 +76678,8 @@
     {
       "rank": 70,
       "username": "SlayerSlayer",
-      "posts": 25933,
-      "postDelta": 0,
+      "posts": 25935,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -76702,8 +76702,8 @@
     {
       "rank": 72,
       "username": "Hoodpreet",
-      "posts": 25500,
-      "postDelta": 0,
+      "posts": 25502,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -76726,8 +76726,8 @@
     {
       "rank": 74,
       "username": "VλREN",
-      "posts": 25340,
-      "postDelta": 2,
+      "posts": 25342,
+      "postDelta": 4,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -76762,8 +76762,8 @@
     {
       "rank": 77,
       "username": "Lv99_BixNood",
-      "posts": 24857,
-      "postDelta": 0,
+      "posts": 24866,
+      "postDelta": 9,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -76894,8 +76894,8 @@
     {
       "rank": 88,
       "username": "FrothySolutions",
-      "posts": 21284,
-      "postDelta": 1,
+      "posts": 21286,
+      "postDelta": 3,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
