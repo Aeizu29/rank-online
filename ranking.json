@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-12T03:04:35.739Z",
-  "updatedAtMs": 1791774275739,
+  "updatedAt": "2026-10-12T03:15:35.738Z",
+  "updatedAtMs": 1791774935738,
   "nextUpdateAt": "2026-10-12T03:55:00.000Z",
   "nextUpdateAtMs": 1791777300000,
   "updateIntervalMinutes": null,
@@ -17,28 +17,28 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9907074
+    "combinedPosts": 9907271
   },
   "dailyTracking": {
     "dateKey": "2026-10-11",
     "timeZone": "America/New_York",
     "startedAt": 1791691501551,
-    "lastUpdatedAt": 1791774275739,
+    "lastUpdatedAt": 1791774935738,
     "currentLeaders": [
       {
         "dateKey": "2026-10-11",
         "timeZone": "America/New_York",
         "username": "TheSecondComing",
         "userId": "14662",
-        "postsGained": 3468,
+        "postsGained": 3659,
         "startPosts": 342498,
-        "endPosts": 345966,
+        "endPosts": 346157,
         "finalRank": 6,
         "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172",
         "trackingStartedAt": 1791691501551,
-        "trackingEndedAt": 1791774275739,
-        "finalizedAt": 1791774276043,
+        "trackingEndedAt": 1791774935738,
+        "finalizedAt": 1791774936051,
         "isAliased": false
       }
     ],
@@ -47,15 +47,15 @@
       "timeZone": "America/New_York",
       "username": "TheSecondComing",
       "userId": "14662",
-      "postsGained": 3468,
+      "postsGained": 3659,
       "startPosts": 342498,
-      "endPosts": 345966,
+      "endPosts": 346157,
       "finalRank": 6,
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172",
       "trackingStartedAt": 1791691501551,
-      "trackingEndedAt": 1791774275739,
-      "finalizedAt": 1791774276043,
+      "trackingEndedAt": 1791774935738,
+      "finalizedAt": 1791774936051,
       "isAliased": false
     }
   },
@@ -78150,7 +78150,7 @@
       "dateKey": "2026-10-11",
       "timeZone": "America/New_York",
       "startedAt": 1791691501551,
-      "lastUpdatedAt": 1791774275739,
+      "lastUpdatedAt": 1791774935738,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -78159,8 +78159,8 @@
           "userId": "14662",
           "isAliased": false,
           "startPosts": 342498,
-          "postsGained": 3468,
-          "endPosts": 345966,
+          "postsGained": 3659,
+          "endPosts": 346157,
           "finalRank": 6,
           "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172"
@@ -78181,8 +78181,8 @@
           "userId": "104669",
           "isAliased": false,
           "startPosts": 49044,
-          "postsGained": 2980,
-          "endPosts": 52024,
+          "postsGained": 2981,
+          "endPosts": 52025,
           "finalRank": 26,
           "profileUrl": "https://incels.is/members/mobile97.104669/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1790999256"
@@ -78364,6 +78364,17 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
         },
         {
+          "username": "Emba",
+          "userId": "18638",
+          "isAliased": false,
+          "startPosts": 108656,
+          "postsGained": 30,
+          "endPosts": 108686,
+          "finalRank": 15,
+          "profileUrl": "https://incels.is/members/emba.18638/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519"
+        },
+        {
           "username": "N",
           "userId": "56211",
           "isAliased": false,
@@ -78384,17 +78395,6 @@
           "finalRank": 49,
           "profileUrl": "",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/61345.jpg?v=1712989383"
-        },
-        {
-          "username": "Emba",
-          "userId": "18638",
-          "isAliased": false,
-          "startPosts": 108656,
-          "postsGained": 25,
-          "endPosts": 108681,
-          "finalRank": 15,
-          "profileUrl": "https://incels.is/members/emba.18638/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519"
         },
         {
           "username": "TooSomething",
@@ -79332,8 +79332,8 @@
     {
       "rank": 6,
       "username": "TheSecondComing",
-      "posts": 345966,
-      "postDelta": 3468,
+      "posts": 346157,
+      "postDelta": 3659,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -79440,8 +79440,8 @@
     {
       "rank": 15,
       "username": "Emba",
-      "posts": 108681,
-      "postDelta": 25,
+      "posts": 108686,
+      "postDelta": 30,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -79572,8 +79572,8 @@
     {
       "rank": 26,
       "username": "Mobile97",
-      "posts": 52024,
-      "postDelta": 2980,
+      "posts": 52025,
+      "postDelta": 2981,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
