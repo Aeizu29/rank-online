@@ -1007,6 +1007,18 @@
     }
 
 
+
+    /* Podium change effects run on every changed JSON snapshot, regardless of tab focus. */
+    .podium-live-change { animation: podiumLiveArrival .85s cubic-bezier(.18,.8,.22,1) both; }
+    .podium-live-up { --podium-offset: 32px; }
+    .podium-live-down { --podium-offset: -20px; }
+    .podium-live-new { --podium-offset: 24px; }
+    @keyframes podiumLiveArrival {
+      0% { opacity:.25; transform:translateY(var(--podium-offset, 20px)) scale(.95); }
+      70% { opacity:1; transform:translateY(-4px) scale(1.025); }
+      100% { opacity:1; transform:translateY(0) scale(1); }
+    }
+    @media (prefers-reduced-motion:reduce) { .podium-live-change { animation:none; } }
     /* Count-up + pop — added only to the existing Today's live podium */
     .podium-gain.podium-count-pop {
       animation:podiumCountPop .58s cubic-bezier(.2,.8,.2,1);
@@ -6559,7 +6571,12 @@ body .podium-avatar-ring::after {
   inset:4px !important;
   border:1px solid rgba(var(--ring-color),.35) !important;
 }
-body .podium-position-1 .podium-avatar-ring { --ring-color:255,221,117; }
+/* First-place numeral and avatar ring share the exact gold of the underline (#FFDD75). */
+body .podium-position-1 .podium-place { color:rgb(255,221,117) !important; }
+body .podium-position-1 .podium-avatar-ring {
+  --ring-color:255,221,117;
+  border-color:rgb(255,221,117) !important;
+}
 body .podium-position-2 .podium-avatar-ring { --ring-color:218,230,251; }
 body .podium-position-3 .podium-avatar-ring { --ring-color:218,152,206; }
 
@@ -6778,7 +6795,7 @@ body .podium-position-3 .podium-avatar-ring { --ring-color:218,152,206; }
 <script>
 (() => {
   const GITHUB_API_VERSION = '2022-11-28';
-  const POLL_MS = 60 * 60 * 1000;
+  const POLL_MS = 15 * 1000; // Refresh ranking.json every 15 seconds
   const REMOTE_SCAN_COOLDOWN_MS = 5 * 60 * 1000; // Fixed 5-minute website cooldown
   const RANKING_LIMIT = 100;
   const DAILY_TIME_ZONE = 'America/New_York';
@@ -6809,7 +6826,8 @@ body .podium-position-3 .podium-avatar-ring { --ring-color:218,152,206; }
   };
 
   const state = { data:null, query:'', selectedSource:null, renderedNewYorkDate:null, activeHistoryUser:null, activeProfileAchievements:[], profileAchievementsExpanded:false, activeHistoryChartMode:'trend', activeHistoryChartRecords:[], activeHistoryChartUser:null, pastDailyIndex:0};
-  let animatePodiumOnceOnPageLoad = true;
+  let podiumPrevious = null; // Previous podium snapshot; comparisons run even in background tabs.
+  let lastRankingSnapshot = null; // Skip DOM updates if the downloaded ranking.json is unchanged.
   let leaderCrownSequence = 0;
   let historyChartSequence = 0;
   const el = Object.fromEntries([...document.querySelectorAll('[id]')].map(node => [node.id,node]));
@@ -7063,8 +7081,11 @@ body .podium-position-3 .podium-avatar-ring { --ring-color:218,152,206; }
   }
 
   async function loadData(manual) {
-    setStatus('loading', 'Last updated', 'Checking the latest tracker data…');
-    hideError();
+    // Background checks must not flash the loading label or touch the page.
+    if (manual || !state.data) {
+      setStatus('loading', 'Last updated', 'Checking the latest tracker data…');
+      hideError();
+    }
     try {
       let result = null;
 
@@ -7081,13 +7102,23 @@ body .podium-position-3 .podium-avatar-ring { --ring-color:218,152,206; }
       if (!result) result = await findDataFile();
 
       state.selectedSource = result.source;
-      state.data = result.data;
-      renderAll();
-      setStatus('success', 'Last updated', result.data?.updatedAtMs ? formatDateTime(result.data.updatedAtMs) : 'Update time unavailable');
+      // Compare the complete parsed JSON; identical fetches do not rebuild the
+      // podium, leaderboard, profile modal or other rendered sections.
+      const nextSnapshot = JSON.stringify(result.data);
+      if (nextSnapshot !== lastRankingSnapshot) {
+        lastRankingSnapshot = nextSnapshot;
+        state.data = result.data;
+        renderAll(); // Includes podium animations, regardless of tab focus.
+        setStatus('success', 'Last updated', result.data?.updatedAtMs ? formatDateTime(result.data.updatedAtMs) : 'Update time unavailable');
+      }
     } catch (error) {
-      setStatus('error', 'Last updated', 'Public ranking data unavailable');
-      showError(formatSetupError(error));
-      if (!state.data) renderAll();
+      if (!state.data) {
+        setStatus('error', 'Last updated', 'Public ranking data unavailable');
+        showError(formatSetupError(error));
+        renderAll();
+      } else {
+        console.warn('Ranking refresh failed; keeping the last known data.', error);
+      }
     } finally {
       if (!manual) scheduleNextPoll();
     }
@@ -7318,6 +7349,10 @@ ${usefulErrors.join('\n')}`
     const tracking = getCurrentNewYorkTracking();
     const dailyLeaderboard = getDailyLeaderboard(tracking);
     const podiumUsers = dailyLeaderboard.slice(0, 3);
+    const currentPodium = new Map(podiumUsers.map((u, i) => [String(u.userId || u.username).toLowerCase(), {
+      place: Math.min(3, Number(u.dailyRank) || i + 1),
+      gained: Math.max(0, Math.round(Number(u.postsGained) || 0))
+    }]));
     el.dateBadge.textContent = `New York · ${formatDateKey(today)}`;
     el.leader.replaceChildren();
 
@@ -7332,6 +7367,11 @@ ${usefulErrors.join('\n')}`
       for (const user of podiumUsers) {
         const position = Math.min(3, Number(user.dailyRank) || (podiumUsers.indexOf(user) + 1));
         const entry = node('div',`podium-entry podium-position-${position}`);
+        const previous = podiumPrevious?.get(String(user.userId || user.username).toLowerCase());
+        if (podiumPrevious && (!previous || previous.place !== position)) {
+          entry.classList.add('podium-live-change');
+          entry.classList.add(!previous ? 'podium-live-new' : position < previous.place ? 'podium-live-up' : 'podium-live-down');
+        }
 
         const avatarRing = node('div','podium-avatar-ring');
         avatarRing.append(makeAvatar(user));
@@ -7347,13 +7387,19 @@ ${usefulErrors.join('\n')}`
 
       el.leader.append(kicker,stage);
 
-      if(animatePodiumOnceOnPageLoad){
-        const gains=[...stage.querySelectorAll('.podium-gain')];
-        gains.forEach((gain,index)=>animatePodiumCount(gain,gain.dataset.countTarget,index*80));
-        animatePodiumOnceOnPageLoad=false;
-      }
+      // Trigger counters on initial load and whenever a member's score changes.
+      // There is intentionally NO visibility/focus guard here.
+      [...stage.querySelectorAll('.podium-entry')].forEach((entry, index) => {
+        const user = podiumUsers[index];
+        const previous = podiumPrevious?.get(String(user.userId || user.username).toLowerCase());
+        const gain = entry.querySelector('.podium-gain');
+        if (!previous || previous.gained !== Number(gain.dataset.countTarget)) {
+          animatePodiumCount(gain, gain.dataset.countTarget, index * 80);
+        }
+      });
     }
 
+    podiumPrevious = currentPodium;
     const liveRows = dailyLeaderboard.map(user => ({ ...user, isLive:true }));
     const rows = liveRows.map(makeWinnerRow);
     el.winnerCount.textContent = tracking ? `${liveRows.length} active ${liveRows.length === 1 ? 'user' : 'users'} today` : 'Waiting for scan';
