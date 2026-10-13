@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#B6E1F9">
-  <title>POSTMAXXERS — Full Animated Podium Demo</title>
+  <title>POSTMAXXERS — Live Ranking</title>
   <style>
     :root {
       color-scheme: dark;
@@ -1357,16 +1357,13 @@
       -webkit-backdrop-filter:blur(18px) saturate(165%);
     }
     .podium-position-1 .podium-avatar-ring {
-      background:linear-gradient(145deg,#fff1a8,#e2b84a 48%,#8e6418) !important;
-      border-color:rgba(255,233,170,.62) !important;
+      background:linear-gradient(135deg,rgba(255,224,172,.45),rgba(213,167,223,.22)) !important;
     }
     .podium-position-2 .podium-avatar-ring {
-      background:linear-gradient(145deg,#f8fbff,#b7c0cd 48%,#6c7482) !important;
-      border-color:rgba(233,238,247,.56) !important;
+      background:linear-gradient(135deg,rgba(245,248,255,.35),rgba(187,198,217,.20)) !important;
     }
     .podium-position-3 .podium-avatar-ring {
-      background:linear-gradient(145deg,#f3d8c4,#c88755 48%,#7b4722) !important;
-      border-color:rgba(237,193,160,.54) !important;
+      background:linear-gradient(135deg,rgba(255,213,182,.35),rgba(213,141,88,.18)) !important;
     }
     .leader .avatar,
     .podium-avatar-ring .avatar { border-color:rgba(255,255,255,.55) !important; }
@@ -1566,31 +1563,23 @@
     }
     .podium-position-1 .podium-step {
       min-height:116px !important;
-      background:linear-gradient(180deg,#a97a1f 0%, #825d17 58%, #62440f 100%) !important;
-      border-color:rgba(255,226,150,.42) !important;
+      background:linear-gradient(180deg,rgba(255,203,122,.26),rgba(15,20,32,.30)) !important;
+      border-color:rgba(255,224,178,.28) !important;
     }
     .podium-position-2 .podium-step {
       min-height:89px !important;
-      background:linear-gradient(180deg,#8d96a4 0%, #707987 58%, #555d6a 100%) !important;
-      border-color:rgba(236,240,246,.34) !important;
+      background:linear-gradient(180deg,rgba(223,232,247,.17),rgba(15,20,32,.28)) !important;
     }
     .podium-position-3 .podium-step {
       min-height:72px !important;
-      background:linear-gradient(180deg,#9b6338 0%, #7f4f2e 58%, #613a22 100%) !important;
-      border-color:rgba(232,186,152,.30) !important;
+      background:linear-gradient(180deg,rgba(226,157,105,.18),rgba(15,20,32,.28)) !important;
     }
     .podium-place {
       margin-top:0 !important;
       font-size:30px !important;
       line-height:1 !important;
-      color:#f4f7fb !important;
     }
-    .podium-position-1 .podium-place {
-      font-size:40px !important;
-      color:#ffe890 !important;
-    }
-    .podium-position-2 .podium-place { color:#edf2f8 !important; }
-    .podium-position-3 .podium-place { color:#f0c6a6 !important; }
+    .podium-position-1 .podium-place { font-size:40px !important; }
     .podium-place-label {
       margin-top:5px !important;
       margin-bottom:0 !important;
@@ -4872,9 +4861,7 @@
       body::before { background-position:50% center !important; }
     }
 
-  
-/* Demo-only control bar */
-</style>
+  </style>
 
 <style id="epal-inspired-theme">
 /* =========================================================
@@ -6535,55 +6522,31 @@ header,
 }
 </style>
 
-<style id="second-place-balanced-silver-fix">
-/* Match the soft colored podium bases: a clearly visible silver-grey, not chrome or glass. */
-.podium-stage .podium-entry.podium-position-2 .podium-step {
-  background:linear-gradient(180deg,#586074 0%,#3a4053 100%) !important;
-  border:1px solid rgba(204,215,237,.26) !important;
-  box-shadow:none !important;
-  opacity:1 !important;
+
+<style id="podium-underline-production-style">
+/* Production podium style: minimal underline. Presentation only;
+   do not change podium DOM, classes, keyframes, or animation scripts. */
+body .podium-step,
+body .podium-position-1 .podium-step,
+body .podium-position-2 .podium-step,
+body .podium-position-3 .podium-step {
+  --underline-color: 218,230,251;
+  position:relative !important;
+  overflow:hidden !important;
+  background:linear-gradient(0deg,rgba(var(--underline-color),.15),transparent 85%) !important;
+  border:0 !important;
+  border-bottom:2px solid rgba(var(--underline-color),.75) !important;
+  border-radius:4px !important;
+  box-shadow:inset 0 -2px 0 rgba(var(--underline-color),.7) !important;
   backdrop-filter:none !important;
   -webkit-backdrop-filter:none !important;
 }
-.podium-stage .podium-entry.podium-position-2 .podium-place {
-  color:#e2e7f3 !important;
-  text-shadow:none !important;
-}
-.podium-stage .podium-entry.podium-position-2 .podium-place-label { color:#b9c1d1 !important; }
-.podium-stage .podium-entry.podium-position-2 .podium-avatar-ring {
-  background:linear-gradient(145deg,#e2e6ef,#a2acbf 55%,#646e82) !important;
-  box-shadow:none !important;
-}
-</style>
-<style id="first-third-place-balanced-fix">
-/* Equal visual weight with the corrected second-place base; no glass transparency. */
-.podium-stage .podium-entry.podium-position-1 .podium-step {
-  background:linear-gradient(180deg,#566382 0%,#36425e 100%) !important;
-  border:1px solid rgba(184,210,255,.27) !important;
-  box-shadow:none !important;
-  opacity:1 !important;
-  backdrop-filter:none !important;
-  -webkit-backdrop-filter:none !important;
-}
-.podium-stage .podium-entry.podium-position-1 .podium-place { color:#dbe9ff !important; text-shadow:none !important; }
-.podium-stage .podium-entry.podium-position-1 .podium-place-label { color:#bccae1 !important; }
-.podium-stage .podium-entry.podium-position-1 .podium-avatar-ring {
-  background:linear-gradient(145deg,#e0ebff,#9bb7e2 55%,#617dab) !important;
-  box-shadow:none !important;
-}
-.podium-stage .podium-entry.podium-position-3 .podium-step {
-  background:linear-gradient(180deg,#704d65 0%,#49364f 100%) !important;
-  border:1px solid rgba(236,170,211,.27) !important;
-  box-shadow:none !important;
-  opacity:1 !important;
-  backdrop-filter:none !important;
-  -webkit-backdrop-filter:none !important;
-}
-.podium-stage .podium-entry.podium-position-3 .podium-place { color:#f4c4df !important; text-shadow:none !important; }
-.podium-stage .podium-entry.podium-position-3 .podium-place-label { color:#d4abc5 !important; }
-.podium-stage .podium-entry.podium-position-3 .podium-avatar-ring {
-  background:linear-gradient(145deg,#f4d4e8,#d496be 55%,#945b84) !important;
-  box-shadow:none !important;
+body .podium-position-1 .podium-step { --underline-color:255,221,117; }
+body .podium-position-2 .podium-step { --underline-color:218,230,251; }
+body .podium-position-3 .podium-step { --underline-color:218,152,206; }
+/* Remove the old mobile podium card surface as well. */
+@media(max-width:480px){
+  body .podium-entry { background:transparent !important; border-color:transparent !important; }
 }
 </style>
 </head>
@@ -6632,8 +6595,7 @@ header,
 
   <section class="daily" id="today">
     <div class="section-head">
-      <div><h2>Top Postmaxxers of the Day</h2><p>Today’s top three appear on the podium, with the complete daily leaderboard below it.</p></div>
-      <span class="badge" id="dateBadge">Not tracking yet</span>
+      <div><h2>Top Postmaxxers of the Day</h2><p>Today’s top three appear on the podium, with the complete daily leaderboard below it.</p></div><span class="badge" id="dateBadge">Not tracking yet</span>
     </div>
     <div class="daily-grid">
       <article class="leader" id="leader"></article>
@@ -6797,7 +6759,7 @@ header,
 <script>
 (() => {
   const GITHUB_API_VERSION = '2022-11-28';
-  const POLL_MS = 15 * 1000; // Check for new published ranking data every 15 seconds
+  const POLL_MS = 60 * 60 * 1000;
   const REMOTE_SCAN_COOLDOWN_MS = 5 * 60 * 1000; // Fixed 5-minute website cooldown
   const RANKING_LIMIT = 100;
   const DAILY_TIME_ZONE = 'America/New_York';
@@ -6816,7 +6778,6 @@ header,
     { min:0,      key:'recruit',   label:'Recruit' }
   ];
   const PREVIEW_BUILD = false;
-  const FULL_FAKE_DEMO = false;
   // Replace this with the URL shown after deploying scan-relay-worker.js.
   const REMOTE_SCAN_ENDPOINT = 'https://postmaxxers-scan-relay.rpk1dhz65tnreg.workers.dev/';
   const params = new URLSearchParams(location.search);
@@ -6829,48 +6790,6 @@ header,
   };
 
   const state = { data:null, query:'', selectedSource:null, renderedNewYorkDate:null, activeHistoryUser:null, activeProfileAchievements:[], profileAchievementsExpanded:false, activeHistoryChartMode:'trend', activeHistoryChartRecords:[], activeHistoryChartUser:null, pastDailyIndex:0};
-  let rankingPollInFlight = false;
-  // Keep unseen ranking changes pending until the visitor returns to this tab.
-  let deferredRankingResult = null;
-  let returnRefreshRequested = false;
-  function applyRankingResult(result) {
-    const fingerprint = JSON.stringify(result.data);
-    const changed = fingerprint !== lastRankingFingerprint;
-    state.selectedSource = result.source;
-    if (changed) {
-      lastRankingFingerprint = fingerprint;
-      state.data = result.data;
-      renderAll();
-    }
-    if (changed) {
-      setStatus('success', 'Last updated', result.data?.updatedAtMs ? formatDateTime(result.data.updatedAtMs) : 'Update time unavailable');
-      hideError();
-    }
-    return changed;
-  }
-  function refreshOnReturn() {
-    if (document.hidden) return;
-    if (deferredRankingResult) {
-      const pending = deferredRankingResult;
-      deferredRankingResult = null;
-      applyRankingResult(pending);
-    }
-    // Also check for newer scans made while the tab was in the background.
-    if (rankingPollInFlight) {
-      returnRefreshRequested = true;
-      return;
-    }
-    loadData(false, true);
-    updateRemoteScanAvailability({ quiet:true }).catch(()=>{});
-  }
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) refreshOnReturn();
-  });
-  // Covers browser/tab switching where focus fires without a visibility event.
-  window.addEventListener('focus', () => {
-    if (!document.hidden) refreshOnReturn();
-  });
-  let lastRankingFingerprint = null;
   let animatePodiumOnceOnPageLoad = true;
   let leaderCrownSequence = 0;
   let historyChartSequence = 0;
@@ -6898,7 +6817,6 @@ header,
   el.historyOverlay.addEventListener('click', event => { if (event.target === el.historyOverlay) closeUserHistory(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && !el.historyOverlay.hidden) closeUserHistory(); });
   setInterval(() => {
-    if (document.hidden) return;
     renderNewYorkClock();
     const today = newYorkDateKey(Date.now());
     if (today !== state.renderedNewYorkDate) { renderDaily(); renderMilestones(); }
@@ -6910,7 +6828,7 @@ header,
   // restriction prevent the clock or leaderboard from loading.
   // Ask the remote relay for the GLOBAL cooldown state.
   // This works across normal/private browsers as long as the Worker exposes ?status=1.
-  if (!FULL_FAKE_DEMO) updateRemoteScanAvailability().catch(error => {
+  updateRemoteScanAvailability().catch(error => {
     console.warn('Global remote-scan availability check failed.', error);
     applyLocalRemoteScanFallback();
   });
@@ -6918,8 +6836,8 @@ header,
   // Keep the Force Scan state synchronized across every open browser.
   // This is a read-only status check and does NOT trigger a scan.
   let remoteScanStatusPollInFlight = false;
-  if (!FULL_FAKE_DEMO) setInterval(async () => {
-    if (document.hidden || remoteScanStatusPollInFlight) return;
+  setInterval(async () => {
+    if (remoteScanStatusPollInFlight) return;
 
     // Do not interrupt the brief "Requesting…" UI while this browser
     // is actively sending a real Force Scan POST.
@@ -6934,7 +6852,6 @@ header,
       remoteScanStatusPollInFlight = false;
     }
   }, 5000);
-
 
 
   function safeStorageGet(key) {
@@ -7126,14 +7043,9 @@ header,
     render();
   }
 
-  async function loadData(manual, background = false) {
-    // Never overlap requests, including a first load or a slow GitHub response.
-    if (rankingPollInFlight) return;
-    rankingPollInFlight = true;
-    if (!background) {
-      setStatus('loading', 'Last updated', 'Checking the latest tracker data…');
-      hideError();
-    }
+  async function loadData(manual) {
+    setStatus('loading', 'Last updated', 'Checking the latest tracker data…');
+    hideError();
     try {
       let result = null;
 
@@ -7149,39 +7061,24 @@ header,
 
       if (!result) result = await findDataFile();
 
-      // An in-flight response must never update the hidden page. Keep it for
-      // when visibility returns so podium arrivals/reorders animate on-screen.
-      if (document.hidden) {
-        deferredRankingResult = result;
-      } else {
-        const changed = applyRankingResult(result);
-        if (!changed && !background) {
-          setStatus('success', 'Last updated', result.data?.updatedAtMs ? formatDateTime(result.data.updatedAtMs) : 'Update time unavailable');
-          hideError();
-        }
-      }
+      state.selectedSource = result.source;
+      state.data = result.data;
+      renderAll();
+      setStatus('success', 'Last updated', result.data?.updatedAtMs ? formatDateTime(result.data.updatedAtMs) : 'Update time unavailable');
     } catch (error) {
-      if (!background || !state.data) {
-        setStatus('error', 'Last updated', 'Public ranking data unavailable');
-        showError(formatSetupError(error));
-        if (!state.data) renderAll();
-      } else {
-        console.warn('Background ranking check failed; keeping last known data.', error);
-      }
+      setStatus('error', 'Last updated', 'Public ranking data unavailable');
+      showError(formatSetupError(error));
+      if (!state.data) renderAll();
     } finally {
-      rankingPollInFlight = false;
-      if (returnRefreshRequested && !document.hidden) {
-        returnRefreshRequested = false;
-        refreshOnReturn();
-      }
+      if (!manual) scheduleNextPoll();
     }
   }
 
-  // Poll only when visible. Background tabs retain their last rendered state;
-  // a foreground return immediately fetches and animates all changes.
-  if (!FULL_FAKE_DEMO) setInterval(() => {
-    if (!document.hidden) loadData(false, true);
-  }, POLL_MS);
+  function scheduleNextPoll() {
+    setTimeout(async () => {
+      await loadData(false);
+    }, POLL_MS);
+  }
 
   async function findDataFile() {
     const paths = unique([
@@ -7359,7 +7256,7 @@ ${usefulErrors.join('\n')}`
   }
 
 
-  function animatePodiumCount(gainElement,target,delay=0,startValue=0) {
+  function animatePodiumCount(gainElement,target,delay=0) {
     const finalValue=Math.max(0,Math.round(Number(target)||0));
     const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -7368,17 +7265,16 @@ ${usefulErrors.join('\n')}`
       return;
     }
 
-    const initialValue=Math.max(0,Math.round(Number(startValue)||0));
-    gainElement.textContent=`+${formatNumber(initialValue)}`;
+    gainElement.textContent='+0';
 
     setTimeout(()=>{
-      const duration=1050;
+      const duration=800;
       const startedAt=performance.now();
 
       const tick=now=>{
         const progress=Math.min(1,(now-startedAt)/duration);
         const eased=1-Math.pow(1-progress,4);
-        const currentValue=Math.round(initialValue+(finalValue-initialValue)*eased);
+        const currentValue=Math.min(finalValue,Math.round(finalValue*eased));
 
         gainElement.textContent=`+${formatNumber(currentValue)}`;
 
@@ -7397,85 +7293,6 @@ ${usefulErrors.join('\n')}`
     },delay);
   }
 
-  // Animate podium membership/order changes during background refreshes.
-  // Stable identity avoids triggering the animation on ordinary count updates.
-  function podiumIdentity(user) {
-    const id = String(user?.userId ?? '').trim();
-    return id ? `id:${id}` : `name:${String(user?.username ?? '').trim().toLowerCase()}`;
-  }
-
-  let lastPodiumIdentity = null;
-  let lastPodiumDay = null;
-  // Live Arcade podium transition: animate only player content, never a card.
-  const demoAnimationStyle = 'arcade';
-  function animatePodiumChanges(previousEntries, newStage, previousIds, currentIds) {
-    if (!newStage || !previousIds || previousIds.join('|') === currentIds.join('|') ||
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const style = demoAnimationStyle;
-    const entries = [...newStage.querySelectorAll('.podium-entry')];
-    // Animate only people, NEVER the .podium-entry box or the podium step.
-    // This prevents the semi-transparent rectangle / "card" visible in transitions.
-    for (const entry of entries) {
-      const old = previousEntries.get(entry.dataset.podiumId);
-      const next = entry.getBoundingClientRect();
-      const dx = old ? (old.rect.left + old.rect.width / 2) - (next.left + next.width / 2) : 0;
-      const dy = old ? old.rect.top - next.top : 0;
-      const targets = entry.querySelectorAll('.podium-avatar-ring,.podium-name,.podium-gain,.podium-gain-label');
-      let frames, options;
-      if (style === 'minimal') {
-        frames = old ? [{opacity:.42},{opacity:1}] : [{opacity:0},{opacity:1}];
-        options = {duration:old?420:650,easing:'ease-out'};
-      } else if (style === 'silk') {
-        frames = old ? [{transform:`translate(${dx}px,${dy}px)`,opacity:.7},{transform:'translate(0,0)',opacity:1}] :
-          [{transform:'translateY(14px) scale(.94)',opacity:0,filter:'blur(6px)'},{transform:'translateY(0) scale(1)',opacity:1,filter:'blur(0)'}];
-        options = {duration:old?650:850,easing:'cubic-bezier(.2,.75,.2,1)'};
-      } else if (style === 'slide') {
-        frames = old ? [{transform:`translate(${dx}px,${dy}px)`,opacity:1},{transform:'translate(0,0)',opacity:1}] :
-          [{transform:'translateX(75px)',opacity:0},{transform:'translateX(0)',opacity:1}];
-        options = {duration:700,easing:'cubic-bezier(.22,1,.36,1)'};
-      } else if (style === 'spotlight') {
-        frames = old ? [{transform:`translate(${dx}px,${dy}px)`,opacity:.8},{transform:'translate(0,0)',opacity:1}] :
-          [{transform:'scale(.85)',opacity:0,filter:'brightness(2.6) blur(8px)'},{transform:'scale(1.04)',opacity:1,filter:'brightness(1.5) blur(0)',offset:.68},{transform:'scale(1)',opacity:1,filter:'brightness(1)'}];
-        options = {duration:950,easing:'ease-out'};
-      } else {
-        frames = old ? [{transform:`translate(${dx}px,${dy}px) scale(.94)`,opacity:.7},{transform:'translate(0, -12px) scale(1.06)',opacity:1,offset:.65},{transform:'translate(0,0) scale(1)',opacity:1}] :
-          [{transform:'translateY(-50px) scale(.7)',opacity:0,filter:'brightness(3)'},{transform:'translateY(10px) scale(1.1)',opacity:1,filter:'brightness(1.5)',offset:.67},{transform:'translateY(0) scale(1)',opacity:1,filter:'brightness(1)'}];
-        options = {duration:850,easing:'cubic-bezier(.2,.75,.2,1)'};
-      }
-      targets.forEach(target => target.animate(frames, options));
-    }
-    // Outgoing players are just an avatar + name, not a cloned podium card.
-    for (const [id, old] of previousEntries) {
-      if (currentIds.includes(id) || !old.rect.width || !old.rect.height || style === 'minimal') continue;
-      const avatar = old.element.querySelector('.podium-avatar-ring');
-      const name = old.element.querySelector('.podium-name');
-      if (!avatar || !name) continue;
-      const ghost = document.createElement('div');
-      ghost.setAttribute('aria-hidden','true');
-      ghost.className = 'podium-player-ghost';
-      Object.assign(ghost.style, {
-        position:'fixed', top:`${old.rect.top}px`, left:`${old.rect.left}px`,
-        width:`${old.rect.width}px`, pointerEvents:'none', zIndex:'999',
-        display:'flex', flexDirection:'column', alignItems:'center',
-        background:'transparent', border:'none', boxShadow:'none',
-        padding:'0', margin:'0'
-      });
-      const avatarCopy = avatar.cloneNode(true);
-      const nameCopy = name.cloneNode(true);
-      nameCopy.removeAttribute('onclick');
-      nameCopy.tabIndex = -1;
-      ghost.append(avatarCopy, nameCopy);
-      document.body.append(ghost);
-      const exitFrames = style==='slide' ?
-        [{opacity:.75,transform:'translateX(0)'},{opacity:0,transform:'translateX(-65px)'}] : style==='spotlight' ?
-        [{opacity:.75,filter:'brightness(1)'},{opacity:0,filter:'brightness(2.5) blur(10px)'}] : style==='arcade' ?
-        [{opacity:.8,transform:'translateY(0) scale(1)'},{opacity:0,transform:'translateY(-35px) scale(.8)'}] :
-        [{opacity:.65,filter:'blur(0)'},{opacity:0,filter:'blur(9px)'}];
-      const animation = ghost.animate(exitFrames,{duration:style==='arcade'?350:500,easing:'ease-out',fill:'forwards'});
-      animation.finished.catch(()=>{}).finally(()=>ghost.remove());
-    }
-  }
-
   function renderDaily() {
     const today = newYorkDateKey(Date.now());
     state.renderedNewYorkDate = today;
@@ -7483,14 +7300,6 @@ ${usefulErrors.join('\n')}`
     const dailyLeaderboard = getDailyLeaderboard(tracking);
     const podiumUsers = dailyLeaderboard.slice(0, 3);
     el.dateBadge.textContent = `New York · ${formatDateKey(today)}`;
-    const previousEntries = new Map();
-    const previousIds = lastPodiumDay === today ? lastPodiumIdentity : null;
-    el.leader.querySelectorAll('.podium-entry[data-podium-id]').forEach(entry => {
-      previousEntries.set(entry.dataset.podiumId, { element:entry, rect:entry.getBoundingClientRect(), count:Number(entry.querySelector('.podium-gain')?.dataset.countTarget||0) });
-    });
-    const currentIds = podiumUsers.map(podiumIdentity);
-    lastPodiumIdentity = currentIds;
-    lastPodiumDay = today;
     el.leader.replaceChildren();
 
     if (!tracking) {
@@ -7504,7 +7313,6 @@ ${usefulErrors.join('\n')}`
       for (const user of podiumUsers) {
         const position = Math.min(3, Number(user.dailyRank) || (podiumUsers.indexOf(user) + 1));
         const entry = node('div',`podium-entry podium-position-${position}`);
-        entry.dataset.podiumId = podiumIdentity(user);
 
         const avatarRing = node('div','podium-avatar-ring');
         avatarRing.append(makeAvatar(user));
@@ -7519,20 +7327,12 @@ ${usefulErrors.join('\n')}`
       }
 
       el.leader.append(kicker,stage);
-      animatePodiumChanges(previousEntries, stage, previousIds, currentIds);
 
-      // Count up only when the published post total changes, never on unrelated renders.
-      // New arrivals count from zero, while returning players count from the previous value.
-      [...stage.querySelectorAll('.podium-entry')].forEach((entry,index)=>{
-        const gain=entry.querySelector('.podium-gain');
-        const target=Number(gain.dataset.countTarget)||0;
-        const old=previousEntries.get(entry.dataset.podiumId);
-        const from=old && previousIds ? old.count : 0;
-        if(animatePodiumOnceOnPageLoad || !old || from!==target){
-          animatePodiumCount(gain,target,index*95,from);
-        }
-      });
-      animatePodiumOnceOnPageLoad=false;
+      if(animatePodiumOnceOnPageLoad){
+        const gains=[...stage.querySelectorAll('.podium-gain')];
+        gains.forEach((gain,index)=>animatePodiumCount(gain,gain.dataset.countTarget,index*80));
+        animatePodiumOnceOnPageLoad=false;
+      }
     }
 
     const liveRows = dailyLeaderboard.map(user => ({ ...user, isLive:true }));
