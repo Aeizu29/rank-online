@@ -6544,6 +6544,25 @@ body .podium-position-3 .podium-step {
 body .podium-position-1 .podium-step { --underline-color:255,221,117; }
 body .podium-position-2 .podium-step { --underline-color:218,230,251; }
 body .podium-position-3 .podium-step { --underline-color:218,152,206; }
+
+/* Match avatar ring color to the underline color for each podium place. */
+body .podium-avatar-ring,
+body .podium-position-1 .podium-avatar-ring,
+body .podium-position-2 .podium-avatar-ring,
+body .podium-position-3 .podium-avatar-ring {
+  --ring-color:218,230,251;
+  background:rgba(var(--ring-color),.08) !important;
+  border:2px solid rgba(var(--ring-color),.9) !important;
+  box-shadow:0 0 11px rgba(var(--ring-color),.34),0 0 24px rgba(var(--ring-color),.17),inset 0 0 4px rgba(var(--ring-color),.12) !important;
+}
+body .podium-avatar-ring::after {
+  inset:4px !important;
+  border:1px solid rgba(var(--ring-color),.35) !important;
+}
+body .podium-position-1 .podium-avatar-ring { --ring-color:255,221,117; }
+body .podium-position-2 .podium-avatar-ring { --ring-color:218,230,251; }
+body .podium-position-3 .podium-avatar-ring { --ring-color:218,152,206; }
+
 /* Remove the old mobile podium card surface as well. */
 @media(max-width:480px){
   body .podium-entry { background:transparent !important; border-color:transparent !important; }
