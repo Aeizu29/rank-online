@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-15T04:05:01.102Z",
-  "updatedAtMs": 1792037101102,
+  "updatedAt": "2026-10-15T05:13:05.155Z",
+  "updatedAtMs": 1792041185155,
   "nextUpdateAt": "2026-10-16T03:55:00.000Z",
   "nextUpdateAtMs": 1792122900000,
   "updateIntervalMinutes": null,
@@ -17,61 +17,45 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9984975
+    "combinedPosts": 9984983
   },
   "dailyTracking": {
     "dateKey": "2026-10-15",
     "timeZone": "America/New_York",
     "startedAt": 1792037101102,
-    "lastUpdatedAt": 1792037101102,
+    "lastUpdatedAt": 1792041185155,
     "currentLeaders": [
       {
         "dateKey": "2026-10-15",
         "timeZone": "America/New_York",
-        "username": "Nakolas",
-        "userId": "56211",
-        "postsGained": 1,
-        "startPosts": 45558,
-        "endPosts": 45559,
-        "finalRank": 33,
-        "profileUrl": "https://incels.is/members/nakolas.56211/",
-        "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/56211.jpg?v=1792033821",
+        "username": "Emba",
+        "userId": "18638",
+        "postsGained": 6,
+        "startPosts": 108829,
+        "endPosts": 108835,
+        "finalRank": 16,
+        "profileUrl": "https://incels.is/members/emba.18638/",
+        "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519",
         "trackingStartedAt": 1792037101102,
-        "trackingEndedAt": 1792037101102,
-        "finalizedAt": 1792037101414,
+        "trackingEndedAt": 1792041185155,
+        "finalizedAt": 1792041185510,
         "isAliased": false
-      },
-      {
-        "dateKey": "2026-10-15",
-        "timeZone": "America/New_York",
-        "username": "Miso Vegeta",
-        "userId": "61345",
-        "postsGained": 1,
-        "startPosts": 34234,
-        "endPosts": 34235,
-        "finalRank": 50,
-        "profileUrl": "",
-        "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/61345.jpg?v=1712989383",
-        "trackingStartedAt": 1792037101102,
-        "trackingEndedAt": 1792037101102,
-        "finalizedAt": 1792037101414,
-        "isAliased": true
       }
     ],
     "currentLeader": {
       "dateKey": "2026-10-15",
       "timeZone": "America/New_York",
-      "username": "Nakolas",
-      "userId": "56211",
-      "postsGained": 1,
-      "startPosts": 45558,
-      "endPosts": 45559,
-      "finalRank": 33,
-      "profileUrl": "https://incels.is/members/nakolas.56211/",
-      "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/56211.jpg?v=1792033821",
+      "username": "Emba",
+      "userId": "18638",
+      "postsGained": 6,
+      "startPosts": 108829,
+      "endPosts": 108835,
+      "finalRank": 16,
+      "profileUrl": "https://incels.is/members/emba.18638/",
+      "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519",
       "trackingStartedAt": 1792037101102,
-      "trackingEndedAt": 1792037101102,
-      "finalizedAt": 1792037101414,
+      "trackingEndedAt": 1792041185155,
+      "finalizedAt": 1792041185510,
       "isAliased": false
     }
   },
@@ -82692,10 +82676,21 @@
       "dateKey": "2026-10-15",
       "timeZone": "America/New_York",
       "startedAt": 1792037101102,
-      "lastUpdatedAt": 1792037101102,
+      "lastUpdatedAt": 1792041185155,
       "finalized": false,
       "finalizedAt": null,
       "users": [
+        {
+          "username": "Emba",
+          "userId": "18638",
+          "isAliased": false,
+          "startPosts": 108829,
+          "postsGained": 6,
+          "endPosts": 108835,
+          "finalRank": 16,
+          "profileUrl": "https://incels.is/members/emba.18638/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519"
+        },
         {
           "username": "Nakolas",
           "userId": "56211",
@@ -82708,6 +82703,17 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/56211.jpg?v=1792033821"
         },
         {
+          "username": "P",
+          "userId": "62916",
+          "isAliased": false,
+          "startPosts": 37638,
+          "postsGained": 1,
+          "endPosts": 37639,
+          "finalRank": 43,
+          "profileUrl": "https://incels.is/members/prophet.62916/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/62916.jpg?v=1790342540"
+        },
+        {
           "username": "Miso Vegeta",
           "userId": "61345",
           "isAliased": true,
@@ -82717,6 +82723,17 @@
           "finalRank": 50,
           "profileUrl": "",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/61345.jpg?v=1712989383"
+        },
+        {
+          "username": "FuckYou",
+          "userId": "63622",
+          "isAliased": false,
+          "startPosts": 27214,
+          "postsGained": 1,
+          "endPosts": 27215,
+          "finalRank": 68,
+          "profileUrl": "https://incels.is/members/fuckyou.63622/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/63622.jpg?v=1791246389"
         },
         {
           "username": "Animecel2D",
@@ -82882,17 +82899,6 @@
           "finalRank": 15,
           "profileUrl": "https://incels.is/members/subhumanoldcel.99758/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/99758.jpg?v=1791411794"
-        },
-        {
-          "username": "Emba",
-          "userId": "18638",
-          "isAliased": false,
-          "startPosts": 108829,
-          "postsGained": 0,
-          "endPosts": 108829,
-          "finalRank": 16,
-          "profileUrl": "https://incels.is/members/emba.18638/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519"
         },
         {
           "username": "SociallyStunted",
@@ -83170,17 +83176,6 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/12431.jpg?v=1589159551"
         },
         {
-          "username": "P",
-          "userId": "62916",
-          "isAliased": false,
-          "startPosts": 37638,
-          "postsGained": 0,
-          "endPosts": 37638,
-          "finalRank": 43,
-          "profileUrl": "https://incels.is/members/prophet.62916/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/62916.jpg?v=1790342540"
-        },
-        {
           "username": "Dregster",
           "userId": "13198",
           "isAliased": false,
@@ -83432,17 +83427,6 @@
           "finalRank": 67,
           "profileUrl": "https://incels.is/members/ruudvannistelrooy.39315/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/39315.jpg?v=1771430931"
-        },
-        {
-          "username": "FuckYou",
-          "userId": "63622",
-          "isAliased": false,
-          "startPosts": 27214,
-          "postsGained": 0,
-          "endPosts": 27214,
-          "finalRank": 68,
-          "profileUrl": "https://incels.is/members/fuckyou.63622/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/63622.jpg?v=1791246389"
         },
         {
           "username": "PolnischeKartoffel",
@@ -83983,8 +83967,8 @@
     {
       "rank": 16,
       "username": "Emba",
-      "posts": 108829,
-      "postDelta": 0,
+      "posts": 108835,
+      "postDelta": 6,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -84307,8 +84291,8 @@
     {
       "rank": 43,
       "username": "P",
-      "posts": 37638,
-      "postDelta": 0,
+      "posts": 37639,
+      "postDelta": 1,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -84607,8 +84591,8 @@
     {
       "rank": 68,
       "username": "FuckYou",
-      "posts": 27214,
-      "postDelta": 0,
+      "posts": 27215,
+      "postDelta": 1,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
