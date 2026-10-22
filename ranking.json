@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-22T01:41:23.559Z",
-  "updatedAtMs": 1792633283559,
+  "updatedAt": "2026-10-22T01:52:05.047Z",
+  "updatedAtMs": 1792633925047,
   "nextUpdateAt": "2026-10-22T03:55:00.000Z",
   "nextUpdateAtMs": 1792641300000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 10214836
+    "combinedPosts": 10215024
   },
   "dailyTracking": {
     "dateKey": "2026-10-21",
     "timeZone": "America/New_York",
     "startedAt": 1792555501008,
-    "lastUpdatedAt": 1792633283559,
+    "lastUpdatedAt": 1792633925047,
     "currentLeaders": [
       {
         "dateKey": "2026-10-21",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172",
         "trackingStartedAt": 1792555501008,
-        "trackingEndedAt": 1792633283559,
-        "finalizedAt": 1792633283865,
+        "trackingEndedAt": 1792633925047,
+        "finalizedAt": 1792633925379,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172",
       "trackingStartedAt": 1792555501008,
-      "trackingEndedAt": 1792633283559,
-      "finalizedAt": 1792633283865,
+      "trackingEndedAt": 1792633925047,
+      "finalizedAt": 1792633925379,
       "isAliased": false
     }
   },
@@ -89454,7 +89454,7 @@
       "dateKey": "2026-10-21",
       "timeZone": "America/New_York",
       "startedAt": 1792555501008,
-      "lastUpdatedAt": 1792633283559,
+      "lastUpdatedAt": 1792633925047,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -89470,26 +89470,26 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172"
         },
         {
-          "username": "Mobile97",
-          "userId": "104669",
-          "isAliased": false,
-          "startPosts": 79063,
-          "postsGained": 2960,
-          "endPosts": 82023,
-          "finalRank": 21,
-          "profileUrl": "https://incels.is/members/mobile97.104669/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1790999256"
-        },
-        {
           "username": "Rezecel",
           "userId": "59719",
           "isAliased": false,
           "startPosts": 559201,
-          "postsGained": 2816,
-          "endPosts": 562017,
+          "postsGained": 2995,
+          "endPosts": 562196,
           "finalRank": 4,
           "profileUrl": "https://incels.is/members/rezecel.59719/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1792546890"
+        },
+        {
+          "username": "Mobile97",
+          "userId": "104669",
+          "isAliased": false,
+          "startPosts": 79063,
+          "postsGained": 2967,
+          "endPosts": 82030,
+          "finalRank": 21,
+          "profileUrl": "https://incels.is/members/mobile97.104669/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1790999256"
         },
         {
           "username": "proudweeb",
@@ -89811,6 +89811,17 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/56211.jpg?v=1792629868"
         },
         {
+          "username": "Izayacel",
+          "userId": "6579",
+          "isAliased": false,
+          "startPosts": 28936,
+          "postsGained": 11,
+          "endPosts": 28947,
+          "finalRank": 63,
+          "profileUrl": "https://incels.is/members/izayacel.6579/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/6579.jpg?v=1783936863"
+        },
+        {
           "username": "The Notorious SLAV",
           "userId": "46934",
           "isAliased": false,
@@ -89831,17 +89842,6 @@
           "finalRank": 40,
           "profileUrl": "https://incels.is/members/indari.34/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/34.jpg?v=1791881227"
-        },
-        {
-          "username": "Izayacel",
-          "userId": "6579",
-          "isAliased": false,
-          "startPosts": 28936,
-          "postsGained": 9,
-          "endPosts": 28945,
-          "finalRank": 63,
-          "profileUrl": "https://incels.is/members/izayacel.6579/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/6579.jpg?v=1783936863"
         },
         {
           "username": "MonkeyInaT34",
@@ -90612,8 +90612,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 562017,
-      "postDelta": 2816,
+      "posts": 562196,
+      "postDelta": 2995,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -90816,8 +90816,8 @@
     {
       "rank": 21,
       "username": "Mobile97",
-      "posts": 82023,
-      "postDelta": 2960,
+      "posts": 82030,
+      "postDelta": 2967,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -91320,8 +91320,8 @@
     {
       "rank": 63,
       "username": "Izayacel",
-      "posts": 28945,
-      "postDelta": 9,
+      "posts": 28947,
+      "postDelta": 11,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
