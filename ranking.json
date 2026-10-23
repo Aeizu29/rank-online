@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-23T03:51:38.366Z",
-  "updatedAtMs": 1792727498366,
-  "nextUpdateAt": "2026-10-23T03:55:00.000Z",
-  "nextUpdateAtMs": 1792727700000,
+  "updatedAt": "2026-10-23T03:55:01.026Z",
+  "updatedAtMs": 1792727701026,
+  "nextUpdateAt": "2026-10-23T04:05:00.000Z",
+  "nextUpdateAtMs": 1792728300000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -23,7 +23,7 @@
     "dateKey": "2026-10-22",
     "timeZone": "America/New_York",
     "startedAt": 1792641901088,
-    "lastUpdatedAt": 1792727498366,
+    "lastUpdatedAt": 1792727701026,
     "currentLeaders": [
       {
         "dateKey": "2026-10-22",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172",
         "trackingStartedAt": 1792641901088,
-        "trackingEndedAt": 1792727498366,
-        "finalizedAt": 1792727498634,
+        "trackingEndedAt": 1792727701026,
+        "finalizedAt": 1792727701286,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1791143172",
       "trackingStartedAt": 1792641901088,
-      "trackingEndedAt": 1792727498366,
-      "finalizedAt": 1792727498634,
+      "trackingEndedAt": 1792727701026,
+      "finalizedAt": 1792727701286,
       "isAliased": false
     }
   },
@@ -90591,7 +90591,7 @@
       "dateKey": "2026-10-22",
       "timeZone": "America/New_York",
       "startedAt": 1792641901088,
-      "lastUpdatedAt": 1792727498366,
+      "lastUpdatedAt": 1792727701026,
       "finalized": false,
       "finalizedAt": null,
       "users": [
