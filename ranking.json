@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-27T03:35:53.075Z",
-  "updatedAtMs": 1793072153075,
-  "nextUpdateAt": "2026-10-27T03:55:00.000Z",
-  "nextUpdateAtMs": 1793073300000,
+  "updatedAt": "2026-10-27T03:55:01.038Z",
+  "updatedAtMs": 1793073301038,
+  "nextUpdateAt": "2026-10-27T04:05:00.000Z",
+  "nextUpdateAtMs": 1793073900000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -17,28 +17,28 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 10324239
+    "combinedPosts": 10324264
   },
   "dailyTracking": {
     "dateKey": "2026-10-26",
     "timeZone": "America/New_York",
     "startedAt": 1792987501213,
-    "lastUpdatedAt": 1793072153075,
+    "lastUpdatedAt": 1793073301038,
     "currentLeaders": [
       {
         "dateKey": "2026-10-26",
         "timeZone": "America/New_York",
         "username": "TheSecondComing",
         "userId": "14662",
-        "postsGained": 3022,
+        "postsGained": 3047,
         "startPosts": 394990,
-        "endPosts": 398012,
+        "endPosts": 398037,
         "finalRank": 5,
         "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1793048436",
         "trackingStartedAt": 1792987501213,
-        "trackingEndedAt": 1793072153075,
-        "finalizedAt": 1793072153392,
+        "trackingEndedAt": 1793073301038,
+        "finalizedAt": 1793073301320,
         "isAliased": false
       }
     ],
@@ -47,15 +47,15 @@
       "timeZone": "America/New_York",
       "username": "TheSecondComing",
       "userId": "14662",
-      "postsGained": 3022,
+      "postsGained": 3047,
       "startPosts": 394990,
-      "endPosts": 398012,
+      "endPosts": 398037,
       "finalRank": 5,
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1793048436",
       "trackingStartedAt": 1792987501213,
-      "trackingEndedAt": 1793072153075,
-      "finalizedAt": 1793072153392,
+      "trackingEndedAt": 1793073301038,
+      "finalizedAt": 1793073301320,
       "isAliased": false
     }
   },
@@ -95106,7 +95106,7 @@
       "dateKey": "2026-10-26",
       "timeZone": "America/New_York",
       "startedAt": 1792987501213,
-      "lastUpdatedAt": 1793072153075,
+      "lastUpdatedAt": 1793073301038,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -95115,8 +95115,8 @@
           "userId": "14662",
           "isAliased": false,
           "startPosts": 394990,
-          "postsGained": 3022,
-          "endPosts": 398012,
+          "postsGained": 3047,
+          "endPosts": 398037,
           "finalRank": 5,
           "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1793048436"
@@ -96265,8 +96265,8 @@
     {
       "rank": 5,
       "username": "TheSecondComing",
-      "posts": 398012,
-      "postDelta": 3022,
+      "posts": 398037,
+      "postDelta": 3047,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
