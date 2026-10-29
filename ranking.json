@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-29T07:05:50.591Z",
-  "updatedAtMs": 1793257550591,
+  "updatedAt": "2026-10-29T07:07:41.083Z",
+  "updatedAtMs": 1793257661083,
   "nextUpdateAt": "2026-10-30T03:55:00.000Z",
   "nextUpdateAtMs": 1793332500000,
   "updateIntervalMinutes": null,
@@ -17,28 +17,28 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 10350352
+    "combinedPosts": 10350394
   },
   "dailyTracking": {
     "dateKey": "2026-10-29",
     "timeZone": "America/New_York",
     "startedAt": 1793246701019,
-    "lastUpdatedAt": 1793257550591,
+    "lastUpdatedAt": 1793257661083,
     "currentLeaders": [
       {
         "dateKey": "2026-10-29",
         "timeZone": "America/New_York",
         "username": "Rezecel",
         "userId": "59719",
-        "postsGained": 2923,
+        "postsGained": 2965,
         "startPosts": 580160,
-        "endPosts": 583083,
+        "endPosts": 583125,
         "finalRank": 4,
         "profileUrl": "https://incels.is/members/rezecel.59719/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1793066870",
         "trackingStartedAt": 1793246701019,
-        "trackingEndedAt": 1793257550591,
-        "finalizedAt": 1793257550890,
+        "trackingEndedAt": 1793257661083,
+        "finalizedAt": 1793257661376,
         "isAliased": false
       }
     ],
@@ -47,15 +47,15 @@
       "timeZone": "America/New_York",
       "username": "Rezecel",
       "userId": "59719",
-      "postsGained": 2923,
+      "postsGained": 2965,
       "startPosts": 580160,
-      "endPosts": 583083,
+      "endPosts": 583125,
       "finalRank": 4,
       "profileUrl": "https://incels.is/members/rezecel.59719/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1793066870",
       "trackingStartedAt": 1793246701019,
-      "trackingEndedAt": 1793257550591,
-      "finalizedAt": 1793257550890,
+      "trackingEndedAt": 1793257661083,
+      "finalizedAt": 1793257661376,
       "isAliased": false
     }
   },
@@ -98484,7 +98484,7 @@
       "dateKey": "2026-10-29",
       "timeZone": "America/New_York",
       "startedAt": 1793246701019,
-      "lastUpdatedAt": 1793257550591,
+      "lastUpdatedAt": 1793257661083,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -98493,8 +98493,8 @@
           "userId": "59719",
           "isAliased": false,
           "startPosts": 580160,
-          "postsGained": 2923,
-          "endPosts": 583083,
+          "postsGained": 2965,
+          "endPosts": 583125,
           "finalRank": 4,
           "profileUrl": "https://incels.is/members/rezecel.59719/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1793066870"
@@ -99631,8 +99631,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 583083,
-      "postDelta": 2923,
+      "posts": 583125,
+      "postDelta": 2965,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
