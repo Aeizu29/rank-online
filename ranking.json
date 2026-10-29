@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-10-29T03:34:55.730Z",
-  "updatedAtMs": 1793244895730,
-  "nextUpdateAt": "2026-10-29T03:55:00.000Z",
-  "nextUpdateAtMs": 1793246100000,
+  "updatedAt": "2026-10-29T03:55:01.000Z",
+  "updatedAtMs": 1793246101000,
+  "nextUpdateAt": "2026-10-29T04:05:00.000Z",
+  "nextUpdateAtMs": 1793246700000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 10347356
+    "combinedPosts": 10347367
   },
   "dailyTracking": {
     "dateKey": "2026-10-28",
     "timeZone": "America/New_York",
     "startedAt": 1793160301186,
-    "lastUpdatedAt": 1793244895730,
+    "lastUpdatedAt": 1793246101000,
     "currentLeaders": [
       {
         "dateKey": "2026-10-28",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1793048436",
         "trackingStartedAt": 1793160301186,
-        "trackingEndedAt": 1793244895730,
-        "finalizedAt": 1793244896017,
+        "trackingEndedAt": 1793246101000,
+        "finalizedAt": 1793246101276,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1793048436",
       "trackingStartedAt": 1793160301186,
-      "trackingEndedAt": 1793244895730,
-      "finalizedAt": 1793244896017,
+      "trackingEndedAt": 1793246101000,
+      "finalizedAt": 1793246101276,
       "isAliased": false
     }
   },
@@ -97358,7 +97358,7 @@
       "dateKey": "2026-10-28",
       "timeZone": "America/New_York",
       "startedAt": 1793160301186,
-      "lastUpdatedAt": 1793244895730,
+      "lastUpdatedAt": 1793246101000,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -97378,8 +97378,8 @@
           "userId": "104669",
           "isAliased": false,
           "startPosts": 98040,
-          "postsGained": 3007,
-          "endPosts": 101047,
+          "postsGained": 3011,
+          "endPosts": 101051,
           "finalRank": 21,
           "profileUrl": "https://incels.is/members/mobile97.104669/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1790999256"
@@ -97477,8 +97477,8 @@
           "userId": "56211",
           "isAliased": false,
           "startPosts": 47106,
-          "postsGained": 96,
-          "endPosts": 47202,
+          "postsGained": 97,
+          "endPosts": 47203,
           "finalRank": 33,
           "profileUrl": "https://incels.is/members/nakolas.56211/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/56211.jpg?v=1792978777"
@@ -97510,8 +97510,8 @@
           "userId": "89056",
           "isAliased": false,
           "startPosts": 46629,
-          "postsGained": 63,
-          "endPosts": 46692,
+          "postsGained": 65,
+          "endPosts": 46694,
           "finalRank": 34,
           "profileUrl": "https://incels.is/members/tsuudi.89056/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/89056.jpg?v=1792975976"
@@ -97554,8 +97554,8 @@
           "userId": "18638",
           "isAliased": false,
           "startPosts": 109117,
-          "postsGained": 29,
-          "endPosts": 109146,
+          "postsGained": 32,
+          "endPosts": 109149,
           "finalRank": 17,
           "profileUrl": "https://incels.is/members/emba.18638/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519"
@@ -97594,6 +97594,17 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/47736.jpg?v=1786912647"
         },
         {
+          "username": "VλREN",
+          "userId": "46587",
+          "isAliased": false,
+          "startPosts": 25857,
+          "postsGained": 15,
+          "endPosts": 25872,
+          "finalRank": 74,
+          "profileUrl": "https://incels.is/members/vlren.46587/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
+        },
+        {
           "username": "SHREKLER",
           "userId": "30090",
           "isAliased": false,
@@ -97603,17 +97614,6 @@
           "finalRank": 40,
           "profileUrl": "https://incels.is/members/shrekler.30090/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/30090.jpg?v=1790864508"
-        },
-        {
-          "username": "VλREN",
-          "userId": "46587",
-          "isAliased": false,
-          "startPosts": 25857,
-          "postsGained": 14,
-          "endPosts": 25871,
-          "finalRank": 74,
-          "profileUrl": "https://incels.is/members/vlren.46587/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
         },
         {
           "username": "Diddy",
@@ -98661,8 +98661,8 @@
     {
       "rank": 17,
       "username": "Emba",
-      "posts": 109146,
-      "postDelta": 29,
+      "posts": 109149,
+      "postDelta": 32,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -98709,8 +98709,8 @@
     {
       "rank": 21,
       "username": "Mobile97",
-      "posts": 101047,
-      "postDelta": 3007,
+      "posts": 101051,
+      "postDelta": 3011,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -98853,8 +98853,8 @@
     {
       "rank": 33,
       "username": "Nakolas",
-      "posts": 47202,
-      "postDelta": 96,
+      "posts": 47203,
+      "postDelta": 97,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -98865,8 +98865,8 @@
     {
       "rank": 34,
       "username": "Tšuudi",
-      "posts": 46692,
-      "postDelta": 63,
+      "posts": 46694,
+      "postDelta": 65,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -99345,8 +99345,8 @@
     {
       "rank": 74,
       "username": "VλREN",
-      "posts": 25871,
-      "postDelta": 14,
+      "posts": 25872,
+      "postDelta": 15,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
