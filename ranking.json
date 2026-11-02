@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-11-02T04:24:22.125Z",
-  "updatedAtMs": 1793593462125,
-  "nextUpdateAt": "2026-11-02T04:55:00.000Z",
-  "nextUpdateAtMs": 1793595300000,
+  "updatedAt": "2026-11-02T04:55:01.195Z",
+  "updatedAtMs": 1793595301195,
+  "nextUpdateAt": "2026-11-02T05:05:00.000Z",
+  "nextUpdateAtMs": 1793595900000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 10376359
+    "combinedPosts": 10376363
   },
   "dailyTracking": {
     "dateKey": "2026-11-01",
     "timeZone": "America/New_York",
     "startedAt": 1793505901031,
-    "lastUpdatedAt": 1793593462125,
+    "lastUpdatedAt": 1793595301195,
     "currentLeaders": [
       {
         "dateKey": "2026-11-01",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/mobile97.104669/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1793503043",
         "trackingStartedAt": 1793505901031,
-        "trackingEndedAt": 1793593462125,
-        "finalizedAt": 1793593462436,
+        "trackingEndedAt": 1793595301195,
+        "finalizedAt": 1793595301594,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/mobile97.104669/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1793503043",
       "trackingStartedAt": 1793505901031,
-      "trackingEndedAt": 1793593462125,
-      "finalizedAt": 1793593462436,
+      "trackingEndedAt": 1793595301195,
+      "finalizedAt": 1793595301594,
       "isAliased": false
     }
   },
@@ -101884,7 +101884,7 @@
       "dateKey": "2026-11-01",
       "timeZone": "America/New_York",
       "startedAt": 1793505901031,
-      "lastUpdatedAt": 1793593462125,
+      "lastUpdatedAt": 1793595301195,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -101948,8 +101948,8 @@
           "userId": "14662",
           "isAliased": false,
           "startPosts": 404658,
-          "postsGained": 488,
-          "endPosts": 405146,
+          "postsGained": 489,
+          "endPosts": 405147,
           "finalRank": 5,
           "profileUrl": "https://incels.is/members/thesecondcoming.14662/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/14662.jpg?v=1793048436"
@@ -102025,8 +102025,8 @@
           "userId": "18638",
           "isAliased": false,
           "startPosts": 109253,
-          "postsGained": 47,
-          "endPosts": 109300,
+          "postsGained": 49,
+          "endPosts": 109302,
           "finalRank": 18,
           "profileUrl": "https://incels.is/members/emba.18638/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/18638.jpg?v=1683770519"
@@ -102047,8 +102047,8 @@
           "userId": "46587",
           "isAliased": false,
           "startPosts": 25952,
-          "postsGained": 41,
-          "endPosts": 25993,
+          "postsGained": 42,
+          "endPosts": 25994,
           "finalRank": 72,
           "profileUrl": "https://incels.is/members/vlren.46587/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
@@ -103043,8 +103043,8 @@
     {
       "rank": 5,
       "username": "TheSecondComing",
-      "posts": 405146,
-      "postDelta": 488,
+      "posts": 405147,
+      "postDelta": 489,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -103199,8 +103199,8 @@
     {
       "rank": 18,
       "username": "Emba",
-      "posts": 109300,
-      "postDelta": 47,
+      "posts": 109302,
+      "postDelta": 49,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -103847,8 +103847,8 @@
     {
       "rank": 72,
       "username": "VλREN",
-      "posts": 25993,
-      "postDelta": 41,
+      "posts": 25994,
+      "postDelta": 42,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
