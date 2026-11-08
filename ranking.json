@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-11-08T02:59:36.083Z",
-  "updatedAtMs": 1794106776083,
+  "updatedAt": "2026-11-08T03:04:31.004Z",
+  "updatedAtMs": 1794107071004,
   "nextUpdateAt": "2026-11-08T04:55:00.000Z",
   "nextUpdateAtMs": 1794113700000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 10459257
+    "combinedPosts": 10459262
   },
   "dailyTracking": {
     "dateKey": "2026-11-07",
     "timeZone": "America/New_York",
     "startedAt": 1794027901185,
-    "lastUpdatedAt": 1794106776083,
+    "lastUpdatedAt": 1794107071004,
     "currentLeaders": [
       {
         "dateKey": "2026-11-07",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/hermit.72876/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/72876.jpg?v=1792058718",
         "trackingStartedAt": 1794027901185,
-        "trackingEndedAt": 1794106776083,
-        "finalizedAt": 1794106776390,
+        "trackingEndedAt": 1794107071004,
+        "finalizedAt": 1794107071336,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/hermit.72876/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/72876.jpg?v=1792058718",
       "trackingStartedAt": 1794027901185,
-      "trackingEndedAt": 1794106776083,
-      "finalizedAt": 1794106776390,
+      "trackingEndedAt": 1794107071004,
+      "finalizedAt": 1794107071336,
       "isAliased": false
     }
   },
@@ -108656,7 +108656,7 @@
       "dateKey": "2026-11-07",
       "timeZone": "America/New_York",
       "startedAt": 1794027901185,
-      "lastUpdatedAt": 1794106776083,
+      "lastUpdatedAt": 1794107071004,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -108687,8 +108687,8 @@
           "userId": "104669",
           "isAliased": false,
           "startPosts": 128094,
-          "postsGained": 2965,
-          "endPosts": 131059,
+          "postsGained": 2969,
+          "endPosts": 131063,
           "finalRank": 12,
           "profileUrl": "https://incels.is/members/mobile97.104669/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1793503043"
@@ -109024,6 +109024,17 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/6268.jpg?v=1793643243"
         },
         {
+          "username": "cripplecel",
+          "userId": "43797",
+          "isAliased": false,
+          "startPosts": 23357,
+          "postsGained": 7,
+          "endPosts": 23364,
+          "finalRank": 84,
+          "profileUrl": "https://incels.is/members/cripplecel.43797/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/43797.jpg?v=1771603875"
+        },
+        {
           "username": "Problematicusername2",
           "userId": "64201",
           "isAliased": true,
@@ -109044,17 +109055,6 @@
           "finalRank": 71,
           "profileUrl": "https://incels.is/members/vlren.46587/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
-        },
-        {
-          "username": "cripplecel",
-          "userId": "43797",
-          "isAliased": false,
-          "startPosts": 23357,
-          "postsGained": 6,
-          "endPosts": 23363,
-          "finalRank": 84,
-          "profileUrl": "https://incels.is/members/cripplecel.43797/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/43797.jpg?v=1771603875"
         },
         {
           "username": "Sheogorath",
@@ -109899,8 +109899,8 @@
     {
       "rank": 12,
       "username": "Mobile97",
-      "posts": 131059,
-      "postDelta": 2965,
+      "posts": 131063,
+      "postDelta": 2969,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -110573,8 +110573,8 @@
       "username": "F",
       "posts": 27377,
       "postDelta": 23,
-      "rankDelta": null,
-      "isNew": true,
+      "rankDelta": 0,
+      "isNew": false,
       "isAliased": false,
       "userId": "63622",
       "profileUrl": "https://incels.is/members/fuckyou.63622/",
@@ -110763,8 +110763,8 @@
     {
       "rank": 84,
       "username": "cripplecel",
-      "posts": 23363,
-      "postDelta": 6,
+      "posts": 23364,
+      "postDelta": 7,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
