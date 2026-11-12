@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-11-12T04:54:20.476Z",
-  "updatedAtMs": 1794459260476,
-  "nextUpdateAt": "2026-11-12T04:55:00.000Z",
-  "nextUpdateAtMs": 1794459300000,
+  "updatedAt": "2026-11-12T04:55:01.124Z",
+  "updatedAtMs": 1794459301124,
+  "nextUpdateAt": "2026-11-12T05:05:00.000Z",
+  "nextUpdateAtMs": 1794459900000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9777211
+    "combinedPosts": 9777229
   },
   "dailyTracking": {
     "dateKey": "2026-11-11",
     "timeZone": "America/New_York",
     "startedAt": 1794373501144,
-    "lastUpdatedAt": 1794459260476,
+    "lastUpdatedAt": 1794459301124,
     "currentLeaders": [
       {
         "dateKey": "2026-11-11",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/mobile97.104669/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1793503043",
         "trackingStartedAt": 1794373501144,
-        "trackingEndedAt": 1794459260476,
-        "finalizedAt": 1794459260777,
+        "trackingEndedAt": 1794459301124,
+        "finalizedAt": 1794459301465,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/mobile97.104669/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/104669.jpg?v=1793503043",
       "trackingStartedAt": 1794373501144,
-      "trackingEndedAt": 1794459260476,
-      "finalizedAt": 1794459260777,
+      "trackingEndedAt": 1794459301124,
+      "finalizedAt": 1794459301465,
       "isAliased": false
     }
   },
@@ -113204,7 +113204,7 @@
       "dateKey": "2026-11-11",
       "timeZone": "America/New_York",
       "startedAt": 1794373501144,
-      "lastUpdatedAt": 1794459260476,
+      "lastUpdatedAt": 1794459301124,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -113224,8 +113224,8 @@
           "userId": "59719",
           "isAliased": false,
           "startPosts": 619007,
-          "postsGained": 2245,
-          "endPosts": 621252,
+          "postsGained": 2263,
+          "endPosts": 621270,
           "finalRank": 4,
           "profileUrl": "https://incels.is/members/rezecel.59719/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1794457185"
@@ -114384,8 +114384,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 621252,
-      "postDelta": 2245,
+      "posts": 621270,
+      "postDelta": 2263,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -115502,7 +115502,7 @@
       "username": "Epedaphic",
       "posts": 18899,
       "postDelta": 0,
-      "rankDelta": 1,
+      "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
       "userId": "37175",
@@ -115514,7 +115514,7 @@
       "username": "PersonaPimp",
       "posts": 18783,
       "postDelta": 0,
-      "rankDelta": 1,
+      "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
       "userId": "24382",
@@ -115526,7 +115526,7 @@
       "username": "Smooth Crimincel",
       "posts": 18782,
       "postDelta": 2,
-      "rankDelta": 1,
+      "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
       "userId": "20167",
@@ -115538,8 +115538,8 @@
       "username": "FamilyGuy1999",
       "posts": 18737,
       "postDelta": 0,
-      "rankDelta": null,
-      "isNew": true,
+      "rankDelta": 0,
+      "isNew": false,
       "isAliased": false,
       "userId": "30265",
       "profileUrl": "https://incels.is/members/familyguy1999.30265/",
