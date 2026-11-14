@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-11-14T06:05:18.204Z",
-  "updatedAtMs": 1794636318204,
+  "updatedAt": "2026-11-14T14:46:34.222Z",
+  "updatedAtMs": 1794667594222,
   "nextUpdateAt": "2026-11-15T04:55:00.000Z",
   "nextUpdateAtMs": 1794718500000,
   "updateIntervalMinutes": null,
@@ -17,13 +17,13 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9845190
+    "combinedPosts": 9845189
   },
   "dailyTracking": {
     "dateKey": "2026-11-14",
     "timeZone": "America/New_York",
     "startedAt": 1794632701148,
-    "lastUpdatedAt": 1794636318204,
+    "lastUpdatedAt": 1794667594222,
     "currentLeaders": [
       {
         "dateKey": "2026-11-14",
@@ -37,8 +37,8 @@
         "profileUrl": "https://incels.is/members/rezecel.59719/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1794457185",
         "trackingStartedAt": 1794632701148,
-        "trackingEndedAt": 1794636318204,
-        "finalizedAt": 1794636318514,
+        "trackingEndedAt": 1794667594222,
+        "finalizedAt": 1794667594534,
         "isAliased": false
       }
     ],
@@ -54,8 +54,8 @@
       "profileUrl": "https://incels.is/members/rezecel.59719/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1794457185",
       "trackingStartedAt": 1794632701148,
-      "trackingEndedAt": 1794636318204,
-      "finalizedAt": 1794636318514,
+      "trackingEndedAt": 1794667594222,
+      "finalizedAt": 1794667594534,
       "isAliased": false
     }
   },
@@ -116637,7 +116637,7 @@
       "dateKey": "2026-11-14",
       "timeZone": "America/New_York",
       "startedAt": 1794632701148,
-      "lastUpdatedAt": 1794636318204,
+      "lastUpdatedAt": 1794667594222,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -116668,8 +116668,8 @@
           "userId": "46587",
           "isAliased": false,
           "startPosts": 26231,
-          "postsGained": 17,
-          "endPosts": 26248,
+          "postsGained": 16,
+          "endPosts": 26247,
           "finalRank": 68,
           "profileUrl": "https://incels.is/members/vlren.46587/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
@@ -118552,8 +118552,8 @@
     {
       "rank": 68,
       "username": "VλREN",
-      "posts": 26248,
-      "postDelta": 17,
+      "posts": 26247,
+      "postDelta": 16,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
