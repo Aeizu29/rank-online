@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-11-15T05:05:01.180Z",
-  "updatedAtMs": 1794719101180,
+  "updatedAt": "2026-11-15T06:09:44.634Z",
+  "updatedAtMs": 1794722984634,
   "nextUpdateAt": "2026-11-16T04:55:00.000Z",
   "nextUpdateAtMs": 1794804900000,
   "updateIntervalMinutes": null,
@@ -17,28 +17,28 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9854765
+    "combinedPosts": 9855997
   },
   "dailyTracking": {
     "dateKey": "2026-11-15",
     "timeZone": "America/New_York",
     "startedAt": 1794719101180,
-    "lastUpdatedAt": 1794719101180,
+    "lastUpdatedAt": 1794722984634,
     "currentLeaders": [
       {
         "dateKey": "2026-11-15",
         "timeZone": "America/New_York",
         "username": "Rezecel",
         "userId": "59719",
-        "postsGained": 242,
+        "postsGained": 1469,
         "startPosts": 628759,
-        "endPosts": 629001,
+        "endPosts": 630228,
         "finalRank": 4,
         "profileUrl": "https://incels.is/members/rezecel.59719/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1794457185",
         "trackingStartedAt": 1794719101180,
-        "trackingEndedAt": 1794719101180,
-        "finalizedAt": 1794719101513,
+        "trackingEndedAt": 1794722984634,
+        "finalizedAt": 1794722985022,
         "isAliased": false
       }
     ],
@@ -47,15 +47,15 @@
       "timeZone": "America/New_York",
       "username": "Rezecel",
       "userId": "59719",
-      "postsGained": 242,
+      "postsGained": 1469,
       "startPosts": 628759,
-      "endPosts": 629001,
+      "endPosts": 630228,
       "finalRank": 4,
       "profileUrl": "https://incels.is/members/rezecel.59719/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1794457185",
       "trackingStartedAt": 1794719101180,
-      "trackingEndedAt": 1794719101180,
-      "finalizedAt": 1794719101513,
+      "trackingEndedAt": 1794722984634,
+      "finalizedAt": 1794722985022,
       "isAliased": false
     }
   },
@@ -117774,7 +117774,7 @@
       "dateKey": "2026-11-15",
       "timeZone": "America/New_York",
       "startedAt": 1794719101180,
-      "lastUpdatedAt": 1794719101180,
+      "lastUpdatedAt": 1794722984634,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -117783,8 +117783,8 @@
           "userId": "59719",
           "isAliased": false,
           "startPosts": 628759,
-          "postsGained": 242,
-          "endPosts": 629001,
+          "postsGained": 1469,
+          "endPosts": 630228,
           "finalRank": 4,
           "profileUrl": "https://incels.is/members/rezecel.59719/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/59719.jpg?v=1794457185"
@@ -117794,19 +117794,30 @@
           "userId": "30090",
           "isAliased": false,
           "startPosts": 41106,
-          "postsGained": 2,
-          "endPosts": 41108,
+          "postsGained": 4,
+          "endPosts": 41110,
           "finalRank": 36,
           "profileUrl": "https://incels.is/members/shrekler.30090/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/30090.jpg?v=1790864508"
+        },
+        {
+          "username": "FuckYou",
+          "userId": "63622",
+          "isAliased": false,
+          "startPosts": 27416,
+          "postsGained": 2,
+          "endPosts": 27418,
+          "finalRank": 65,
+          "profileUrl": "https://incels.is/members/fuckyou.63622/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/63622.jpg?v=1794616237"
         },
         {
           "username": "VλREN",
           "userId": "46587",
           "isAliased": false,
           "startPosts": 26254,
-          "postsGained": 1,
-          "endPosts": 26255,
+          "postsGained": 2,
+          "endPosts": 26256,
           "finalRank": 68,
           "profileUrl": "https://incels.is/members/vlren.46587/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/46587.jpg?v=1789975795"
@@ -118494,17 +118505,6 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/40761.jpg?v=1735759199"
         },
         {
-          "username": "FuckYou",
-          "userId": "63622",
-          "isAliased": false,
-          "startPosts": 27416,
-          "postsGained": 0,
-          "endPosts": 27416,
-          "finalRank": 65,
-          "profileUrl": "https://incels.is/members/fuckyou.63622/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/63622.jpg?v=1794616237"
-        },
-        {
           "username": "TooSomething",
           "userId": "71805",
           "isAliased": false,
@@ -118921,8 +118921,8 @@
     {
       "rank": 4,
       "username": "Rezecel",
-      "posts": 629001,
-      "postDelta": 242,
+      "posts": 630228,
+      "postDelta": 1469,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -119305,8 +119305,8 @@
     {
       "rank": 36,
       "username": "SHREKLER",
-      "posts": 41108,
-      "postDelta": 2,
+      "posts": 41110,
+      "postDelta": 4,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -119653,8 +119653,8 @@
     {
       "rank": 65,
       "username": "FuckYou",
-      "posts": 27416,
-      "postDelta": 0,
+      "posts": 27418,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -119689,8 +119689,8 @@
     {
       "rank": 68,
       "username": "VλREN",
-      "posts": 26255,
-      "postDelta": 1,
+      "posts": 26256,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
