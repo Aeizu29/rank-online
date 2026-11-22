@@ -4,10 +4,10 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-11-22T04:31:29.321Z",
-  "updatedAtMs": 1795321889321,
-  "nextUpdateAt": "2026-11-22T04:55:00.000Z",
-  "nextUpdateAtMs": 1795323300000,
+  "updatedAt": "2026-11-22T04:55:00.980Z",
+  "updatedAtMs": 1795323300980,
+  "nextUpdateAt": "2026-11-22T05:05:00.000Z",
+  "nextUpdateAtMs": 1795323900000,
   "updateIntervalMinutes": null,
   "scheduledScanTimesNewYork": [
     "00:05",
@@ -17,28 +17,28 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 9981778
+    "combinedPosts": 9981781
   },
   "dailyTracking": {
     "dateKey": "2026-11-21",
     "timeZone": "America/New_York",
     "startedAt": 1795237501101,
-    "lastUpdatedAt": 1795321889321,
+    "lastUpdatedAt": 1795323300980,
     "currentLeaders": [
       {
         "dateKey": "2026-11-21",
         "timeZone": "America/New_York",
         "username": "Adolf Hitler",
         "userId": "112280",
-        "postsGained": 7968,
+        "postsGained": 7970,
         "startPosts": 40069,
-        "endPosts": 48037,
+        "endPosts": 48039,
         "finalRank": 31,
         "profileUrl": "https://incels.is/members/adolf-hitler.112280/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/112280.jpg?v=1795281923",
         "trackingStartedAt": 1795237501101,
-        "trackingEndedAt": 1795321889321,
-        "finalizedAt": 1795321889622,
+        "trackingEndedAt": 1795323300980,
+        "finalizedAt": 1795323301282,
         "isAliased": false
       }
     ],
@@ -47,15 +47,15 @@
       "timeZone": "America/New_York",
       "username": "Adolf Hitler",
       "userId": "112280",
-      "postsGained": 7968,
+      "postsGained": 7970,
       "startPosts": 40069,
-      "endPosts": 48037,
+      "endPosts": 48039,
       "finalRank": 31,
       "profileUrl": "https://incels.is/members/adolf-hitler.112280/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/112280.jpg?v=1795281923",
       "trackingStartedAt": 1795237501101,
-      "trackingEndedAt": 1795321889321,
-      "finalizedAt": 1795321889622,
+      "trackingEndedAt": 1795323300980,
+      "finalizedAt": 1795323301282,
       "isAliased": false
     }
   },
@@ -124607,7 +124607,7 @@
       "dateKey": "2026-11-21",
       "timeZone": "America/New_York",
       "startedAt": 1795237501101,
-      "lastUpdatedAt": 1795321889321,
+      "lastUpdatedAt": 1795323300980,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -124616,8 +124616,8 @@
           "userId": "112280",
           "isAliased": false,
           "startPosts": 40069,
-          "postsGained": 7968,
-          "endPosts": 48037,
+          "postsGained": 7970,
+          "endPosts": 48039,
           "finalRank": 31,
           "profileUrl": "https://incels.is/members/adolf-hitler.112280/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/112280.jpg?v=1795281923"
@@ -124660,8 +124660,8 @@
           "userId": "72876",
           "isAliased": false,
           "startPosts": 649004,
-          "postsGained": 2008,
-          "endPosts": 651012,
+          "postsGained": 2009,
+          "endPosts": 651013,
           "finalRank": 3,
           "profileUrl": "https://incels.is/members/hermit.72876/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/72876.jpg?v=1792058718"
@@ -125753,8 +125753,8 @@
     {
       "rank": 3,
       "username": "Hermit",
-      "posts": 651012,
-      "postDelta": 2008,
+      "posts": 651013,
+      "postDelta": 2009,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -126089,8 +126089,8 @@
     {
       "rank": 31,
       "username": "Adolf Hitler",
-      "posts": 48037,
-      "postDelta": 7968,
+      "posts": 48039,
+      "postDelta": 7970,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
