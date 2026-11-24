@@ -4,8 +4,8 @@
   "dailyTimeZone": "America/New_York",
   "rankingLimit": 100,
   "source": "https://incels.is/members/?key=most_posts",
-  "updatedAt": "2026-11-24T05:05:01.095Z",
-  "updatedAtMs": 1795496701095,
+  "updatedAt": "2026-11-24T06:05:13.225Z",
+  "updatedAtMs": 1795500313225,
   "nextUpdateAt": "2026-11-25T04:55:00.000Z",
   "nextUpdateAtMs": 1795582500000,
   "updateIntervalMinutes": null,
@@ -17,28 +17,28 @@
   "sourcePages": 1,
   "stats": {
     "users": 100,
-    "combinedPosts": 10004932
+    "combinedPosts": 10004978
   },
   "dailyTracking": {
     "dateKey": "2026-11-24",
     "timeZone": "America/New_York",
     "startedAt": 1795496701095,
-    "lastUpdatedAt": 1795496701095,
+    "lastUpdatedAt": 1795500313225,
     "currentLeaders": [
       {
         "dateKey": "2026-11-24",
         "timeZone": "America/New_York",
         "username": "Adolf Hitler",
         "userId": "112280",
-        "postsGained": 4,
+        "postsGained": 33,
         "startPosts": 53246,
-        "endPosts": 53250,
+        "endPosts": 53279,
         "finalRank": 25,
         "profileUrl": "https://incels.is/members/adolf-hitler.112280/",
         "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/112280.jpg?v=1795281923",
         "trackingStartedAt": 1795496701095,
-        "trackingEndedAt": 1795496701095,
-        "finalizedAt": 1795496701405,
+        "trackingEndedAt": 1795500313225,
+        "finalizedAt": 1795500313540,
         "isAliased": false
       }
     ],
@@ -47,15 +47,15 @@
       "timeZone": "America/New_York",
       "username": "Adolf Hitler",
       "userId": "112280",
-      "postsGained": 4,
+      "postsGained": 33,
       "startPosts": 53246,
-      "endPosts": 53250,
+      "endPosts": 53279,
       "finalRank": 25,
       "profileUrl": "https://incels.is/members/adolf-hitler.112280/",
       "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/112280.jpg?v=1795281923",
       "trackingStartedAt": 1795496701095,
-      "trackingEndedAt": 1795496701095,
-      "finalizedAt": 1795496701405,
+      "trackingEndedAt": 1795500313225,
+      "finalizedAt": 1795500313540,
       "isAliased": false
     }
   },
@@ -128018,7 +128018,7 @@
       "dateKey": "2026-11-24",
       "timeZone": "America/New_York",
       "startedAt": 1795496701095,
-      "lastUpdatedAt": 1795496701095,
+      "lastUpdatedAt": 1795500313225,
       "finalized": false,
       "finalizedAt": null,
       "users": [
@@ -128027,19 +128027,30 @@
           "userId": "112280",
           "isAliased": false,
           "startPosts": 53246,
-          "postsGained": 4,
-          "endPosts": 53250,
+          "postsGained": 33,
+          "endPosts": 53279,
           "finalRank": 25,
           "profileUrl": "https://incels.is/members/adolf-hitler.112280/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/112280.jpg?v=1795281923"
+        },
+        {
+          "username": "Grimm",
+          "userId": "72847",
+          "isAliased": false,
+          "startPosts": 57832,
+          "postsGained": 8,
+          "endPosts": 57840,
+          "finalRank": 22,
+          "profileUrl": "https://incels.is/members/grimm.72847/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/72847.jpg?v=1795235997"
         },
         {
           "username": "Shark",
           "userId": "62916",
           "isAliased": false,
           "startPosts": 40046,
-          "postsGained": 2,
-          "endPosts": 40048,
+          "postsGained": 6,
+          "endPosts": 40052,
           "finalRank": 39,
           "profileUrl": "https://incels.is/members/shark.62916/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/62916.jpg?v=1792429819"
@@ -128049,11 +128060,33 @@
           "userId": "61345",
           "isAliased": true,
           "startPosts": 36144,
-          "postsGained": 1,
-          "endPosts": 36145,
+          "postsGained": 3,
+          "endPosts": 36147,
           "finalRank": 48,
           "profileUrl": "",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/61345.jpg?v=1712989383"
+        },
+        {
+          "username": "wereq",
+          "userId": "45911",
+          "isAliased": false,
+          "startPosts": 50094,
+          "postsGained": 2,
+          "endPosts": 50096,
+          "finalRank": 28,
+          "profileUrl": "https://incels.is/members/wereq.45911/",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/45911.jpg?v=1792997639"
+        },
+        {
+          "username": "weasel",
+          "userId": "48265",
+          "isAliased": true,
+          "startPosts": 29436,
+          "postsGained": 1,
+          "endPosts": 29437,
+          "finalRank": 61,
+          "profileUrl": "",
+          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/48265.jpg?v=1795298445"
         },
         {
           "username": "VλREN",
@@ -128298,17 +128331,6 @@
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/60990.jpg?v=1793538649"
         },
         {
-          "username": "Grimm",
-          "userId": "72847",
-          "isAliased": false,
-          "startPosts": 57832,
-          "postsGained": 0,
-          "endPosts": 57832,
-          "finalRank": 22,
-          "profileUrl": "https://incels.is/members/grimm.72847/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/72847.jpg?v=1795235997"
-        },
-        {
           "username": "Bulbasaur",
           "userId": "86116",
           "isAliased": false,
@@ -128351,17 +128373,6 @@
           "finalRank": 27,
           "profileUrl": "https://incels.is/members/copexodius-maximus.27690/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/27690.jpg?v=1767671084"
-        },
-        {
-          "username": "wereq",
-          "userId": "45911",
-          "isAliased": false,
-          "startPosts": 50094,
-          "postsGained": 0,
-          "endPosts": 50094,
-          "finalRank": 28,
-          "profileUrl": "https://incels.is/members/wereq.45911/",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/45911.jpg?v=1792997639"
         },
         {
           "username": "PersonalityChad",
@@ -128692,17 +128703,6 @@
           "finalRank": 60,
           "profileUrl": "https://incels.is/members/fastblast.52942/",
           "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/52942.jpg?v=1737955213"
-        },
-        {
-          "username": "weasel",
-          "userId": "48265",
-          "isAliased": true,
-          "startPosts": 29436,
-          "postsGained": 0,
-          "endPosts": 29436,
-          "finalRank": 61,
-          "profileUrl": "",
-          "avatarUrl": "https://raw.githubusercontent.com/aeizu29/rank-online/main/avatars/48265.jpg?v=1795298445"
         },
         {
           "username": "Izayacel",
@@ -129381,8 +129381,8 @@
     {
       "rank": 22,
       "username": "Grimm",
-      "posts": 57832,
-      "postDelta": 0,
+      "posts": 57840,
+      "postDelta": 8,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -129417,8 +129417,8 @@
     {
       "rank": 25,
       "username": "Adolf Hitler",
-      "posts": 53250,
-      "postDelta": 4,
+      "posts": 53279,
+      "postDelta": 33,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -129453,8 +129453,8 @@
     {
       "rank": 28,
       "username": "wereq",
-      "posts": 50094,
-      "postDelta": 0,
+      "posts": 50096,
+      "postDelta": 2,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -129585,8 +129585,8 @@
     {
       "rank": 39,
       "username": "Shark",
-      "posts": 40048,
-      "postDelta": 2,
+      "posts": 40052,
+      "postDelta": 6,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": false,
@@ -129693,8 +129693,8 @@
     {
       "rank": 48,
       "username": "Miso Vegeta",
-      "posts": 36145,
-      "postDelta": 1,
+      "posts": 36147,
+      "postDelta": 3,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": true,
@@ -129849,8 +129849,8 @@
     {
       "rank": 61,
       "username": "weasel",
-      "posts": 29436,
-      "postDelta": 0,
+      "posts": 29437,
+      "postDelta": 1,
       "rankDelta": 0,
       "isNew": false,
       "isAliased": true,
